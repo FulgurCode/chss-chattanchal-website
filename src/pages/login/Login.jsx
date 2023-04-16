@@ -1,5 +1,5 @@
-import schoolImg from "./imgs/school.png";
-import svgImg from "./imgs/footer.svg";
+import schoolImg from "/imgs/school.png";
+import svgImg from "/imgs/footer.svg";
 import "./Login.css";
 
 export default function Login() {
