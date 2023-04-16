@@ -1,8 +1,8 @@
-import schoolImg from "../imgs/school.png";
-import svgImg from "../imgs/footer.svg";
-import "./AdminLogin.css";
+import schoolImg from "./imgs/school.png";
+import svgImg from "./imgs/footer.svg";
+import "./Login.css";
 
-export default function AdminLogin() {
+export default function Login() {
   return (
     <>
       <header>www.chsschattanchal.com</header>

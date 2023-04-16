@@ -1,6 +1,7 @@
 body {
   display: flex;
   overflow: hidden;
+  font-family: Arial;
 }
 
 #root {
@@ -37,6 +38,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding-bottom: 25px;
 }
 
 #root div.main div.container {
@@ -44,7 +47,6 @@ body {
   border-radius: 10px;
   width: 90%;
   height: 90%;
-  max-height: 400px;
 
   display: flex;
 
@@ -152,6 +154,7 @@ body {
   border-top-left-radius: 0;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
+  background-color: white;
 
   padding: 10px;
   outline: none;
