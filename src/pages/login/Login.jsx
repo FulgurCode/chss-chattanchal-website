@@ -1,8 +1,65 @@
 import schoolImg from "/imgs/school.png";
 import svgImg from "/imgs/footer.svg";
 import "./Login.css";
+import axios from "axios";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import LoginElement from "./LoginElement";
 
 export default function Login() {
+  const [userType, setUserType] = React.useState("admin");
+  const [userName, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+  const navigate = useNavigate();
+
+  function changeEvent(event) {
+    if (event.target == document.getElementById("usertype")) {
+      setUserType(event.target.value);
+    } else if (event.target == document.getElementById("username")) {
+      setUserName(event.target.value);
+    } else if (event.target == document.getElementById("password")) {
+      setPassword(event.target.value);
+    }
+
+    changeInputColor("grey");
+    setError();
+  }
+
+  function handleClick() {
+    function tryLogin(data) {
+      if (data == "Login Successful") {
+        navigate("/admin");
+      } else if (data == "Wrong username or password") {
+        console.log("login unsucsessfull");
+        changeInputColor("red");
+      } else {
+        setError("internal server error");
+      }
+    }
+
+    if (userType == "admin") {
+      axios
+        .post("http://localhost:9000/api/admin/login", {
+          username: userName,
+          password: password,
+        })
+        .then((res) => {
+          tryLogin(res.data);
+        })
+        .catch((err) => {
+          tryLogin(err.response.data);
+        });
+    } else {
+      console.log("students or teachers login fuctionality is not added yet");
+    }
+  }
+
+  function changeInputColor(color) {
+    document.getElementById("password").style.borderColor = color;
+    document.getElementById("username").style.borderColor = color;
+  }
+
   return (
     <>
       <header>www.chsschattanchal.com</header>
@@ -18,22 +75,14 @@ export default function Login() {
             <h1>
               Login <span></span>
             </h1>
-            <div className="loginElement">
-              <div>
-                <select placeholder="Select user type">
-                  <option value="student">Student</option>
-                  <option value="teacher">Teacher</option>
-                  <option value="admin">Admin</option>
-                </select>
-                <span></span>
-              </div>
-              <span>
-                <input placeholder="Admission Number" />
-                <input placeholder="Password" />
-                <a href="#">Forget password?</a>
-                <button>Login</button>
-              </span>
-            </div>
+            <LoginElement
+              changeEvent={changeEvent}
+              userName={userName}
+              password={password}
+              handleClick={handleClick}
+              error={error}
+              userType={userType}
+            />
           </div>
         </div>
       </div>
