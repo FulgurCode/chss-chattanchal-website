@@ -245,13 +245,15 @@ body {
   font-size: 1.5rem;
 
   box-shadow: 2px 2px 3px grey;
+  padding-bottom: 2px;
 }
 
 #root div.main div.container div.login div.loginElement span p {
   font-size: small;
   color: red;
   position: absolute;
-  bottom: 5px;
+  bottom: -5px;
+  text-align: center;
 }
 
 #root footer {

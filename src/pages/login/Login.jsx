@@ -27,17 +27,6 @@ export default function Login() {
   }
 
   function handleClick() {
-    function tryLogin(data) {
-      if (data == "Login Successful") {
-        navigate("/admin");
-      } else if (data == "Wrong username or password") {
-        console.log("login unsucsessfull");
-        changeInputColor("red");
-      } else {
-        setError("internal server error");
-      }
-    }
-
     if (userType == "admin") {
       axios
         .post("http://localhost:9000/api/admin/login", {
@@ -45,13 +34,21 @@ export default function Login() {
           password: password,
         })
         .then((res) => {
-          tryLogin(res.data);
+          if (res.data == "Login Successful") {
+            navigate("/admin");
+          }
         })
         .catch((err) => {
-          tryLogin(err.response.data);
+          if (err.response.status == 401) {
+            // console.log("login unsucsessfull");
+            changeInputColor("red");
+            setError(err.response.data);
+          } else {
+            setError(err.response.data);
+          }
         });
     } else {
-      console.log("students or teachers login fuctionality is not added yet");
+      setError("students or teachers login fuctionality is not added yet");
     }
   }
 
