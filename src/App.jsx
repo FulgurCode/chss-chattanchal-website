@@ -10,6 +10,8 @@ import AdminAdmission from "./pages/admin/admission/AdminAdmission";
 import AdminNewAdmission from "./pages/admin/admission/AdminNewAdmission";
 
 export default function App() {
+
+
   return (
     <>
       <Routes>

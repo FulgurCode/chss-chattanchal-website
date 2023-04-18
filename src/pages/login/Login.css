@@ -92,7 +92,8 @@ body {
 }
 
 #root div.main div.container div.label h1 {
-  width: max-content;
+  /* width: mi-content; */
+  line-height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,6 +114,7 @@ body {
   flex-direction: column;
   padding: 20px;
   padding-top: 7px;
+  min-width: 250px;
 }
 
 #root div.main div.container div.login h1 {
@@ -211,6 +213,7 @@ body {
   gap: 15px;
 
   box-shadow: 0 0 10px grey;
+  position: relative;
 }
 
 #root div.main div.container div.login div.loginElement span input {
@@ -242,6 +245,13 @@ body {
   font-size: 1.5rem;
 
   box-shadow: 2px 2px 3px grey;
+}
+
+#root div.main div.container div.login div.loginElement span p {
+  font-size: small;
+  color: red;
+  position: absolute;
+  bottom: 5px;
 }
 
 #root footer {
