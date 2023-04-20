@@ -44,7 +44,7 @@ body {
 
 #root div.main div.container {
   background-color: rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+  border-radius: 30px;
   width: 90%;
   height: 90%;
 
@@ -144,7 +144,7 @@ body {
 #root div.main div.container div.login div.loginElement {
   flex: 2;
   background-color: rgba(255, 255, 255, 0.44);
-  border-radius: 15px;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -159,14 +159,16 @@ body {
 #root div.main div.container div.login div.loginElement div select {
   flex: 1;
   width: 100%;
-  max-height: 40px;
+  min-height: 45px;
+  max-height: 45px;
   margin-bottom: 10px;
   border: none;
   text-indent: 10px;
-  border-top-right-radius: 0;
+  border-radius: 30px;
+  /* border-top-right-radius: 0;
   border-top-left-radius: 0;
   border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px; */
   background-color: white;
 
   padding: 10px;
@@ -183,8 +185,8 @@ body {
 #root div.main div.container div.login div.loginElement div span {
   /* background-color: red; */
   position: absolute;
-  right: 15px;
-  top: 22%;
+  right: 25px;
+  top: 16px;
   display: block;
   border-radius: 0;
   transform: translate(-500%, -50%);
@@ -203,7 +205,7 @@ body {
 #root div.main div.container div.login div.loginElement span {
   flex: 2;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   width: 100%;
 
   display: flex;
@@ -220,15 +222,54 @@ body {
   min-height: 30px;
   width: 80%;
   border: transparent;
-  border-bottom: 1px grey solid;
+  border-bottom: 1px rgb(139, 139, 139) solid;
   outline: none;
   text-indent: 10px;
+  font-family: "Inria Sans", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+#root
+  div.main
+  div.container
+  div.login
+  div.loginElement
+  span
+  input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(163, 163, 163);
+  font-family: "Inria Sans", sans-serif;
+}
+
+#root
+  div.main
+  div.container
+  div.login
+  div.loginElement
+  span
+  input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(163, 163, 163);
+  font-family: "Inria Sans", sans-serif;
+}
+
+#root
+  div.main
+  div.container
+  div.login
+  div.loginElement
+  span
+  input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(163, 163, 163);
+  font-family: "Inria Sans", sans-serif;
 }
 
 #root div.main div.container div.login div.loginElement span a {
   transform: translate(0, -50%);
-  font-size: 0.7rem;
-  color: grey;
+  font-size: 10px;
+  color: #cd57d8;
   text-decoration: none;
   width: 80%;
   text-align: left;
@@ -241,11 +282,12 @@ body {
   background-color: #28b4ab;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 1.5rem;
 
   box-shadow: 2px 2px 3px grey;
   padding-bottom: 2px;
+  font-family: "Poppins", sans-serif;
 }
 
 #root div.main div.container div.login div.loginElement span p {
