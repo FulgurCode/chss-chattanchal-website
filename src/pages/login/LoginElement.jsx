@@ -35,7 +35,7 @@ export default function LoginElement(props) {
           onChange={props.changeEvent}
         />
         <a href="#">Forget password?</a>
-        <button onClick={props.handleClick}>Login</button>
+        <button onClick={props.handleClick}>LOGIN</button>
         <p id="error">{props.error}</p>
       </span>
     </div>
