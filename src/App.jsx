@@ -1,17 +1,15 @@
 import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import Login from "./pages/login/Login";
-import StudentsImport from "./pages/admin/StudentsImport";
+import AdminImportStudents from "./pages/admin/admission/AdminImportStudents";
 import AdminAdmission from "./pages/admin/admission/AdminAdmission";
 import AdminNewAdmission from "./pages/admin/admission/AdminNewAdmission";
 
 export default function App() {
-
-
   return (
     <>
       <Routes>
@@ -19,15 +17,15 @@ export default function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin">
           <Route index element={<Admin />} />
-          <Route
-            path="/admin/import-students"
-            element={<StudentsImport />}
-          ></Route>
           <Route path="/admin/admission">
             <Route index element={<AdminAdmission />} />
             <Route
               path="/admin/admission/new-admission"
               element={<AdminNewAdmission />}
+            ></Route>
+            <Route
+              path="/admin/admission/import-students"
+              element={<AdminImportStudents />}
             ></Route>
           </Route>
         </Route>
