@@ -1,0 +1,360 @@
+body {
+  display: flex;
+  overflow: hidden;
+  font-family: Arial;
+  width: 100%;
+}
+
+.header,
+.footer {
+  flex: 1;
+}
+
+.header {
+  /* display: block; */
+  background-color: #6a2c70;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 70px;
+  max-height: 100px;
+  border-bottom: 10px solid rgb(216, 216, 216);
+
+  max-height: 70px;
+}
+
+.main {
+  flex: 2;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 25px;
+}
+
+.main .container {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  width: 90%;
+  height: 90%;
+
+  display: flex;
+  max-height: 500px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.main .container .label {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 20px;
+  padding-bottom: 30px;
+  color: white;
+
+  font-family: "Oswald", sans-serif;
+  font-size: 3rem;
+}
+
+.main-login .container .label h2 {
+  font-size: 3rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.main .container .label h2,
+.main .container .label h1 {
+  margin: 0;
+  line-height: 70px;
+  animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.main .container .label h1 {
+  line-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main .container .label h1 span {
+  display: block;
+  border-bottom: 2px white solid;
+  width: 60%;
+  left: 10px;
+}
+
+.main .container .login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 7px;
+  min-width: 250px;
+}
+
+.main .container .login h1 {
+  color: white;
+  flex: 1;
+  text-align: center;
+  vertical-align: top;
+  line-height: 0px;
+  max-height: 15px;
+  letter-spacing: 1px;
+
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 8px;
+}
+.main .container .login h1 span {
+  width: 15%;
+  border-bottom: 2px solid white;
+  transform: translate(0, 25px);
+}
+.main .container .login .loginElement {
+  flex: 2;
+  background-color: rgba(255, 255, 255, 0.44);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+}
+
+.main .container .login .loginElement div {
+  position: relative;
+  width: 80%;
+}
+
+.main .container .login .loginElement div select {
+  flex: 1;
+  width: 100%;
+  min-height: 45px;
+  max-height: 45px;
+  margin-bottom: 10px;
+  border: none;
+  text-indent: 10px;
+  border-radius: 30px;
+  background-color: white;
+
+  padding: 10px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.main .container .login .loginElement div select option {
+  margin: 10px;
+}
+
+.main .container .login .loginElement div span {
+  position: absolute;
+  right: 25px;
+  top: 16px;
+  display: block;
+  border-radius: 0;
+  transform: translate(-500%, -50%);
+  transform: rotate(45deg);
+
+  width: 8px;
+  height: 8px;
+
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.main .container .login .loginElement span {
+  flex: 2;
+  background-color: white;
+  border-radius: 20px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  box-shadow: 0 0 10px grey;
+  position: relative;
+}
+
+.main .container .login .loginElement span input {
+  min-height: 30px;
+  width: 80%;
+  border: transparent;
+  border-bottom: 1px rgb(139, 139, 139) solid;
+  outline: none;
+  text-indent: 10px;
+  font-family: "Inria Sans", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.main .container .login .loginElement span input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: grey;
+  font-family: "Inria Sans", sans-serif;
+}
+
+.main .container .login .loginElement span input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: grey;
+  font-family: "Inria Sans", sans-serif;
+}
+
+.main .container .login .loginElement span input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: grey;
+  font-family: "Inria Sans", sans-serif;
+}
+
+.main .container .login .loginElement span a {
+  transform: translate(0, -50%);
+  font-size: 10px;
+  color: #cd57d8;
+  text-decoration: none;
+  width: 80%;
+  text-align: left;
+  text-indent: 10px;
+}
+
+.main .container .login .loginElement span button {
+  width: 80%;
+  height: 35px;
+  background-color: #28b4ab;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+
+  box-shadow: 2px 2px 3px grey;
+  padding-bottom: 2px;
+  font-family: "Poppins", sans-serif;
+}
+
+.main .container .login .loginElement span p {
+  font-size: small;
+  color: red;
+  position: absolute;
+  bottom: -5px;
+  text-align: center;
+}
+
+.footer {
+  max-height: 70px;
+}
+
+.img {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  min-width: 1000px;
+  /* min-height: 100px; */
+}
+
+@media screen and (max-width: 900px) {
+  .main .container .label h1 {
+    font-size: 1.5em;
+  }
+  .main .container .label h2 {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main .container .label h1 {
+    font-size: 1.2em;
+    line-height: 60px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main .container {
+    flex-direction: column;
+  }
+  .main .container .label h1 {
+    font-size: 25px;
+    line-height: 25px;
+    padding-bottom: 0px;
+    gap: 3px;
+  }
+  .main .container .label h2 {
+    font-size: 20px;
+    text-align: center;
+    line-height: 20px;
+  }
+  .main .container .label {
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .main .container {
+    width: 90%;
+    height: 90%;
+  }
+  .main {
+    padding-bottom: 0;
+  }
+  .main .container .label {
+    padding: 0;
+    padding-top: 10px;
+    flex: 0;
+  }
+  .main .container .login {
+    flex: 2;
+  }
+  .header {
+    max-height: 50px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .header {
+    max-height: 50px;
+    line-height: 50px;
+  }
+  .footer {
+    max-height: 60px;
+  }
+}
+/* 
+@media screen and (max-width: 640px), screen and (max-height: 360px) {
+
+
+  body {
+    zoom: 0.7;
+    -moz-transform: scale(0.7);
+    -moz-transform-origin: 0 0;
+    background-image: url(/imgs/school.png);
+    background-size: cover;
+  }
+   .main .container .login .loginElement {
+    zoom: 0.8;
+    -moz-transform: scale(0.8);
+    -moz-transform-origin: 0 0;
+  }
+} */
