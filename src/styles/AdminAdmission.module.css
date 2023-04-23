@@ -3,10 +3,13 @@
   flex: 2;
   padding-top: 50px;
 
+  padding-left: 10%;
+  padding-right: 10%;
+
   display: flex;
   flex-direction: column;
 
-  align-items: center;
+  align-items: left;
 }
 
 .main .container {
@@ -39,8 +42,8 @@
   gap: 20px;
   flex-wrap: wrap;
 
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
 }
 
 .main .container .items .item {
@@ -93,6 +96,15 @@
 
 @media screen and (max-width: 800px) {
   .main .container span {
-    padding: 10%;
+    padding-left: 10%;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .main .container .items {
+    justify-content: center;
+  }
+  .main .container span {
+    padding-left: 2%;
   }
 }
