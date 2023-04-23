@@ -1,7 +1,11 @@
 import schoolImg from "/imgs/school.png";
+<<<<<<< HEAD:src/pages/Login.jsx
 import svgImgDesktop from "/imgs/loginImages/footerDesktop.svg";
 import svgImgMobile from "/imgs/loginImages/footerMobile.svg";
 import styles from "../styles/login/Login.module.css";
+=======
+import svgImg from "/imgs/footer.svg";
+>>>>>>> 6fbc6b7 (finished admin page, navbar needs to be updated):src/pages/login/Login.jsx
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
