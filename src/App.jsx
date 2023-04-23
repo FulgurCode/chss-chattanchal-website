@@ -26,6 +26,8 @@ import SignUpOtp from "./pages/teacher/Otp";
 
 import Teacher from "./pages/teacher/Teacher";
 
+import EditStudents from "./pages/admin/admission/EditStudent";
+
 export default function App() {
   return (
     <>
@@ -43,6 +45,10 @@ export default function App() {
             <Route
               path="/admin/admission/import-students"
               element={<ImportStudents />}
+            ></Route>
+            <Route
+              path="/admin/admission/edit-students"
+              element={<EditStudents />}
             ></Route>
             <Route
               path="/admin/admission/student-details"
