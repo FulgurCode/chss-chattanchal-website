@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import AdminImportStudents from "./pages/admin/admission/AdminImportStudents";
 import AdminAdmission from "./pages/admin/admission/AdminAdmission";
 import AdminNewAdmission from "./pages/admin/admission/AdminNewAdmission";
+import AdminStudentDetails from "./pages/admin/admission/AdminStudentDetails";
 
 export default function App() {
   return (
@@ -26,6 +27,10 @@ export default function App() {
             <Route
               path="/admin/admission/import-students"
               element={<AdminImportStudents />}
+            ></Route>
+            <Route
+              path="/admin/admission/student-details"
+              element={<AdminStudentDetails />}
             ></Route>
           </Route>
         </Route>
