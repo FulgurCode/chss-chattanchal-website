@@ -18,14 +18,16 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-otp-input": "^3.0.2",
+    "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.10.0",
     "react-select": "^5.7.3",
-    "react-to-print": "^2.14.12"
+    "react-to-print": "^2.14.12",
+    "react-webcam": "^7.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
-    "vite": "^4.1.0"
+    "vite": "^4.3.5"
   }
 }
