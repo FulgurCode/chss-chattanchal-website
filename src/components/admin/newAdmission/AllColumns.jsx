@@ -1,6 +1,9 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import img2 from "/imgs/image_2.svg";
+import { all } from "axios";
+import SuccessPopup from "./SuccessPopup";
+import NotFilledPopup from "./NotFilledPopup";
 
 function AllColumns() {
   const [data, setData] = useState({
@@ -8,13 +11,13 @@ function AllColumns() {
     applicationNo: "",
     name: "",
     aadhaarNo: "",
-    gender: "",
+    gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
     relationshipWithGuardian: "",
     religion: "",
     caste: "",
-    obc: "",
+    obc: "yes",
     linguisticMinority: "",
     dob: "",
     class: "",
@@ -25,7 +28,11 @@ function AllColumns() {
     tcNumber: "",
     tcDate: "",
     tcSchool: "",
+    status: "permanent",
   });
+
+  const [popup, setPopup] = useState(false);
+  const [notFilledError, setNotFilledError] = useState(false);
 
   function handleChange(event) {
     if (event && event.target) {
@@ -42,9 +49,16 @@ function AllColumns() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const hasNullOrUndefinedValue = Object.values(data).some(
-      (value) => value == ""
-    );
+    var hasNullOrUndefinedValue = false;
+
+    for (var prop in data) {
+      if (data[prop] === "") {
+        setNotFilledError(true)
+        console.log(prop + " field is not filled");
+        hasNullOrUndefinedValue = true;
+        break;
+      }
+    }
 
     if (hasNullOrUndefinedValue) {
       console.log("no");
@@ -52,6 +66,31 @@ function AllColumns() {
     } else {
       console.log("yes");
       console.log(data);
+      setPopup(!popup);
+      setData({
+        admissionDate: "",
+        applicationNo: "",
+        name: "",
+        aadhaarNo: "",
+        gender: "male",
+        nameOfParent: "",
+        occupationOfParent: "",
+        relationshipWithGuardian: "",
+        religion: "",
+        caste: "",
+        obc: "yes",
+        linguisticMinority: "",
+        dob: "",
+        class: "",
+        course: "",
+        nameOfBoard: "",
+        registerNo: "",
+        passingTime: "",
+        tcNumber: "",
+        tcDate: "",
+        tcSchool: "",
+        status: "permanent",
+      });
     }
   }
 
@@ -76,7 +115,7 @@ function AllColumns() {
       </label>
       <div className={`${styles.container}`}>
         <div className={`${styles.subContainer}, ${styles.applicationNo}`}>
-          <label className={`${styles.applicationNoLabel}`}>
+          <label className={`${styles.applicationNoLabel} ${styles.label}`}>
             Application number
           </label>
           <input
@@ -87,7 +126,7 @@ function AllColumns() {
           ></input>
         </div>
         <div className={`${styles.subContainer} ${styles.applicationNo}`}>
-          <label className={`${styles.applicationNoLabel}`}>
+          <label className={`${styles.applicationNoLabel} ${styles.label}`}>
             Admission Date
           </label>
           <input
@@ -135,7 +174,7 @@ function AllColumns() {
           >
             <option value="male">Male</option>
             <option value="Female">Female</option>
-            <option value="lgbtq+">LGBTQ+</option>
+            <option value="others">Others</option>
           </select>
         </div>
       </div>
@@ -348,10 +387,30 @@ function AllColumns() {
             className={`${styles.issuedSchoolInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.status} ${styles.label}`}>
+            Status <span className={`${styles.aster}`}> * </span>
+          </label>
+          <select
+            onChange={handleChange}
+            value={data.status}
+            name="status"
+            className={`${styles.statusLabel} ${styles.inputFieldNew} ${styles.selectElement}`}
+          >
+            <option value="permanent">permanent</option>
+            <option value="temporary">temporary</option>
+          </select>
+        </div>
         <button onClick={handleSubmit} className={`${styles.submitButton}`}>
           Submit
         </button>
       </div>
+      <SuccessPopup open={popup} show={setPopup} showVar={popup} />
+      <NotFilledPopup
+        open={notFilledError}
+        show={setNotFilledError}
+        showVar={notFilledError}
+      />
     </div>
   );
 }
