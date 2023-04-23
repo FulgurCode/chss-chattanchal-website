@@ -1,6 +1,8 @@
+import styles from "../styles/login/Login.module.css";
+
 export default function LoginElement(props) {
   return (
-    <div className="loginElement">
+    <div className={styles.loginElement}>
       <div>
         <select
           placeholder="Select user type"

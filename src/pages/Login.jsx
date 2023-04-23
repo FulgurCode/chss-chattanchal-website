@@ -1,10 +1,10 @@
 import schoolImg from "/imgs/school.png";
 import svgImg from "/imgs/footer.svg";
-import "./Login.css";
+import styles from "../styles/login/Login.module.css";
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LoginElement from "./LoginElement";
+import LoginElement from "../components/LoginElement";
 
 export default function Login() {
   const [userType, setUserType] = React.useState("admin");
@@ -59,16 +59,19 @@ export default function Login() {
 
   return (
     <>
-      <header>www.chsschattanchal.com</header>
-      <div className="main" style={{ backgroundImage: `url(${schoolImg})` }}>
-        <div className="container">
-          <div className="label">
+      <header className={styles.header}>www.chsschattanchal.com</header>
+      <div
+        className={styles.main}
+        style={{ backgroundImage: `url(${schoolImg})` }}
+      >
+        <div className={styles.container}>
+          <div className={styles.label}>
             <h2>Welocme to</h2>
             <h1>
               CHSS CHATTANCHAL<span></span>
             </h1>
           </div>
-          <div className="login">
+          <div className={styles.login}>
             <h1>
               Login <span></span>
             </h1>
@@ -83,8 +86,8 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <footer></footer>
-      <img src={svgImg} className="shapes" />
+      <footer className={styles.footer}></footer>
+      <img src={svgImg} className={styles.img} />
     </>
   );
 }

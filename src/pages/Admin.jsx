@@ -1,8 +1,3 @@
-export default function Admin(){
-
-    return (
-        <>
-            Admin page
-        </>
-    )
+export default function Admin() {
+  return <>Admin page</>;
 }

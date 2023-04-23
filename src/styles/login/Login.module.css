@@ -2,23 +2,15 @@ body {
   display: flex;
   overflow: hidden;
   font-family: Arial;
+  width: 100%;
 }
 
-#root {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  /* border: 1px solid black; */
-  /* background-color: red; */
-}
-
-#root header,
-#root footer {
+.header,
+.footer {
   flex: 1;
 }
 
-#root header {
+.header {
   /* display: block; */
   background-color: #6a2c70;
   color: white;
@@ -31,7 +23,7 @@ body {
   max-height: 70px;
 }
 
-#root div.main {
+.main {
   flex: 2;
   background-size: cover;
 
@@ -42,7 +34,7 @@ body {
   padding-bottom: 25px;
 }
 
-#root div.main div.container {
+.main .container {
   background-color: rgba(255, 255, 255, 0.08);
   border-radius: 30px;
   width: 90%;
@@ -54,13 +46,11 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#root div.main div.container div.label {
-  /* position: relative; */
+.main .container .label {
   flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: end;
-  /* align-items: center; */
   padding: 20px;
   padding-bottom: 30px;
   color: white;
@@ -69,14 +59,13 @@ body {
   font-size: 3rem;
 }
 
-#root div.main div.container div.label h2 {
+.main-login .container .label h2 {
   font-size: 3rem;
   font-family: "Montserrat", sans-serif;
-  /* padding-left: 5%; */
 }
 
-#root div.main div.container div.label h2,
-#root div.main div.container div.label h1 {
+.main .container .label h2,
+.main .container .label h1 {
   margin: 0;
   line-height: 70px;
   animation: fadeIn 2s;
@@ -91,8 +80,7 @@ body {
   }
 }
 
-#root div.main div.container div.label h1 {
-  /* width: mi-content; */
+.main .container .label h1 {
   line-height: 90px;
   display: flex;
   justify-content: center;
@@ -101,14 +89,14 @@ body {
   gap: 20px;
 }
 
-#root div.main div.container div.label h1 span {
+.main .container .label h1 span {
   display: block;
   border-bottom: 2px white solid;
   width: 60%;
   left: 10px;
 }
 
-#root div.main div.container div.login {
+.main .container .login {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -117,7 +105,7 @@ body {
   min-width: 250px;
 }
 
-#root div.main div.container div.login h1 {
+.main .container .login h1 {
   color: white;
   flex: 1;
   text-align: center;
@@ -136,12 +124,12 @@ body {
 
   padding-bottom: 8px;
 }
-#root div.main div.container div.login h1 span {
+.main .container .login h1 span {
   width: 15%;
   border-bottom: 2px solid white;
   transform: translate(0, 25px);
 }
-#root div.main div.container div.login div.loginElement {
+.main .container .login .loginElement {
   flex: 2;
   background-color: rgba(255, 255, 255, 0.44);
   border-radius: 30px;
@@ -151,12 +139,12 @@ body {
   align-items: center;
 }
 
-#root div.main div.container div.login div.loginElement div {
+.main .container .login .loginElement div {
   position: relative;
   width: 80%;
 }
 
-#root div.main div.container div.login div.loginElement div select {
+.main .container .login .loginElement div select {
   flex: 1;
   width: 100%;
   min-height: 45px;
@@ -165,10 +153,6 @@ body {
   border: none;
   text-indent: 10px;
   border-radius: 30px;
-  /* border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px; */
   background-color: white;
 
   padding: 10px;
@@ -178,12 +162,11 @@ body {
   appearance: none;
 }
 
-#root div.main div.container div.login div.loginElement div select option {
+.main .container .login .loginElement div select option {
   margin: 10px;
 }
 
-#root div.main div.container div.login div.loginElement div span {
-  /* background-color: red; */
+.main .container .login .loginElement div span {
   position: absolute;
   right: 25px;
   top: 16px;
@@ -202,7 +185,7 @@ body {
   box-shadow: none;
 }
 
-#root div.main div.container div.login div.loginElement span {
+.main .container .login .loginElement span {
   flex: 2;
   background-color: white;
   border-radius: 20px;
@@ -218,7 +201,7 @@ body {
   position: relative;
 }
 
-#root div.main div.container div.login div.loginElement span input {
+.main .container .login .loginElement span input {
   min-height: 30px;
   width: 80%;
   border: transparent;
@@ -230,43 +213,25 @@ body {
   font-size: 12px;
 }
 
-#root
-  div.main
-  div.container
-  div.login
-  div.loginElement
-  span
-  input::placeholder {
+.main .container .login .loginElement span input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: grey;
   font-family: "Inria Sans", sans-serif;
 }
 
-#root
-  div.main
-  div.container
-  div.login
-  div.loginElement
-  span
-  input:-ms-input-placeholder {
+.main .container .login .loginElement span input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: grey;
   font-family: "Inria Sans", sans-serif;
 }
 
-#root
-  div.main
-  div.container
-  div.login
-  div.loginElement
-  span
-  input::-ms-input-placeholder {
+.main .container .login .loginElement span input::-ms-input-placeholder {
   /* Microsoft Edge */
   color: grey;
   font-family: "Inria Sans", sans-serif;
 }
 
-#root div.main div.container div.login div.loginElement span a {
+.main .container .login .loginElement span a {
   transform: translate(0, -50%);
   font-size: 10px;
   color: #cd57d8;
@@ -276,7 +241,7 @@ body {
   text-indent: 10px;
 }
 
-#root div.main div.container div.login div.loginElement span button {
+.main .container .login .loginElement span button {
   width: 80%;
   height: 35px;
   background-color: #28b4ab;
@@ -290,7 +255,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-#root div.main div.container div.login div.loginElement span p {
+.main .container .login .loginElement span p {
   font-size: small;
   color: red;
   position: absolute;
@@ -298,11 +263,11 @@ body {
   text-align: center;
 }
 
-#root footer {
+.footer {
   max-height: 70px;
 }
 
-#root img.shapes {
+.img {
   position: absolute;
   bottom: 0px;
   width: 100%;
@@ -311,70 +276,68 @@ body {
 }
 
 @media screen and (max-width: 900px) {
-  #root div.main div.container div.label h1 {
+  .main .container .label h1 {
     font-size: 1.5em;
   }
-  #root div.main div.container div.label h2 {
+  .main .container .label h2 {
     font-size: 0.8em;
   }
 }
 
 @media screen and (max-width: 800px) {
-  #root div.main div.container div.label h1 {
+  .main .container .label h1 {
     font-size: 1.2em;
     line-height: 60px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #root div.main div.container {
+  .main .container {
     flex-direction: column;
   }
-  #root div.main div.container div.label h1 {
+  .main .container .label h1 {
     font-size: 25px;
     line-height: 25px;
     padding-bottom: 0px;
     gap: 3px;
   }
-  #root div.main div.container div.label h2 {
+  .main .container .label h2 {
     font-size: 20px;
     text-align: center;
     line-height: 20px;
   }
-  #root div.main div.container div.label {
+  .main .container .label {
     padding: 0;
     justify-content: center;
     align-items: center;
   }
-  #root div.main div.container {
+  .main .container {
     width: 90%;
     height: 90%;
   }
-  #root div.main {
+  .main {
     padding-bottom: 0;
   }
-  #root div.main div.container div.label {
+  .main .container .label {
     padding: 0;
     padding-top: 10px;
     flex: 0;
   }
-  #root div.main div.container div.login {
+  .main .container .login {
     flex: 2;
   }
-  #root header {
+  .header {
     max-height: 50px;
     line-height: 50px;
   }
 }
 
 @media screen and (max-height: 600px) {
-  #root header {
+  .header {
     max-height: 50px;
     line-height: 50px;
   }
-  #root img.shapes {
-  }
-  #root footer {
+  .footer {
     max-height: 60px;
   }
 }
@@ -389,7 +352,7 @@ body {
     background-image: url(/imgs/school.png);
     background-size: cover;
   }
-  #root div.main div.container div.login div.loginElement {
+   .main .container .login .loginElement {
     zoom: 0.8;
     -moz-transform: scale(0.8);
     -moz-transform-origin: 0 0;
