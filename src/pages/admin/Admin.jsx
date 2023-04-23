@@ -1,4 +1,4 @@
-import styles from '../../styles/admin.module.css'
+import styles from '../../styles/admin/admin.module.css'
 import { Link, Outlet } from 'react-router-dom'
 
 import React from 'react'
