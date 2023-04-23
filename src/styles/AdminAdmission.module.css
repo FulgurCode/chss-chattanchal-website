@@ -1,0 +1,98 @@
+.main {
+  /* background-color: red; */
+  flex: 2;
+  padding-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.main .container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main .container span {
+  color: grey;
+  flex: 1;
+  max-height: 20px;
+
+  width: 100%;
+  text-align: left;
+}
+
+.main .container span span {
+  color: grey;
+  font-weight: 600;
+  padding: 0;
+}
+
+.main .container .items {
+  flex: 2;
+
+  display: flex;
+  flex-direction: row;
+
+  gap: 20px;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.main .container .items .item {
+  box-shadow: inset 5px 5px 48px rgba(0, 0, 0, 0.1);
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  width: 250px;
+  height: 250px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1px;
+}
+
+.main .container .items .item h1 {
+  font-size: 1.2rem;
+  flex: 1;
+
+  max-height: 10px;
+}
+
+.main .items .item span {
+  flex: 1;
+
+  position: relative;
+
+  min-width: 150px;
+  min-height: 150px;
+
+  max-width: 150px;
+  max-height: 150px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  overflow: hidden;
+
+  padding: 0;
+  margin: 0;
+}
+
+.main .container .items .item:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 800px) {
+  .main .container span {
+    padding: 10%;
+  }
+}
