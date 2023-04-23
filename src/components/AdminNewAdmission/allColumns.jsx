@@ -1,9 +1,9 @@
-import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
+import styles from "../../styles/AdminNewAdmission/allColumns.module.css";
 import React, { Fragment, useState } from "react";
-import img2 from "/imgs/image_2.svg";
+import img2 from "../../../public/imgs/image_2.svg";
 import { all } from "axios";
-import SuccessPopup from "./SuccessPopup.jsx";
-import NotFilledPopup from "./NotFilledPopup";
+import SuccessPopup from "../admin/newAdmission/AllColumns";
+import NotFilledPopup from "../admin/newAdmission/NotFilledPopup";
 
 function AllColumns() {
   const [data, setData] = useState({
@@ -11,16 +11,13 @@ function AllColumns() {
     applicationNo: "",
     name: "",
     aadhaarNo: "",
-    phoneNo: "",
     gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
     relationshipWithGuardian: "",
-    addressOfGuardian: "",
     religion: "",
     caste: "",
     obc: "yes",
-    category: "",
     linguisticMinority: "",
     dob: "",
     class: "",
@@ -56,7 +53,7 @@ function AllColumns() {
 
     for (var prop in data) {
       if (data[prop] === "") {
-        setNotFilledError(true);
+        setNotFilledError(true)
         console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
         break;
@@ -86,7 +83,6 @@ function AllColumns() {
         dob: "",
         class: "",
         course: "",
-        secondLan: "",
         nameOfBoard: "",
         registerNo: "",
         passingTime: "",
@@ -130,7 +126,7 @@ function AllColumns() {
           ></input>
         </div>
         <div className={`${styles.subContainer} ${styles.applicationNo}`}>
-          <label className={`${styles.applicationNoLabel} ${styles.label}`}>
+          <label className={`${styles.applicationDateLabel} ${styles.label}`}>
             Admission Date
           </label>
           <input
@@ -164,17 +160,6 @@ function AllColumns() {
             value={data.aadhaarNo}
             name="aadhaarNo"
             className={`${styles.adharNumInput} ${styles.inputFieldNew}`}
-          ></input>
-        </div>
-        <div className={`${styles.subContainerNew}`}>
-          <label className={`${styles.phoneNoLabel} ${styles.label}`}>
-            Phone no. <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.phoeNo}
-            name="phoneNo"
-            className={`${styles.phoneNoInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
         <div className={`${styles.subContainerNew}`}>
@@ -232,17 +217,6 @@ function AllColumns() {
           ></input>
         </div>
         <div className={`${styles.subContainerNew}`}>
-          <label className={`${styles.guardianAddressLabel} ${styles.label}`}>
-            Address of guardian <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.addressOfGuardian}
-            name="addressOfGuardian"
-            className={`${styles.studentNameInput} ${styles.inputFieldNew}`}
-          ></input>
-        </div>
-        <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.religionLabel} ${styles.label}`}>
             Religion <span className={`${styles.aster}`}> * </span>
           </label>
@@ -278,17 +252,6 @@ function AllColumns() {
             <option value="yes">Yes</option>
             <option value="no">No</option>
           </select>
-        </div>
-        <div className={`${styles.subContainerNew}`}>
-          <label className={`${styles.categoryLabel} ${styles.label}`}>
-            Category <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.category}
-            name="category"
-            className={`${styles.categoryInput} ${styles.inputFieldNew}`}
-          ></input>
         </div>
         <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.lanMinorityLabel} ${styles.label}`}>
@@ -383,31 +346,6 @@ function AllColumns() {
             className={`${styles.courseInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
-        <div className={`${styles.subContainerNew}`}>
-        <label className={`${styles.secondLanLabel} ${styles.label}`}>
-          Second Language <span className={`${styles.aster}`}> * </span>
-        </label>
-        <input
-          onChange={handleChange}
-          value={data.secondLan}
-          name="secondLan"
-          className={`${styles.secondLanInput} ${styles.inputFieldNew}`}
-        ></input>
-      </div>
-      <div className={`${styles.subContainerNew}`}>
-        <label className={`${styles.status} ${styles.label}`}>
-          Status <span className={`${styles.aster}`}> * </span>
-        </label>
-        <select
-          onChange={handleChange}
-          value={data.status}
-          name="status"
-          className={`${styles.statusLabel} ${styles.inputFieldNew} ${styles.selectElement}`}
-        >
-          <option value="permanent">permanent</option>
-          <option value="temporary">temporary</option>
-        </select>
-      </div>
       </div>
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
@@ -448,6 +386,20 @@ function AllColumns() {
             name="tcSchool"
             className={`${styles.issuedSchoolInput} ${styles.inputFieldNew}`}
           ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.status} ${styles.label}`}>
+            Status <span className={`${styles.aster}`}> * </span>
+          </label>
+          <select
+            onChange={handleChange}
+            value={data.status}
+            name="status"
+            className={`${styles.statusLabel} ${styles.inputFieldNew} ${styles.selectElement}`}
+          >
+            <option value="permanent">permanent</option>
+            <option value="temporary">temporary</option>
+          </select>
         </div>
         <button onClick={handleSubmit} className={`${styles.submitButton}`}>
           Submit
