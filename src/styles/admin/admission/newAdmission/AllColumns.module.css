@@ -105,7 +105,8 @@
 .img2 {
   width: 5vw;
   height: auto;
-  padding-left: 15vw;
+  padding-left: 16vw;
+
 }
 
 .titleLabel {
@@ -249,5 +250,7 @@
 
   .applicationNo {
     margin-right:36vw;
+
+
   }
 }
