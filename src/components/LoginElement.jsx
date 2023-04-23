@@ -1,4 +1,4 @@
-import styles from "../../styles/login/Login.module.css";
+import styles from "../styles/login/Login.module.css";
 
 export default function LoginElement(props) {
   return (
