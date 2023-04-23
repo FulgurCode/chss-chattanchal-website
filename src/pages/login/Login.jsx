@@ -1,6 +1,5 @@
 import schoolImg from "/imgs/school.png";
 import svgImg from "/imgs/footer.svg";
-import "./Login.css";
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
