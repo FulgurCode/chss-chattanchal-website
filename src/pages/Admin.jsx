@@ -1,24 +1,56 @@
+import { useNavigate } from 'react-router-dom'
 import styles from '../styles/admin/admin.module.css'
 import { Link, Outlet } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import React from 'react'
-// import menu_img from '/imgs/menu.png'
-import admission from '/imgs/admission.png'
-// import user from '/imgs/user.png'
-import attendence from '/imgs/attendence.png'
+import admission from '/imgs/adminImages/admission.png'
+import attendence from '/imgs/adminImages/attendence.png'
 
 export default function Admin(){
+    const navigate = useNavigate();
     return (
         <>  
             
             <NavBar />
-            <section>
-                <div className={styles.admission}>
-                    <Link to="/admin/admission"><img className={styles.iconadmission} src={admission} /></Link>
-                    <img className={styles.iconattendence} src={attendence} />
-                </div>
-            </section>
-
-        </>
-    )
+            <div className={styles.main}>
+        <div className={styles.container}>
+          <span>
+            Home &gt; <span>Admin</span>
+          </span>
+          <div className={styles.items}>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/admission");
+              }}
+            >
+              <span>
+                <img
+                  src="/imgs/AdmissionImages/item1.png"
+                  width="150px"
+                  height="150px"
+                />
+              </span>
+              <h1>Admission</h1>
+            </div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/attendence");
+              }}
+            >
+              <span>
+                <img
+                  src={attendence}
+                  width="120px"
+                  height="120px"
+                />
+              </span>
+              <h1>Attendence</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
