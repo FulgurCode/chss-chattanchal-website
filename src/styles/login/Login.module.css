@@ -31,7 +31,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  padding-bottom: 25px;
+  padding-bottom: calc(30px + 5%);
 }
 
 .main .container {
@@ -266,6 +266,11 @@ body {
 .footer {
   max-height: 70px;
   background-color: #6a2c70;
+  position: fixed;
+  bottom: 0px;
+
+  min-height: 60px;
+  min-width: 100%;
 }
 
 @media screen and (max-width: 900px) {
@@ -326,6 +331,9 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .main {
+    padding-bottom: 13%;
+  }
   .header {
     max-height: 50px;
     line-height: 50px;
@@ -341,6 +349,7 @@ body {
   bottom: 0px;
   width: 100%;
   min-height: 90px;
+  max-height: 90px;
 }
 
 .footer .imgMobile {
