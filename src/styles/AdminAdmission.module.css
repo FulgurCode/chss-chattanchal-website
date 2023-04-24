@@ -10,6 +10,8 @@
   flex-direction: column;
 
   align-items: left;
+
+  overflow: scroll;
 }
 
 .main .container {
@@ -44,6 +46,8 @@
 
   justify-content: left;
   align-items: left;
+
+  padding-bottom: 20%;
 }
 
 .main .container .items .item {
@@ -59,7 +63,7 @@
   justify-content: center;
   align-items: center;
 
-  padding: 1px;
+  padding-bottom: 1px;
 }
 
 .main .container .items .item h1 {
