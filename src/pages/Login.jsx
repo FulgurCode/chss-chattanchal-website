@@ -1,5 +1,6 @@
 import schoolImg from "/imgs/school.png";
-import svgImg from "/imgs/footer.svg";
+import svgImgDesktop from "/imgs/loginImages/footerDesktop.svg";
+import svgImgMobile from "/imgs/loginImages/footerMobile.svg";
 import styles from "../styles/login/Login.module.css";
 import axios from "axios";
 import React from "react";
@@ -86,8 +87,10 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <footer className={styles.footer}></footer>
-      <img src={svgImg} className={styles.img} />
+      <footer className={styles.footer}>
+        <img src={svgImgDesktop} className={styles.imgDesktop} />
+        <img src={svgImgMobile} className={styles.imgMobile} />
+      </footer>
     </>
   );
 }
