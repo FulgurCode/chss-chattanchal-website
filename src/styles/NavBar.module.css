@@ -60,3 +60,20 @@
     left: 0
 }
 
+@media screen and (max-width: 600px){
+    .schlName{
+        font-size: 2.1vh;
+    }
+
+    .navImg{
+        width: 3vw;
+    }
+
+    .menuButton{
+        width: 4vw;
+    }
+
+    .vl1{
+        left: 7vw;
+    }
+}
