@@ -1,4 +1,3 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -7,10 +6,10 @@ import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 
-import AdminImportStudents from "./pages/admin/admission/AdminImportStudents";
-import AdminAdmission from "./pages/admin/admission/AdminAdmission";
-import AdminNewAdmission from "./pages/admin/admission/AdminNewAdmission";
-import AdminStudentDetails from "./pages/admin/admission/AdminStudentDetails";
+import ImportStudents from "./pages/admin/admission/ImportStudents";
+import Admission from "./pages/admin/Admission";
+import NewAdmission from "./pages/admin/admission/NewAdmission";
+import StudentDetails from "./pages/admin/admission/StudentDetails";
 
 export default function App() {
   return (
@@ -21,18 +20,18 @@ export default function App() {
         <Route path="/admin">
           <Route index element={<Admin />} />
           <Route path="/admin/admission">
-            <Route index element={<AdminAdmission />} />
+            <Route index element={<Admission />} />
             <Route
               path="/admin/admission/new-admission"
-              element={<AdminNewAdmission />}
+              element={<NewAdmission />}
             ></Route>
             <Route
               path="/admin/admission/import-students"
-              element={<AdminImportStudents />}
+              element={<ImportStudents />}
             ></Route>
             <Route
               path="/admin/admission/student-details"
-              element={<AdminStudentDetails />}
+              element={<StudentDetails />}
             ></Route>
           </Route>
         </Route>

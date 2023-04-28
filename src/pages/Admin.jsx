@@ -1,18 +1,16 @@
-import { useNavigate } from 'react-router-dom'
-import styles from '../styles/admin/admin.module.css'
-import { Link, Outlet } from 'react-router-dom'
-import NavBar from '../components/NavBar'
-import React from 'react'
-import admission from '/imgs/adminImages/admission.png'
-import attendence from '/imgs/adminImages/attendence.png'
+import { useNavigate } from "react-router-dom";
+import styles from "../styles/admin/Admin.module.css";
+import NavBar from "../components/NavBar";
+import React from "react";
+import admission from "/imgs/adminImages/admission.png";
+import attendence from "/imgs/adminImages/attendence.png";
 
-export default function Admin(){
-    const navigate = useNavigate();
-    return (
-        <>  
-            
-            <NavBar />
-            <div className={styles.main}>
+export default function Admin() {
+  const navigate = useNavigate();
+  return (
+    <>
+      <NavBar />
+      <div className={styles.main}>
         <div className={styles.container}>
           <span>
             Home &gt; <span>Admin</span>
@@ -25,11 +23,7 @@ export default function Admin(){
               }}
             >
               <span>
-                <img
-                  src="/imgs/AdmissionImages/item1.png"
-                  width="150px"
-                  height="150px"
-                />
+                <img src={admission} width="150px" height="150px" />
               </span>
               <h1>Admission</h1>
             </div>
@@ -40,11 +34,7 @@ export default function Admin(){
               }}
             >
               <span>
-                <img
-                  src={attendence}
-                  width="120px"
-                  height="120px"
-                />
+                <img src={attendence} width="120px" height="120px" />
               </span>
               <h1>Attendence</h1>
             </div>

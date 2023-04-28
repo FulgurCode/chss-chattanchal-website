@@ -1,9 +1,9 @@
-import NavBar from "../../../components/NavBar";
-import styles from "../../../styles/AdminAdmission.module.css";
+import NavBar from "../../components/NavBar";
+import styles from "../../styles/admin/admission/Admission.module.css";
 
 import { useNavigate } from "react-router-dom";
 
-export default function AdminAdmission() {
+export default function Admission() {
   const navigate = useNavigate();
   return (
     <>
@@ -11,7 +11,7 @@ export default function AdminAdmission() {
       <div className={styles.main}>
         <div className={styles.container}>
           <span>
-            Home &gt; <span>Admission</span>
+            Home &gt; Admin &gt; <span>Admission</span>
           </span>
           <div className={styles.items}>
             <div
