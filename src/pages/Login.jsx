@@ -5,7 +5,7 @@ import styles from "../styles/login/Login.module.css";
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LoginElement from "../components/LoginElement";
+import LoginElement from "../components/login/LoginElement";
 
 export default function Login() {
   const [userType, setUserType] = React.useState("admin");
