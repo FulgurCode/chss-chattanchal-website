@@ -11,7 +11,6 @@ function NavBar() {
     return (
         <div className={styles.navBar}>
             <img className={`${styles.navImg} ${styles.userImg}`} src={userImg} />
-            <img className={`${styles.navImg} ${styles.userImg}`} src={userImg} />
             <label className={styles.schlName}>CHSS CHATTANCHAL</label>
             <div className={styles.vl1} />
             <img className={`${styles.navImg} ${styles.msgImg}`} src={msgImg} />
