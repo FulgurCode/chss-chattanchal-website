@@ -319,6 +319,58 @@ function AllColumns() {
       </div>
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.classLabel} ${styles.label}`}>
+            Class in which admitted
+            <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.class}
+            name="class"
+            className={`${styles.classInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.courseLabel} ${styles.label}`}>
+            Course in which admitted
+            <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.course}
+            name="course"
+            className={`${styles.courseInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.secondLanLabel} ${styles.label}`}>
+            Second Language <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.secondLan}
+            name="secondLan"
+            className={`${styles.secondLanInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.status} ${styles.label}`}>
+            Status <span className={`${styles.aster}`}> * </span>
+          </label>
+          <select
+            onChange={handleChange}
+            value={data.status}
+            name="status"
+            className={`${styles.statusLabel} ${styles.inputFieldNew} ${styles.selectElement}`}
+          >
+            <option value="permanent">permanent</option>
+            <option value="temporary">temporary</option>
+          </select>
+        </div>
+      </div>
+      <hr className={`${styles.separationLine}`} />
+      <div className={`${styles.containerNew}`}>
         <label className={`${styles.subHeadingLabel}`}>
           Details of qualifying examination
         </label>
@@ -358,58 +410,6 @@ function AllColumns() {
             className={`${styles.monthAndYearOfPassingInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
-      </div>
-      <hr className={`${styles.separationLine}`} />
-      <div className={`${styles.containerNew}`}>
-        <div className={`${styles.subContainerNew}`}>
-          <label className={`${styles.classLabel} ${styles.label}`}>
-            Class in which admitted
-            <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.class}
-            name="class"
-            className={`${styles.classInput} ${styles.inputFieldNew}`}
-          ></input>
-        </div>
-        <div className={`${styles.subContainerNew}`}>
-          <label className={`${styles.courseLabel} ${styles.label}`}>
-            Course in which admitted
-            <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.course}
-            name="course"
-            className={`${styles.courseInput} ${styles.inputFieldNew}`}
-          ></input>
-        </div>
-        <div className={`${styles.subContainerNew}`}>
-        <label className={`${styles.secondLanLabel} ${styles.label}`}>
-          Second Language <span className={`${styles.aster}`}> * </span>
-        </label>
-        <input
-          onChange={handleChange}
-          value={data.secondLan}
-          name="secondLan"
-          className={`${styles.secondLanInput} ${styles.inputFieldNew}`}
-        ></input>
-      </div>
-      <div className={`${styles.subContainerNew}`}>
-        <label className={`${styles.status} ${styles.label}`}>
-          Status <span className={`${styles.aster}`}> * </span>
-        </label>
-        <select
-          onChange={handleChange}
-          value={data.status}
-          name="status"
-          className={`${styles.statusLabel} ${styles.inputFieldNew} ${styles.selectElement}`}
-        >
-          <option value="permanent">permanent</option>
-          <option value="temporary">temporary</option>
-        </select>
-      </div>
       </div>
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
