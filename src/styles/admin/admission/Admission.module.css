@@ -66,6 +66,13 @@
   padding-bottom: 1px;
 }
 
+.main .container .items:after {
+  content: "";
+  flex: auto;
+  max-width: 150px;
+  min-width: 0px;
+}
+
 .main .container .items .item h1 {
   font-size: 1.2rem;
   flex: 1;
@@ -110,5 +117,22 @@
   }
   .main .container span {
     padding-left: 2%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main .container .items .item {
+    width: 150px;
+    height: 150px;
+  }
+  .main .container .items .item h1 {
+    font-size: 15px;
+    transform: translate(0, -31px);
+  }
+}
+
+@media screen and (max-width: 404px) {
+  .main .container .items:after {
+    display: none;
   }
 }
