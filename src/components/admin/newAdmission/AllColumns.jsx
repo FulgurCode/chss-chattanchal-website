@@ -159,7 +159,7 @@ function AllColumns() {
         </div>
         <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.adharNumLabel} ${styles.label}`}>
-            Aadhar No <span className={`${styles.aster}`}> * </span>
+            Aadhaar No <span className={`${styles.aster}`}> * </span>
           </label>
           <input
             onChange={handleChange}
