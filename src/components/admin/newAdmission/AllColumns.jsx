@@ -294,7 +294,7 @@ function AllColumns() {
         </div>
         <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.lanMinorityLabel} ${styles.label}`}>
-            If the student belong to linguistic minority{" "}
+            If the student belong to linguistic minority specify the language
             <span className={`${styles.aster}`}> * </span>
           </label>
           <input
