@@ -181,7 +181,7 @@
   }
 
   .pathBox {
-    padding-right: 78vw;
+    padding-right: 69vw;
   }
 
   .label {
@@ -190,7 +190,7 @@
   }
 
   .pathLabel {
-    font-size: 2vw;
+    font-size: 2.5vw;
   }
 
   .img2 {
@@ -198,7 +198,7 @@
   }
 
   .subContainer {
-    height: 10vh;
+    height:15vh;
   }
 
   .subHeadingLabel {
@@ -213,7 +213,7 @@
   }
 
   .subContainerNew {
-    height: 10vh;
+    height: 15  vh;
     margin-right: 36vw;
   }
 
@@ -231,13 +231,13 @@
   .inputField {
     font-size: 13px;
     width: 50vw;
-    height: 2vh;
+    height: 2.5vh;
   }
 
   .inputFieldNew {
     font-size: 13px;
     width: 50vw;
-    height: 2vh;
+    height: 2.5vh;
   }
 
   .submitButton {
