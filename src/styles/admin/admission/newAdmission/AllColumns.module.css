@@ -202,8 +202,9 @@
   }
 
   .subHeadingLabel {
-    width: 34vw;
-    font-size: 3vw;
+    width: 60vw;
+    font-size: 5vw;
+    margin-left: 27vw;
   }
 
   .mandatoryLabel {
