@@ -21,9 +21,9 @@ function AllColumns() {
     caste: "",
     category: "",
     linguisticMinority: "",
-    obc: "yes", // this should be boolean value
+    obc: true, // this should be boolean value
     dob: "",
-    class: "", // This should be an integer
+    class: 11, // This should be an integer
     course: "",
     secondLanguage: "",
     status: "permanent",
@@ -47,10 +47,11 @@ function AllColumns() {
       const name = event.target.name;
       const value = event.target.value;
 
-      console.log(name)
-
-      if (name == "nameOfBoard" || name == "registerNo" || name == "passingTime") {
-        console.log(name)
+      if (
+        name == "nameOfBoard" ||
+        name == "registerNo" ||
+        name == "passingTime"
+      ) {
         setData({
           ...data,
           qualifyingExamDetails: {
@@ -58,7 +59,6 @@ function AllColumns() {
             [name]: value,
           },
         });
-        console.log(data)
       } else if (name == "number" || name == "date" || name == "school") {
         setData({
           ...data,
@@ -81,6 +81,16 @@ function AllColumns() {
 
     var hasNullOrUndefinedValue = false;
 
+    // type casting the variable specified
+
+    data.tcDetailsOnAdmission.number = Number(data.tcDetailsOnAdmission.number);
+    data.phone = Number(data.phone);
+    data.obc = Boolean(data.obc);
+    data.class = Number(data.class);
+    data.qualifyingExamDetails.registerNo = Number(
+      data.qualifyingExamDetails.registerNo
+    );
+
     for (var prop in data) {
       if (data[prop] === "") {
         setNotFilledError(true);
@@ -91,7 +101,10 @@ function AllColumns() {
     }
 
     for (var prop in data.tcDetailsOnAdmission) {
-      if (data.tcDetailsOnAdmission[prop] === "") {
+      if (
+        data.tcDetailsOnAdmission[prop] === "" ||
+        data.tcDetailsOnAdmission[prop] === NaN
+      ) {
         setNotFilledError(true);
         console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
@@ -130,9 +143,9 @@ function AllColumns() {
         caste: "",
         category: "",
         linguisticMinority: "",
-        obc: "yes", // this should be boolean value
+        obc: true, // this should be boolean value
         dob: "",
-        class: "", // This should be an integer
+        class: 11, // This should be an integer
         course: "",
         secondLanguage: "",
         status: "permanent",
@@ -144,8 +157,9 @@ function AllColumns() {
         tcDetailsOnAdmission: {
           number: "",
           date: "",
-          school: ""
-        }});
+          school: "",
+        },
+      });
     }
   }
 
@@ -175,6 +189,7 @@ function AllColumns() {
             <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
             onChange={handleChange}
             value={data.applicationNo}
             name="applicationNo"
@@ -213,6 +228,7 @@ function AllColumns() {
             Aadhaar No <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
             onChange={handleChange}
             value={data.aadhaarNo}
             name="aadhaarNo"
@@ -224,6 +240,7 @@ function AllColumns() {
             Phone no. <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
             onChange={handleChange}
             value={data.phone}
             name="phone"
@@ -328,8 +345,8 @@ function AllColumns() {
             name="obc"
             className={`${styles.OBCInput} ${styles.inputFieldNew} ${styles.selectElement}`}
           >
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
           </select>
         </div>
         <div className={`${styles.subContainerNew}`}>
@@ -376,6 +393,9 @@ function AllColumns() {
             <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
+            min="8"
+            max="12"
             onChange={handleChange}
             value={data.class}
             name="class"
@@ -441,6 +461,7 @@ function AllColumns() {
             Register No. <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
             onChange={handleChange}
             value={data.qualifyingExamDetails.registerNo}
             name="registerNo"
