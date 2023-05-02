@@ -2,10 +2,10 @@ import schoolImg from "/imgs/school.png";
 import svgImgDesktop from "/imgs/loginImages/footerDesktop.svg";
 import svgImgMobile from "/imgs/loginImages/footerMobile.svg";
 import styles from "../styles/login/Login.module.css";
-import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LoginElement from "../components/login/LoginElement";
+import Axios from "../../stores/Axios";
 
 export default function Login() {
   const [userType, setUserType] = React.useState("admin");
@@ -29,11 +29,10 @@ export default function Login() {
 
   function handleClick() {
     if (userType == "admin") {
-      axios
-        .post("http://localhost:9000/api/admin/login", {
-          username: userName,
-          password: password,
-        })
+      Axios.post("/login", {
+        username: userName,
+        password: password,
+      })
         .then((res) => {
           if (res.data == "Login Successful") {
             navigate("/admin");
