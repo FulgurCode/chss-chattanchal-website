@@ -88,32 +88,11 @@ function AllColumns() {
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
     data.qualifyingExamDetails.registerNo = Number(
-      data.qualifyingExamDetails.registerNo
+    data.qualifyingExamDetails.registerNo
     );
 
     for (var prop in data) {
       if (data[prop] === "") {
-        setNotFilledError(true);
-        console.log(prop + " field is not filled");
-        hasNullOrUndefinedValue = true;
-        break;
-      }
-    }
-
-    for (var prop in data.tcDetailsOnAdmission) {
-      if (
-        data.tcDetailsOnAdmission[prop] === "" ||
-        data.tcDetailsOnAdmission[prop] === NaN
-      ) {
-        setNotFilledError(true);
-        console.log(prop + " field is not filled");
-        hasNullOrUndefinedValue = true;
-        break;
-      }
-    }
-
-    for (var prop in data.qualifyingExamDetails) {
-      if (data.qualifyingExamDetails[prop] === "") {
         setNotFilledError(true);
         console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
@@ -127,39 +106,48 @@ function AllColumns() {
     } else {
       console.log("yes");
       console.log(data);
-      setPopup(!popup);
-      setData({
-        admissionDate: "",
-        applicationNo: "",
-        name: "",
-        aadhaarNo: "",
-        phone: "", // This should be an integer
-        gender: "male",
-        nameOfParent: "",
-        occupationOfParent: "",
-        relationshipWithGuardian: "",
-        addressOfGuardian: "",
-        religion: "",
-        caste: "",
-        category: "",
-        linguisticMinority: "",
-        obc: true, // this should be boolean value
-        dob: "",
-        class: 11, // This should be an integer
-        course: "",
-        secondLanguage: "",
-        status: "permanent",
-        qualifyingExamDetails: {
-          nameOfBoard: "",
-          registerNo: "", // This should be an integer
-          passingTime: "",
-        },
-        tcDetailsOnAdmission: {
-          number: "",
-          date: "",
-          school: "",
-        },
-      });
+
+      axios.post("https://localhost:5173/api/admin/new-admission", data)
+      .then(response => {
+        if (response.code == 200){
+          setPopup(!popup);
+          setData({
+            admissionDate: "",
+            applicationNo: "",
+            name: "",
+            aadhaarNo: "",
+            gender: "male",
+            nameOfParent: "",
+            occupationOfParent: "",
+            relationshipWithGuardian: "",
+            religion: "",
+            caste: "",
+            obc: "yes",
+            linguisticMinority: "",
+            dob: "",
+            class: "",
+            course: "",
+            secondLan: "",
+            nameOfBoard: "",
+            registerNo: "",
+            passingTime: "",
+            tcNumber: "",
+            tcDate: "",
+            tcSchool: "",
+            status: "permanent",
+          });
+        }
+      })
+      .catch(
+        err => {
+          if (err.code == 401){
+            console.log("You are not logged in")
+          } else if (err.code == 500){
+            console.log("internal server error")
+          }
+        }
+      )
+
     }
   }
 
