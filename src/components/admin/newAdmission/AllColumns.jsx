@@ -11,7 +11,7 @@ function AllColumns() {
     applicationNo: "",
     name: "",
     aadhaarNo: "",
-    phoneNo: "",
+    phone: "", // This should be an integer
     gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
@@ -19,19 +19,24 @@ function AllColumns() {
     addressOfGuardian: "",
     religion: "",
     caste: "",
-    obc: "yes",
     category: "",
     linguisticMinority: "",
+    obc: "yes", // this should be boolean value
     dob: "",
-    class: "",
+    class: "", // This should be an integer
     course: "",
-    nameOfBoard: "",
-    registerNo: "",
-    passingTime: "",
-    tcNumber: "",
-    tcDate: "",
-    tcSchool: "",
+    secondLanguage: "",
     status: "permanent",
+    qualifyingExamDetails: {
+      nameOfBoard: "",
+      registerNo: "", // This should be an integer
+      passingTime: "",
+    },
+    tcDetailsOnAdmission: {
+      number: "",
+      date: "",
+      school: "",
+    },
   });
 
   const [popup, setPopup] = useState(false);
@@ -42,10 +47,32 @@ function AllColumns() {
       const name = event.target.name;
       const value = event.target.value;
 
-      setData({
-        ...data,
-        [name]: value,
-      });
+      console.log(name)
+
+      if (name == "nameOfBoard" || name == "registerNo" || name == "passingTime") {
+        console.log(name)
+        setData({
+          ...data,
+          qualifyingExamDetails: {
+            ...data.qualifyingExamDetails,
+            [name]: value,
+          },
+        });
+        console.log(data)
+      } else if (name == "number" || name == "date" || name == "school") {
+        setData({
+          ...data,
+          tcDetailsOnAdmission: {
+            ...data.tcDetailsOnAdmission,
+            [name]: value,
+          },
+        });
+      } else {
+        setData({
+          ...data,
+          [name]: value,
+        });
+      }
     }
   }
 
@@ -56,6 +83,24 @@ function AllColumns() {
 
     for (var prop in data) {
       if (data[prop] === "") {
+        setNotFilledError(true);
+        console.log(prop + " field is not filled");
+        hasNullOrUndefinedValue = true;
+        break;
+      }
+    }
+
+    for (var prop in data.tcDetailsOnAdmission) {
+      if (data.tcDetailsOnAdmission[prop] === "") {
+        setNotFilledError(true);
+        console.log(prop + " field is not filled");
+        hasNullOrUndefinedValue = true;
+        break;
+      }
+    }
+
+    for (var prop in data.qualifyingExamDetails) {
+      if (data.qualifyingExamDetails[prop] === "") {
         setNotFilledError(true);
         console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
@@ -75,26 +120,32 @@ function AllColumns() {
         applicationNo: "",
         name: "",
         aadhaarNo: "",
+        phone: "", // This should be an integer
         gender: "male",
         nameOfParent: "",
         occupationOfParent: "",
         relationshipWithGuardian: "",
+        addressOfGuardian: "",
         religion: "",
         caste: "",
-        obc: "yes",
+        category: "",
         linguisticMinority: "",
+        obc: "yes", // this should be boolean value
         dob: "",
-        class: "",
+        class: "", // This should be an integer
         course: "",
-        secondLan: "",
-        nameOfBoard: "",
-        registerNo: "",
-        passingTime: "",
-        tcNumber: "",
-        tcDate: "",
-        tcSchool: "",
+        secondLanguage: "",
         status: "permanent",
-      });
+        qualifyingExamDetails: {
+          nameOfBoard: "",
+          registerNo: "", // This should be an integer
+          passingTime: "",
+        },
+        tcDetailsOnAdmission: {
+          number: "",
+          date: "",
+          school: ""
+        }});
     }
   }
 
@@ -174,8 +225,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.phoeNo}
-            name="phoneNo"
+            value={data.phone}
+            name="phone"
             className={`${styles.phoneNoInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
@@ -349,8 +400,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.secondLan}
-            name="secondLan"
+            value={data.secondLanguage}
+            name="secondLanguage"
             className={`${styles.secondLanInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
@@ -380,7 +431,7 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.nameOfBoard}
+            value={data.qualifyingExamDetails.nameOfBoard}
             name="nameOfBoard"
             className={`${styles.boardNameInput} ${styles.inputFieldNew}`}
           ></input>
@@ -391,7 +442,7 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.registerNo}
+            value={data.qualifyingExamDetails.registerNo}
             name="registerNo"
             className={`${styles.regNoInput} ${styles.inputFieldNew}`}
           ></input>
@@ -405,7 +456,7 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.passingTime}
+            value={data.qualifyingExamDetails.passingTime}
             name="passingTime"
             className={`${styles.monthAndYearOfPassingInput} ${styles.inputFieldNew}`}
           ></input>
@@ -422,8 +473,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.tcNumber}
-            name="tcNumber"
+            value={data.tcDetailsOnAdmission.number}
+            name="number"
             className={`${styles.TCNumberInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
@@ -433,8 +484,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.tcDate}
-            name="tcDate"
+            value={data.tcDetailsOnAdmission.date}
+            name="date"
             type="date"
             className={`${styles.TCdateInput} ${styles.inputFieldNew}`}
           ></input>
@@ -446,8 +497,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.tcSchool}
-            name="tcSchool"
+            value={data.tcDetailsOnAdmission.school}
+            name="school"
             className={`${styles.issuedSchoolInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
