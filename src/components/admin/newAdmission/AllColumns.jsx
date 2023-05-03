@@ -1,7 +1,7 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
 import React, { Fragment, useState } from "react";
 import img2 from "/imgs/image_2.svg";
-import { all } from "axios";
+import axios from "axios";
 import SuccessPopup from "./SuccessPopup.jsx";
 import NotFilledPopup from "./NotFilledPopup";
 
@@ -109,40 +109,46 @@ function AllColumns() {
 
       axios.post("https://localhost:5173/api/admin/new-admission", data)
       .then(response => {
-        if (response.code == 200){
+        if (response.status == 200){
           setPopup(!popup);
           setData({
             admissionDate: "",
             applicationNo: "",
             name: "",
             aadhaarNo: "",
+            phone: "", // This should be an integer
             gender: "male",
             nameOfParent: "",
             occupationOfParent: "",
             relationshipWithGuardian: "",
+            addressOfGuardian: "",
             religion: "",
             caste: "",
-            obc: "yes",
+            category: "",
             linguisticMinority: "",
+            obc: true, // this should be boolean value
             dob: "",
-            class: "",
+            class: 11, // This should be an integer
             course: "",
-            secondLan: "",
-            nameOfBoard: "",
-            registerNo: "",
-            passingTime: "",
-            tcNumber: "",
-            tcDate: "",
-            tcSchool: "",
+            secondLanguage: "",
             status: "permanent",
-          });
+            qualifyingExamDetails: {
+              nameOfBoard: "",
+              registerNo: "", // This should be an integer
+              passingTime: "",
+            },
+            tcDetailsOnAdmission: {
+              number: "",
+              date: "",
+              school: "",
+            }});
         }
       })
       .catch(
         err => {
-          if (err.code == 401){
+          if (err.response.status == 401){
             console.log("You are not logged in")
-          } else if (err.code == 500){
+          } else if (err.response.status == 500){
             console.log("internal server error")
           }
         }
