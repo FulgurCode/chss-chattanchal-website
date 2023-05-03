@@ -1,99 +1,121 @@
-.navBar {
-  position: sticky;
-  top: 0;
+.navbar {
   display: flex;
-  justify-content: center;
+  text-align: center;
+  justify-content: space-between;
   align-items: center;
-  height: 10vh;
+
   width: 100vw;
-  background-color: #6a2c70;
+  height: 9vh;
+  background: #6a2c70;
   box-shadow: 0px 21px 27px 9px rgba(0, 0, 0, 0.25);
 }
 
-.schlName {
-  text-align: center;
-  color: #fff;
-  font-size: 3.5vh;
-  min-width: 16vw;
+.home {
+  display: flex;
+  align-items: center;
+  margin-left: 7.29vw;
+  padding: 3px 0;
+  padding: 0 1.041vw;
+  height: 9vh;
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
 }
 
-.schlName:hover {
+.home:hover {
   opacity: 0.5;
 }
 
-.vl1 {
-  border-left: 1px solid #fff;
-  height: 10vh;
-  position: absolute;
-  left: 5vw;
-}
-
-.navImg {
-  width: 2.5vw;
+.homeImg {
+  min-width: 1.667vw;
   height: auto;
+  padding-right: 0.52vw;
 }
 
-.navImg:hover {
+.homeText {
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 119.3%;
+  /* identical to box height, or 29px */
+
+  color: #ffffff;
+}
+
+.title {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school {
+  align-items: center;
+
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 119.3%;
+  /* identical to box height, or 29px */
+
+  color: #ffffff;
+}
+
+.icons {
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 38.315px;
+}
+
+.iconImg {
+  width: 40px;
+  padding-right: 1.685vw;
+}
+
+.iconImg:hover {
   opacity: 0.5;
 }
 
-.userImg {
-  position: absolute;
-  right: 1vw;
-}
-
-.bellIcon {
-  position: absolute;
-  right: 5.5vw;
-}
-
-.msgImg {
-  position: absolute;
-  right: 11vw;
-}
-
-.menuButton {
-  margin-left: 1.25vw;
-  position: absolute;
-  left: 0;
-}
-
-@media screen and (min-width: 1080px) {
-  .navImg {
-    width: 2.5vw;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .navBar {
-    height: 7vh;
+@media screen and (max-width: 500px) {
+  .navbar {
+    height: 8vh;
   }
 
-  .schlName {
-    font-size: 2.1vh;
+  .school {
+    font-size: 18px;
   }
 
-  .navImg {
-    width: 4vw;
+  .home {
+    margin-left: 3vw;
+    height: 8vh;
   }
 
-  .vl1 {
-    height: 7vh;
+  .homeImg {
+    width: 32px;
   }
 
-  .menuButton {
-    width: 5vw;
+  .homeText {
+    font-size: 18px;
   }
 
-  .vl1 {
-    left: 7vw;
+  .icons {
+    padding-right: 5.315px;
   }
 
-  .bellIcon {
-    padding: 0 2vw;
+  .iconImg {
+    width: 7vw;
+    padding-right: 10px;
   }
 
-  .msgImg {
-    padding: 0 3.5vw;
+  .home:hover {
+    opacity: 0.5;
+  }
+
+  .iconImg:hover {
+    opacity: 0.5;
   }
 }
