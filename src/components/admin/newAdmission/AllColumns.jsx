@@ -1,7 +1,7 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
 import React, { Fragment, useState } from "react";
 import img2 from "/imgs/image_2.svg";
-import axios from "axios";
+import Axios from "../../../../stores/Axios";
 import SuccessPopup from "./SuccessPopup.jsx";
 import NotFilledPopup from "./NotFilledPopup";
 
@@ -107,7 +107,7 @@ function AllColumns() {
       console.log("yes");
       console.log(data);
 
-      axios.post("https://localhost:5173/api/admin/new-admission", data)
+      Axios.post("admin/new-admission", data)
       .then(response => {
         if (response.status == 200){
           setPopup(!popup);
