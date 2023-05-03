@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "../styles/NavBar.module.css";
-import menuImg from "../../public/imgs/menu_button.svg";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -10,7 +9,7 @@ export default function Navbar() {
   return (
     <header className={styles.navbar}>
       <div className={styles.home} onClick={() => navigate("/admin")}>
-        <img className={styles.homeImg} src={menuImg} />
+        <img className={styles.homeImg} src="/imgs/menu_button.svg" />
         <label className={styles.homeText}>Home</label>
       </div>
 
