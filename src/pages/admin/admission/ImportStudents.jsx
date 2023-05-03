@@ -8,14 +8,14 @@ export default function ImportStudents() {
     <>
       <NavBar />
       <div className={styles.hero}>
-        <img src="/imgs/importStudents/download.png" className={styles.downIcon} />
+        <img
+          src="/imgs/importStudents/download.png"
+          className={styles.downIcon}
+        />
         <h2 className={styles.title}>Import Students</h2>
         <div className={styles.side}></div>
       </div>
-      <Upload /> 
-      
+      <Upload />
     </>
-    
-    
-    )
+  );
 }

@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styles from "../../../styles/admin/admission/importStudents/Importstudents.module.css";
 import Axios from "../../../../stores/Axios";
 
 function Upload() {
   // for error
   const [msg, setMsg] = useState("");
-  const [instText, setInstText] = useState("Click to change file")
+  const [instText, setInstText] = useState("Click to change file");
 
   //
   const [file, setFile] = useState(null);
 
-  function handleFileUpload(event){
+  function handleFileUpload(event) {
     setFile(event.target.files[0]);
-  };
+  }
 
-  function handleFileSubmit(event){
-
+  function handleFileSubmit(event) {
     event.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
@@ -26,23 +24,21 @@ function Upload() {
         console.log(response.data);
         setMsg(response.data);
         changeMsgColor("Green");
-        setInstText("New File")
+        setInstText("New File");
       })
       .catch((error) => {
-        changeMsgColor("red")
+        changeMsgColor("red");
         if (error.response.status == 401) {
           setMsg(error.response.data);
         } else {
           setMsg(error.response.data);
         }
       });
-
   }
-  
-  function changeMsgColor(color){
-    const header = document.getElementById("message")
-    header.style.color = color
 
+  function changeMsgColor(color) {
+    const header = document.getElementById("message");
+    header.style.color = color;
   }
 
   return (
