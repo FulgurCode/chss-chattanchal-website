@@ -29,7 +29,7 @@ export default function Login() {
 
   function handleClick() {
     if (userType == "admin") {
-      Axios.post("/login", {
+      Axios.post("/admin/login", {
         username: userName,
         password: password,
       })
