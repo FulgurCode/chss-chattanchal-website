@@ -19,7 +19,7 @@ function Upload() {
     const formData = new FormData();
     formData.append("file", file);
 
-    Axios.post("http://localhost:9000/api/admin/import-students", formData)
+    Axios.post("/admin/import-students", formData)
       .then((response) => {
         console.log(response.data);
         setMsg(response.data);
