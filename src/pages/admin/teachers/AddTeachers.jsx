@@ -41,14 +41,24 @@ export default function AddTeachers() {
     if (isEmpty()) {
       setNotFilledError(true);
     } else {
-      Axios.post("/admin/add-teacher", details)
+      setError("");
+      Axios.post("/admin/add-teachers", details)
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setPopup(!popup);
           MakeBlank();
         })
         .catch((error) => {
-          console.log(error.response);
+          setError(error.response.data);
+          // if (error.response.status == 404) {
+          //   setError(error.response.data);
+          // } else if (error.response.data == 401) {
+          //   setError(error.response.data);
+          // } else if (error.response.data == 500) {
+          //   setError(error.response.data);
+          // } else {
+          //   setError(error.response.data);
+          // }
         });
     }
   }
@@ -190,6 +200,8 @@ export default function AddTeachers() {
           <button className={styles.btn} onClick={HandleClick}>
             SUBMIT
           </button>
+
+          <code style={{ color: "red", marginTop: 50 }}>{error}</code>
 
           <SuccessPopup open={popup} show={setPopup} showVar={popup} />
           <NotFilledPopup
