@@ -24,11 +24,18 @@ export default function AddTeachers() {
     const name = event.target.name;
     const value = event.target.value;
 
-    if (event.target.name == "phoneNo") {
-      setDetails({
-        ...details,
-        [name]: parseInt(value),
-      });
+    if (event.target.name == "phoneNo" || event.target.name == "penNo") {
+      if (value === NaN) {
+        setDetails({
+          ...details,
+          [name]: "",
+        });
+      } else {
+        setDetails({
+          ...details,
+          [name]: parseInt(value),
+        });
+      }
     } else {
       setDetails({
         ...details,
