@@ -11,6 +11,10 @@ import Admission from "./pages/admin/Admission";
 import NewAdmission from "./pages/admin/admission/NewAdmission";
 import StudentDetails from "./pages/admin/admission/StudentDetails";
 
+import Teachers from "./pages/admin/Teachers";
+import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
+import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
+
 export default function App() {
   return (
     <>
@@ -32,6 +36,17 @@ export default function App() {
             <Route
               path="/admin/admission/student-details"
               element={<StudentDetails />}
+            ></Route>
+          </Route>
+          <Route path="/admin/teachers">
+            <Route index element={<Teachers />} />
+            <Route
+              path="/admin/teachers/add-teachers"
+              element={<AddTeachers />}
+            ></Route>
+            <Route
+              path="/admin/teachers/duty-allocation"
+              element={<DutyAllocation />}
             ></Route>
           </Route>
         </Route>
