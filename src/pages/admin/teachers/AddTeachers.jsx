@@ -42,7 +42,7 @@ export default function AddTeachers() {
       setNotFilledError(true);
     } else {
       setError("");
-      Axios.post("/admin/add-teachers", details)
+      Axios.post("/admin/add-teacher", details)
         .then((response) => {
           // console.log(response.data);
           setPopup(!popup);
