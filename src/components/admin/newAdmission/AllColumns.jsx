@@ -1,6 +1,9 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import img2 from "/imgs/image_2.svg";
+import Axios from "../../../../stores/Axios";
+import SuccessPopup from "./SuccessPopup.jsx";
+import NotFilledPopup from "./NotFilledPopup";
 
 function AllColumns() {
   const [data, setData] = useState({
@@ -8,43 +11,94 @@ function AllColumns() {
     applicationNo: "",
     name: "",
     aadhaarNo: "",
-    gender: "",
+    phone: "", // This should be an integer
+    gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
     relationshipWithGuardian: "",
+    addressOfGuardian: "",
     religion: "",
     caste: "",
-    obc: "",
+    category: "",
     linguisticMinority: "",
+    obc: true, // this should be boolean value
     dob: "",
-    class: "",
+    class: 11, // This should be an integer
     course: "",
-    nameOfBoard: "",
-    registerNo: "",
-    passingTime: "",
-    tcNumber: "",
-    tcDate: "",
-    tcSchool: "",
+    secondLanguage: "",
+    status: "permanent",
+    qualifyingExamDetails: {
+      nameOfBoard: "",
+      registerNo: "", // This should be an integer
+      passingTime: "",
+    },
+    tcDetailsOnAdmission: {
+      number: "",
+      date: "",
+      school: "",
+    },
   });
+
+  const [popup, setPopup] = useState(false);
+  const [notFilledError, setNotFilledError] = useState(false);
 
   function handleChange(event) {
     if (event && event.target) {
       const name = event.target.name;
       const value = event.target.value;
 
-      setData({
-        ...data,
-        [name]: value,
-      });
+      if (
+        name == "nameOfBoard" ||
+        name == "registerNo" ||
+        name == "passingTime"
+      ) {
+        setData({
+          ...data,
+          qualifyingExamDetails: {
+            ...data.qualifyingExamDetails,
+            [name]: value,
+          },
+        });
+      } else if (name == "number" || name == "date" || name == "school") {
+        setData({
+          ...data,
+          tcDetailsOnAdmission: {
+            ...data.tcDetailsOnAdmission,
+            [name]: value,
+          },
+        });
+      } else {
+        setData({
+          ...data,
+          [name]: value,
+        });
+      }
     }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    const hasNullOrUndefinedValue = Object.values(data).some(
-      (value) => value == ""
+    var hasNullOrUndefinedValue = false;
+
+    // type casting the variable specified
+
+    data.tcDetailsOnAdmission.number = Number(data.tcDetailsOnAdmission.number);
+    data.phone = Number(data.phone);
+    data.obc = Boolean(data.obc);
+    data.class = Number(data.class);
+    data.qualifyingExamDetails.registerNo = Number(
+    data.qualifyingExamDetails.registerNo
     );
+
+    for (var prop in data) {
+      if (data[prop] === "") {
+        setNotFilledError(true);
+        console.log(prop + " field is not filled");
+        hasNullOrUndefinedValue = true;
+        break;
+      }
+    }
 
     if (hasNullOrUndefinedValue) {
       console.log("no");
@@ -52,6 +106,54 @@ function AllColumns() {
     } else {
       console.log("yes");
       console.log(data);
+
+      Axios.post("admin/new-admission", data)
+      .then(response => {
+        if (response.status == 200){
+          setPopup(!popup);
+          setData({
+            admissionDate: "",
+            applicationNo: "",
+            name: "",
+            aadhaarNo: "",
+            phone: "", // This should be an integer
+            gender: "male",
+            nameOfParent: "",
+            occupationOfParent: "",
+            relationshipWithGuardian: "",
+            addressOfGuardian: "",
+            religion: "",
+            caste: "",
+            category: "",
+            linguisticMinority: "",
+            obc: true, // this should be boolean value
+            dob: "",
+            class: 11, // This should be an integer
+            course: "",
+            secondLanguage: "",
+            status: "permanent",
+            qualifyingExamDetails: {
+              nameOfBoard: "",
+              registerNo: "", // This should be an integer
+              passingTime: "",
+            },
+            tcDetailsOnAdmission: {
+              number: "",
+              date: "",
+              school: "",
+            }});
+        }
+      })
+      .catch(
+        err => {
+          if (err.response.status == 401){
+            console.log("You are not logged in")
+          } else if (err.response.status == 500){
+            console.log("internal server error")
+          }
+        }
+      )
+
     }
   }
 
@@ -76,10 +178,12 @@ function AllColumns() {
       </label>
       <div className={`${styles.container}`}>
         <div className={`${styles.subContainer}, ${styles.applicationNo}`}>
-          <label className={`${styles.applicationNoLabel}`}>
+          <label className={`${styles.applicationNoLabel} ${styles.label}`}>
             Application number
+            <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
             onChange={handleChange}
             value={data.applicationNo}
             name="applicationNo"
@@ -87,8 +191,9 @@ function AllColumns() {
           ></input>
         </div>
         <div className={`${styles.subContainer} ${styles.applicationNo}`}>
-          <label className={`${styles.applicationNoLabel}`}>
+          <label className={`${styles.applicationNoLabel} ${styles.label}`}>
             Admission Date
+            <span className={`${styles.aster}`}> * </span>
           </label>
           <input
             onChange={handleChange}
@@ -114,13 +219,26 @@ function AllColumns() {
         </div>
         <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.adharNumLabel} ${styles.label}`}>
-            Aadhar No <span className={`${styles.aster}`}> * </span>
+            Aadhaar No <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
             onChange={handleChange}
             value={data.aadhaarNo}
             name="aadhaarNo"
             className={`${styles.adharNumInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.phoneNoLabel} ${styles.label}`}>
+            Phone no. <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            type="number"
+            onChange={handleChange}
+            value={data.phone}
+            name="phone"
+            className={`${styles.phoneNoInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
         <div className={`${styles.subContainerNew}`}>
@@ -135,7 +253,7 @@ function AllColumns() {
           >
             <option value="male">Male</option>
             <option value="Female">Female</option>
-            <option value="lgbtq+">LGBTQ+</option>
+            <option value="others">Others</option>
           </select>
         </div>
       </div>
@@ -178,6 +296,17 @@ function AllColumns() {
           ></input>
         </div>
         <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.guardianAddressLabel} ${styles.label}`}>
+            Address of guardian <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.addressOfGuardian}
+            name="addressOfGuardian"
+            className={`${styles.studentNameInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.religionLabel} ${styles.label}`}>
             Religion <span className={`${styles.aster}`}> * </span>
           </label>
@@ -210,13 +339,24 @@ function AllColumns() {
             name="obc"
             className={`${styles.OBCInput} ${styles.inputFieldNew} ${styles.selectElement}`}
           >
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
           </select>
         </div>
         <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.categoryLabel} ${styles.label}`}>
+            Category <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.category}
+            name="category"
+            className={`${styles.categoryInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.lanMinorityLabel} ${styles.label}`}>
-            If the student belong to linguistic minority{" "}
+            If the student belong to linguistic minority specify the language
             <span className={`${styles.aster}`}> * </span>
           </label>
           <input
@@ -241,54 +381,15 @@ function AllColumns() {
       </div>
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
-        <label className={`${styles.subHeadingLabel}`}>
-          Details of qualifying examination
-        </label>
-        <div className={`${styles.subContainerNew}`}>
-          <label className={`${styles.boardNameLabel} ${styles.label}`}>
-            Name of Board <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.nameOfBoard}
-            name="nameOfBoard"
-            className={`${styles.boardNameInput} ${styles.inputFieldNew}`}
-          ></input>
-        </div>
-        <div className={`${styles.subContainerNew}`}>
-          <label className={`${styles.regNoLabel} ${styles.label}`}>
-            Register No. <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.registerNo}
-            name="registerNo"
-            className={`${styles.regNoInput} ${styles.inputFieldNew}`}
-          ></input>
-        </div>
-        <div className={`${styles.subContainerNew}`}>
-          <label
-            className={`${styles.monthAndYearOfPassingLabel} ${styles.label}`}
-          >
-            Month and year of passing
-            <span className={`${styles.aster}`}> * </span>
-          </label>
-          <input
-            onChange={handleChange}
-            value={data.passingTime}
-            name="passingTime"
-            className={`${styles.monthAndYearOfPassingInput} ${styles.inputFieldNew}`}
-          ></input>
-        </div>
-      </div>
-      <hr className={`${styles.separationLine}`} />
-      <div className={`${styles.containerNew}`}>
         <div className={`${styles.subContainerNew}`}>
           <label className={`${styles.classLabel} ${styles.label}`}>
             Class in which admitted
             <span className={`${styles.aster}`}> * </span>
           </label>
           <input
+            type="number"
+            min="8"
+            max="12"
             onChange={handleChange}
             value={data.class}
             name="class"
@@ -307,6 +408,74 @@ function AllColumns() {
             className={`${styles.courseInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.secondLanLabel} ${styles.label}`}>
+            Second Language <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.secondLanguage}
+            name="secondLanguage"
+            className={`${styles.secondLanInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.status} ${styles.label}`}>
+            Status <span className={`${styles.aster}`}> * </span>
+          </label>
+          <select
+            onChange={handleChange}
+            value={data.status}
+            name="status"
+            className={`${styles.statusLabel} ${styles.inputFieldNew} ${styles.selectElement}`}
+          >
+            <option value="permanent">permanent</option>
+            <option value="temporary">temporary</option>
+          </select>
+        </div>
+      </div>
+      <hr className={`${styles.separationLine}`} />
+      <div className={`${styles.containerNew}`}>
+        <label className={`${styles.subHeadingLabel}`}>
+          Details of qualifying examination
+        </label>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.boardNameLabel} ${styles.label}`}>
+            Name of Board <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.qualifyingExamDetails.nameOfBoard}
+            name="nameOfBoard"
+            className={`${styles.boardNameInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label className={`${styles.regNoLabel} ${styles.label}`}>
+            Register No. <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            type="number"
+            onChange={handleChange}
+            value={data.qualifyingExamDetails.registerNo}
+            name="registerNo"
+            className={`${styles.regNoInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
+        <div className={`${styles.subContainerNew}`}>
+          <label
+            className={`${styles.monthAndYearOfPassingLabel} ${styles.label}`}
+          >
+            Month and year of passing
+            <span className={`${styles.aster}`}> * </span>
+          </label>
+          <input
+            onChange={handleChange}
+            value={data.qualifyingExamDetails.passingTime}
+            name="passingTime"
+            className={`${styles.monthAndYearOfPassingInput} ${styles.inputFieldNew}`}
+          ></input>
+        </div>
       </div>
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
@@ -319,8 +488,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.tcNumber}
-            name="tcNumber"
+            value={data.tcDetailsOnAdmission.number}
+            name="number"
             className={`${styles.TCNumberInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
@@ -330,8 +499,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.tcDate}
-            name="tcDate"
+            value={data.tcDetailsOnAdmission.date}
+            name="date"
             type="date"
             className={`${styles.TCdateInput} ${styles.inputFieldNew}`}
           ></input>
@@ -343,8 +512,8 @@ function AllColumns() {
           </label>
           <input
             onChange={handleChange}
-            value={data.tcSchool}
-            name="tcSchool"
+            value={data.tcDetailsOnAdmission.school}
+            name="school"
             className={`${styles.issuedSchoolInput} ${styles.inputFieldNew}`}
           ></input>
         </div>
@@ -352,6 +521,12 @@ function AllColumns() {
           Submit
         </button>
       </div>
+      <SuccessPopup open={popup} show={setPopup} showVar={popup} />
+      <NotFilledPopup
+        open={notFilledError}
+        show={setNotFilledError}
+        showVar={notFilledError}
+      />
     </div>
   );
 }
