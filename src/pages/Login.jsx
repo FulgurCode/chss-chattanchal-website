@@ -66,7 +66,7 @@ export default function Login() {
       >
         <div className={styles.container}>
           <div className={styles.label}>
-            <h2>Welocme to</h2>
+            <h2>Welcome to</h2>
             <h1>
               CHSS CHATTANCHAL<span></span>
             </h1>
