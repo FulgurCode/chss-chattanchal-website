@@ -81,17 +81,21 @@ export default function StudentDetails() {
           </div>
           <div>{error}</div>
 
-          <div className={styles.list}>
-            <div>
-              <span>Name</span>
-              <span>Adm No.</span>
-              <span>Class</span>
+          {data.length == 0 ? (
+            ""
+          ) : (
+            <div className={styles.list}>
+              <div>
+                <span>Name</span>
+                <span>Adm No.</span>
+                <span>Class</span>
+              </div>
+              {/* {if (data.length() == 0){console.log(empty)} } */}
+              {data.map((item) => {
+                return <Item data={item} key={item._id} />;
+              })}
             </div>
-            {/* {if (data.length() == 0){console.log(empty)} } */}
-            {data.map((item) => {
-              return <Item data={item} key={item._id} />;
-            })}
-          </div>
+          )}
         </main>
       </div>
     </>
