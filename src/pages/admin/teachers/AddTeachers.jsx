@@ -25,17 +25,10 @@ export default function AddTeachers() {
     const value = event.target.value;
 
     if (event.target.name == "phoneNo" || event.target.name == "penNo") {
-      if (value === NaN) {
-        setDetails({
-          ...details,
-          [name]: "",
-        });
-      } else {
-        setDetails({
-          ...details,
-          [name]: parseInt(value),
-        });
-      }
+      setDetails({
+        ...details,
+        [name]: value === "" || parseInt(value) === NaN ? 0 : parseInt(value),
+      });
     } else {
       setDetails({
         ...details,
@@ -51,21 +44,11 @@ export default function AddTeachers() {
       setError("");
       Axios.post("/admin/add-teacher", details)
         .then((response) => {
-          // console.log(response.data);
           setPopup(!popup);
           MakeBlank();
         })
         .catch((error) => {
           setError(error.response.data);
-          // if (error.response.status == 404) {
-          //   setError(error.response.data);
-          // } else if (error.response.data == 401) {
-          //   setError(error.response.data);
-          // } else if (error.response.data == 500) {
-          //   setError(error.response.data);
-          // } else {
-          //   setError(error.response.data);
-          // }
         });
     }
   }
@@ -124,7 +107,7 @@ export default function AddTeachers() {
               Phone No. <span>*</span>
             </span>
             <input
-              type="text"
+              type="number"
               name="phoneNo"
               onChange={HandleChange}
               value={details.phoneNo}
@@ -146,7 +129,7 @@ export default function AddTeachers() {
               PEN Number <span>*</span>
             </span>
             <input
-              type="text"
+              type="number"
               name="penNo"
               onChange={HandleChange}
               value={details.penNo}
