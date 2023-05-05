@@ -3,6 +3,7 @@ import studentDetailsImg from "../../../../public/imgs/AdmissionImages/item2.png
 import styles from "../../../styles/admin/admission/studentsDetails/StudentDetails.module.css";
 import axios from "axios";
 import Item from "../../../components/admin/searchDetails/Item";
+import Navbar from "../../../components/NavBar"
 
 export default function StudentDetails() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -45,6 +46,8 @@ export default function StudentDetails() {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.main}>
       <div className={styles.header}>
         <span>
@@ -124,5 +127,6 @@ export default function StudentDetails() {
       </div> */}
       </main>
     </div>
+    </>
   );
 }
