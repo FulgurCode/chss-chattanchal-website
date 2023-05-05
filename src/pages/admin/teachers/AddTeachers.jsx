@@ -27,7 +27,7 @@ export default function AddTeachers() {
     if (event.target.name == "phoneNo" || event.target.name == "penNo") {
       setDetails({
         ...details,
-        [name]: value === "" || parseInt(value) === NaN ? 0 : parseInt(value),
+        [name]: value === "" || parseInt(value) === NaN ? "" : parseInt(value),
       });
     } else {
       setDetails({
