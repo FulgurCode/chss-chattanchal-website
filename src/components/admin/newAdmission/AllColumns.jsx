@@ -6,6 +6,7 @@ import SuccessPopup from "./SuccessPopup.jsx";
 import NotFilledPopup from "./NotFilledPopup";
 import Field from "./Field";
 import SelectField from "./SelectField";
+import QRPopUp from "./QRPopUp";
 
 function AllColumns() {
   const jsonTemp = {
@@ -44,6 +45,7 @@ function AllColumns() {
   const [popup, setPopup] = useState(false);
   const [notFilledError, setNotFilledError] = useState(false);
   const [photo, setPhoto] = useState(null);
+  const [QR, setQR] = useState(false);
 
   function handleChange(event) {
     if (event && event.target) {
@@ -79,10 +81,15 @@ function AllColumns() {
     }
   }
 
-
   function onChangePhoto(e) {
-    setPhoto(e.target.file[0])
+    setPhoto(e.target.file[0]);
   }
+
+  function handleQR(event){
+
+    setQR(!false)
+
+  } 
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -117,20 +124,18 @@ function AllColumns() {
 
       Axios.post("admin/new-admission", data)
         .then((response) => {
-          
           const formData = new FormData();
-          formData.append("file", photo)
-          
-        Axios.post(`admin/upload-student-photo?studentId=${response.data}`, formData)
-          .catch(
-            (err) => {
-              alert(err.response?.data)
-            }
-          )
+          formData.append("file", photo);
+
+          Axios.post(
+            `admin/upload-student-photo?studentId=${response.data}`,
+            formData
+          ).catch((err) => {
+            alert(err.response?.data);
+          });
 
           setPopup(!popup);
           setData(jsonTemp);
-
         })
         .catch((err) => {
           if (err.response.status == 401) {
@@ -305,14 +310,19 @@ function AllColumns() {
           containerClass={styles.subContainerNew}
         />
         <SelectField
-          text="Course in which admitted" course
+          text="Course in which admitted"
+          course
           change={handleChange}
           value={data.course}
           name="course"
           option={[
             ["PCMB - Physics, Chemistry, Maths, Biology", "PCMB"],
             ["PCMC - Physics, Chemistry, Maths, Computer Science", "PCMC"],
-            ["COMMERCE - Bussiness, Computer applications, Economics, Accountancy", "COMMERCE"]]}
+            [
+              "COMMERCE - Bussiness, Computer applications, Economics, Accountancy",
+              "COMMERCE",
+            ],
+          ]}
           containerClass={styles.subContainerNew}
         />
         <Field
@@ -397,6 +407,8 @@ function AllColumns() {
           extention=".jpg"
           containerClass={styles.subContainerNew}
         />
+        <button onClick={handleQR} className={`${styles.qrButton}`}>Take photo on Phone</button>
+        <button className={`${styles.qrButton}`}>Take a photo on web cam</button>
         <button onClick={handleSubmit} className={`${styles.submitButton}`}>
           Submit
         </button>
@@ -406,6 +418,11 @@ function AllColumns() {
         open={notFilledError}
         show={setNotFilledError}
         showVar={notFilledError}
+      />
+      <QRPopUp
+        open={QR}
+        show={setQR}
+        text="I am inevitable"
       />
     </div>
   );

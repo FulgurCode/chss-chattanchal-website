@@ -15,7 +15,7 @@ export default function Field(props) {
         onChange={props.change}
         value={props.value}
         name={props.name}
-        className={`${styles.inputFieldNew}`}
+        className={`${props.inputStyle} ${styles.inputFieldNew}`}
       ></input>
     </div>
   );
