@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import Axios from "../../../../stores/Axios";
 import React from "react";
 import styles from "../../../styles/admin/teachers/addTeachers/Profile.module.css";
+import Navbar from "../../../components/NavBar";
 
 export default function Profile() {
   const [data] = useSearchParams();
@@ -22,11 +23,14 @@ export default function Profile() {
   getData();
 
   return (
-    <div>
-      {details.map((item) => {
-        return <Item data={item} key={item._id} />;
-      })}
-    </div>
+    <>
+      <Navbar />
+      <div>
+        {details.map((item) => {
+          return <Item data={item} key={item._id} />;
+        })}
+      </div>
+    </>
   );
 }
 
@@ -36,8 +40,11 @@ function Item(props) {
     <div className={styles.body}>
       <main className={styles.main}>
         <div>
-          <code style={{ fontWeight: 600 }}>Name:</code>
-          <code style={{ fontWeight: 600 }}> {props.data.name}</code>
+          <code style={{ fontWeight: 600, fontFamily: "Aria" }}>Name:</code>
+          <code style={{ fontWeight: 600, fontFamily: "Aria" }}>
+            {" "}
+            {props.data.name}
+          </code>
           {/* {console.log(props.item)} */}
         </div>
         {props.data.class == undefined ? (
@@ -192,6 +199,7 @@ function Item(props) {
             <code> {props.data.status}</code>
           </div>
         )}
+        <br />
         {props.data.tcDetailsOnAdmission.number == undefined &&
         props.data.tcDetailsOnAdmission.date == undefined &&
         props.data.tcDetailsOnAdmission.school == undefined ? (
@@ -226,6 +234,7 @@ function Item(props) {
             <code> {props.data.tcDetailsOnAdmission.school}</code>
           </div>
         )}
+        <br />
         {props.data.qualifyingExamDetails.nameOfBoard == undefined &&
         props.data.qualifyingExamDetails.passingTime == undefined &&
         props.data.qualifyingExamDetails.registerNo == undefined ? (
