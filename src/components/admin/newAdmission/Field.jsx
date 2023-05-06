@@ -9,6 +9,7 @@ export default function Field(props) {
       </label>
       <input
         type={props.type}
+        accept={props.extention}
         min={props.min}
         max={props.max}
         onChange={props.change}

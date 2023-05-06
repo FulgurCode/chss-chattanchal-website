@@ -26,8 +26,8 @@ function AllColumns() {
     obc: true, // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
-    course: "",
-    secondLanguage: "",
+    course: "PCMB",
+    secondLanguage: "Malayalam",
     status: "permanent",
     qualifyingExamDetails: {
       nameOfBoard: "",
@@ -43,6 +43,7 @@ function AllColumns() {
   const [data, setData] = useState(jsonTemp);
   const [popup, setPopup] = useState(false);
   const [notFilledError, setNotFilledError] = useState(false);
+  const [photo, setPhoto] = useState(null);
 
   function handleChange(event) {
     if (event && event.target) {
@@ -78,6 +79,11 @@ function AllColumns() {
     }
   }
 
+
+  function onChangePhoto(e) {
+    setPhoto(e.target.file[0])
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -111,10 +117,20 @@ function AllColumns() {
 
       Axios.post("admin/new-admission", data)
         .then((response) => {
-          if (response.status == 200) {
-            setPopup(!popup);
-            setData(jsonTemp);
-          }
+          
+          const formData = new FormData();
+          formData.append("file", photo)
+          
+        Axios.post(`admin/upload-student-photo?studentId=${response.data}`, formData)
+          .catch(
+            (err) => {
+              alert(err.response?.data)
+            }
+          )
+
+          setPopup(!popup);
+          setData(jsonTemp);
+
         })
         .catch((err) => {
           if (err.response.status == 401) {
@@ -288,11 +304,15 @@ function AllColumns() {
           name="class"
           containerClass={styles.subContainerNew}
         />
-        <Field
-          text="Course in which admitted"
+        <SelectField
+          text="Course in which admitted" course
           change={handleChange}
           value={data.course}
           name="course"
+          option={[
+            ["PCMB - Physics, Chemistry, Maths, Biology", "PCMB"],
+            ["PCMC - Physics, Chemistry, Maths, Computer Science", "PCMC"],
+            ["COMMERCE - Bussiness, Computer applications, Economics, Accountancy", "COMMERCE"]]}
           containerClass={styles.subContainerNew}
         />
         <Field
@@ -367,6 +387,14 @@ function AllColumns() {
           change={handleChange}
           value={data.tcDetailsOnAdmission.school}
           name="school"
+          containerClass={styles.subContainerNew}
+        />
+        <Field
+          text="Upload photo"
+          type="file"
+          change={onChangePhoto}
+          value={photo}
+          extention=".jpg"
           containerClass={styles.subContainerNew}
         />
         <button onClick={handleSubmit} className={`${styles.submitButton}`}>
