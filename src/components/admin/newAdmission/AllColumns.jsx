@@ -8,7 +8,13 @@ import Field from "./Field";
 import SelectField from "./SelectField";
 import QRPopUp from "./QRPopUp";
 
+
+// ---------------- default function ----------------
+
 function AllColumns() {
+
+  // ---------------- States ----------------
+
   const jsonTemp = {
     admissionDate: "",
     applicationNo: "",
@@ -47,6 +53,8 @@ function AllColumns() {
   const [photo, setPhoto] = useState(null);
   const [QR, setQR] = useState(false);
 
+
+  // ---------------- Handle Change Function for input feild
   function handleChange(event) {
     if (event && event.target) {
       const name = event.target.name;
@@ -81,9 +89,13 @@ function AllColumns() {
     }
   }
 
+  // ---------------- onchange fn for photo upload 
+
   function onChangePhoto(e) {
     setPhoto(e.target.file[0]);
   }
+
+  // ---------------- handle fn for QR popup ---------------- 
 
   function handleQR(event){
 
@@ -91,13 +103,14 @@ function AllColumns() {
 
   } 
 
+  // ---------------- handle fn for final submit ----------------
+
   function handleSubmit(event) {
     event.preventDefault();
 
     var hasNullOrUndefinedValue = false;
 
     // type casting the variable specified
-
     data.tcDetailsOnAdmission.number = Number(data.tcDetailsOnAdmission.number);
     data.phone = Number(data.phone);
     data.obc = Boolean(data.obc);
@@ -149,6 +162,9 @@ function AllColumns() {
 
   return (
     <div className={`${styles.globalParent}`}>
+
+      {/* ---------------- top infos ----------------   */}
+
       <div className={`${styles.subContainer}`}>
         <img className={`${styles.img2}`} src={img2} />
         <label className={`${styles.titleLabel}`}>New Admissions</label>
@@ -166,6 +182,9 @@ function AllColumns() {
         Fields marked with <span className={`${styles.aster}`}> * </span> are
         mandatory
       </label>
+
+      {/* ---------------- Container 1 ----------------  */}
+
       <div className={`${styles.container}`}>
         <Field
           text="Application number"
@@ -184,6 +203,9 @@ function AllColumns() {
         />
       </div>
       <hr className={`${styles.separationLine}`} />
+
+      {/* ---------------- Container 2 ----------------  */}
+
       <div className={`${styles.containerNew} `}>
         <Field
           text="Name of the student"
@@ -220,6 +242,9 @@ function AllColumns() {
         />
       </div>
       <hr className={`${styles.separationLine}`} />
+
+      {/* ---------------- Container 3 ----------------  */}
+
       <div className={`${styles.containerNew} `}>
         <Field
           text="Name of the parent / guardian"
@@ -297,6 +322,9 @@ function AllColumns() {
           containerClass={styles.subContainerNew}
         />
       </div>
+
+      {/* ---------------- Container 4 ----------------  */}
+
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
         <Field
@@ -325,11 +353,16 @@ function AllColumns() {
           ]}
           containerClass={styles.subContainerNew}
         />
-        <Field
+        <SelectField
           text="Second Language"
           change={handleChange}
           value={data.secondLanguage}
           name="secondLanguage"
+          option={[
+            ["Malayalam", "Malayalam"],
+            ["Arabic", "Arabic"],
+            ["Hindi", "Hindi"]
+          ]}
           containerClass={styles.subContainerNew}
         />
         <SelectField
@@ -344,6 +377,9 @@ function AllColumns() {
           containerClass={styles.subContainerNew}
         />
       </div>
+
+      {/* ---------------- Container 5 ----------------  */}
+
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
         <label className={`${styles.subHeadingLabel}`}>
@@ -371,6 +407,7 @@ function AllColumns() {
           containerClass={styles.subContainerNew}
         />
       </div>
+      {/* ---------------- Container 6 ----------------  */}
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
         <label className={`${styles.subHeadingLabel}`}>
@@ -413,6 +450,9 @@ function AllColumns() {
           Submit
         </button>
       </div>
+
+      {/* ---------------- Popups ----------------  */}
+
       <SuccessPopup open={popup} show={setPopup} showVar={popup} />
       <NotFilledPopup
         open={notFilledError}

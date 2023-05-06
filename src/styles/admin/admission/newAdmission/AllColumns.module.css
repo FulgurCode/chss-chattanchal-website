@@ -175,7 +175,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 1vw;
 }
 
-.qrButton:hover{
+.qrButton:hover {
   opacity: 0.5;
   cursor: pointer;
 }
@@ -265,6 +265,10 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 13px;
     width: 50vw;
     height: 2.5vh;
+  }
+
+  .qrButton{
+    display: none;
   }
 
   .submitButton {

@@ -67,6 +67,10 @@
   opacity: 0.7;
 }
 
+.QR{
+  width: 10vw;
+  height: 10vh;
+}
 
 @media (max-width: 500px) and (orientation: portrait) {
     .close{
