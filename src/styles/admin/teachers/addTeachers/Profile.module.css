@@ -1,5 +1,6 @@
 .main {
   width: max-content;
+  min-width: 500px;
   padding: 40px;
   border-radius: 10px;
   background-color: #fafafc;

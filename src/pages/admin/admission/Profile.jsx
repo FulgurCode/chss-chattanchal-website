@@ -3,6 +3,7 @@ import Axios from "../../../../stores/Axios";
 import React from "react";
 import styles from "../../../styles/admin/teachers/addTeachers/Profile.module.css";
 import Navbar from "../../../components/NavBar";
+import { useEffect } from "react";
 
 export default function Profile() {
   const [data] = useSearchParams();
@@ -19,8 +20,7 @@ export default function Profile() {
         console.log(err.response.data);
       });
   }
-
-  getData();
+  useEffect(getData, []);
 
   return (
     <>
@@ -200,73 +200,51 @@ function Item(props) {
           </div>
         )}
         <br />
-        {props.data.tcDetailsOnAdmission.number == undefined &&
-        props.data.tcDetailsOnAdmission.date == undefined &&
-        props.data.tcDetailsOnAdmission.school == undefined ? (
-          ""
-        ) : (
-          <code className={styles.head}>
-            Details of Transfer certificate produced on Admission
-          </code>
-        )}
 
-        {props.data.number == undefined ? (
+        {props.data.tcDetailsOnAdmission == undefined ? ( // ith set ayi
           ""
         ) : (
-          <div>
-            <code>Number:</code>
-            <code> {props.data.tcDetailsOnAdmission.number}</code>
-          </div>
+          <>
+            <code className={styles.head}>
+              Details of Transfer certificate produced on Admission
+            </code>
+            <div>
+              <code>Number:</code>
+              <code> {props.data.tcDetailsOnAdmission.number}</code>
+            </div>
+            <div>
+              <code>Date:</code>
+              <code> {props.data.tcDetailsOnAdmission.date}</code>
+            </div>
+            <div>
+              <code>School:</code>
+              <code> {props.data.tcDetailsOnAdmission.school}</code>
+            </div>
+          </>
         )}
-        {props.data.tcDetailsOnAdmission.date == undefined ? (
+        {props.data.qualifyingExamDetails == undefined ? ( // ith set ayi
           ""
         ) : (
-          <div>
-            <code>Date:</code>
-            <code> {props.data.tcDetailsOnAdmission.date}</code>
-          </div>
-        )}
-        {props.data.tcDetailsOnAdmission.school == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>School:</code>
-            <code> {props.data.tcDetailsOnAdmission.school}</code>
-          </div>
-        )}
-        <br />
-        {props.data.qualifyingExamDetails.nameOfBoard == undefined &&
-        props.data.qualifyingExamDetails.passingTime == undefined &&
-        props.data.qualifyingExamDetails.registerNo == undefined ? (
-          ""
-        ) : (
-          <code className={styles.head}>
-            Details of Qualifiying Examination
-          </code>
-        )}
-        {props.data.qualifyingExamDetails.nameOfBoard == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Name of board:</code>
-            <code> {props.data.qualifyingExamDetails.nameOfBoard}</code>
-          </div>
-        )}
-        {props.data.qualifyingExamDetails.passingTime == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Passing time:</code>
-            <code> {props.data.qualifyingExamDetails.passingTime}</code>
-          </div>
-        )}
-        {props.data.qualifyingExamDetails.registerNo == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Register No:</code>
-            <code> {props.data.qualifyingExamDetails.registerNo}</code>
-          </div>
+          <>
+            <br />
+            <code className={styles.head}>
+              Details of Qualifiying Examination
+            </code>
+            <div>
+              <code>Name of board:</code>
+              <code> {props.data.qualifyingExamDetails.nameOfBoard}</code>
+            </div>
+
+            <div>
+              <code>Passing time:</code>
+              <code> {props.data.qualifyingExamDetails.passingTime}</code>
+            </div>
+
+            <div>
+              <code>Register No:</code>
+              <code> {props.data.qualifyingExamDetails.registerNo}</code>
+            </div>
+          </>
         )}
       </main>
     </div>
