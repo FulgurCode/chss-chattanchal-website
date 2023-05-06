@@ -1,53 +1,26 @@
-
 import { useNavigate } from "react-router-dom";
+import { createSearchParams } from "react-router-dom";
+// import userouter
+import styles from "../../../styles/admin/admission/studentsDetails/Item.module.css";
 
 export default function Item(props) {
-  const router = useNavigate();
+  const navigate = useNavigate();
+
   return (
-    <div>
+    <>
       <div
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          //   padding: 10,
-          gap: 5,
-        }}
         onClick={() => {
-          router({
+          navigate({
             pathname: "/admin/admission/profile",
-            params: {
-              ...props.data,
-              ...props.data.qualifyingExamDetails,
-              ...props.data.tcDetailsOnAdmission,
-            },
+            search: `?${createSearchParams({ id: props.data._id })}`,
           });
         }}
+        className={styles.main}
       >
-        <text style={{ flex: 2, padding: 10, paddingTop: 15 }}>
-          {props.data.name}
-        </text>
-        <text
-          style={{
-            flex: 1,
-            padding: 10,
-            paddingTop: 15,
-            backgroundColor: "#efefef",
-            textAlign: "center",
-          }}
-        >
-          {props.data.admissionNo}
-        </text>
-        <text
-          style={{
-            flex: 1,
-            padding: 10,
-            paddingTop: 15,
-            textAlign: "center",
-          }}
-        >
-          {props.data.class}
-        </text>
+        <code className={styles.name}>{props.data.name}</code>
+        <code className={styles.admissionNo}>{props.data.admissionNo}</code>
+        <code className={styles.class}>{props.data.class}</code>
       </div>
-    </div>
+    </>
   );
 }

@@ -7,7 +7,7 @@
   text-indent: 15px;
   align-self: center;
 
-  margin: 10px
+  margin: 10px;
 }
 
 .btn {
@@ -36,43 +36,72 @@
   height: 40px;
 }
 
-.header code{
-    font-weight: 600;
+.header code {
+  font-weight: 600;
 }
 
-.header{
-    padding-bottom: 70px;
+.header {
+  padding-bottom: 70px;
 }
 
-.main hr{
-    height: 1px;
-    background-color: #ccc;
+.main hr {
+  height: 1px;
+  background-color: #ccc;
 }
-.main{
-    padding: 10%;
-    padding-top: 50px;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    gap: 10;
-    flex: 1;
-    align-items: center;
-    /* gap: 10px; */
-    /* justify-content: center; */
-    width: max-content;
-    align-self: center;
-}
-.inputContainer{
-    width: 100%;
+.main {
+  padding: 10%;
+  padding-top: 50px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.btnContainer{
-    width: 100%;
-    display: flex;
-    justify-content: end;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10;
+  flex: 1;
+  align-items: center;
+  /* gap: 10px; */
+  /* justify-content: center; */
+  width: max-content;
+  align-self: center;
+}
+.inputContainer {
+  width: 100%;
+}
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.list {
+  width: 500px;
+  margin-top: 50px;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.list div {
+  display: flex;
+}
+.list div span {
+  padding: 5px;
+  padding-left: 15px;
+}
+.list div span:nth-child(1) {
+  flex: 2;
+  background-color: #ddd;
+}
+.list div span:nth-child(2) {
+  flex: 1;
+  background-color: #bbb;
+  text-align: center;
+}
+.list div span:nth-child(3) {
+  flex: 1;
+  background-color: #ddd;
+  text-align: center;
 }
