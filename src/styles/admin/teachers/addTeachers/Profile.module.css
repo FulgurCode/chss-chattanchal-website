@@ -1,0 +1,26 @@
+.main {
+  width: max-content;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #fafafc;
+  border: 1px solid #ccc;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+.body div {
+  display: flex;
+}
+
+.body div code {
+  flex: 1;
+}
+
+.head {
+  font-family: Arial;
+  font-weight: 600;
+  margin-top: 20px;
+}

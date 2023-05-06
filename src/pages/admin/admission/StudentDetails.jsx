@@ -90,7 +90,6 @@ export default function StudentDetails() {
                 <span>Adm No.</span>
                 <span>Class</span>
               </div>
-              {/* {if (data.length() == 0){console.log(empty)} } */}
               {data.map((item) => {
                 return <Item data={item} key={item._id} />;
               })}

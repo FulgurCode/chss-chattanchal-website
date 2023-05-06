@@ -1,19 +1,18 @@
 import { useNavigate } from "react-router-dom";
+import { createSearchParams } from "react-router-dom";
+// import userouter
 import styles from "../../../styles/admin/admission/studentsDetails/Item.module.css";
 
 export default function Item(props) {
-  const router = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <>
       <div
         onClick={() => {
-          router({
+          navigate({
             pathname: "/admin/admission/profile",
-            params: {
-              ...props.data,
-              ...props.data.qualifyingExamDetails,
-              ...props.data.tcDetailsOnAdmission,
-            },
+            search: `?${createSearchParams({ id: props.data._id })}`,
           });
         }}
         className={styles.main}
