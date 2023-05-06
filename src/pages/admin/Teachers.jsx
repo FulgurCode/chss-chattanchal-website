@@ -38,6 +38,22 @@ export default function Admin() {
               </span>
               <h1>Duty Allocation</h1>
             </div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/teachers/import-teachers");
+              }}
+            >
+              <span>
+                <img
+                  src="/imgs/importStudents/download.png"
+                  width="70px"
+                  height="70px"
+                  style={{ marginTop: 10 }}
+                />
+              </span>
+              <h1>Import Teachers</h1>
+            </div>
           </div>
         </div>
       </div>
