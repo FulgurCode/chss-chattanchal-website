@@ -179,6 +179,15 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 0.5;
   cursor: pointer;
 }
+/* ------------------ mobile phone design ------------------ */
+
+.uploadPhoto{
+  border-radius: 0;
+}
+
+.uploadPhoto:hover{
+  cursor: pointer;
+}
 
 /* ------------------ mobile phone design ------------------ */
 

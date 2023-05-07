@@ -1,18 +1,15 @@
 import React from "react";
 import popUpStyles from "../../../styles/admin/admission/newAdmission/PopUp.module.css";
-import QRCode from "react-qr-code";
 
-export default function QRPopUp(props) {
+export default function WebCamPop(props) {
   if (props.open == false) {
     return null;
   }
 
   return (
     <div className={popUpStyles.overlay}>
-      <div className={`${popUpStyles.popupBody}`}>
-        <div className={popUpStyles.QR}>
-          <QRCode className={popUpStyles.QR} value={props.text} />
-        </div>
+      <div className={`${popUpStyles.popupBodyWebCam}`}>
+        <canvas className={popUpStyles.canvas} ></canvas>
         <button
           onClick={() => {
             props.show(!props.open);
@@ -21,6 +18,7 @@ export default function QRPopUp(props) {
         >
           X
         </button>
+        <button className={popUpStyles.clickButton}></button>
       </div>
     </div>
   );

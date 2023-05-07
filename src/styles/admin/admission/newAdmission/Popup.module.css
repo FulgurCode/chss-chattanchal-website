@@ -51,6 +51,23 @@
   z-index: 1000;
 }
 
+.popupBodyWebCam{
+  width: 75vw;
+  height: 75vh;
+  background-color: #6A2C70;
+  border: solid 5px #971AA3;
+  box-shadow: 20px 20px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
 .close {
   border: none;
   position: absolute;
@@ -68,8 +85,27 @@
 }
 
 .QR{
-  width: 10vw;
-  height: 10vh;
+  width: 25vw;
+  height: 25vh;
+}
+
+.clickButton{
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
+  background-color: #531d57;
+  margin-top: 5vh;
+}
+
+.clickButton:hover{
+  background-color: #f563ff;
+  cursor: pointer;
+}
+
+.canvas{
+  height: 50vh;
+  width: 50vw;
+  border: 2px solid #b03db8;
 }
 
 @media (max-width: 500px) and (orientation: portrait) {

@@ -7,7 +7,7 @@ import NotFilledPopup from "./NotFilledPopup";
 import Field from "./Field";
 import SelectField from "./SelectField";
 import QRPopUp from "./QRPopUp";
-
+import WebCamPop from "./WebCamPopUp";
 
 // ---------------- default function ----------------
 
@@ -52,6 +52,7 @@ function AllColumns() {
   const [notFilledError, setNotFilledError] = useState(false);
   const [photo, setPhoto] = useState(null);
   const [QR, setQR] = useState(false);
+  const [webCam, setWebCam] = useState(false);
 
 
   // ---------------- Handle Change Function for input feild
@@ -89,19 +90,11 @@ function AllColumns() {
     }
   }
 
-  // ---------------- onchange fn for photo upload 
+  // ---------------- onchange fn for photo upload ----------------
 
   function onChangePhoto(e) {
     setPhoto(e.target.file[0]);
   }
-
-  // ---------------- handle fn for QR popup ---------------- 
-
-  function handleQR(event){
-
-    setQR(!false)
-
-  } 
 
   // ---------------- handle fn for final submit ----------------
 
@@ -188,6 +181,7 @@ function AllColumns() {
       <div className={`${styles.container}`}>
         <Field
           text="Application number"
+          type="number"
           change={handleChange}
           value={data.applicationNo}
           name="applicationNo"
@@ -216,6 +210,7 @@ function AllColumns() {
         />
         <Field
           text="Aadhaar no."
+          type="number"
           change={handleChange}
           value={data.aadhaarNo}
           name="aadhaarNo"
@@ -223,6 +218,7 @@ function AllColumns() {
         />
         <Field
           text="Phone no."
+          type="number"
           change={handleChange}
           value={data.phone}
           name="phone"
@@ -394,6 +390,7 @@ function AllColumns() {
         />
         <Field
           text="Register No."
+          type="number"
           change={handleChange}
           value={data.registerNo}
           name="registerNo"
@@ -442,10 +439,11 @@ function AllColumns() {
           change={onChangePhoto}
           value={photo}
           extention=".jpg"
+          inputStyle={styles.uploadPhoto}
           containerClass={styles.subContainerNew}
         />
-        <button onClick={handleQR} className={`${styles.qrButton}`}>Take photo on Phone</button>
-        <button className={`${styles.qrButton}`}>Take a photo on web cam</button>
+        <button onClick={() => setQR(true)} className={`${styles.qrButton}`}>Take photo on Phone</button>
+        <button onClick={() => setWebCam(true)} className={`${styles.qrButton}`}>Take a photo on web cam</button>
         <button onClick={handleSubmit} className={`${styles.submitButton}`}>
           Submit
         </button>
@@ -463,6 +461,10 @@ function AllColumns() {
         open={QR}
         show={setQR}
         text="I am inevitable"
+      />
+      <WebCamPop
+        open={webCam}
+        show={setWebCam}
       />
     </div>
   );
