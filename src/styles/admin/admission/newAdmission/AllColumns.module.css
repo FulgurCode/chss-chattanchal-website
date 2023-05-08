@@ -5,6 +5,7 @@
 * {
   font-family: inria sans;
 }
+
 .container {
   width: 100%;
   display: flex;
@@ -96,8 +97,10 @@
 }
 
 .photoContainer {
-    height: 500px;
-    width: 500px
+  height: 20vw;
+  width: calc((4 * 20vw) / 3);
+  margin-right: 41vw;
+  border: 2px dotted #6A2C70;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -184,13 +187,14 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 0.5;
   cursor: pointer;
 }
+
 /* ------------------ mobile phone design ------------------ */
 
-.uploadPhoto{
+.uploadPhoto {
   border-radius: 0;
 }
 
-.uploadPhoto:hover{
+.uploadPhoto:hover {
   cursor: pointer;
 }
 
@@ -281,7 +285,7 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 2.5vh;
   }
 
-  .qrButton{
+  .qrButton {
     display: none;
   }
 

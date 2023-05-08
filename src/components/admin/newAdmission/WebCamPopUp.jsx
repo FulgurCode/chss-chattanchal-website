@@ -4,7 +4,6 @@ import Webcam from "react-webcam";
 
 export default function WebCamPop(props) {
   const webcamRef = useRef(null);
-  const photoRef = useRef(null);
 
   useEffect(() => {
     const getUserCamera = async () => {
@@ -28,7 +27,7 @@ export default function WebCamPop(props) {
     const width = 400;
     const height = 300;
 
-    const photo = photoRef.current;
+    const photo = props.photoRef.current;
     const video = webcamRef.current.video;
 
     photo.width = width;
@@ -36,6 +35,8 @@ export default function WebCamPop(props) {
 
     const context = photo.getContext("2d");
     context.drawImage(video, 0, 0, photo.width, photo.height);
+    console.log(typeof(props.photoRef))
+    props.show(!props.open)
   };
 
   if (props.open === false) {
@@ -55,7 +56,6 @@ export default function WebCamPop(props) {
           X
         </button>
         <button onClick={takePhoto} className={popUpStyles.clickButton} />
-        <canvas ref={photoRef} />
       </div>
     </div>
   );

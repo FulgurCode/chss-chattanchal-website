@@ -1,5 +1,5 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import img2 from "/imgs/image_2.svg";
 import Axios from "../../../../stores/Axios";
 import SuccessPopup from "./SuccessPopup.jsx";
@@ -50,9 +50,11 @@ function AllColumns() {
   const [data, setData] = useState(jsonTemp);
   const [popup, setPopup] = useState(false);
   const [notFilledError, setNotFilledError] = useState(false);
-  const [photo, setPhoto] = useState(null);
+  const [filePhoto, setFilePhoto] = useState("");
   const [QR, setQR] = useState(false);
   const [webCam, setWebCam] = useState(false);
+  const photoRef = useRef(null);
+  let globalPhoto = photoRef;
 
 
   // ---------------- Handle Change Function for input feild
@@ -93,7 +95,10 @@ function AllColumns() {
   // ---------------- onchange fn for photo upload ----------------
 
   function onChangePhoto(e) {
-    setPhoto(e.target.file[0]);
+    console.log("yes")
+    setFilePhoto(e.target.files[0]);
+    globalPhoto = filePhoto
+    console.log(globalPhoto)
   }
 
   // ---------------- handle fn for final submit ----------------
@@ -131,7 +136,7 @@ function AllColumns() {
       Axios.post("admin/new-admission", data)
         .then((response) => {
           const formData = new FormData();
-          formData.append("file", photo);
+          formData.append("file", filePhoto);
 
           Axios.post(
             `admin/upload-student-photo?studentId=${response.data}`,
@@ -433,15 +438,14 @@ function AllColumns() {
           name="school"
           containerClass={styles.subContainerNew}
         />
-        <div className={styles.photoContainer}>
-
-        </div>
+        <img className={styles.photoContainer} src={globalPhoto} ></img>
+        <canvas className={styles.photoContainer} ref={globalPhoto} />
         <Field
           text="Upload photo"
           type="file"
           change={onChangePhoto}
-          value={photo}
-          extention=".jpg"
+          value={""}
+          extention="image/*"
           inputStyle={styles.uploadPhoto}
           containerClass={styles.subContainerNew}
         />
@@ -468,6 +472,8 @@ function AllColumns() {
       <WebCamPop
         open={webCam}
         show={setWebCam}
+        photoRef={photoRef}
+        global={globalPhoto}
       />
     </div>
   );
