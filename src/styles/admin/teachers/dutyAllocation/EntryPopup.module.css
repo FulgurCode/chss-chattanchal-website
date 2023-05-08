@@ -1,0 +1,141 @@
+.openPopup {
+  margin-top: 30px;
+  border: 0;
+  background: #28b4ab;
+  border-radius: 8px;
+  width: 150px;
+  height: 40px;
+  color: white;
+}
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupContent {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  max-width: 80vw;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.selectBox {
+  width: 50vw;
+  height: 35px;
+  border-radius: 5px;
+
+  background: #ffffff;
+  border: 2px solid #a0a0a0;
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.inputBox label {
+  margin-bottom: 2px;
+  align-items: flex-start;
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 119.3%;
+  /* or 29px */
+
+  color: #454545;
+}
+
+.box {
+  width: 300px;
+}
+
+.submitBtn {
+  align-self: center;
+
+  width: 100px;
+  border-radius: 7px;
+  height: 40px;
+  justify-self: flex-end;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  outline: none;
+
+  color: #ffffff;
+  border: none;
+  background: #28b4ab;
+  border-radius: 7px;
+}
+
+.closeBtn {
+  margin-right: 74px;
+  width: 100px;
+  height: 40px;
+  justify-self: flex-start;
+  outline: none;
+  border: 0;
+  background: #a0a0a0;
+  border-radius: 7px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #ffffff;
+}
+
+.response {
+  padding: 10px;
+  height: 20px;
+  color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buttonBox {
+  margin-top: 20px;
+  height: 35px;
+  display: flex;
+  align-self: center;
+
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .inputBox label {
+    font-size: 22px;
+  }
+
+  .box {
+    font-size: 20px;
+    width: 80vw;
+    height: 5vh;
+  }
+}

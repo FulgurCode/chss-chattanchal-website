@@ -1,0 +1,74 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin-top: 10vh;
+  padding: 0 2vw;
+}
+
+.title {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.title label {
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 119.3%;
+  /* or 38px */
+
+  color: #000000;
+}
+
+.underline {
+  align-self: center;
+  border: 3px solid #a0a0a0;
+  /* max-width: 1000px;
+    min-width:500px; */
+  width: 100%;
+}
+
+.pathbox {
+  padding: 10px 0;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.myButton {
+  margin-top: 50px;
+  background: #28b4ab;
+  border-radius: 15px;
+  justify-self: center;
+  align-self: center;
+  color: white;
+}
+
+.buttonWrapper {
+  margin-top: 10px;
+  align-self: center;
+  margin-bottom: 40px;
+}
+
+.content {
+  padding: 0 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tableWrap {
+  margin-top: 20px;
+  align-self: center;
+}

@@ -1,0 +1,88 @@
+.table {
+  min-width: 70vw;
+  max-width: 75vw;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+}
+
+.emptyBox {
+  height: 10px;
+}
+
+.tableBox {
+  align-self: center;
+  margin-top: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: scroll;
+  margin-bottom: 5px;
+}
+
+.tableBox thead th {
+  position: sticky;
+  top: 0;
+}
+
+.table th,
+.table td {
+  padding: 10px 2vw;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.table th {
+  background-color: #6a2c70;
+  color: #fff;
+  width: fit-content;
+}
+
+.table th:hover {
+  background-color: #555;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #e6e6e6;
+}
+
+.searchBox {
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  text-indent: 5px;
+  height: 30px;
+  font-size: 18px;
+}
+
+.deleteBtn {
+  border-radius: 15px;
+  background-color: red;
+  border: 0;
+  padding: 5px 8px;
+  font-size: 13px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: rgb(161, 59, 59);
+}
+
+.tableBody {
+  overflow-y: hidden;
+}
+
+@media screen and (max-width: 500px) {
+  .table td {
+    font-size: 18px;
+  }
+
+  .deleteBtn {
+    font-size: 16px;
+  }
+}
