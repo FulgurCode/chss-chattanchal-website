@@ -1,0 +1,94 @@
+/* .input {
+  border: 1px solid #ccc;
+  background-color: #f2f2f2;
+  width: 500px;
+  height: 40px;
+  border-radius: 7px;
+  text-indent: 15px;
+  align-self: center;
+
+  margin: 10px;
+} */
+
+.btn {
+  background-color: #28b4ab;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  margin-top: 10px;
+}
+
+.header span {
+  display: flex;
+  align-items: center;
+  border-right: 2px solid #ccc;
+  width: max-content;
+  padding-right: 20px;
+  max-height: 30px;
+  margin-top: 20px;
+}
+.header img {
+  width: 40px;
+  height: 40px;
+}
+
+.header code {
+  font-weight: 600;
+}
+
+.header {
+  padding-bottom: 70px;
+}
+
+.main hr {
+  height: 1px;
+  background-color: #ccc;
+}
+.main {
+  padding: 10%;
+  padding-top: 50px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10;
+  flex: 1;
+  align-items: center;
+  /* gap: 10px; */
+  /* justify-content: center; */
+  width: max-content;
+  align-self: center;
+}
+.inputContainer {
+  width: 100%;
+}
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.table {
+  width: 100%;
+  /* align-content: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* .table div:first-child code {
+  background: red;
+  color: red;
+   padding: 10px; 
+} */

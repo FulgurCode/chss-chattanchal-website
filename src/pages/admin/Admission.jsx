@@ -1,6 +1,6 @@
 import NavBar from "../../components/NavBar";
 import styles from "../../styles/admin/admission/Admission.module.css";
-import admission from '/imgs/adminImages/admission.png'
+import admission from "/imgs/adminImages/admission.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Admission() {
@@ -21,11 +21,7 @@ export default function Admission() {
               }}
             >
               <span>
-                <img
-                  src={admission}
-                  width="150px"
-                  height="150px"
-                />
+                <img src={admission} width="150px" height="150px" />
               </span>
               <h1>New Admission</h1>
             </div>
@@ -58,6 +54,22 @@ export default function Admission() {
                 />
               </span>
               <h1>Import Students</h1>
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/admission/verification");
+              }}
+            >
+              <span>
+                <img
+                  // src="/imgs/AdmissionImages/item3.png"
+                  width="80px"
+                  height="80px"
+                />
+              </span>
+              <h1>Verfication</h1>
             </div>
           </div>
         </div>
