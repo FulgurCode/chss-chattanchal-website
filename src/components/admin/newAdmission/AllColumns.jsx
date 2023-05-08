@@ -433,6 +433,9 @@ function AllColumns() {
           name="school"
           containerClass={styles.subContainerNew}
         />
+        <div className={styles.photoContainer}>
+
+        </div>
         <Field
           text="Upload photo"
           type="file"

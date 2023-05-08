@@ -95,6 +95,11 @@
   font-size: 15px;
 }
 
+.photoContainer {
+    height: 500px;
+    width: 500px
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
