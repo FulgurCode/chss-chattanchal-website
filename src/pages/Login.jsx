@@ -54,7 +54,7 @@ export default function Login() {
       })
         .then((res) => {
           if (res.data == "Login Successful") {
-            navigate("/teachers");
+            navigate("/teacher");
           }
         })
         .catch((err) => {
