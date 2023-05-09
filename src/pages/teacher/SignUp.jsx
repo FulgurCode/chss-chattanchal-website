@@ -5,11 +5,11 @@ import styles from "../../styles/teacher/SignUp.module.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import SignUpElement from "./SignUpElement";
-// import Axios from "../../stores/Axios";
+import Axios from "../../../stores/Axios";
 
 export default function Login() {
   const [userType, setUserType] = React.useState("Teacher");
-  const [userName, setUserName] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function Login() {
     if (event.target == document.getElementById("usertype")) {
       setUserType(event.target.value);
     } else if (event.target == document.getElementById("username")) {
-      setUserName(event.target.value);
+      setEmail(event.target.value);
     } else if (event.target == document.getElementById("password")) {
       setPassword(event.target.value);
     }
@@ -28,27 +28,30 @@ export default function Login() {
   }
 
   function handleClick() {
-    if (userType == "admin") {
-      Axios.post("/admin/login", {
-        username: userName,
+    if (userType == "teacher") {
+      Axios.post("/teacher/signup", {
+        email: email,
         password: password,
       })
         .then((res) => {
-          if (res.data == "Login Successful") {
-            navigate("/admin");
-          }
+          // if (res.data == "Login Successful") {
+          // navigate("/admin");
+          // console.log("signip");
+          // }
+          navigate("/teacher/signup-otp");
         })
         .catch((err) => {
-          if (err.response.status == 401) {
-            // console.log("login unsucsessfull");
-            changeInputColor("red");
-            setError(err.response.data);
-          } else {
-            setError(err.response.data);
-          }
+          // if (err.response.status == 401) {
+          //   // console.log("login unsucsessfull");
+          //   changeInputColor("red");
+          //   setError(err.response.data);
+          // } else {
+          //   setError(err.response.data);
+          // }
+          setError(err.response.data);
         });
     } else {
-      setError("students or teachers login fuctionality is not added yet");
+      setError("students sign up fuctionality is not added yet");
     }
   }
 
@@ -77,7 +80,7 @@ export default function Login() {
             </h1>
             <SignUpElement
               changeEvent={changeEvent}
-              userName={userName}
+              email={email}
               password={password}
               handleClick={handleClick}
               error={error}

@@ -103,6 +103,8 @@ body {
   padding: 20px;
   padding-top: 7px;
   min-width: 250px;
+
+  margin: auto;
 }
 
 .main .container .login h1 {
@@ -140,6 +142,10 @@ body {
 
   width: 300px;
   align-self: center;
+
+  margin: auto;
+
+  /* max-height: 300px; */
 }
 
 .main .container .login .loginElement div {
@@ -198,13 +204,18 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  /* gap: 5px; */
 
   box-shadow: 0 0 10px grey;
   position: relative;
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  max-height: 200px;
 }
 
-/* .main .container .login .loginElement span input {
+.main .container .login .loginElement span .input {
   min-height: 30px;
   width: 150px;
   border: none;
@@ -214,11 +225,11 @@ body {
   font-family: "Inria Sans", sans-serif;
   font-weight: 600;
   font-size: 12px;
-} */
-/* .main .container .login .loginElement span input:hover {
+}
+.main .container .login .loginElement span .input:hover {
   font-weight: 800;
   color: black;
-} */
+}
 /* .main .container .login .loginElement span a {
   transform: translate(0, -50%);
   font-size: 13px;
@@ -229,7 +240,7 @@ body {
   text-indent: 10px;
 } */
 
-/* .main .container .login .loginElement span button {
+.main .container .login .loginElement span button {
   width: 150px;
   height: 35px;
   background-color: rgba(0, 0, 0, 0.46);
@@ -238,14 +249,13 @@ body {
   border-radius: 5px;
   font-size: 1.05rem;
 
-  
   padding-bottom: 2px;
   font-family: "Poppins", sans-serif;
-} */
+}
 
-/* .main .container .login .loginElement span button:hover {
+.main .container .login .loginElement span button:hover {
   background-color: grey;
-} */
+}
 
 /* .main .container .login .loginElement span p {
   font-size: small;
@@ -253,8 +263,8 @@ body {
   position: absolute;
   bottom: -5px;
   text-align: center;
-} */
-
+}
+*/
 .footer {
   max-height: 70px;
   background-color: #6a2c70;
@@ -315,6 +325,7 @@ body {
   }
   .main .container .login {
     flex: 2;
+    justify-content: center;
   }
   .header {
     max-height: 50px;
@@ -367,7 +378,9 @@ body {
     display: none;
   }
 }
+
 .loginElement .svg {
-  width: 15px;
-  height: 15px;
+  min-width: 15px;
+  min-height: 15px;
+  /* transform: translate(0, 15px); */
 }

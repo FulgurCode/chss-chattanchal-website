@@ -5,12 +5,10 @@ import styles from "../../styles/teacher/Otp.module.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import OtpElement from "./OtpElement";
-// import Axios from "../../stores/Axios";
+import Axios from "../../../stores/Axios";
 
 export default function Login() {
-  const [userType, setUserType] = React.useState("Teacher");
-  const [userName, setUserName] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [otp, setOtp] = React.useState("");
   const [error, setError] = React.useState("");
   const navigate = useNavigate();
 
@@ -28,28 +26,17 @@ export default function Login() {
   }
 
   function handleClick() {
-    if (userType == "admin") {
-      Axios.post("/admin/login", {
-        username: userName,
-        password: password,
+    Axios.get(`teacher/signup-otp?otp=${otp}`)
+      .then((res) => {
+        navigate("/login");
       })
-        .then((res) => {
-          if (res.data == "Login Successful") {
-            navigate("/admin");
-          }
-        })
-        .catch((err) => {
-          if (err.response.status == 401) {
-            // console.log("login unsucsessfull");
-            changeInputColor("red");
-            setError(err.response.data);
-          } else {
-            setError(err.response.data);
-          }
-        });
-    } else {
-      setError("students or teachers login fuctionality is not added yet");
-    }
+      .catch((err) => {
+        if (!err.response) {
+          setError("Server is not connected");
+        } else {
+          setError(err.response.data);
+        }
+      });
   }
 
   function changeInputColor(color) {
@@ -65,24 +52,16 @@ export default function Login() {
         style={{ backgroundImage: `url(${schoolImg})` }}
       >
         <div className={styles.container}>
-          {/* <div className={styles.label}>
-            <h2>Welcome to</h2>
-            <h1>
-              CHSS CHATTANCHAL<span></span>
-            </h1>
-          </div> */}
           <div className={styles.login}>
-            {/* <h1>
-              Sign Up <span></span>
-            </h1> */}
-            <OtpElement
-              changeEvent={changeEvent}
-              userName={userName}
-              password={password}
-              handleClick={handleClick}
-              error={error}
-              userType={userType}
-            />
+            <div>
+              <OtpElement
+                changeEvent={changeEvent}
+                otp={otp}
+                setOtp={setOtp}
+                handleClick={handleClick}
+                error={error}
+              />
+            </div>
           </div>
         </div>
       </div>
