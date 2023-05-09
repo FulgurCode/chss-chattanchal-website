@@ -47,7 +47,14 @@ export default function LoginElement(props) {
           {props.error}
         </code>
 
-        <button onClick={props.handleClick}>VERIFY</button>
+        <button
+          onClick={props.handleClick}
+          style={{
+            backgroundColor: props.otp.length == 6 ? "#28b4ab" : "grey",
+          }}
+        >
+          VERIFY
+        </button>
         <input type="button" value="Resend OTP" className={styles.input} />
       </span>
     </div>

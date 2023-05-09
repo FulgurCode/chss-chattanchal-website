@@ -22,8 +22,8 @@ export default function LoginElement(props) {
           placeholder={
             props.userType == "student"
               ? "Admission Number"
-              : props.userType == "admin"
-              ? "Username"
+              : props.userType == "teacher"
+              ? "Email"
               : "Phone Number"
           }
           value={props.userName}
