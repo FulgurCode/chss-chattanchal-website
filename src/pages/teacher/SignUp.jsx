@@ -34,20 +34,9 @@ export default function Login() {
         password: password,
       })
         .then((res) => {
-          // if (res.data == "Login Successful") {
-          // navigate("/admin");
-          // console.log("signip");
-          // }
           navigate("/teacher/signup-otp");
         })
         .catch((err) => {
-          // if (err.response.status == 401) {
-          //   // console.log("login unsucsessfull");
-          //   changeInputColor("red");
-          //   setError(err.response.data);
-          // } else {
-          //   setError(err.response.data);
-          // }
           setError(err.response.data);
         });
     } else {

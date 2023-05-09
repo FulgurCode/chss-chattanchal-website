@@ -24,7 +24,7 @@ export default function LoginElement(props) {
               ? "Admission Number"
               : props.userType == "admin"
               ? "Username"
-              : "Phone Number"
+              : "Email"
           }
           value={props.userName}
           onChange={props.changeEvent}

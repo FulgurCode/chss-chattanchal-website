@@ -34,9 +34,7 @@ export default function Login() {
         password: password,
       })
         .then((res) => {
-          if (res.data == "Login Successful") {
-            navigate("/admin");
-          }
+          navigate("/admin");
         })
         .catch((err) => {
           if (err.response.status == 401) {
@@ -46,6 +44,17 @@ export default function Login() {
           } else {
             setError(err.response.data);
           }
+        });
+    } else if (userType == "teacher") {
+      Axios.post("/teacher/login", {
+        email: userName,
+        password: password,
+      })
+        .then((res) => {
+          navigate("/teacher");
+        })
+        .catch((err) => {
+          setError(err.response.data);
         });
     } else {
       setError("students or teachers login fuctionality is not added yet");
