@@ -3,7 +3,7 @@ import Navbar from "../../../components/NavBar";
 import styles from "../../../styles/admin/teachers/importTeachers/ImportTeachers.module.css";
 import UploadTeacher from "../../../components/admin/importTeachers/UploadTeacher.jsx";
 
-export default function ImportStudents() {
+export default function ImportTeachers() {
   return (
     <>
       <Navbar />

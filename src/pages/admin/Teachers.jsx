@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar";
 import React from "react";
 import admission from "/imgs/adminImages/admission.png";
 import attendence from "/imgs/adminImages/attendence.png";
+import downIcon from "/imgs/importStudents/download.png"
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -37,6 +38,17 @@ export default function Admin() {
                 <img src={attendence} width="120px" height="120px" />
               </span>
               <h1>Duty Allocation</h1>
+            </div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/teachers/import-teachers");
+              }}
+            >
+              <span>
+                <img src={downIcon} width="100px" height="90px" style={{marginTop:10}} />
+              </span>
+              <h1>Import Teachers</h1>
             </div>
           </div>
         </div>

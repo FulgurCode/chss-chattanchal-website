@@ -15,6 +15,7 @@ import StudentDetails from "./pages/admin/admission/StudentDetails";
 import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
 import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
+import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx"
 
 import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
@@ -51,6 +52,10 @@ export default function App() {
             <Route
               path="/admin/teachers/add-teachers"
               element={<AddTeachers />}
+            ></Route>
+            <Route
+              path="/admin/teachers/import-teachers"
+              element={<ImportTeachers />}
             ></Route>
             <Route
               path="/admin/teachers/duty-allocation"
