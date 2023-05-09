@@ -34,9 +34,7 @@ export default function Login() {
         password: password,
       })
         .then((res) => {
-          if (res.data == "Login Successful") {
-            navigate("/admin");
-          }
+          navigate("/admin");
         })
         .catch((err) => {
           if (err.response.status == 401) {
@@ -53,9 +51,7 @@ export default function Login() {
         password: password,
       })
         .then((res) => {
-          if (res.data == "Login Successful") {
-            navigate("/teacher");
-          }
+          navigate("/teacher");
         })
         .catch((err) => {
           setError(err.response.data);
