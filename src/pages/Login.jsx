@@ -66,6 +66,25 @@ export default function Login() {
             setError(err.response.data);
           }
         });
+    } else if (userType == "teacher") {
+      Axios.post("/teacher/login", {
+        email: userName,
+        password: password,
+      })
+        .then((res) => {
+          if (res.data == "Login Successful") {
+            navigate("/teacher");
+          }
+        })
+        .catch((err) => {
+          if (err.response.status == 401) {
+            // console.log("login unsucsessfull");
+            changeInputColor("red");
+            setError(err.response.data);
+          } else {
+            setError(err.response.data);
+          }
+        });
     } else {
       setError("students or teachers login fuctionality is not added yet");
     }
