@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  border-bottom: 1px solid #bbb;
+}
+
+.main code {
+  padding: 5px;
+  padding-left: 15px;
+}
+
+.name {
+  flex: 2;
+  background-color: #eee;
+  font-weight: 500;
+}
+.admissionNo {
+  flex: 1;
+  background-color: #ddd;
+  text-align: center;
+}
+.class {
+  flex: 1;
+  background-color: #eee;
+  text-align: center;
+}
