@@ -17,6 +17,7 @@ import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
 import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
 
 import SignUp from "./pages/teacher/SignUp";
+import SignUpOtp from "./pages/teacher/Otp";
 
 export default function App() {
   return (
@@ -60,6 +61,7 @@ export default function App() {
         <Route path="/teacher">
           <Route index element={<Admin />} />
           <Route path="/teacher/signup" element={<SignUp />}></Route>
+          <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
