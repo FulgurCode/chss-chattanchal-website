@@ -9,244 +9,285 @@ export default function Profile() {
   const [data] = useSearchParams();
   const id = data.getAll("id");
 
-  const [details, setDetails] = React.useState([]);
+  const [details, setDetails] = React.useState({});
+  const [img, setImg] = React.useState("");
 
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
       .then((res) => {
-        setDetails([res.data]);
+        setDetails(res.data);
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   }
   useEffect(getData, []);
+  function getImage() {
+    Axios.get(`admin/get-student-photo?studentId=${id}`)
+      .then((res) => {
+        setImg("data:image/jpeg;base64," + res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  }
+  useEffect(getImage, []);
 
   return (
     <>
       <Navbar />
       <div>
-        {details.map((item) => {
-          return <Item data={item} key={item._id} />;
-        })}
+        <div className={styles.body}>
+          <main className={styles.main}>
+            <div className={styles.img}>
+              <img src={img} />
+            </div>
+            <div>
+              <code style={{ fontWeight: 600, fontFamily: "Arial" }}>Name</code>
+              <code>:</code>
+              <code style={{ fontWeight: 600, fontFamily: "Arial" }}>
+                {details.name}
+              </code>
+              {/* {console.log(item)} */}
+            </div>
+            {details.class == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Class</code>
+                <code>:</code>
+                <code>{details.class}</code>
+              </div>
+            )}
+            {details.aadhaarNo == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Aadhaar No</code>
+                <code>:</code>
+                <code>{details.aadhaarNo}</code>
+              </div>
+            )}
+            {details.admissionDate == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Admission Date</code>
+                <code>:</code>
+                <code>{details.admissionDate}</code>
+              </div>
+            )}
+            {details.admissionNo == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Admission No</code>
+                <code>:</code>
+                <code>{details.admissionNo}</code>
+              </div>
+            )}
+            {details.applicationNo == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Application No</code>
+                <code>:</code>
+                <code>{details.applicationNo}</code>
+              </div>
+            )}
+            {details.caste == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Caste</code>
+                <code>:</code>
+                <code>{details.caste}</code>
+              </div>
+            )}
+            {details.category == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Category</code>
+                <code>:</code>
+                <code>{details.category}</code>
+              </div>
+            )}
+            {details.course == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Course</code>
+                <code>:</code>
+                <code>{details.course}</code>
+              </div>
+            )}
+            {details.dob == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Dob</code>
+                <code>:</code>
+                <code>{details.dob}</code>
+              </div>
+            )}
+            {details.gender == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Gender</code>
+                <code>:</code>
+                <code>{details.gender}</code>
+              </div>
+            )}
+            {details.nameOfParent == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Name of Parent</code>
+                <code>:</code>
+                <code>{details.nameOfParent}</code>
+              </div>
+            )}
+            {details.occupationOfParent == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Occupation of parent</code>
+                <code>:</code>
+                <code>{details.occupationOfParent}</code>
+              </div>
+            )}
+            {details.phone == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Phone</code>
+                <code>:</code>
+                <code>{details.phone}</code>
+              </div>
+            )}
+            {details.linguisticMinority == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Linguistic Minority</code>
+                <code>:</code>
+                <code>{details.linguisticMinority}</code>
+              </div>
+            )}
+            {details.obc == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>OBC</code>
+                <code>:</code>
+                <code>{details.obc}</code>
+              </div>
+            )}
+            {details.relationshipWithGuardian == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Relationship with guardian</code>
+                <code>:</code>
+                <code>{details.relationshipWithGuardian}</code>
+              </div>
+            )}
+            {details.religion == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Religion</code>
+                <code>:</code>
+                <code>{details.religion}</code>
+              </div>
+            )}
+            {details.secondLanguage == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Second language</code>
+                <code>:</code>
+                <code>{details.secondLanguage}</code>
+              </div>
+            )}
+            {details.status == undefined ? (
+              ""
+            ) : (
+              <div>
+                <code>Status</code>
+                <code>:</code>
+                <code>{details.status}</code>
+              </div>
+            )}
+            <br />
+
+            {details.tcDetailsOnAdmission == undefined ? ( // ith set ayi
+              ""
+            ) : (
+              <>
+                <code className={styles.head}>
+                  Details of Transfer certificate produced on Admission
+                </code>
+                <div>
+                  <code>Number</code>
+                  <code>:</code>
+                  <code>{details.tcDetailsOnAdmission.number}</code>
+                </div>
+                <div>
+                  <code>Date</code>
+                  <code>:</code>
+                  <code>{details.tcDetailsOnAdmission.date}</code>
+                </div>
+                <div>
+                  <code>School</code>
+                  <code>:</code>
+                  <code>{details.tcDetailsOnAdmission.school}</code>
+                </div>
+              </>
+            )}
+            {details.qualifyingExamDetails == undefined ? ( // ith set ayi
+              ""
+            ) : (
+              <>
+                <br />
+                <code className={styles.head}>
+                  Details of Qualifiying Examination
+                </code>
+                <div>
+                  <code>Name of board</code>
+                  <code>:</code>
+                  <code>{details.qualifyingExamDetails.nameOfBoard}</code>
+                </div>
+
+                <div>
+                  <code>Passing time</code>
+                  <code>:</code>
+                  <code>{details.qualifyingExamDetails.passingTime}</code>
+                </div>
+
+                <div>
+                  <code>Register No</code>
+                  <code>:</code>
+                  <code>{details.qualifyingExamDetails.registerNo}</code>
+                </div>
+              </>
+            )}
+
+            <div className={styles.btnContainer}>
+              <button>Print</button>
+              <button>Edit</button>
+            </div>
+          </main>
+        </div>
       </div>
     </>
   );
 }
 
-function Item(props) {
-  // console.log(props.data);
-  return (
-    <div className={styles.body}>
-      <main className={styles.main}>
-        <div>
-          <code style={{ fontWeight: 600, fontFamily: "Aria" }}>Name:</code>
-          <code style={{ fontWeight: 600, fontFamily: "Aria" }}>
-            {" "}
-            {props.data.name}
-          </code>
-          {/* {console.log(props.item)} */}
-        </div>
-        {props.data.class == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Class:</code>
-            <code> {props.data.class}</code>
-          </div>
-        )}
-        {props.data.aadhaarNo == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Aadhaar No:</code>
-            <code> {props.data.aadhaarNo}</code>
-          </div>
-        )}
-        {props.data.admissionDate == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Admission Date:</code>
-            <code> {props.data.admissionDate}</code>
-          </div>
-        )}
-        {props.data.admissionNo == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Admission No:</code>
-            <code> {props.data.admissionNo}</code>
-          </div>
-        )}
-        {props.data.applicationNo == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Application No:</code>
-            <code> {props.data.applicationNo}</code>
-          </div>
-        )}
-        {props.data.caste == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Caste:</code>
-            <code> {props.data.caste}</code>
-          </div>
-        )}
-        {props.data.category == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Category:</code>
-            <code> {props.data.category}</code>
-          </div>
-        )}
-        {props.data.course == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Course:</code>
-            <code> {props.data.course}</code>
-          </div>
-        )}
-        {props.data.dob == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Dob:</code>
-            <code> {props.data.dob}</code>
-          </div>
-        )}
-        {props.data.gender == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Gender:</code>
-            <code> {props.data.gender}</code>
-          </div>
-        )}
-        {props.data.nameOfParent == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Name of Parent:</code>
-            <code> {props.data.nameOfParent}</code>
-          </div>
-        )}
-        {props.data.occupationOfParent == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Occupation of parent:</code>
-            <code> {props.data.occupationOfParent}</code>
-          </div>
-        )}
-        {props.data.phone == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Phone:</code>
-            <code> {props.data.phone}</code>
-          </div>
-        )}
-        {props.data.linguisticMinority == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Linguistic Minority:</code>
-            <code> {props.data.linguisticMinority}</code>
-          </div>
-        )}
-        {props.data.obc == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>OBC:</code>
-            <code> {props.data.obc}</code>
-          </div>
-        )}
-        {props.data.relationshipWithGuardian == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Relationship with guardian:</code>
-            <code> {props.data.relationshipWithGuardian}</code>
-          </div>
-        )}
-        {props.data.religion == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Religion:</code>
-            <code> {props.data.religion}</code>
-          </div>
-        )}
-        {props.data.secondLanguage == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Second language:</code>
-            <code> {props.data.secondLanguage}</code>
-          </div>
-        )}
-        {props.data.status == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Status:</code>
-            <code> {props.data.status}</code>
-          </div>
-        )}
-        <br />
+// function Item(props) {
+//   // console.log(details);
+//   return (
 
-        {props.data.tcDetailsOnAdmission == undefined ? ( // ith set ayi
-          ""
-        ) : (
-          <>
-            <code className={styles.head}>
-              Details of Transfer certificate produced on Admission
-            </code>
-            <div>
-              <code>Number:</code>
-              <code> {props.data.tcDetailsOnAdmission.number}</code>
-            </div>
-            <div>
-              <code>Date:</code>
-              <code> {props.data.tcDetailsOnAdmission.date}</code>
-            </div>
-            <div>
-              <code>School:</code>
-              <code> {props.data.tcDetailsOnAdmission.school}</code>
-            </div>
-          </>
-        )}
-        {props.data.qualifyingExamDetails == undefined ? ( // ith set ayi
-          ""
-        ) : (
-          <>
-            <br />
-            <code className={styles.head}>
-              Details of Qualifiying Examination
-            </code>
-            <div>
-              <code>Name of board:</code>
-              <code> {props.data.qualifyingExamDetails.nameOfBoard}</code>
-            </div>
-
-            <div>
-              <code>Passing time:</code>
-              <code> {props.data.qualifyingExamDetails.passingTime}</code>
-            </div>
-
-            <div>
-              <code>Register No:</code>
-              <code> {props.data.qualifyingExamDetails.registerNo}</code>
-            </div>
-          </>
-        )}
-      </main>
-    </div>
-  );
-}
+// }

@@ -1,28 +1,95 @@
 .main {
-  width: max-content;
-  min-width: 500px;
-  padding: 40px;
+  width: 60vw;
+  max-width: 450px;
+  padding: 40px 15%;
   border-radius: 10px;
   background-color: #fafafc;
   border: 1px solid #ccc;
+
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .body {
   display: flex;
   justify-content: center;
   padding: 40px;
+  /* flex-direction: column; */
 }
 .body div {
   display: flex;
+  /* gap: 10px; */
 }
 
 .body div code {
   flex: 1;
 }
 
+.main code:last-child {
+  /* margin-left: 50%; */
+}
+.main code:nth-child(2) {
+  text-align: center;
+}
+
+/* body div code span {
+  margin-right: 50%;
+} */
+
 .head {
   font-family: Arial;
   font-weight: 600;
   margin-top: 20px;
   min-height: 50px;
+
+  margin-top: 30px;
+  /* margin-left: 10%; */
+}
+
+.main .btnContainer {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 30%;
+  margin-top: 50px;
+}
+
+.main .btnContainer button {
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 7px;
+  color: white;
+}
+
+.main .btnContainer button:first-child {
+  background-color: rgb(0, 132, 255);
+}
+.main .btnContainer button:last-child {
+  background-color: rgb(29, 175, 83);
+}
+
+.main .btnContainer button:hover {
+  background-color: grey;
+}
+
+.img {
+  max-width: 2in;
+  max-height: 2in;
+  min-width: 2in;
+  min-height: 2in;
+  overflow: hidden;
+  align-self: center;
+
+  background-color: grey;
+
+  margin-bottom: 50px;
+}
+.img img {
+  /* display: none; */
+  width: 100%;
+  height: 100%;
 }
