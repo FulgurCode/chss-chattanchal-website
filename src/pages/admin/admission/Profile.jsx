@@ -415,27 +415,27 @@ const Table = forwardRef((props, ref) => {
       </tr>
       <tr>
         <td>Name of Board</td>
-        <td>{props.details.nameOfBoard}</td>
+        <td>{props.details.qualifyingExamDetails.nameOfBoard}</td>
       </tr>
       <tr>
         <td>Register No.</td>
-        <td>{props.details.registerNo}</td>
+        <td>{props.details.qualifyingExamDetails.registerNo}</td>
       </tr>
       <tr>
         <td>Passsing Time</td>
-        <td>{props.details.passsingTime}</td>
+        <td>{props.details.qualifyingExamDetails.passsingTime}</td>
       </tr>
       <tr>
         <td>Number</td>
-        <td>{props.details.number}</td>
+        <td>{props.details.tcDetailsOnAdmission.number}</td>
       </tr>
       <tr>
         <td>Date</td>
-        <td>{props.details.date}</td>
+        <td>{props.details.tcDetailsOnAdmission.date}</td>
       </tr>
       <tr>
         <td>School</td>
-        <td>{props.details.school}</td>
+        <td>{props.details.tcDetailsOnAdmission.school}</td>
       </tr>
     </table>
   );
