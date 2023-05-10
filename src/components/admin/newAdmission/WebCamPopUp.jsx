@@ -21,24 +21,27 @@ export default function WebCamPop(props) {
   }, []);
 
   const takePhoto = (e) => {
-
-    e.preventDefault()
-
+    e.preventDefault();
+  
     const width = 400;
     const height = 300;
-
+  
     const photo = props.photoRef.current;
     const video = webcamRef.current.video;
-
+  
     photo.width = width;
     photo.height = height;
-
+  
     const context = photo.getContext("2d");
     context.drawImage(video, 0, 0, photo.width, photo.height);
-    console.log(typeof(props.photoRef))
-    props.show(!props.open)
+  
+    // Convert canvas to data URL
+    const dataUrl = photo.toDataURL("image/png");
+    props.setImage(dataUrl)
+    
+    props.show(false);
   };
-
+  
   if (props.open === false) {
     return null;
   }

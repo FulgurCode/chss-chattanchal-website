@@ -95,10 +95,13 @@ function AllColumns() {
   // ---------------- onchange fn for photo upload ----------------
 
   function onChangePhoto(e) {
-    console.log("yes")
-    setFilePhoto(e.target.files[0]);
-    globalPhoto = filePhoto
-    console.log(globalPhoto)
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setFilePhoto(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
   }
 
   // ---------------- handle fn for final submit ----------------
@@ -438,13 +441,11 @@ function AllColumns() {
           name="school"
           containerClass={styles.subContainerNew}
         />
-        <img className={styles.photoContainer} src={globalPhoto} ></img>
-        <canvas className={styles.photoContainer} ref={globalPhoto} />
+        <img className={styles.photoContainer} src={filePhoto} ></img>
         <Field
           text="Upload photo"
           type="file"
           change={onChangePhoto}
-          value={""}
           extention="image/*"
           inputStyle={styles.uploadPhoto}
           containerClass={styles.subContainerNew}
@@ -474,6 +475,7 @@ function AllColumns() {
         show={setWebCam}
         photoRef={photoRef}
         global={globalPhoto}
+        setImage={setFilePhoto}
       />
     </div>
   );

@@ -187,14 +187,14 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 0.5;
   cursor: pointer;
 }
-
 /* ------------------ mobile phone design ------------------ */
 
-.uploadPhoto {
+.uploadPhoto{
   border-radius: 0;
+  
 }
 
-.uploadPhoto:hover {
+.uploadPhoto:hover{
   cursor: pointer;
 }
 
@@ -285,7 +285,7 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 2.5vh;
   }
 
-  .qrButton {
+  .qrButton{
     display: none;
   }
 
