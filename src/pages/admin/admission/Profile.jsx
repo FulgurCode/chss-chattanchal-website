@@ -15,7 +15,9 @@ export default function Profile() {
   const id = data.getAll("id");
 
   const [details, setDetails] = React.useState({});
-  const [img, setImg] = React.useState("");
+  const [img, setImg] = React.useState(
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
+  );
 
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
@@ -70,7 +72,6 @@ const Details = (props, ref) => {
           src={props.img}
           onError={(currentTarget) => {
             currentTarget.onerror = null;
-            // currentTarget.display = "none";
             currentTarget.src =
               "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
           }}
@@ -346,7 +347,6 @@ const Table = forwardRef((props, ref) => {
                 src={props.img}
                 onError={(currentTarget) => {
                   currentTarget.onerror = null;
-                  // currentTarget.display = "none";
                   currentTarget.src =
                     "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
                 }}
