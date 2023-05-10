@@ -335,107 +335,181 @@ const Table = forwardRef((props, ref) => {
       </div>
       <tr>
         <td>Name</td>
-        <td>{props.details.name}</td>
+        <td>{props.details.name == undefined ? "" : props.details.name}</td>
       </tr>
       <tr>
         <td>Admission Date</td>
-        <td>{props.details.admissionDate}</td>
+        <td>
+          {props.details.admissionDate == undefined
+            ? ""
+            : props.details.admissionDate}
+        </td>
       </tr>
       <tr>
         <td>Application No.</td>
-        <td>{props.details.applicationNo}</td>
+        <td>
+          {props.details.applicationNo == undefined
+            ? ""
+            : props.details.applicationNo}
+        </td>
       </tr>
       <tr>
         <td>Aadhaar No.</td>
-        <td>{props.details.aadhaarNo}</td>
+        <td>
+          {props.details.aadhaarNo == undefined ? "" : props.details.aadhaarNo}
+        </td>
       </tr>
       <tr>
         <td>Phone</td>
-        <td>{props.details.phone}</td>
+        <td>{props.details.phone == undefined ? "" : props.details.phone}</td>
       </tr>
       <tr>
         <td>Gender</td>
-        <td>{props.details.gender}</td>
+        <td>{props.details.gender == undefined ? "" : props.details.gender}</td>
       </tr>
       <tr>
         <td>Name of Parent</td>
-        <td>{props.details.nameOfParent}</td>
+        <td>
+          {props.details.nameOfParent == undefined
+            ? ""
+            : props.details.nameOfParent}
+        </td>
       </tr>
       <tr>
         <td>Occupation of Parent</td>
-        <td>{props.details.occupationOfParent}</td>
+        <td>
+          {props.details.occupationOfParent == undefined
+            ? ""
+            : props.details.occupationOfParent}
+        </td>
       </tr>
       <tr>
         <td>Relationship with Guardian</td>
-        <td>{props.details.relationshipWithGuardian}</td>
+        <td>
+          {props.details.relationshipWithGuardian == undefined
+            ? ""
+            : props.details.relationshipWithGuardian}
+        </td>
       </tr>
       <tr>
         <td>address of Guardian</td>
-        <td>{props.details.addressOfGuardian}</td>
+        <td>
+          {props.details.addressOfGuardian == undefined
+            ? ""
+            : props.details.addressOfGuardian}
+        </td>
       </tr>
       <tr>
         <td>Religion</td>
-        <td>{props.details.religion}</td>
+        <td>
+          {props.details.religion == undefined ? "" : props.details.religion}
+        </td>
       </tr>
       <tr>
         <td>Caste</td>
-        <td>{props.details.caste}</td>
+        <td>{props.details.caste == undefined ? "" : props.details.caste}</td>
       </tr>
       <tr>
         <td>Category</td>
-        <td>{props.details.category}</td>
+        <td>
+          {props.details.category == undefined ? "" : props.details.category}
+        </td>
       </tr>
       <tr>
         <td>Linguistic Minority</td>
-        <td>{props.details.linguisticMinority}</td>
+        <td>
+          {props.details.linguisticMinority == undefined
+            ? ""
+            : props.details.linguisticMinority}
+        </td>
       </tr>
       <tr>
         <td>OBC</td>
-        <td>{props.details.obc}</td>
+        <td>{props.details.obc == undefined ? "" : props.details.obc}</td>
       </tr>
       <tr>
         <td>DOB</td>
-        <td>{props.details.dob}</td>
+        <td>{props.details.dob == undefined ? "" : props.details.dob}</td>
       </tr>
       <tr>
         <td>Class</td>
-        <td>{props.details.class}</td>
+        <td>{props.details.class == undefined ? "" : props.details.class}</td>
       </tr>
       <tr>
         <td>Course</td>
-        <td>{props.details.course}</td>
+        <td>{props.details.course == undefined ? "" : props.details.course}</td>
       </tr>
       <tr>
         <td>Second Language</td>
-        <td>{props.details.secondLanguage}</td>
+        <td>
+          {props.details.secondLanguage == undefined
+            ? ""
+            : props.details.secondLanguage}
+        </td>
       </tr>
       <tr>
         <td>Status</td>
-        <td>{props.details.status}</td>
+        <td>{props.details.status == undefined ? "" : props.details.status}</td>
       </tr>
       <tr>
         <td>Name of Board</td>
-        <td>{props.details.qualifyingExamDetails.nameOfBoard}</td>
+        <td>
+          {props.details.qualifyingExamDetails == undefined
+            ? ""
+            : props.details.qualifyingExamDetails.nameOfBoard == undefined
+            ? ""
+            : props.details.qualifyingExamDetails.nameOfBoard}
+        </td>
       </tr>
       <tr>
         <td>Register No.</td>
-        <td>{props.details.qualifyingExamDetails.registerNo}</td>
+        <td>
+          {props.details.qualifyingExamDetails == undefined
+            ? ""
+            : props.details.qualifyingExamDetails.registerNo == undefined
+            ? ""
+            : props.details.qualifyingExamDetails.registerNo}
+        </td>
       </tr>
       <tr>
         <td>Passsing Time</td>
-        <td>{props.details.qualifyingExamDetails.passsingTime}</td>
+        <td>
+          {props.details.qualifyingExamDetails == undefined
+            ? ""
+            : props.details.qualifyingExamDetails.passingTime == undefined
+            ? ""
+            : props.details.qualifyingExamDetails.passingTime}
+        </td>
       </tr>
       <tr>
         <td>Number</td>
-        <td>{props.details.tcDetailsOnAdmission.number}</td>
+        <td>
+          {props.details.tcDetailsOnAdmission == undefined
+            ? ""
+            : props.details.tcDetailsOnAdmission.number == undefined
+            ? ""
+            : props.details.tcDetailsOnAdmission.number}
+        </td>
       </tr>
       <tr>
         <td>Date</td>
-        <td>{props.details.tcDetailsOnAdmission.date}</td>
+        <td>
+          {props.details.tcDetailsOnAdmission == undefined
+            ? ""
+            : props.details.tcDetailsOnAdmission.date == undefined
+            ? ""
+            : props.details.tcDetailsOnAdmission.date}
+        </td>
       </tr>
       <tr>
         <td>School</td>
-        <td>{props.details.tcDetailsOnAdmission.school}</td>
+        <td>
+          {props.details.tcDetailsOnAdmission == undefined
+            ? ""
+            : props.details.tcDetailsOnAdmission.school == undefined
+            ? ""
+            : props.details.tcDetailsOnAdmission.school}
+        </td>
       </tr>
     </table>
   );
