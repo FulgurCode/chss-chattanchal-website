@@ -53,8 +53,8 @@ function AllColumns() {
   const [filePhoto, setFilePhoto] = useState("");
   const [QR, setQR] = useState(false);
   const [webCam, setWebCam] = useState(false);
-  const photoRef = useRef(null);
-  let globalPhoto = photoRef;
+  const photoRef = useRef('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E');
+  const [global, setGlobal] = useState(false);
 
 
   // ---------------- Handle Change Function for input feild
@@ -95,6 +95,7 @@ function AllColumns() {
   // ---------------- onchange fn for photo upload ----------------
 
   function onChangePhoto(e) {
+    setGlobal(true);  
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -163,7 +164,7 @@ function AllColumns() {
 
   return (
     <div className={`${styles.globalParent}`}>
-
+      {console.log(global)}
       {/* ---------------- top infos ----------------   */}
 
       <div className={`${styles.subContainer}`}>
@@ -441,7 +442,9 @@ function AllColumns() {
           name="school"
           containerClass={styles.subContainerNew}
         />
-        <img className={styles.photoContainer} src={filePhoto} ></img>
+        {global ? <img className={styles.photoContainer} src={filePhoto} ></img> : <canvas className={styles.photoContainer} ref={photoRef} />}
+        
+        
         <Field
           text="Upload photo"
           type="file"
@@ -474,8 +477,9 @@ function AllColumns() {
         open={webCam}
         show={setWebCam}
         photoRef={photoRef}
-        global={globalPhoto}
+        setGlobal={setGlobal}
         setImage={setFilePhoto}
+        image={filePhoto}
       />
     </div>
   );

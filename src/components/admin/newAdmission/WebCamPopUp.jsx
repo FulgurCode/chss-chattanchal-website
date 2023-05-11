@@ -22,26 +22,32 @@ export default function WebCamPop(props) {
 
   const takePhoto = (e) => {
     e.preventDefault();
-  
+
+
     const width = 400;
     const height = 300;
-  
+
     const photo = props.photoRef.current;
     const video = webcamRef.current.video;
-  
-    photo.width = width;
-    photo.height = height;
-  
-    const context = photo.getContext("2d");
-    context.drawImage(video, 0, 0, photo.width, photo.height);
-  
-    // Convert canvas to data URL
-    const dataUrl = photo.toDataURL("image/png");
-    props.setImage(dataUrl)
-    
-    props.show(false);
+
+
+    console.log("photo is" + photo)
+    props.setGlobal(false);
+    if (photo && video) {
+      console.log("yes")
+      photo.width = width;
+      photo.height = height;
+
+      const context = photo.getContext("2d");
+      context.drawImage(video, 0, 0, photo.width, photo.height);
+
+      // Convert canvas to data URL
+      const dataUrl = photo.toDataURL("image/jpg");
+      props.show(false);
+    }
+
   };
-  
+
   if (props.open === false) {
     return null;
   }
