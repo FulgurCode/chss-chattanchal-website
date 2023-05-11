@@ -141,15 +141,6 @@ const Details = (props, ref) => {
           <code>{props.details.applicationNo}</code>
         </div>
       )}
-      {props.details.admissionDate == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>Admission Date</code>
-          <code>:</code>
-          <code>{props.details.admissionDate}</code>
-        </div>
-      )}
       {props.details.admissionNo == undefined ? (
         ""
       ) : (
@@ -157,6 +148,15 @@ const Details = (props, ref) => {
           <code>Admission No</code>
           <code>:</code>
           <code>{props.details.admissionNo}</code>
+        </div>
+      )}
+      {props.details.admissionDate == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>Admission Date</code>
+          <code>:</code>
+          <code>{props.details.admissionDate}</code>
         </div>
       )}
 
@@ -304,17 +304,15 @@ const Details = (props, ref) => {
             <code>:</code>
             <code>{props.details.qualifyingExamDetails.nameOfBoard}</code>
           </div>
-
-          <div>
-            <code>Passing time</code>
-            <code>:</code>
-            <code>{props.details.qualifyingExamDetails.passingTime}</code>
-          </div>
-
           <div>
             <code>Register No</code>
             <code>:</code>
             <code>{props.details.qualifyingExamDetails.registerNo}</code>
+          </div>
+          <div>
+            <code>Passing time</code>
+            <code>:</code>
+            <code>{props.details.qualifyingExamDetails.passingTime}</code>
           </div>
         </>
       )}
