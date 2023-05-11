@@ -52,6 +52,12 @@ export default function Profile() {
               <ReactToPrint
                 trigger={() => <button>Print</button>}
                 content={() => componentRef.current}
+                onBeforePrint={() => {
+                  document.title = details.name;
+                }}
+                onAfterPrint={() => {
+                  document.title = details.name;
+                }}
               />
               <button>Edit</button>
             </div>
