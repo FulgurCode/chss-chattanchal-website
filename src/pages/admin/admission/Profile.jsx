@@ -264,7 +264,7 @@ const Details = (props, ref) => {
       ) : (
         <>
           <code className={styles.head}>
-            props.details of Transfer certificate produced on Admission
+            Details of Transfer certificate produced on Admission
           </code>
           <div>
             <code>Number</code>
@@ -289,7 +289,7 @@ const Details = (props, ref) => {
         <>
           <br />
           <code className={styles.head}>
-            props.details of Qualifiying Examination
+            Details of Qualifiying Examination
           </code>
           <div>
             <code>Name of board</code>
@@ -482,36 +482,6 @@ const Table = forwardRef((props, ref) => {
           </td>
         </tr>
         <tr>
-          <td>Name of Board</td>
-          <td>
-            {props.details.qualifyingExamDetails == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.nameOfBoard == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.nameOfBoard}
-          </td>
-        </tr>
-        <tr>
-          <td>Register No.</td>
-          <td>
-            {props.details.qualifyingExamDetails == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.registerNo == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.registerNo}
-          </td>
-        </tr>
-        <tr>
-          <td>Passsing Time</td>
-          <td>
-            {props.details.qualifyingExamDetails == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.passingTime == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.passingTime}
-          </td>
-        </tr>
-        <tr>
           <td>Number</td>
           <td>
             {props.details.tcDetailsOnAdmission == undefined
@@ -539,6 +509,36 @@ const Table = forwardRef((props, ref) => {
               : props.details.tcDetailsOnAdmission.school == undefined
               ? ""
               : props.details.tcDetailsOnAdmission.school}
+          </td>
+        </tr>
+        <tr>
+          <td>Name of Board</td>
+          <td>
+            {props.details.qualifyingExamDetails == undefined
+              ? ""
+              : props.details.qualifyingExamDetails.nameOfBoard == undefined
+              ? ""
+              : props.details.qualifyingExamDetails.nameOfBoard}
+          </td>
+        </tr>
+        <tr>
+          <td>Register No.</td>
+          <td>
+            {props.details.qualifyingExamDetails == undefined
+              ? ""
+              : props.details.qualifyingExamDetails.registerNo == undefined
+              ? ""
+              : props.details.qualifyingExamDetails.registerNo}
+          </td>
+        </tr>
+        <tr>
+          <td>Passsing Time</td>
+          <td>
+            {props.details.qualifyingExamDetails == undefined
+              ? ""
+              : props.details.qualifyingExamDetails.passingTime == undefined
+              ? ""
+              : props.details.qualifyingExamDetails.passingTime}
           </td>
         </tr>
       </tbody>
