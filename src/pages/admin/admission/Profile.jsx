@@ -95,6 +95,24 @@ const Details = (props, ref) => {
           <code>{props.details.class}</code>
         </div>
       )}
+      {props.details.gender == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>Gender</code>
+          <code>:</code>
+          <code>{props.details.gender}</code>
+        </div>
+      )}
+      {props.details.dob == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>Dob</code>
+          <code>:</code>
+          <code>{props.details.dob}</code>
+        </div>
+      )}
       {props.details.aadhaarNo == undefined ? (
         ""
       ) : (
@@ -102,6 +120,25 @@ const Details = (props, ref) => {
           <code>Aadhaar No</code>
           <code>:</code>
           <code>{props.details.aadhaarNo}</code>
+        </div>
+      )}
+      {props.details.course == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>Course</code>
+          <code>:</code>
+          <code>{props.details.course}</code>
+        </div>
+      )}
+
+      {props.details.applicationNo == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>Application No</code>
+          <code>:</code>
+          <code>{props.details.applicationNo}</code>
         </div>
       )}
       {props.details.admissionDate == undefined ? (
@@ -122,15 +159,17 @@ const Details = (props, ref) => {
           <code>{props.details.admissionNo}</code>
         </div>
       )}
-      {props.details.applicationNo == undefined ? (
+
+      {props.details.religion == undefined ? (
         ""
       ) : (
         <div>
-          <code>Application No</code>
+          <code>Religion</code>
           <code>:</code>
-          <code>{props.details.applicationNo}</code>
+          <code>{props.details.religion}</code>
         </div>
       )}
+
       {props.details.caste == undefined ? (
         ""
       ) : (
@@ -138,6 +177,16 @@ const Details = (props, ref) => {
           <code>Caste</code>
           <code>:</code>
           <code>{props.details.caste}</code>
+        </div>
+      )}
+
+      {props.details.obc == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>OBC</code>
+          <code>:</code>
+          <code>{props.details.obc}</code>
         </div>
       )}
       {props.details.category == undefined ? (
@@ -149,33 +198,7 @@ const Details = (props, ref) => {
           <code>{props.details.category}</code>
         </div>
       )}
-      {props.details.course == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>Course</code>
-          <code>:</code>
-          <code>{props.details.course}</code>
-        </div>
-      )}
-      {props.details.dob == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>Dob</code>
-          <code>:</code>
-          <code>{props.details.dob}</code>
-        </div>
-      )}
-      {props.details.gender == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>Gender</code>
-          <code>:</code>
-          <code>{props.details.gender}</code>
-        </div>
-      )}
+
       {props.details.nameOfParent == undefined ? (
         ""
       ) : (
@@ -183,42 +206,6 @@ const Details = (props, ref) => {
           <code>Name of Parent</code>
           <code>:</code>
           <code>{props.details.nameOfParent}</code>
-        </div>
-      )}
-      {props.details.occupationOfParent == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>Occupation of parent</code>
-          <code>:</code>
-          <code>{props.details.occupationOfParent}</code>
-        </div>
-      )}
-      {props.details.phone == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>Phone</code>
-          <code>:</code>
-          <code>{props.details.phone}</code>
-        </div>
-      )}
-      {props.details.linguisticMinority == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>Linguistic Minority</code>
-          <code>:</code>
-          <code>{props.details.linguisticMinority}</code>
-        </div>
-      )}
-      {props.details.obc == undefined ? (
-        ""
-      ) : (
-        <div>
-          <code>OBC</code>
-          <code>:</code>
-          <code>{props.details.obc}</code>
         </div>
       )}
       {props.details.relationshipWithGuardian == undefined ? (
@@ -230,15 +217,36 @@ const Details = (props, ref) => {
           <code>{props.details.relationshipWithGuardian}</code>
         </div>
       )}
-      {props.details.religion == undefined ? (
+      {props.details.occupationOfParent == undefined ? (
         ""
       ) : (
         <div>
-          <code>Religion</code>
+          <code>Occupation of parent</code>
           <code>:</code>
-          <code>{props.details.religion}</code>
+          <code>{props.details.occupationOfParent}</code>
         </div>
       )}
+
+      {props.details.phone == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>Phone</code>
+          <code>:</code>
+          <code>{props.details.phone}</code>
+        </div>
+      )}
+
+      {props.details.linguisticMinority == undefined ? (
+        ""
+      ) : (
+        <div>
+          <code>Linguistic Minority</code>
+          <code>:</code>
+          <code>{props.details.linguisticMinority}</code>
+        </div>
+      )}
+
       {props.details.secondLanguage == undefined ? (
         ""
       ) : (
@@ -360,20 +368,18 @@ const Table = forwardRef((props, ref) => {
           <td>{props.details.name == undefined ? "" : props.details.name}</td>
         </tr>
         <tr>
-          <td>Admission Date</td>
+          <td>Class</td>
+          <td>{props.details.class == undefined ? "" : props.details.class}</td>
+        </tr>
+        <tr>
+          <td>Gender</td>
           <td>
-            {props.details.admissionDate == undefined
-              ? ""
-              : props.details.admissionDate}
+            {props.details.gender == undefined ? "" : props.details.gender}
           </td>
         </tr>
         <tr>
-          <td>Application No.</td>
-          <td>
-            {props.details.applicationNo == undefined
-              ? ""
-              : props.details.applicationNo}
-          </td>
+          <td>DOB</td>
+          <td>{props.details.dob == undefined ? "" : props.details.dob}</td>
         </tr>
         <tr>
           <td>Aadhaar No.</td>
@@ -383,48 +389,32 @@ const Table = forwardRef((props, ref) => {
               : props.details.aadhaarNo}
           </td>
         </tr>
+
         <tr>
-          <td>Phone</td>
-          <td>{props.details.phone == undefined ? "" : props.details.phone}</td>
-        </tr>
-        <tr>
-          <td>Gender</td>
+          <td>Application No.</td>
           <td>
-            {props.details.gender == undefined ? "" : props.details.gender}
-          </td>
-        </tr>
-        <tr>
-          <td>Name of Parent</td>
-          <td>
-            {props.details.nameOfParent == undefined
+            {props.details.applicationNo == undefined
               ? ""
-              : props.details.nameOfParent}
+              : props.details.applicationNo}
           </td>
         </tr>
         <tr>
-          <td>Occupation of Parent</td>
+          <td>Admission No</td>
           <td>
-            {props.details.occupationOfParent == undefined
+            {props.details.admissionDate == undefined
               ? ""
-              : props.details.occupationOfParent}
+              : props.details.admissionNo}
           </td>
         </tr>
         <tr>
-          <td>Relationship with Guardian</td>
+          <td>Admission Date</td>
           <td>
-            {props.details.relationshipWithGuardian == undefined
+            {props.details.admissionDate == undefined
               ? ""
-              : props.details.relationshipWithGuardian}
+              : props.details.admissionDate}
           </td>
         </tr>
-        <tr>
-          <td>address of Guardian</td>
-          <td>
-            {props.details.addressOfGuardian == undefined
-              ? ""
-              : props.details.addressOfGuardian}
-          </td>
-        </tr>
+
         <tr>
           <td>Religion</td>
           <td>
@@ -436,11 +426,54 @@ const Table = forwardRef((props, ref) => {
           <td>{props.details.caste == undefined ? "" : props.details.caste}</td>
         </tr>
         <tr>
+          <td>OBC</td>
+          <td>{props.details.obc == undefined ? "" : props.details.obc}</td>
+        </tr>
+        <tr>
           <td>Category</td>
           <td>
             {props.details.category == undefined ? "" : props.details.category}
           </td>
         </tr>
+        <tr>
+          <td>Name of Parent</td>
+          <td>
+            {props.details.nameOfParent == undefined
+              ? ""
+              : props.details.nameOfParent}
+          </td>
+        </tr>
+
+        <tr>
+          <td>Relationship with Guardian</td>
+          <td>
+            {props.details.relationshipWithGuardian == undefined
+              ? ""
+              : props.details.relationshipWithGuardian}
+          </td>
+        </tr>
+        <tr>
+          <td>Occupation of Parent</td>
+          <td>
+            {props.details.occupationOfParent == undefined
+              ? ""
+              : props.details.occupationOfParent}
+          </td>
+        </tr>
+        <tr>
+          <td>address of Guardian</td>
+          <td>
+            {props.details.addressOfGuardian == undefined
+              ? ""
+              : props.details.addressOfGuardian}
+          </td>
+        </tr>
+
+        <tr>
+          <td>Phone</td>
+          <td>{props.details.phone == undefined ? "" : props.details.phone}</td>
+        </tr>
+
         <tr>
           <td>Linguistic Minority</td>
           <td>
@@ -449,24 +482,7 @@ const Table = forwardRef((props, ref) => {
               : props.details.linguisticMinority}
           </td>
         </tr>
-        <tr>
-          <td>OBC</td>
-          <td>{props.details.obc == undefined ? "" : props.details.obc}</td>
-        </tr>
-        <tr>
-          <td>DOB</td>
-          <td>{props.details.dob == undefined ? "" : props.details.dob}</td>
-        </tr>
-        <tr>
-          <td>Class</td>
-          <td>{props.details.class == undefined ? "" : props.details.class}</td>
-        </tr>
-        <tr>
-          <td>Course</td>
-          <td>
-            {props.details.course == undefined ? "" : props.details.course}
-          </td>
-        </tr>
+
         <tr>
           <td>Second Language</td>
           <td>
@@ -481,6 +497,14 @@ const Table = forwardRef((props, ref) => {
             {props.details.status == undefined ? "" : props.details.status}
           </td>
         </tr>
+
+        <tr>
+          <td>Course</td>
+          <td>
+            {props.details.course == undefined ? "" : props.details.course}
+          </td>
+        </tr>
+
         <tr>
           <td>Number</td>
           <td>
