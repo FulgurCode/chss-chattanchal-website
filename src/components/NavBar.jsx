@@ -1,3 +1,5 @@
+// NavBar 3.0  -- contributions by Krishnajiyth, Hrishi, Shreyas -- 
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
