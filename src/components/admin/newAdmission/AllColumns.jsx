@@ -442,7 +442,8 @@ function AllColumns() {
           name="school"
           containerClass={styles.subContainerNew}
         />
-        {global ? <img className={styles.photoContainer} src={filePhoto} ></img> : <canvas className={styles.photoContainer} ref={photoRef} />}
+        <img style={{display : global ? "block" : "none"}} className={styles.photoContainer} src={filePhoto} ></img>
+        <canvas style={{display : global ? "none" : "block"}} className={styles.photoContainer} ref={photoRef}/> 
         
         
         <Field
