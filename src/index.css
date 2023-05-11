@@ -24,3 +24,10 @@ html,
 body {
   height: 100%;
 }
+
+@media screen {
+  .print {
+    visibility: hidden;
+    position: absolute;
+  }
+}

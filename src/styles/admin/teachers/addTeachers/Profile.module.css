@@ -1,28 +1,124 @@
 .main {
-  width: max-content;
-  min-width: 500px;
-  padding: 40px;
+  width: 70vw;
+  min-width: 450px;
+  max-width: 800px;
+  /* padding: 40px 15%; */
   border-radius: 10px;
   background-color: #fafafc;
   border: 1px solid #ccc;
+
+  display: flex;
+  /* gap: 10px; */
+  flex-direction: column;
+}
+
+.main2 {
+  /* width: 60vw; */
+  /* max-width: 450px; */
+  /* width: 100%; */
+  padding: 40px 15%;
+  border-radius: 10px;
+  /* background-color: #fafafc; */
+  /* border: 1px solid #ccc; */
+
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .body {
   display: flex;
   justify-content: center;
   padding: 40px;
+
+  flex-direction: column;
+  align-items: center;
+  /* flex-direction: column; */
 }
 .body div {
   display: flex;
+  /* gap: 10px; */
+  /* flex-direction: row; */
 }
 
 .body div code {
   flex: 1;
 }
 
+.main code:last-child {
+  /* margin-left: 50%; */
+}
+.main code:nth-child(2) {
+  text-align: center;
+}
+
+/* body div code span {
+  margin-right: 50%;
+} */
+
 .head {
   font-family: Arial;
   font-weight: 600;
   margin-top: 20px;
   min-height: 50px;
+
+  margin-top: 30px;
+  /* margin-left: 10%; */
+}
+
+.btnContainer {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
+  gap: 30%;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.btnContainer button {
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 7px;
+  color: white;
+}
+
+.btnContainer button:first-child {
+  background-color: rgb(0, 132, 255);
+}
+.btnContainer button:last-child {
+  background-color: rgb(29, 175, 83);
+}
+
+.btnContainer button:hover {
+  background-color: grey;
+}
+
+.img {
+  max-width: 2in;
+  max-height: 2in;
+  min-width: 2in;
+  min-height: 2in;
+  overflow: hidden;
+  align-self: center;
+
+  background-color: grey;
+
+  margin-bottom: 50px;
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%23eee'%3e%3c!--! Font Awesome Pro 6.4.0 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3e%3cpath d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+}
+.img img {
+  /* display: none; */
+  width: 100%;
+  height: 100%;
+
+  border: transparent;
+  background: none;
 }
