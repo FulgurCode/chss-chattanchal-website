@@ -1,4 +1,6 @@
 .navbar {
+  position: fixed;
+  top: 0;
   display: flex;
   text-align: center;
   justify-content: space-between;
@@ -60,7 +62,7 @@
   font-family: "Inria Sans";
   font-style: normal;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 119.3%;
   /* identical to box height, or 29px */
 
@@ -90,7 +92,7 @@
 @media screen and (max-width: 500px) {
 
   .school {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .home {
@@ -122,8 +124,16 @@
 }
 
 @media screen and (max-width: 800px) {
+  
   .home{
     margin: 0;
     border-left: none
+  }
+}
+
+@media screen and (max-width: 500px){
+
+  .school{
+    font-size: 13px;
   }
 }

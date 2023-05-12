@@ -19,10 +19,16 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-y: auto;
+
+  /* padding-top: 20px; */
 }
 html,
 body {
   height: 100%;
+}
+
+#root{
+  margin-top: 50px;
 }
 
 @media screen {
