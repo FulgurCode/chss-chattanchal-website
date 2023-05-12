@@ -1,5 +1,3 @@
-// NavBar v3.1  -- contributions by Krishnajiyth, Hrishi, Shreyas -- 
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +5,6 @@ import styles from "../styles/NavBar.module.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  
 
   return (
     <header className={styles.navbar}>
