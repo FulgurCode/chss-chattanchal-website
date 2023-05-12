@@ -12,16 +12,20 @@ import NewAdmission from "./pages/admin/admission/NewAdmission";
 import Profile from "./pages/admin/admission/Profile";
 import StudentDetails from "./pages/admin/admission/StudentDetails";
 import Verification from "./pages/admin/admission/Verification";
+import Verification from "./pages/admin/admission/Verification";
 
 import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
 import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
+import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
 import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
 
 import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
 
 import Teacher from "./pages/teacher/Teacher";
+
+import ProfileTeacher from "./pages/admin/admission/ProfileTeacher";
 
 export default function App() {
   return (
@@ -67,14 +71,18 @@ export default function App() {
           </Route>
         </Route>
         <Route path="/teacher">
-          <Route path="/teacher/signup" element={<SignUp />}></Route>
-          <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
           <Route index element={<Teacher />} />
 
-          <Route
-            path="/teacher/verification"
-            element={<Verification />}
-          ></Route>
+          <Route path="/teacher/verification">
+            <Route index element={<Verification />} />
+            <Route
+              path="/teacher/verification/student-details"
+              element={<ProfileTeacher />}
+            />
+          </Route>
+          
+          <Route path="/teacher/signup" element={<SignUp />}></Route>
+          <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
 
           <Route path="/teacher/admission">
             <Route index element={<Admission />} />
