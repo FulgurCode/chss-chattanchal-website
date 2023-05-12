@@ -34,3 +34,40 @@ body {
     position: absolute;
   }
 }
+
+
+
+/* For WebKit-based browsers like Chrome and Safari*/
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #777;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar:hover {
+  width: 100px;
+}
+
+/* For Firefox */
+.scrollbar {
+  scrollbar-width: 5px;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.scrollbar-thumb {
+  background-color: #888;
+}
+
+.scrollbar-thumb:hover .scrollbar:hover {
+  width: 12px;
+}
+
+/* For Firefox older versions */
+@-moz-document url-prefix() {
+  .scrollbar-thumb:hover {
+    width: 12px;
+  }
+}
