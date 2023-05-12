@@ -87,7 +87,8 @@
 }
 
 .list {
-  width: 500px;
+  width: 100%;
+  min-width: 300px;
   margin-top: 50px;
   border-radius: 7px;
   overflow: hidden;
@@ -116,7 +117,7 @@
 }
 
 @media screen and (max-width: 350px) {
-  .input {
+  .input , .list{
     min-width: 200px;
     max-width: 200px;
   }
