@@ -54,6 +54,7 @@
 .main hr {
   height: 1px;
   background-color: #ccc;
+  border: none
 }
 .main {
   padding: 10%;
@@ -71,7 +72,8 @@
   align-items: center;
   /* gap: 10px; */
   /* justify-content: center; */
-  width: min-content;
+  width: 50%;
+  min-width: min-content;
   align-self: center;
 }
 .inputContainer {
