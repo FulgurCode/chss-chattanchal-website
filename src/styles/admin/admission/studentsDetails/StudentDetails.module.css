@@ -1,7 +1,9 @@
 .input {
   border: 1px solid #ccc;
   background-color: #f2f2f2;
-  width: 500px;
+  /* min-width: 100px; */
+  width: 100%;
+  min-width: 300px;
   height: 40px;
   border-radius: 7px;
   text-indent: 15px;
@@ -20,6 +22,10 @@
   padding-right: 50px;
 
   margin-top: 10px;
+  width: 100px;
+
+  display: flex;
+  justify-content: center;
 }
 
 .header span {
@@ -31,6 +37,7 @@
   max-height: 30px;
   margin-top: 20px;
 }
+
 .header img {
   width: 40px;
   height: 40px;
@@ -47,6 +54,7 @@
 .main hr {
   height: 1px;
   background-color: #ccc;
+  border: none
 }
 .main {
   padding: 10%;
@@ -64,7 +72,8 @@
   align-items: center;
   /* gap: 10px; */
   /* justify-content: center; */
-  width: max-content;
+  width: 50%;
+  min-width: min-content;
   align-self: center;
 }
 .inputContainer {
@@ -78,7 +87,8 @@
 }
 
 .list {
-  width: 500px;
+  width: 100%;
+  min-width: 300px;
   margin-top: 50px;
   border-radius: 7px;
   overflow: hidden;
@@ -104,4 +114,11 @@
   flex: 1;
   background-color: #ddd;
   text-align: center;
+}
+
+@media screen and (max-width: 350px) {
+  .input , .list{
+    min-width: 200px;
+    max-width: 200px;
+  }
 }
