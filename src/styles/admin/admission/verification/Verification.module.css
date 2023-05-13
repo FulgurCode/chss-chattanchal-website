@@ -114,7 +114,7 @@
   position: sticky !important;
   top:0;
   left: 0;
-  z-index: 99999;
+  z-index: 1;
   /* flex:1; */
   min-width: 100px;
   /* text-align: center; */
@@ -130,7 +130,8 @@
 }
 
 .table th {
-  background-color: #333;
+  /* background-color: #333; */
+  background-color:   #6A2C70 ;
   color: #fff;
   /* width: fit-content; */
   width: 100%;
@@ -139,7 +140,8 @@
 }
 
 .table th:hover {
-  background-color: #555;
+  /* background-color: #555; */
+  background-color: #531f57;
 }
 
 
