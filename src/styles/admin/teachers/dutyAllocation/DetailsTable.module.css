@@ -28,7 +28,7 @@
 }
 
 .table th:hover {
-  opacity: 0.7;
+  background-color: #947197;
 }
 
 .table tbody tr:nth-child(even) {

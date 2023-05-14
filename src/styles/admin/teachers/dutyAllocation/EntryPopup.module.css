@@ -109,7 +109,7 @@
 }
 
 .response {
-  padding: 10px;
+  padding: 4px;
   height: 20px;
   color: green;
   display: flex;
@@ -120,7 +120,7 @@
 }
 
 .buttonBox {
-  margin-top: 20px;
+  margin-top: 2px;
   height: 35px;
   display: flex;
   align-self: center;
@@ -141,5 +141,5 @@
 }
 
 .inputSet {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }

@@ -80,7 +80,7 @@ export default function EntryPopup(props) {
             <div className={styles.inputBox}>
               <div className={styles.inputSet}>
                 <label htmlFor="select">Select Teacher:</label>
-                <div className="">
+                
                   <Select
                     className={styles.box}
                     options={teachers}
@@ -89,9 +89,10 @@ export default function EntryPopup(props) {
                       updateSelectedOptions(selectedOption, "teacherId")
                     }
                   />
-                </div>
+                
               </div>
-              <br />
+              
+              <div className={styles.inputSet}>
               <label htmlFor="select">Select Duty</label>
               <div>
                 <Select
@@ -103,6 +104,7 @@ export default function EntryPopup(props) {
                     updateSelectedOptions(selectedOption, "duty")
                   }
                 />
+              </div>
               </div>
               <div className={styles.response}>
                 {submitMsg && <p>{submitMsg}</p>}
