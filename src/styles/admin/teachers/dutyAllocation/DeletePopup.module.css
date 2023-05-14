@@ -1,0 +1,48 @@
+.outside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  border: 5px solid #a2a2a2;
+}
+
+.box {
+  font-size: 20px;
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 1000;
+
+  line-height: 119.3%;
+}
+
+.buttonWrapper {
+  position: relative;
+  top: 60px;
+}
+
+.buttonWrapper button {
+  width: 90px;
+  padding: 7px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 20px;
+  color: white;
+  background-color: #a0a0a0;
+}
