@@ -4,8 +4,6 @@ import Axios from "../../../../stores/Axios";
 import DeletePopup from "./DeletePopup";
 
 function Table(props) {
- 
-
   const [searchQuery, setSearchQuery] = useState("");
   const [sortColumn, setSortColumn] = useState("name"); // Set the initial sort column to 'name'
   const [sortOrder, setSortOrder] = useState("asc"); // Set the initial sort order to 'asc'
@@ -51,10 +49,7 @@ function Table(props) {
     return "";
   };
 
-
-// Deleting duty from the database
-
-  
+  // Deleting duty from the database
 
   return (
     <div>
@@ -70,16 +65,19 @@ function Table(props) {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th onClick={() => handleSort("name")}>
+              <th className={styles.normalH} onClick={() => handleSort("name")}>
                 Name {getSortIndicator("name")}
               </th>
-              <th onClick={() => handleSort("penNumber")}>
+              <th
+                className={styles.normalH}
+                onClick={() => handleSort("penNumber")}
+              >
                 Pen Number {getSortIndicator("penNumber")}
               </th>
-              <th onClick={() => handleSort("duty")}>
+              <th className={styles.normalH} onClick={() => handleSort("duty")}>
                 Duty {getSortIndicator("duty")}
               </th>
-              <th>Delete</th>
+              <th className={styles.deleteHeader}>Delete</th>
             </tr>
           </thead>
 
@@ -91,10 +89,10 @@ function Table(props) {
             ) : (
               sortedData.map((item) => (
                 <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>{item.penNumber}</td>
-                  <td>{item.duty}</td>
-                  <td>
+                  <td className={styles.normalB}>{item.name}</td>
+                  <td className={styles.normalB}>{item.penNumber}</td>
+                  <td className={styles.normalB}>{item.duty}</td>
+                  <td className={styles.deleteBody}>
                     <button
                       className={styles.deleteBtn}
                       name=""

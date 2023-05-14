@@ -55,12 +55,12 @@
 .inputBox label {
   margin-bottom: 2px;
   align-items: flex-start;
-  font-family: "Inria Sans";
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 1px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100;
   font-size: 17px;
   line-height: 119.3%;
-  /* or 29px */
 
   color: #454545;
 }
@@ -77,10 +77,10 @@
   height: 40px;
   justify-self: flex-end;
 
-  font-family: "Inter";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 24px;
   outline: none;
 
@@ -99,10 +99,10 @@
   border: 0;
   background: #a0a0a0;
   border-radius: 7px;
-  font-family: "Inter";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 24px;
 
   color: #ffffff;
@@ -138,4 +138,8 @@
     width: 80vw;
     height: 5vh;
   }
+}
+
+.inputSet {
+  margin-bottom: 10px;
 }
