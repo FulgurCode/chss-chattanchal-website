@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
-import styles from "../../styles/admin/teachers/verification/Verification.module.css"
+import styles from "../../styles/admin/teachers/admission/verification/Verification.module.css"
 import Axios from "../../../stores/Axios";
 import Popup from "../../components/common/Popup";
 import { useNavigate, createSearchParams } from "react-router-dom";
