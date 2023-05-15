@@ -71,9 +71,9 @@
     /* top: 80px; */
     border-top: 1px solid #ddd;
     padding-top: 10px;
-    width: 96%;
+    width: 90%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     
      right: 0;
 
