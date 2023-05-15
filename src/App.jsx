@@ -11,21 +11,19 @@ import Admission from "./pages/admin/Admission";
 import NewAdmission from "./pages/admin/admission/NewAdmission";
 import Profile from "./pages/admin/admission/Profile";
 import StudentDetails from "./pages/admin/admission/StudentDetails";
-import Verification from "./pages/admin/admission/Verification";
-// import Verification from "./pages/admin/admission/Verification";
+import Verification from "./pages/teacher/Verification";
+import ProfileVerification from "./pages/teacher/ProfileVerification";
 
 import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
 import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
 import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
-// import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
 
 import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
 
 import Teacher from "./pages/teacher/Teacher";
 
-import ProfileTeacher from "./pages/admin/admission/ProfileTeacher";
 
 export default function App() {
   return (
@@ -77,7 +75,7 @@ export default function App() {
             <Route index element={<Verification />} />
             <Route
               path="/teacher/verification/student-details"
-              element={<ProfileTeacher />}
+              element={<ProfileVerification />}
             />
           </Route>
           

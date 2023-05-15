@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../../components/NavBar";
-import styles from "../../../styles/admin/admission/verification/Verification.module.css";
-import Axios from "../../../../stores/Axios";
-import Popup from "../../../components/common/Popup";
+import NavBar from "../../components/NavBar";
+import styles from "../../styles/admin/admission/verification/Verification.module.css";
+import Axios from "../../../stores/Axios";
+import Popup from "../../components/common/Popup";
 import { useNavigate, createSearchParams } from "react-router-dom";
 // import Profile from "../../../components/admin/verification/Profile.jsx";
 // import Item from "../../../components/admin/verification/Item";
