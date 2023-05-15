@@ -135,22 +135,10 @@ export default function Verification() {
           <hr />
           Home &gt; Admission &gt; <code>Verification</code>
         </div>
-        <div className={styles.table} style={{display: "flex", justifyContent: "center", flexDirection: "column", width: "100%", overflowY: "scroll"}}>
-          {/* <Item
-            data={{
-              name: "Name",
-              class: "Class",
-              admissionNo: "Adm No.",
-              dob: "DOB",
-            }}
-            index="Sl.No."
-          />
+        <div className={styles.table} >
 
-          {data.map((item, index) => {
-            return <Item data={item} index={index + 1} key={item._id} />;
-          })} */}
 
-          <div style={{display: "flex", justifyContent: "center", flexDirection: "column", width: "100%"}}>
+          <div >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <input
                 type="text"
@@ -164,7 +152,6 @@ export default function Verification() {
               </code>
             </div>
 
-            {/* <div className={styles.emptyBox}></div> */}
             <div className={styles.tableBox}>
               <table className={styles.table}>
                 <thead>
