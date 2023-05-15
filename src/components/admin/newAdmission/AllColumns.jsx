@@ -56,6 +56,7 @@ function AllColumns() {
   // const photoRef = useRef('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E');
   const photoRef = useRef("");
   const [global, setGlobal] = useState(false);
+  const [webCamPhoto, setWebCamPhoto] = useState("");
   const inputRef = useRef(null)
 
 
@@ -142,7 +143,12 @@ function AllColumns() {
       Axios.post("admin/new-admission", data)
         .then((response) => {
           const formData = new FormData();
-          formData.append("file", filePhoto);
+          if (global == true){
+            formData.append("file", filePhoto);
+          }else{
+            formData.append("file", webCamPhoto);
+          }
+          
 
           Axios.post(
             `admin/upload-student-photo?studentId=${response.data}`,
@@ -447,7 +453,8 @@ function AllColumns() {
         <img style={{display : global ? "block" : "none"}} className={styles.photoContainer} src={filePhoto} ></img>
         <canvas style={{display : global ? "none" : "block"}} className={styles.photoContainer} ref={photoRef}/> 
         
-        
+        {console.log(webCamPhoto)}
+
         <Field
           text="Upload photo"
           type="file"
@@ -485,6 +492,7 @@ function AllColumns() {
         setImage={setFilePhoto}
         image={filePhoto}
         inputRef={inputRef}
+        webCamPhoto={setWebCamPhoto}
       />
     </div>
   );

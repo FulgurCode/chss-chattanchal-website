@@ -43,6 +43,7 @@ export default function WebCamPop(props) {
 
       // Convert canvas to data URL
       const dataUrl = photo.toDataURL("image/jpg");
+      props.webCamPhoto(dataUrl)
       console.log(dataUrl);
       console.log(props.inputRef)
       props.inputRef.current.value = ""
