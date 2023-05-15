@@ -72,14 +72,15 @@
     border-top: 1px solid #ddd;
     padding-top: 10px;
     width: 90%;
+    min-height: 50px;
     display: flex;
     justify-content: center;
     
      right: 0;
 
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    /* padding-right: 10px;
+    padding-bottom: 10px; */
+    padding: 15px 0 15px 0;
 
   }
   
