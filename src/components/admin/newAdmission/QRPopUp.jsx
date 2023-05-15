@@ -1,5 +1,5 @@
 import React from "react";
-import popUpStyles from "../../../styles/admin/admission/newAdmission/PopUp.module.css";
+import popUpStyles from "../../../styles/admin/admission/newAdmission/Popup.module.css";
 import QRCode from "react-qr-code";
 
 export default function QRPopUp(props) {

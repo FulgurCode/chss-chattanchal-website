@@ -8,7 +8,9 @@ export default function WebCamPop(props) {
   useEffect(() => {
     const getUserCamera = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
         const video = webcamRef.current.video;
         video.srcObject = stream;
         video.play();
@@ -17,24 +19,22 @@ export default function WebCamPop(props) {
       }
     };
 
+
     getUserCamera();
   }, []);
 
   const takePhoto = (e) => {
     e.preventDefault();
 
-
     const width = 400;
     const height = 300;
 
     const photo = props.photoRef.current;
     const video = webcamRef.current.video;
-
-
-    console.log("photo is" + photo)
+    console.log("photo is" + photo);
     props.setGlobal(false);
     if (photo && video) {
-      console.log("yes")
+      console.log("yes");
       photo.width = width;
       photo.height = height;
 
@@ -43,9 +43,11 @@ export default function WebCamPop(props) {
 
       // Convert canvas to data URL
       const dataUrl = photo.toDataURL("image/jpg");
+      console.log(dataUrl);
+      console.log(props.inputRef)
+      props.inputRef.current.value = ""
       props.show(false);
     }
-
   };
 
   if (props.open === false) {

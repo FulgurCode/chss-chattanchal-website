@@ -16,6 +16,7 @@ export default function Field(props) {
         value={props.value}
         name={props.name}
         className={`${props.inputStyle} ${styles.inputFieldNew}`}
+        ref={props.reference}
       ></input>
     </div>
   );

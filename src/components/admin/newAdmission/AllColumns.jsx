@@ -53,8 +53,10 @@ function AllColumns() {
   const [filePhoto, setFilePhoto] = useState("");
   const [QR, setQR] = useState(false);
   const [webCam, setWebCam] = useState(false);
-  const photoRef = useRef('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E');
+  // const photoRef = useRef('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E');
+  const photoRef = useRef("");
   const [global, setGlobal] = useState(false);
+  const inputRef = useRef(null)
 
 
   // ---------------- Handle Change Function for input feild
@@ -453,6 +455,7 @@ function AllColumns() {
           extention="image/*"
           inputStyle={styles.uploadPhoto}
           containerClass={styles.subContainerNew}
+          reference={inputRef}
         />
         <button onClick={() => setQR(true)} className={`${styles.qrButton}`}>Take photo on Phone</button>
         <button onClick={() => setWebCam(true)} className={`${styles.qrButton}`}>Take a photo on web cam</button>
@@ -481,6 +484,7 @@ function AllColumns() {
         setGlobal={setGlobal}
         setImage={setFilePhoto}
         image={filePhoto}
+        inputRef={inputRef}
       />
     </div>
   );
