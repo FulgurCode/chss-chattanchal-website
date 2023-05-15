@@ -188,7 +188,7 @@ export default function Verification() {
                 <tbody className={styles.tableBody}>
                   {sortedData.length === 0 ? (
                     <tr>
-                      <td colSpan="4">No data found</td>
+                      <td colSpan="5">No data found</td>
                     </tr>
                   ) : (
                     sortedData.map((item) => (
