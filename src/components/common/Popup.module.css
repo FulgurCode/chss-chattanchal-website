@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    z-index: 10;
   }
   
   .popupBody {
@@ -23,7 +25,7 @@
     /* border: 5px solid #a2a2a2; */
     box-shadow: 5px 5px 20px 0px #111;
 
-    z-index: 99;
+    z-index: 11;
   }
   
   .box {
