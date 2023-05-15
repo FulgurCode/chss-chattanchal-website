@@ -31,7 +31,7 @@
   .box {
     display: flex;
     /* justify-content: center; */
-    width: 80%;
+    width: 92%;
     align-items: center;
 
     flex: 4;
@@ -41,6 +41,8 @@
     font-style: normal;
     font-weight: 600;
     padding: 20px;
+
+    background-color: #eee;
 
   
     /* line-height: 119.3%; */
