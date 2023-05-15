@@ -135,7 +135,7 @@ export default function Verification() {
           <hr />
           Home &gt; Admission &gt; <code>Verification</code>
         </div>
-        <div className={styles.table} style={{display: "flex", justifyContent: "center", flexDirection: "column", width: "100%"}}>
+        <div className={styles.table} style={{display: "flex", justifyContent: "center", flexDirection: "column", width: "100%", overflowY: "scroll"}}>
           {/* <Item
             data={{
               name: "Name",
@@ -159,7 +159,7 @@ export default function Verification() {
                 onChange={handleSearch}
                 className={styles.searchBox}
               />
-              <code style={{ textAlign: "center", color: "red", left: 0 }}>
+              <code style={{ textAlign: "center", color: "red", left: 0 , minWidth: 0}}>
                 {error}
               </code>
             </div>
