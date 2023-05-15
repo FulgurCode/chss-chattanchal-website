@@ -1,22 +1,34 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../../components/NavBar";
-import styles from "../../../styles/admin/admission/verification/Verification.module.css";
-import Axios from "../../../../stores/Axios";
-import Popup from "../../../components/common/Popup";
+import NavBar from "../../components/NavBar";
+import styles from "../../styles/teacher/verification/Verification.module.css"
+import Axios from "../../../stores/Axios";
+import Popup from "../../components/common/Popup";
+import { useNavigate, createSearchParams } from "react-router-dom";
+// import Profile from "../../../components/admin/verification/Profile.jsx";
 // import Item from "../../../components/admin/verification/Item";
 
 // const primary = "#ccc";
 // const secondary = "#bbb";
 
 export default function Verification() {
+  // const [visibleProfile, setVisibleProfile] = useState(false);
+
   const [visible, setVisibile] = useState(false);
   // const [visibleProfile, setVisibileProfile] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{}]);
   const [error, setError] = useState("");
 
   const [searchQuery, setSearchQuery] = useState("");
   const [sortColumn, setSortColumn] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
+
+  const navigate = useNavigate()
+
+const profilePage = (item)=>{
+    navigate({
+    pathname: "/teacher/verification/student-details",
+    search: `?${createSearchParams({ id: item._id })}`,
+  });}
 
   function loadData() {
     setError("");
@@ -117,11 +129,13 @@ export default function Verification() {
   };
 
   useEffect(loadData, []);
+  // console.log(data[1])
 
   return (
     <>
       <NavBar />
       <Popup visible={visible} onChange={setVisibile} text={"Student succsessfully verified"}/>
+      {/* <Profile visible={visibleProfile} onChange={setVisibleProfile} details={{name: "shreyas"}}/> */}
       {/* <Popup visible={visible} onChange={setVisibile} text={"Student succsessfully verified"}/> */}
       <div className={styles.main}>
         <div className={styles.header}>
@@ -179,11 +193,12 @@ export default function Verification() {
                     </tr>
                   ) : (
                     sortedData.map((item) => (
+      
                       <tr key={item._id}>
-                        <td>{item.name}</td>
-                        <td>{item.class}</td>
-                        <td>{item.admissionNo}</td>
-                        <td>{item.dob}</td>
+                        <td onClick={()=>profilePage(item)}>{item.name}</td>
+                        <td onClick={()=>profilePage(item)}>{item.class}</td>
+                        <td onClick={()=>profilePage(item)}>{item.admissionNo}</td>
+                        <td onClick={()=>profilePage(item)}>{item.dob}</td>
                         <td>
                           <button
                             style={{ marginLeft: "30%" }}
