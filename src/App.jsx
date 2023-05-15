@@ -12,13 +12,13 @@ import NewAdmission from "./pages/admin/admission/NewAdmission";
 import Profile from "./pages/admin/admission/Profile";
 import StudentDetails from "./pages/admin/admission/StudentDetails";
 import Verification from "./pages/admin/admission/Verification";
-import Verification from "./pages/admin/admission/Verification";
+// import Verification from "./pages/admin/admission/Verification";
 
 import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
 import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
 import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
-import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
+// import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
 
 import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
