@@ -88,7 +88,9 @@
 
 /* Hrishi Code */
 .table {
-  min-width: 500px;
+  /* min-width: 500px;
+  m */
+  /* max-width: 900px; */
   border-collapse: collapse;
   margin-bottom: 5px;
 }
@@ -99,6 +101,7 @@
 }
 
 .tableBox{
+  /* max-width: 800px; */
   margin-top: 10px;
   max-height: 500px;
   overflow-y: auto;
@@ -116,7 +119,7 @@
   left: 0;
   /* z-index: -1; */
   /* flex:1; */
-  min-width: 100px;
+  min-width: 80px;
   /* text-align: center; */
 }
 
@@ -127,6 +130,8 @@
   border-bottom: 1px solid #ccc;
   cursor: pointer;
   font-size: 20px;
+
+  
 }
 
 .table th {
