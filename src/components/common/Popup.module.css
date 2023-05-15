@@ -1,0 +1,90 @@
+.outside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popupBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 500px;
+    background-color: #fff;
+    /* padding: 20px; */
+    border-radius: 10px;
+    /* border: 5px solid #a2a2a2; */
+    box-shadow: 5px 5px 20px 0px #111;
+
+    z-index: 99;
+  }
+  
+  .box {
+    display: flex;
+    /* justify-content: center; */
+    width: 80%;
+    align-items: center;
+
+    flex: 4;
+
+    font-size: 20px;
+    font-family: "Inria Sans";
+    font-style: normal;
+    font-weight: 600;
+    padding: 20px;
+
+  
+    /* line-height: 119.3%; */
+  }
+  .header{
+    display: flex;
+    /* justify-content: center; */
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+
+    font-size: 25px;
+    /* font-family: "Inria Sans"; */
+    font-style: normal;
+    font-weight: 800;
+
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .buttonWrapper {
+    flex: 1;
+    position: relative;
+    /* top: 80px; */
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    width: 96%;
+    display: flex;
+    justify-content: flex-end;
+    
+     right: 0;
+
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+  }
+  
+  .buttonWrapper button {
+    width: 90px;
+    padding: 7px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 20px;
+    color:  white;
+    background-color: #28B4AB;
+  }
