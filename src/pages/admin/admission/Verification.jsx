@@ -135,7 +135,7 @@ export default function Verification() {
           <hr />
           Home &gt; Admission &gt; <code>Verification</code>
         </div>
-        <div className={styles.table}>
+        <div className={styles.table} style={{display: "flex", justifyContent: "center", flexDirection: "column", width: "100%"}}>
           {/* <Item
             data={{
               name: "Name",
@@ -150,7 +150,7 @@ export default function Verification() {
             return <Item data={item} index={index + 1} key={item._id} />;
           })} */}
 
-          <div>
+          <div style={{display: "flex", justifyContent: "center", flexDirection: "column", width: "100%"}}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <input
                 type="text"
@@ -188,7 +188,7 @@ export default function Verification() {
                 <tbody className={styles.tableBody}>
                   {sortedData.length === 0 ? (
                     <tr>
-                      <td colSpan="5">No data found</td>
+                      <td colSpan="">No data found</td>
                     </tr>
                   ) : (
                     sortedData.map((item) => (
