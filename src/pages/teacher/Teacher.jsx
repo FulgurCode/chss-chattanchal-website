@@ -38,17 +38,7 @@ export default function Teacher() {
               </span>
               <h1>Attendence</h1>
             </div>
-            <div
-              className={styles.item}
-              onClick={() => {
-                navigate("/teacher/verification");
-              }}
-            >
-              <span>
-                {/* <img src={attendence} width="120px" height="120px" /> */}
-              </span>
-              <h1>Verification</h1>
-            </div>
+            
           </div>
         </div>
       </div>

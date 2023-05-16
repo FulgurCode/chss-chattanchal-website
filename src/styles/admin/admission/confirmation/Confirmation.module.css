@@ -1,0 +1,183 @@
+
+.btn {
+    background-color: #28b4ab;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+  
+    margin-top: 10px;
+  }
+  
+  .header span {
+    display: flex;
+    align-items: center;
+    border-right: 2px solid #ccc;
+    width: max-content;
+    padding-right: 20px;
+    max-height: 30px;
+    margin-top: 20px;
+  }
+  .header img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .header code {
+    font-weight: 600;
+  }
+  
+  .header {
+    padding-bottom: 70px;
+  }
+  
+  .main hr {
+    height: 1px;
+    background-color: #ccc;
+    border: none
+  }
+  .main {
+    padding: 10%;
+    padding-top: 50px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10;
+    flex: 1;
+    align-items: center;
+    width: max-content;
+    align-self: center;
+  }
+  .inputContainer {
+    width: 100%;
+  }
+  
+  .btnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  
+  
+  /* Hrishi Code */
+  .table {
+    border-collapse: collapse;
+    margin-bottom: 5px;
+  
+    overflow-x: scroll;
+    width: 80vw;
+  }
+  
+  .emptyBox{
+    height:10px;
+    
+  }
+  
+  .tableBox{
+    margin-top: 10px;
+    overflow-y: auto;
+    margin-bottom: 5px;
+  
+    width: 100%;
+    height: 100%;
+  
+    max-height: 500px;
+    overflow-y: scroll;
+  
+  
+  }
+  
+  .tableBox thead th {
+    position: sticky !important;
+    top:0;
+    left: 0;
+  
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px 25px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 20px;
+  
+    min-width: 100px;
+  
+    
+  }
+  
+  .table th {
+    background-color:   #6A2C70 ;
+    color: #fff;
+    width: 100%;
+  }.table td{
+    width: 100%;
+  }
+  
+  
+  .table th:hover {
+    background-color: #531f57;
+  }
+  
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #e6e6e6;
+  }
+  
+  
+  .searchBox{
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    text-indent: 5px;
+    height: 30px;
+    font-size: 18px;
+    min-width: 10px;
+    margin: 2px;
+  }
+  
+  .deleteBtn{
+    border-radius: 15px;
+    background-color: rgb(46, 194, 24);
+    border: 0;
+    padding: 5px 8px;
+    font-size: 13px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .deleteBtn:hover{
+    background-color: rgb(72, 146, 23);
+  }
+  
+  .tableBody{
+    overflow-y: hidden;
+  }
+  
+  /* @media screen and (max-width: 500px) {
+    .tableBox{
+      transform: scale(.8) translate(-50px, 0);
+    }
+  }
+  @media screen and (max-width: 444px) {
+    .tableBox{
+      transform: scale(.7) translate(-85px, 0);
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .tableBox{
+      transform: scale(.6) translate(-130px, 0);
+    }
+  } */

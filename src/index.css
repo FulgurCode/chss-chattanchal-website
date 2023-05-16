@@ -40,11 +40,12 @@ body {
 /* For WebKit-based browsers like Chrome and Safari*/
 ::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #777;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 
 ::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar:hover {
@@ -54,6 +55,7 @@ body {
 /* For Firefox */
 .scrollbar {
   scrollbar-width: 5px;
+  scrollbar-height: 5px;
   scrollbar-color: #888 #f1f1f1;
 }
 
@@ -63,6 +65,7 @@ body {
 
 .scrollbar-thumb:hover .scrollbar:hover {
   width: 12px;
+  height: 12px;
 }
 
 /* For Firefox older versions */
