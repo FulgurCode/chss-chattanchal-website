@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, createSearchParams } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import styles from "../../../styles/admin/admission/confirmation/Confirmation.module.css";
 import Axios from "../../../../stores/Axios";
 import Popup from "../../../components/common/Popup";
-// import Item from "../../../components/admin/verification/Item";
-
-// const primary = "#ccc";
-// const secondary = "#bbb";
 
 export default function Confirmation() {
+
+  const navigate = useNavigate()
+
   const [visible, setVisibile] = useState(false);
   // const [visibleProfile, setVisibileProfile] = useState(false);
   const [data, setData] = useState([]);
@@ -118,6 +118,12 @@ export default function Confirmation() {
 
   useEffect(loadData, []);
 
+  const profilePage = (item)=>{
+    navigate({
+    pathname: "/admin/confirmation/student-details",
+    search: `?${createSearchParams({ id: item._id })}`,
+  });}
+
   return (
     <>
       <NavBar />
@@ -179,10 +185,10 @@ export default function Confirmation() {
                   ) : (
                     sortedData.map((item) => (
                       <tr key={item._id}>
-                        <td>{item.name}</td>
-                        <td>{item.class}</td>
-                        <td>{item.admissionNo}</td>
-                        <td>{item.dob}</td>
+                         <td onClick={()=>profilePage(item)}>{item.name}</td>
+                        <td onClick={()=>profilePage(item)}>{item.class}</td>
+                        <td onClick={()=>profilePage(item)}>{item.admissionNo}</td>
+                        <td onClick={()=>profilePage(item)}>{item.dob}</td>
                         <td>
                           <button
                             style={{ marginLeft: "30%" }}

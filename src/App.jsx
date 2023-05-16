@@ -9,10 +9,11 @@ import Login from "./pages/Login";
 import ImportStudents from "./pages/admin/admission/ImportStudents";
 import Admission from "./pages/admin/Admission";
 import NewAdmission from "./pages/admin/admission/NewAdmission";
-import Profile from "./pages/admin/admission/Profile";
+
 import StudentDetails from "./pages/admin/admission/StudentDetails";
 import Verification from "./pages/teacher/Verification";
-import ProfileVerification from "./pages/teacher/ProfileVerification";
+import AdminStudentProfile from "./components/AdminStudentProfile";
+import TeacherStudentProfile from "./components/TeacherStudentProfile";
 import Confirmation from "./pages/admin/admission/Confirmation";
 
 import Teachers from "./pages/admin/Teachers";
@@ -49,29 +50,34 @@ export default function App() {
             ></Route>
             <Route
               path="/admin/admission/profile"
-              element={<Profile />}
+              element={<AdminStudentProfile />}
             ></Route>
             <Route
               path="/admin/admission/confirmation"
               element={<Confirmation />}
             ></Route>
           </Route>
-          <Route path="/admin/teachers">
-            <Route index element={<Teachers />} />
-            <Route
-              path="/admin/teachers/add-teachers"
-              element={<AddTeachers />}
-            ></Route>
-            <Route
-              path="/admin/teachers/import-teachers"
-              element={<ImportTeachers />}
-            ></Route>
-            <Route
-              path="/admin/teachers/duty-allocation"
-              element={<DutyAllocation />}
-            ></Route>
-          </Route>
+          <Route
+            path="/admin/confirmation/student-details"
+            element={<AdminStudentProfile />}
+          />
         </Route>
+        <Route path="/admin/teachers">
+          <Route index element={<Teachers />} />
+          <Route
+            path="/admin/teachers/add-teachers"
+            element={<AddTeachers />}
+          ></Route>
+          <Route
+            path="/admin/teachers/import-teachers"
+            element={<ImportTeachers />}
+          ></Route>
+          <Route
+            path="/admin/teachers/duty-allocation"
+            element={<DutyAllocation />}
+          ></Route>
+        </Route>
+
         <Route path="/teacher">
           <Route index element={<Teacher />} />
 
@@ -79,7 +85,7 @@ export default function App() {
             <Route index element={<Verification />} />
             <Route
               path="/teacher/verification/student-details"
-              element={<ProfileVerification />}
+              element={<TeacherStudentProfile />}
             />
           </Route>
 
