@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import Axios from "../../../stores/Axios";
+import Axios from "../../stores/Axios";
 import React from "react";
-import styles from "../../styles/common/Profile.module.css";
-import Navbar from "../../components/NavBar";
+import styles from "../styles/common/Profile.module.css";
+import Navbar from "./NavBar";
 import { useEffect } from "react";
 import { useRef } from "react";
 
@@ -18,7 +18,7 @@ export default function Profile() {
   );
 
   function getData() {
-    Axios.get(`teacher/get-student?studentId=${id}`)
+    Axios.get(`admin/get-student?studentId=${id}`)
       .then((res) => {
         setDetails(res.data);
       })
@@ -28,7 +28,7 @@ export default function Profile() {
   }
   useEffect(getData, []);
   function getImage() {
-    Axios.get(`teacher/get-student-photo?studentId=${id}`)
+    Axios.get(`admin/get-student-photo?studentId=${id}`)
       .then((res) => {
         setImg("data:image/jpeg;base64," + res.data);
       })
