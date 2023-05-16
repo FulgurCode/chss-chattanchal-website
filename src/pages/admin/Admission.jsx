@@ -71,6 +71,7 @@ export default function Admission() {
               </span>
               <h1>Verfication</h1>
             </div>
+            
           </div>
         </div>
       </div>

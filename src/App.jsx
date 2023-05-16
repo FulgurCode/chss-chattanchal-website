@@ -12,6 +12,7 @@ import NewAdmission from "./pages/admin/admission/NewAdmission";
 import Profile from "./pages/admin/admission/Profile";
 import StudentDetails from "./pages/admin/admission/StudentDetails";
 import Verification from "./pages/admin/admission/Verification";
+import Confirmation from "./pages/admin/admission/Confirmation";
 
 import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
@@ -48,6 +49,10 @@ export default function App() {
             <Route
               path="/admin/admission/profile"
               element={<Profile />}
+            ></Route>
+            <Route
+              path="/admin/admission/confirmation"
+              element={<Confirmation />}
             ></Route>
           </Route>
           <Route path="/admin/teachers">
