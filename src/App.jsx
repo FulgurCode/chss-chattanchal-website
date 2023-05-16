@@ -13,6 +13,7 @@ import Profile from "./pages/admin/admission/Profile";
 import StudentDetails from "./pages/admin/admission/StudentDetails";
 import Verification from "./pages/teacher/Verification";
 import ProfileVerification from "./pages/teacher/ProfileVerification";
+import Confirmation from "./pages/admin/admission/Confirmation";
 
 import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
@@ -23,7 +24,6 @@ import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
 
 import Teacher from "./pages/teacher/Teacher";
-
 
 export default function App() {
   return (
@@ -50,6 +50,10 @@ export default function App() {
             <Route
               path="/admin/admission/profile"
               element={<Profile />}
+            ></Route>
+            <Route
+              path="/admin/admission/confirmation"
+              element={<Confirmation />}
             ></Route>
           </Route>
           <Route path="/admin/teachers">
@@ -78,7 +82,7 @@ export default function App() {
               element={<ProfileVerification />}
             />
           </Route>
-          
+
           <Route path="/teacher/signup" element={<SignUp />}></Route>
           <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
 

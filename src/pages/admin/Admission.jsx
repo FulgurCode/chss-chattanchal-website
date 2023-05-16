@@ -59,18 +59,18 @@ export default function Admission() {
             <div
               className={styles.item}
               onClick={() => {
-                navigate("/admin/admission/verification");
+                navigate("/admin/admission/confirmation");
               }}
             >
               <span>
                 <img
-                  // src="/imgs/AdmissionImages/item3.png"
                   width="80px"
                   height="80px"
                 />
               </span>
-              <h1>Verfication</h1>
+              <h1>Confirmation</h1>
             </div>
+            
           </div>
         </div>
       </div>
