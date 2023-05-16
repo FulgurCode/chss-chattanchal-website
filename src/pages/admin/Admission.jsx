@@ -71,6 +71,21 @@ export default function Admission() {
               </span>
               <h1>Verfication</h1>
             </div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/admission/confirmation");
+              }}
+            >
+              <span>
+                <img
+                  src="/imgs/AdmissionImages/confirmIcon.png"
+                  width="80px"
+                  height="80px"
+                />
+              </span>
+              <h1>Confirm Admission</h1>
+            </div>
           </div>
         </div>
       </div>
