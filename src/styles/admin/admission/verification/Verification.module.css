@@ -144,6 +144,7 @@
   height: 30px;
   font-size: 18px;
   min-width: 10px;
+  margin: 2px;
 }
 
 .deleteBtn{
