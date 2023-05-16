@@ -58,7 +58,7 @@ export default function App() {
             ></Route>
           </Route>
           <Route
-            path="/admin/confirmation/student-details"
+            path="/admin/admission/confirmation/student-details"
             element={<AdminStudentProfile />}
           />
         </Route>
