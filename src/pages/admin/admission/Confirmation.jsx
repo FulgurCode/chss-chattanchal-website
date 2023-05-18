@@ -4,8 +4,11 @@ import NavBar from "../../../components/NavBar";
 import styles from "../../../styles/admin/admission/confirmation/Confirmation.module.css";
 import Axios from "../../../../stores/Axios";
 import Popup from "../../../components/common/Popup";
+import { useAuth } from "../../../../stores/CheckloginAdmin";
+import Loader from "../../../components/common/Loader";
 
 export default function Confirmation() {
+  const [loading, setisLoading] = useState(false);
 
   const navigate = useNavigate()
 
@@ -116,7 +119,11 @@ export default function Confirmation() {
     return "";
   };
 
-  useEffect(loadData, []);
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate);
+    loadData();
+  }, []);
 
   const profilePage = (item)=>{
     navigate({
@@ -208,6 +215,7 @@ export default function Confirmation() {
           </div>
         </div>
       </div>
+      <Loader open={loading} />
     </>
   );
 }

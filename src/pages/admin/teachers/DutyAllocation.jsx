@@ -3,17 +3,21 @@ import Navbar from "../../../components/NavBar";
 import styles from "../../../styles/admin/teachers/dutyAllocation/DutyAllocation.module.css";
 import EntryPopup from "../../../components/admin/dutyAllocation/EntryPopup";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import DetailsTable from "../../../components/admin/dutyAllocation/DetailsTable";
 import DeletePopup from "../../../components/admin/dutyAllocation/DeletePopup";
 import Axios from "../../../../stores/Axios";
+import  Loader from "../../../components/common/Loader";
+import { useAuth } from "../../../../stores/CheckloginAdmin";
 
 export default function DutyAllocation() {
-  // Getting data for table
+  const navigate = useNavigate()
 
   const [data, setData] = useState([]);
 
   const [viewOn, setViewOn] = useState(false);
-
+  
+  
   // submit data
 
   function handleClick(optState, setSubmitMsg, submitSuccess) {
@@ -55,9 +59,29 @@ export default function DutyAllocation() {
       });
   }
 
+  
+  // useEffect(() => {
+  //   Axios.get("/admin/checklogin")
+  //     .then((response) => {
+  //       if (response.data == false) {
+  //         navigate("/login");
+  //       }
+  //       else {
+  //         fetchTableData();
+  //       }
+  //     })
+  //     .catch(() => {
+  //       history.back();
+  //     });
+  // });
+
+  const [loading, setisLoading] = useState(false)
+
   useEffect(() => {
+    useAuth(setisLoading, navigate);
     fetchTableData();
-  }, []);
+  },[]);
+
 
   function handleButtonClick(id) {
     Axios.delete(`/admin/delete-duty?duty=${id}`)
@@ -102,6 +126,7 @@ export default function DutyAllocation() {
           </div>
         </div>
       </div>
+      <Loader open={loading} />
     </>
   );
 }

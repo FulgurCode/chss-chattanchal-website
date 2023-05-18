@@ -2,9 +2,19 @@ import NavBar from "../../components/NavBar";
 import styles from "../../styles/admin/admission/Admission.module.css";
 import admission from "/imgs/adminImages/admission.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Axios from "../../../stores/Axios";
+import Loader from "../../components/common/Loader";
+import { useAuth } from "../../../stores/CheckloginAdmin";
 
 export default function Admission() {
   const navigate = useNavigate();
+  const [loading, setisLoading] = useState(false);
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate);
+  },[]);
+
   return (
     <>
       <NavBar />
@@ -63,17 +73,14 @@ export default function Admission() {
               }}
             >
               <span>
-                <img
-                  width="80px"
-                  height="80px"
-                />
+                <img width="80px" height="80px" />
               </span>
               <h1>Confirmation</h1>
             </div>
-            
           </div>
         </div>
       </div>
+      <Loader open={loading} />
     </>
   );
 }

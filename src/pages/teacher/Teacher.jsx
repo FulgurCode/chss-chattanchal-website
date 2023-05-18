@@ -1,12 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import styles from "../../styles/common/dashboard.module.css";
 import NavBar from "../../components/NavBar";
 import React from "react";
 import admission from "/imgs/adminImages/admission.png";
 import attendence from "/imgs/adminImages/attendence.png";
+import { useAuth } from "../../../stores/CheckloginTeacher";
+import Loader from "../../components/common/Loader";
 
 export default function Teacher() {
   const navigate = useNavigate();
+  const [loading, setisLoading] = useState(false);
+
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate)
+  });
+
   return (
     <>
       <NavBar />
@@ -42,6 +52,7 @@ export default function Teacher() {
           </div>
         </div>
       </div>
+      <Loader open={loading} />
     </>
   );
 }

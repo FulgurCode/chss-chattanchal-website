@@ -1,12 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/admin/Admin.module.css";
 import NavBar from "../components/NavBar";
-import React from "react";
+import { React, useEffect, useState } from "react";
 import admission from "/imgs/adminImages/admission.png";
 import attendence from "/imgs/adminImages/attendence.png";
+import Axios from "../../stores/Axios";
+import {useAuth} from "../../stores/CheckloginAdmin.jsx"
+import Loader from "../components/common/Loader";
 
 export default function Admin() {
   const navigate = useNavigate();
+  const [loading, setisLoading] = useState(false)
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate)
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -52,6 +61,7 @@ export default function Admin() {
           </div>
         </div>
       </div>
+      <Loader open={loading}  />
     </>
   );
 }

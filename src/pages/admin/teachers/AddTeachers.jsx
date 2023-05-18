@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import NavBar from "../../../components/NavBar";
 import styles from "../../../styles/admin/teachers/addTeachers/AddTeachers.module.css";
 import Axios from "../../../../stores/Axios";
 import SuccessPopup from "../../../components/admin/newAdmission/SuccessPopup";
 import NotFilledPopup from "../../../components/admin/newAdmission/NotFilledPopup";
+import { useNavigate } from "react-router-dom";
+import Loader from "../../../components/common/Loader";
+import { useAuth } from "../../../../stores/CheckloginAdmin";
 
 export default function AddTeachers() {
+  const navigate = useNavigate();
+
+  const [loading, setisLoading] = useState(false)
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate);
+    
+  },[]);
+
+
   const [details, setDetails] = useState({
     name: "",
     phoneNo: "",
@@ -201,6 +214,7 @@ export default function AddTeachers() {
           />
         </main>
       </div>
+      <Loader open={loading} />
     </div>
   );
 }

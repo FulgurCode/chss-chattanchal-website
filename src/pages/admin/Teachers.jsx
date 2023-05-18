@@ -1,13 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import styles from "../../styles/admin/teachers/Teachers.module.css";
 import NavBar from "../../components/NavBar";
 import React from "react";
 import admission from "/imgs/adminImages/admission.png";
 import attendence from "/imgs/adminImages/attendence.png";
-import downIcon from "/imgs/importStudents/download.png"
+import downIcon from "/imgs/importStudents/download.png";
+import Axios from "../../../stores/Axios";
+import Loader from "../../components/common/Loader";
+import { useAuth } from "../../../stores/CheckloginAdmin";
 
 export default function Admin() {
   const navigate = useNavigate();
+  const [loading, setisLoading] = useState(false);
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate);
+  },[]);
+
   return (
     <>
       <NavBar />
@@ -46,13 +56,19 @@ export default function Admin() {
               }}
             >
               <span>
-                <img src={downIcon} width="100px" height="90px" style={{marginTop:10}} />
+                <img
+                  src={downIcon}
+                  width="100px"
+                  height="90px"
+                  style={{ marginTop: 10 }}
+                />
               </span>
               <h1>Import Teachers</h1>
             </div>
           </div>
         </div>
       </div>
+      <Loader open={loading} />
     </>
   );
 }
