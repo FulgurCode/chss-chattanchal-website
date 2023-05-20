@@ -65,6 +65,7 @@ function AllColumns() {
   const [webCamPhoto, setWebCamPhoto] = useState("");
   const inputRef = useRef(null)
   const [filePhotoURL, setFilePhotoURL] = useState("")
+  const [error, setError] = useState("")
 
 
   // ---------------- Handle Change Function for input feild
@@ -135,7 +136,6 @@ function AllColumns() {
     for (var prop in data) {
       if (data[prop] === "") {
         setNotFilledError(true);
-        console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
         break;
       }
@@ -144,18 +144,12 @@ function AllColumns() {
     for (var prop in data) {
       if (data[prop] === "") {
         setNotFilledError(true);
-        console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
         break;
       }
     }
 
-    if (hasNullOrUndefinedValue) {
-      console.log("no");
-      console.log(data);
-    } else {
-      console.log("yes");
-      console.log(data);
+    if (!hasNullOrUndefinedValue) {
 
       Axios.post("admin/new-admission", data)
         .then((response) => {
@@ -163,8 +157,6 @@ function AllColumns() {
           if (global == true){
             formData.append("file", filePhoto);
           }else{
-            console.log("Hrishi begam baa")
-            console.log(webCamPhoto)
             formData.append("file", webCamPhoto);
           }
           
@@ -173,7 +165,11 @@ function AllColumns() {
             `admin/upload-student-photo?studentId=${response.data}`,
             formData
           ).catch((err) => {
-            alert(err.response?.data);
+            if (err.response.data != undefined){
+              setError(err.response.data)
+            }else{
+              setError("Server connection error")
+            }
           });
 
           setPopup(!popup);
@@ -182,11 +178,11 @@ function AllColumns() {
           setGlobal(true)
           inputRef.current.value = ""
         })
-        .catch((err) => {
-          if (err.response.status == 401) {
-            console.log("You are not logged in");
-          } else if (err.response.status == 500) {
-            console.log("internal server error");
+        .catch((err) => { 
+          if (err.response){
+            setError(err.response.data)
+          }else{
+            setError("Server connection error")
           }
         });
     }
@@ -194,7 +190,6 @@ function AllColumns() {
 
   return (
     <div className={`${styles.globalParent}`}>
-      {console.log(global)}
       {/* ---------------- top infos ----------------   */}
 
       <div className={`${styles.subContainer}`}>
@@ -474,9 +469,6 @@ function AllColumns() {
         />
         <img style={{display : global ? "block" : "none"}} className={styles.photoContainer} src={filePhotoURL} ></img>
         <canvas style={{display : global ? "none" : "block"}} className={styles.photoContainer} ref={photoRef}/> 
-        
-        {console.log(webCamPhoto)}
-
         <Field
           text="Upload photo"
           type="file"
@@ -488,9 +480,11 @@ function AllColumns() {
         />
         <button onClick={() => setQR(true)} className={`${styles.qrButton}`}>Take photo on Phone</button>
         <button onClick={() => setWebCam(true)} className={`${styles.qrButton}`}>Take a photo on web cam</button>
+        <label style={{color: "red", fontSize : "15px", marginTop: "50px"}} >{error}</label>
         <button onClick={handleSubmit} className={`${styles.submitButton}`}>
           Submit
         </button>
+        
       </div>
 
       {/* ---------------- Popups ----------------  */}

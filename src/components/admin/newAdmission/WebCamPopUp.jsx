@@ -49,10 +49,8 @@ export default function WebCamPop(props) {
 
     const photo = props.photoRef.current;
     const video = webcamRef.current.video;
-    console.log("photo is" + photo);
     props.setGlobal(false);
     if (photo && video) {
-      console.log("yes");
       photo.width = width;
       photo.height = height;
 
@@ -62,13 +60,8 @@ export default function WebCamPop(props) {
       // Convert canvas to data URL
       const dataUrl =  photo.toDataURL("image/jpg");
       const photoFile = await base64ToFile(dataUrl, props.webCamPhoto) 
-      props.webCamPhoto(photoFile)
-      console.log("enakk paikknn")
-      console.log(photoFile)
-      console.log(props.current)
-      props.webCamPhoto(dataUrl)
-      console.log(dataUrl);
-      console.log(props.inputRef)
+      // props.webCamPhoto(photoFile)
+      // props.webCamPhoto(dataUrl)
       props.inputRef.current.value = ""
       props.show(false);
       props.setGlobal(false)
