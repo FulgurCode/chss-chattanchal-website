@@ -5,7 +5,12 @@
 * {
   font-family: inria sans;
 }
+
 .container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -18,13 +23,21 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .subContainer {
   height: 15vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
   margin-right: 5vw;
 }
 
@@ -33,15 +46,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: start;
   margin-right: 58vw;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin-right: 48vw;
 }
 
 .aster {
   color: #ff0000;
+  color: #ff0000;
 }
 
-.inputField {
+/* .inputField {
   height: 1.5vw;
   width: 20vw;
   background: #ffffff;
@@ -50,25 +70,38 @@
   border-radius: 20px;
   margin-left: 10vw;
   font-size: 1vw;
-}
+  height: 1.5vw;
+  width: 20vw;
+  background: #ffffff;
+  border: 1px solid #a0a0a0;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  margin-left: 10vw;
+  font-size: 1vw;
+} */
 
 .inputFieldNew {
-  height: 1.5vw;
+  height: 35px;
   width: 20vw;
-  background: #ffffff;
-  border: 1px solid #a0a0a0;
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  margin-left: 10vw;
-  font-size: 1vw;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  height: 30px;
+  max-width: 300px;
+  text-indent: 10px;
 }
 
 .label {
   width: 20vw;
   font-size: 1.25vw;
+  width: 20vw;
+  font-size: 1.25vw;
 }
 
 .subHeadingLabel {
+  width: 25vw;
+  margin: 5vw 44vw 5vw 0;
+  font-size: 1.75vw;
   width: 25vw;
   margin: 5vw 44vw 5vw 0;
   font-size: 1.75vw;
@@ -83,19 +116,35 @@
   border: none;
   color: #ffffff;
   font-size: 1vw;
+  margin: 8vh 0 5vh 0;
+  width: 9vw;
+  height: 6vh;
+  background: #28b4ab;
+  border-radius: 8px;
+  border: none;
+  color: #ffffff;
+  font-size: 1vw;
 }
 
 .submitButton:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .selectElement {
-  height: 4vh;
+  height: 35px;
   font-size: 15px;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+.photoContainer {
+  height: 20vw;
+  width: calc((1 * 20vw) / 1);
+  margin-right: 48vw;
+  border: 2px dotted #6A2C70;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -106,16 +155,20 @@ input[type=number]::-webkit-outer-spin-button {
   display: flex;
   padding: 8vh 0 0 16vw;
   font-size: 2vw;
+  display: flex;
+  padding: 8vh 0 0 16vw;
+  font-size: 2vw;
 }
 
 .img2 {
   width: 5vw;
   height: auto;
   padding-left: 16vw;
-
 }
 
 .titleLabel {
+  font-size: 2vw;
+  padding-left: 2vw;
   font-size: 2vw;
   padding-left: 2vw;
 }
@@ -125,13 +178,19 @@ input[type=number]::-webkit-outer-spin-button {
   transform: rotate(90deg);
   margin-right: 55vw;
   z-index: -1;
+  width: 5vh;
+  transform: rotate(90deg);
+  margin-right: 55vw;
+  z-index: -1;
 }
 
 .separationLine {
   width: 68vw;
+  width: 68vw;
 }
 
 .separationLineNormal {
+  margin-top: 10vh;
   margin-top: 10vh;
 }
 
@@ -141,9 +200,16 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: center;
   align-items: start;
   padding-right: 45vw;
+  height: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-right: 45vw;
 }
 
 .pathLabel {
+  font-size: 1.25vw;
+  padding: 0 0.5vw 0 0.5vw;
   font-size: 1.25vw;
   padding: 0 0.5vw 0 0.5vw;
 }
@@ -155,9 +221,41 @@ input[type=number]::-webkit-outer-spin-button {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  align-items: end;
   height: 10vh;
-  margin-right: 11vw;
+  margin-right: 6vw;
+}
+
+/* ------------------ QR button ------------------ */
+
+.qrButton {
+  margin-right: 58vw;
+  margin-top: 5vh;
+  height: 2vw;
+  width: 20vw;
+  background: #6A2C70;
+  border: none;
+  /* box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25); */
+  border-radius: 5px;
+  margin-left: 10vw;
+  font-size: 1vw;
+  color: #fff;
+}
+
+.qrButton:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+/* ------------------ mobile phone design ------------------ */
+
+.uploadPhoto{
+  border-radius: 0;
+  background-color: #6A2C70;
+  color: #fff;
+  padding-top: 8px;
+}
+
+.uploadPhoto:hover{
+  cursor: pointer;
 }
 
 /* ------------------ mobile phone design ------------------ */
@@ -204,7 +302,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .subContainer {
-    height:15vh;
+    height: 15vh;
   }
 
   .subHeadingLabel {
@@ -220,8 +318,9 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .subContainerNew {
-    height: 15  vh;
-    margin-right: 36vw;
+    height: 15 vh;
+    margin-right: 28vw;
+    align-items: start;
   }
 
   .submitButton {
@@ -231,20 +330,23 @@ input[type=number]::-webkit-outer-spin-button {
 
   .selectElement {
     font-size: 13px;
-    height: 2vh;
+    height: 35px;
     width: 20vw;
   }
 
-  .inputField {
-    font-size: 13px;
-    width: 50vw;
-    height: 2.5vh;
+  .inputFieldNew {
+    height: 35px;
+    width: 160px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    height: 30px;
+    max-width: 300px;
+    text-indent: 10px;
   }
 
-  .inputFieldNew {
-    font-size: 13px;
-    width: 50vw;
-    height: 2.5vh;
+  .qrButton{
+    display: none;
   }
 
   .submitButton {
@@ -256,8 +358,14 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .applicationNo {
-    margin-right:36vw;
-
-
+    margin-right: 26vw;
+    align-items: start;
   }
+
+  .photoContainer {
+    height: 160px;
+    width: 160px;
+    margin-right: 38vw;
+  }
+
 }
