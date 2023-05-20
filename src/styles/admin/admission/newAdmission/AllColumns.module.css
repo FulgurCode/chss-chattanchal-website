@@ -35,7 +35,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5vw;
   height: 15vh;
   display: flex;
   justify-content: center;
@@ -55,7 +54,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  margin-right: 58vw;
+  margin-right: 48vw;
 }
 
 .aster {
@@ -63,7 +62,7 @@
   color: #ff0000;
 }
 
-.inputField {
+/* .inputField {
   height: 1.5vw;
   width: 20vw;
   background: #ffffff;
@@ -80,25 +79,17 @@
   border-radius: 20px;
   margin-left: 10vw;
   font-size: 1vw;
-}
+} */
 
 .inputFieldNew {
-  height: 1.5vw;
+  height: 35px;
   width: 20vw;
-  background: #ffffff;
-  border: 1px solid #a0a0a0;
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  margin-left: 10vw;
-  font-size: 1vw;
-  height: 1.5vw;
-  width: 20vw;
-  background: #ffffff;
-  border: 1px solid #a0a0a0;
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  margin-left: 10vw;
-  font-size: 1vw;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  height: 30px;
+  max-width: 300px;
+  text-indent: 10px;
 }
 
 .label {
@@ -142,14 +133,14 @@
 }
 
 .selectElement {
-  height: 4vh;
+  height: 35px;
   font-size: 15px;
 }
 
 .photoContainer {
   height: 20vw;
-  width: calc((4 * 20vw) / 3);
-  margin-right: 41vw;
+  width: calc((1 * 20vw) / 1);
+  margin-right: 48vw;
   border: 2px dotted #6A2C70;
 }
 
@@ -231,9 +222,8 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  align-items: end;
   height: 10vh;
-  margin-right: 11vw;
+  margin-right: 6vw;
 }
 
 /* ------------------ QR button ------------------ */
@@ -243,23 +233,26 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: 5vh;
   height: 2vw;
   width: 20vw;
-  background: #ffffff;
-  border: 1px solid #a0a0a0;
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
+  background: #6A2C70;
+  border: none;
+  /* box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25); */
+  border-radius: 5px;
   margin-left: 10vw;
   font-size: 1vw;
+  color: #fff;
 }
 
 .qrButton:hover {
-  opacity: 0.5;
+  opacity: 0.7;
   cursor: pointer;
 }
 /* ------------------ mobile phone design ------------------ */
 
 .uploadPhoto{
   border-radius: 0;
-  
+  background-color: #6A2C70;
+  color: #fff;
+  padding-top: 8px;
 }
 
 .uploadPhoto:hover{
@@ -327,7 +320,8 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .subContainerNew {
     height: 15 vh;
-    margin-right: 36vw;
+    margin-right: 28vw;
+    align-items: start;
   }
 
   .submitButton {
@@ -337,20 +331,19 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .selectElement {
     font-size: 13px;
-    height: 2vh;
+    height: 35px;
     width: 20vw;
   }
 
-  .inputField {
-    font-size: 13px;
-    width: 50vw;
-    height: 2.5vh;
-  }
-
   .inputFieldNew {
-    font-size: 13px;
-    width: 50vw;
-    height: 2.5vh;
+    height: 35px;
+    width: 160px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    height: 30px;
+    max-width: 300px;
+    text-indent: 10px;
   }
 
   .qrButton{
@@ -366,6 +359,14 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .applicationNo {
-    margin-right: 36vw;
+    margin-right: 26vw;
+    align-items: start;
   }
+
+  .photoContainer {
+    height: 160px;
+    width: 160px;
+    margin-right: 38vw;
+  }
+
 }

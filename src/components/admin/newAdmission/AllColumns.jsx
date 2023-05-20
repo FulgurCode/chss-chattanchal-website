@@ -8,6 +8,7 @@ import Field from "./Field";
 import SelectField from "./SelectField";
 import QRPopUp from "./QRPopUp";
 import WebCamPop from "./WebCamPopUp";
+import Webcam from "react-webcam";
 
 // ---------------- default function ----------------
 
@@ -63,6 +64,7 @@ function AllColumns() {
   const [global, setGlobal] = useState(false);
   const [webCamPhoto, setWebCamPhoto] = useState("");
   const inputRef = useRef(null)
+  const [filePhotoURL, setFilePhotoURL] = useState("")
 
 
   // ---------------- Handle Change Function for input feild
@@ -107,10 +109,11 @@ function AllColumns() {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setFilePhoto(reader.result);
+        setFilePhotoURL(reader.result);
       }
     };
     reader.readAsDataURL(e.target.files[0]);
+    setFilePhoto(e.target.files[0])
   }
 
   // ---------------- handle fn for final submit ----------------
@@ -160,6 +163,8 @@ function AllColumns() {
           if (global == true){
             formData.append("file", filePhoto);
           }else{
+            console.log("Hrishi begam baa")
+            console.log(webCamPhoto)
             formData.append("file", webCamPhoto);
           }
           
@@ -173,6 +178,9 @@ function AllColumns() {
 
           setPopup(!popup);
           setData(jsonTemp);
+          setFilePhotoURL("")
+          setGlobal(true)
+          inputRef.current.value = ""
         })
         .catch((err) => {
           if (err.response.status == 401) {
@@ -464,7 +472,7 @@ function AllColumns() {
           name="school"
           containerClass={styles.subContainerNew}
         />
-        <img style={{display : global ? "block" : "none"}} className={styles.photoContainer} src={filePhoto} ></img>
+        <img style={{display : global ? "block" : "none"}} className={styles.photoContainer} src={filePhotoURL} ></img>
         <canvas style={{display : global ? "none" : "block"}} className={styles.photoContainer} ref={photoRef}/> 
         
         {console.log(webCamPhoto)}

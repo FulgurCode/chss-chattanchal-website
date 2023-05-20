@@ -5,6 +5,11 @@ import Webcam from "react-webcam";
 export default function WebCamPop(props) {
   const webcamRef = useRef(null);
 
+  
+  const videoConstraints = {
+    aspectRatio: 1 / 1, // Set the desired aspect ratio
+  };
+
   useEffect(() => {
     const getUserCamera = async () => {
       try {
@@ -19,11 +24,24 @@ export default function WebCamPop(props) {
       }
     };
 
-
     getUserCamera();
   }, []);
 
-  const takePhoto = (e) => {
+  
+  async function base64ToFile(dataUrl, setState) {
+    let blob = await fetch(dataUrl).then((res) => res.blob());
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      const arrayBuffer = fileReader.result;
+      const file = new File([arrayBuffer], "file.jpg", {
+        type: blob.type,
+      });
+      setState(file);
+    };
+    fileReader.readAsArrayBuffer(blob);
+  }
+
+  const takePhoto = async (e) => {
     e.preventDefault();
 
     const width = 400;
@@ -42,12 +60,18 @@ export default function WebCamPop(props) {
       context.drawImage(video, 0, 0, photo.width, photo.height);
 
       // Convert canvas to data URL
-      const dataUrl = photo.toDataURL("image/jpg");
+      const dataUrl =  photo.toDataURL("image/jpg");
+      const photoFile = await base64ToFile(dataUrl, props.webCamPhoto) 
+      props.webCamPhoto(photoFile)
+      console.log("enakk paikknn")
+      console.log(photoFile)
+      console.log(props.current)
       props.webCamPhoto(dataUrl)
       console.log(dataUrl);
       console.log(props.inputRef)
       props.inputRef.current.value = ""
       props.show(false);
+      props.setGlobal(false)
     }
   };
 
@@ -58,7 +82,7 @@ export default function WebCamPop(props) {
   return (
     <div className={popUpStyles.overlay}>
       <div className={popUpStyles.popupBodyWebCam}>
-        <Webcam ref={webcamRef} className={popUpStyles.canvas} />
+        <Webcam ref={webcamRef} className={popUpStyles.canvas} videoConstraints={videoConstraints} />
         <button
           onClick={() => {
             props.show(!props.open);
