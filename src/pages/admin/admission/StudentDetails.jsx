@@ -1,12 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import studentDetailsImg from "../../../../public/imgs/AdmissionImages/item2.png";
 import styles from "../../../styles/admin/admission/studentsDetails/StudentDetails.module.css";
 import Axios from "../../../../stores/Axios";
 import Item from "../../../components/admin/searchDetails/Item";
 import Navbar from "../../../components/NavBar";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../../../stores/CheckloginAdmin";
+import Loader from "../../../components/common/Loader";
 
 export default function StudentDetails() {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [loading, setisLoading] = React.useState(false);
   const [error, setError] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
@@ -16,8 +20,14 @@ export default function StudentDetails() {
 
   const [data, setData] = React.useState([]);
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate)
+  },[]);
+
   function handleClick() {
-    // console.log(value, search);
+  
     Axios.get(`admin/get-students?search=${value}&&value=${search}`)
       .then((res) => {
         setData(res.data);
@@ -37,7 +47,7 @@ export default function StudentDetails() {
           setError(err.response.data);
         }
       });
-    // console.log(data);
+   
   }
 
   return (
@@ -97,6 +107,7 @@ export default function StudentDetails() {
           )}
         </main>
       </div>
+      <Loader open={loading} />
     </>
   );
 }

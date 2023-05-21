@@ -3,10 +3,11 @@ import Axios from "../../../../stores/Axios";
 import React from "react";
 import styles from "../../../styles/common/Profile.module.css";
 import Navbar from "../../../components/NavBar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
 import { forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   let componentRef = useRef();
@@ -19,6 +20,13 @@ export default function Profile() {
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
   );
 
+  navigate = useNavigate();
+  useEffect(() => {
+    useAuth(setisLoading, navigate);
+    getData();
+    getImage()
+  },[]);
+
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
       .then((res) => {
@@ -28,7 +36,7 @@ export default function Profile() {
         console.log(err.response.data);
       });
   }
-  useEffect(getData, []);
+
   function getImage() {
     Axios.get(`admin/get-student-photo?studentId=${id}`)
       .then((res) => {
@@ -38,7 +46,6 @@ export default function Profile() {
         console.log(err.response.data);
       });
   }
-  useEffect(getImage, []);
 
   return (
     <>

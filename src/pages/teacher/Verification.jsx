@@ -4,14 +4,12 @@ import styles from "../../styles/teacher/verification/Verification.module.css"
 import Axios from "../../../stores/Axios";
 import Popup from "../../components/common/Popup";
 import { useNavigate, createSearchParams } from "react-router-dom";
-// import Profile from "../../../components/admin/verification/Profile.jsx";
-// import Item from "../../../components/admin/verification/Item";
-
-// const primary = "#ccc";
-// const secondary = "#bbb";
+import { useAuth } from "../../../stores/CheckloginTeacher";
+import Loader from "../../components/common/Loader";
 
 export default function Verification() {
   // const [visibleProfile, setVisibleProfile] = useState(false);
+  const [loading, setisLoading] = useState(false);
 
   const [visible, setVisibile] = useState(false);
   // const [visibleProfile, setVisibileProfile] = useState(false);
@@ -128,8 +126,12 @@ const profilePage = (item)=>{
     return "";
   };
 
-  useEffect(loadData, []);
-  // console.log(data[1])
+
+  useEffect(() => {
+    useAuth(setisLoading, navigate);
+    loadData;
+  },[]);
+  
 
   return (
     <>
@@ -218,6 +220,7 @@ const profilePage = (item)=>{
           </div>
         </div>
       </div>
+      <Loader open={loading} />
     </>
   );
 }
