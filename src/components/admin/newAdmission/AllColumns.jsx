@@ -1,6 +1,6 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
 import React, { Fragment, useRef, useState } from "react";
-import img2 from "/imgs/image_2.svg";
+import img2 from "../../../assets/images/admission/admissionIcon.png";
 import Axios from "../../../../stores/Axios";
 import SuccessPopup from "./SuccessPopup.jsx";
 import NotFilledPopup from "./NotFilledPopup";
@@ -13,7 +13,6 @@ import Webcam from "react-webcam";
 // ---------------- default function ----------------
 
 function AllColumns(props) {
-
   // ---------------- States ----------------
 
   const jsonTemp = {
@@ -63,10 +62,9 @@ function AllColumns(props) {
   const photoRef = useRef("");
   const [global, setGlobal] = useState(false);
   const [webCamPhoto, setWebCamPhoto] = useState("");
-  const inputRef = useRef(null)
-  const [filePhotoURL, setFilePhotoURL] = useState("")
-  const [error, setError] = useState("")
-
+  const inputRef = useRef(null);
+  const [filePhotoURL, setFilePhotoURL] = useState("");
+  const [error, setError] = useState("");
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
@@ -106,7 +104,7 @@ function AllColumns(props) {
   // ---------------- onchange fn for photo upload ----------------
 
   function onChangePhoto(e) {
-    setGlobal(true);  
+    setGlobal(true);
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -114,7 +112,7 @@ function AllColumns(props) {
       }
     };
     reader.readAsDataURL(e.target.files[0]);
-    setFilePhoto(e.target.files[0])
+    setFilePhoto(e.target.files[0]);
   }
 
   // ---------------- handle fn for final submit ----------------
@@ -150,39 +148,37 @@ function AllColumns(props) {
     }
 
     if (!hasNullOrUndefinedValue) {
-
       Axios.post(`/${props.user}/new-admission`, data)
         .then((response) => {
           const formData = new FormData();
-          if (global == true){
+          if (global == true) {
             formData.append("file", filePhoto);
-          }else{
+          } else {
             formData.append("file", webCamPhoto);
           }
-          
 
           Axios.post(
             `/${props.user}/upload-student-photo?studentId=${response.data}`,
             formData
           ).catch((err) => {
-            if (err.response.data != undefined){
-              setError(err.response.data)
-            }else{
-              setError("Server connection error")
+            if (err.response.data != undefined) {
+              setError(err.response.data);
+            } else {
+              setError("Server connection error");
             }
           });
 
           setPopup(!popup);
           setData(jsonTemp);
-          setFilePhotoURL("")
-          setGlobal(true)
-          inputRef.current.value = ""
+          setFilePhotoURL("");
+          setGlobal(true);
+          inputRef.current.value = "";
         })
-        .catch((err) => { 
-          if (err.response){
-            setError(err.response.data)
-          }else{
-            setError("Server connection error")
+        .catch((err) => {
+          if (err.response) {
+            setError(err.response.data);
+          } else {
+            setError("Server connection error");
           }
         });
     }
@@ -391,7 +387,7 @@ function AllColumns(props) {
           option={[
             ["Malayalam", "Malayalam"],
             ["Arabic", "Arabic"],
-            ["Hindi", "Hindi"]
+            ["Hindi", "Hindi"],
           ]}
           containerClass={styles.subContainerNew}
         />
@@ -467,8 +463,16 @@ function AllColumns(props) {
           name="school"
           containerClass={styles.subContainerNew}
         />
-        <img style={{display : global ? "block" : "none"}} className={styles.photoContainer} src={filePhotoURL} ></img>
-        <canvas style={{display : global ? "none" : "block"}} className={styles.photoContainer} ref={photoRef}/> 
+        <img
+          style={{ display: global ? "block" : "none" }}
+          className={styles.photoContainer}
+          src={filePhotoURL}
+        ></img>
+        <canvas
+          style={{ display: global ? "none" : "block" }}
+          className={styles.photoContainer}
+          ref={photoRef}
+        />
         <Field
           text="Upload photo"
           type="file"
@@ -478,13 +482,21 @@ function AllColumns(props) {
           containerClass={styles.subContainerNew}
           reference={inputRef}
         />
-        <button onClick={() => setQR(true)} className={`${styles.qrButton}`}>Take photo on Phone</button>
-        <button onClick={() => setWebCam(true)} className={`${styles.qrButton}`}>Take a photo on web cam</button>
-        <label style={{color: "red", fontSize : "15px", marginTop: "50px"}} >{error}</label>
+        <button onClick={() => setQR(true)} className={`${styles.qrButton}`}>
+          Take photo on Phone
+        </button>
+        <button
+          onClick={() => setWebCam(true)}
+          className={`${styles.qrButton}`}
+        >
+          Take a photo on web cam
+        </button>
+        <label style={{ color: "red", fontSize: "15px", marginTop: "50px" }}>
+          {error}
+        </label>
         <button onClick={handleSubmit} className={`${styles.submitButton}`}>
           Submit
         </button>
-        
       </div>
 
       {/* ---------------- Popups ----------------  */}
@@ -495,11 +507,7 @@ function AllColumns(props) {
         show={setNotFilledError}
         showVar={notFilledError}
       />
-      <QRPopUp
-        open={QR}
-        show={setQR}
-        text="I am inevitable"
-      />
+      <QRPopUp open={QR} show={setQR} text="I am inevitable" />
       <WebCamPop
         open={webCam}
         show={setWebCam}

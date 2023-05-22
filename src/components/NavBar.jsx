@@ -1,5 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import menuIcon from "../assets/images/navbar/menuButtonIcon.svg";
+import bellIcon from "../assets/images/navbar/bellIcon.svg";
+import msgIcon from "../assets/images/navbar/msgIcon.svg";
+import userIcon from "../assets/images/navbar/userIcon.svg";
 
 import styles from "../styles/NavBar.module.css";
 
@@ -9,7 +13,7 @@ export default function Navbar() {
   return (
     <header className={styles.navbar}>
       <div className={styles.home} onClick={() => navigate("/admin")}>
-        <img className={styles.homeImg} src="/imgs/menu_button.svg" />
+        <img className={styles.homeImg} src={menuIcon} />
         <label className={styles.homeText}>Home</label>
       </div>
 
@@ -18,9 +22,9 @@ export default function Navbar() {
       </div>
 
       <div className={styles.icons}>
-        <img className={styles.iconImg} src="/imgs/msg_icon.svg" />
-        <img className={styles.iconImg} src="/imgs/bell_icon.svg" />
-        <img className={styles.iconImg} src="/imgs/user.png" />
+        <img className={styles.iconImg} src={msgIcon} />
+        <img className={styles.iconImg} src={bellIcon} />
+        <img className={styles.iconImg} src={userIcon} />
       </div>
     </header>
   );

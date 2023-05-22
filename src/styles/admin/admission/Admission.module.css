@@ -21,10 +21,11 @@
 }
 
 .main .container span {
+  position: relative;
+  margin-left: 0px;
   color: grey;
   flex: 1;
   max-height: 20px;
-
   width: 100%;
   text-align: left;
 }

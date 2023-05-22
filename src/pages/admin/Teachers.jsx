@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/admin/teachers/Teachers.module.css";
 import NavBar from "../../components/NavBar";
 import React from "react";
-import admission from "/imgs/adminImages/admission.png";
-import attendence from "/imgs/adminImages/attendence.png";
-import downIcon from "/imgs/importStudents/download.png";
-import Axios from "../../../stores/Axios";
+
+import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png"
+import importTeachersIcon from "../../assets/images/admission/importIcon.png"
+import dutyAllocationIcon from "../../assets/images/admin/teachers/dutyAllocationIcon.png"
+
+
 import Loader from "../../components/common/Loader";
 import { useAuth } from "../../../stores/CheckloginAdmin";
 
@@ -34,7 +36,7 @@ export default function Admin() {
               }}
             >
               <span>
-                <img src={admission} width="150px" height="150px" />
+                <img src={newAdmissionIcon} width="80px" height="80px" />
               </span>
               <h1>Add Teacher</h1>
             </div>
@@ -45,7 +47,7 @@ export default function Admin() {
               }}
             >
               <span>
-                <img src={attendence} width="120px" height="120px" />
+                <img src={dutyAllocationIcon} width="80px" height="80px" />
               </span>
               <h1>Duty Allocation</h1>
             </div>
@@ -57,9 +59,9 @@ export default function Admin() {
             >
               <span>
                 <img
-                  src={downIcon}
-                  width="100px"
-                  height="90px"
+                  src={importTeachersIcon}
+                  width="80px"
+                  height="80px"
                   style={{ marginTop: 10 }}
                 />
               </span>

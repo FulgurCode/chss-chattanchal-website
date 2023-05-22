@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import studentDetailsImg from "../../../../public/imgs/AdmissionImages/item2.png";
+import studentDetailsImg from "../../../assets/images/admission/studentDetailsIcon.png";
 import styles from "../../../styles/admin/admission/studentsDetails/StudentDetails.module.css";
 import Axios from "../../../../stores/Axios";
 import Item from "../../../components/admin/searchDetails/Item";
@@ -99,7 +99,7 @@ export default function StudentDetails() {
                 <span>Class</span>
               </div>
               {data.map((item) => {
-                return <Item data={item} key={item._id} user="teacher"/>;
+                return <Item data={item} key={item._id} user="teacher" />;
               })}
             </div>
           )}

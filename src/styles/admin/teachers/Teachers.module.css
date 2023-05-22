@@ -21,10 +21,11 @@
 }
 
 .main .container span {
+  position: relative;
+  margin-left: 0px;
   color: grey;
   flex: 1;
   max-height: 20px;
-
   width: 100%;
   text-align: left;
 }
@@ -127,7 +128,7 @@
   }
   .main .container .items .item h1 {
     font-size: 15px;
-    transform: translate(0, -31px);
+    transform: translate(0, -10px);
   }
 }
 
