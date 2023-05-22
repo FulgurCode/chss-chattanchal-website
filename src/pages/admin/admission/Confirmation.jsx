@@ -6,14 +6,14 @@ import Axios from "../../../../stores/Axios";
 import Popup from "../../../components/common/Popup";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
 import Loader from "../../../components/common/Loader";
+import confirmIcon from "../../../assets/images/admission/confirmIcon.png";
 
 export default function Confirmation() {
   const [loading, setisLoading] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [visible, setVisibile] = useState(false);
-  // const [visibleProfile, setVisibileProfile] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
 
@@ -38,8 +38,8 @@ export default function Confirmation() {
     setError("");
     Axios.patch(`admin/confirm-student?studentId=${id}`)
       .then((res) => {
-        setVisibile(true)
-        console.log(visible)
+        setVisibile(true);
+        console.log(visible);
         loadData();
       })
       .catch((err) => {
@@ -119,38 +119,37 @@ export default function Confirmation() {
     return "";
   };
 
-
   useEffect(() => {
     useAuth(setisLoading, navigate);
     loadData();
   }, []);
 
-  const profilePage = (item)=>{
+  const profilePage = (item) => {
     navigate({
-    pathname: "/admin/admission/confirmation/student-details",
-    search: `?${createSearchParams({ id: item._id })}`,
-  });}
+      pathname: "/admin/admission/confirmation/student-details",
+      search: `?${createSearchParams({ id: item._id })}`,
+    });
+  };
 
   return (
     <>
       <NavBar />
-      <Popup visible={visible} onChange={setVisibile} text={"Admission Confirmed for Student"}/>
+      <Popup
+        visible={visible}
+        onChange={setVisibile}
+        text={"Admission Confirmed for Student"}
+      />
       <div className={styles.main}>
         <div className={styles.header}>
           <span>
-            <img
-              src="/imgs/AdmissionImages/confirmIcon.png"
-              style={styles.newAdmissionImg}
-            />
+            <img src={confirmIcon} style={styles.newAdmissionImg} />
             <h1>Confirmation</h1>
           </span>
           <hr />
           Home &gt; Admission &gt; <code>Confirmation</code>
         </div>
-        <div className={styles.table} >
-
-
-          <div >
+        <div className={styles.table}>
+          <div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <input
                 type="text"
@@ -159,7 +158,14 @@ export default function Confirmation() {
                 onChange={handleSearch}
                 className={styles.searchBox}
               />
-              <code style={{ textAlign: "center", color: "red", left: 0 , minWidth: 0}}>
+              <code
+                style={{
+                  textAlign: "center",
+                  color: "red",
+                  left: 0,
+                  minWidth: 0,
+                }}
+              >
                 {error}
               </code>
             </div>
@@ -192,10 +198,12 @@ export default function Confirmation() {
                   ) : (
                     sortedData.map((item) => (
                       <tr key={item._id}>
-                         <td onClick={()=>profilePage(item)}>{item.name}</td>
-                        <td onClick={()=>profilePage(item)}>{item.class}</td>
-                        <td onClick={()=>profilePage(item)}>{item.admissionNo}</td>
-                        <td onClick={()=>profilePage(item)}>{item.dob}</td>
+                        <td onClick={() => profilePage(item)}>{item.name}</td>
+                        <td onClick={() => profilePage(item)}>{item.class}</td>
+                        <td onClick={() => profilePage(item)}>
+                          {item.admissionNo}
+                        </td>
+                        <td onClick={() => profilePage(item)}>{item.dob}</td>
                         <td>
                           <button
                             style={{ marginLeft: "30%" }}

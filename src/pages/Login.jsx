@@ -1,6 +1,6 @@
-import schoolImg from "/imgs/school.png";
-import svgImgDesktop from "/imgs/loginImages/footerDesktop.svg";
-import svgImgMobile from "/imgs/loginImages/footerMobile.svg";
+import schoolImg from "../assets/images/login/school.png";
+import svgImgDesktop from "../assets/images/login/footerDesktop.svg";
+import svgImgMobile from "../assets/images/login/footerMobile.svg";
 import styles from "../styles/login/Login.module.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";

@@ -3,28 +3,24 @@ import Navbar from "../../../components/NavBar";
 import styles from "../../../styles/admin/teachers/importTeachers/ImportTeachers.module.css";
 import UploadTeacher from "../../../components/admin/importTeachers/UploadTeacher.jsx";
 import { useNavigate } from "react-router-dom";
-import { useEffect,useState } from "react";
-import Axios from "../../../../stores/Axios";
+import { useEffect, useState } from "react";
 import Loader from "../../../components/common/Loader";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
+import importIcon from "../../../assets/images/admission/importIcon.png";
 
 export default function ImportTeachers() {
-
-  const navigate = useNavigate()
-  const [loading, setisLoading] = useState(false)
+  const navigate = useNavigate();
+  const [loading, setisLoading] = useState(false);
 
   useEffect(() => {
-    useAuth(setisLoading, navigate)
-  },[]);
+    useAuth(setisLoading, navigate);
+  }, []);
 
   return (
     <>
       <Navbar />
       <div className={styles.hero}>
-        <img
-          src="/imgs/importStudents/download.png"
-          className={styles.downIcon}
-        />
+        <img src={importIcon} className={styles.downIcon} />
         <h2 className={styles.title}>Import Teachers</h2>
         <div className={styles.side}></div>
       </div>

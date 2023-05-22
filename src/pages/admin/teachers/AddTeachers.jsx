@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import NavBar from "../../../components/NavBar";
 import styles from "../../../styles/admin/teachers/addTeachers/AddTeachers.module.css";
 import Axios from "../../../../stores/Axios";
@@ -8,16 +8,16 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/common/Loader";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
 
+import addTeacherIcon from "../../../assets/images/admission/admissionIcon.png";
+
 export default function AddTeachers() {
   const navigate = useNavigate();
 
-  const [loading, setisLoading] = useState(false)
+  const [loading, setisLoading] = useState(false);
 
   useEffect(() => {
     useAuth(setisLoading, navigate);
-    
-  },[]);
-
+  }, []);
 
   const [details, setDetails] = useState({
     name: "",
@@ -94,7 +94,7 @@ export default function AddTeachers() {
       <div className={styles.main}>
         <div className={styles.header}>
           <span>
-            <img src="/imgs/importStudents/download.png" />
+            <img src={addTeacherIcon} />
             <h2>Add Teacher</h2>
           </span>
           <hr />

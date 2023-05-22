@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/common/dashboard.module.css";
 import NavBar from "../../components/NavBar";
 import React from "react";
-import admission from "/imgs/adminImages/admission.png";
-import attendence from "/imgs/adminImages/attendence.png";
 import { useAuth } from "../../../stores/CheckloginTeacher";
 import Loader from "../../components/common/Loader";
+
+import admissionIcon from "../../assets/images/admission/admissionIcon.png"
+
 
 export default function Teacher() {
   const navigate = useNavigate();
@@ -32,21 +33,11 @@ export default function Teacher() {
               }}
             >
               <span>
-                <img src={admission} width="150px" height="150px" />
+                <img src={admissionIcon} width="80px" height="80px" />
               </span>
               <h1>Admission</h1>
             </div>
-            <div
-              className={styles.item}
-              onClick={() => {
-                navigate("/admin/attendence");
-              }}
-            >
-              <span>
-                <img src={attendence} width="120px" height="120px" />
-              </span>
-              <h1>Attendence</h1>
-            </div>
+            
           </div>
         </div>
       </div>
