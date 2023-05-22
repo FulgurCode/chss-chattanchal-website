@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import Axios from "../../stores/Axios";
 import React from "react";
-import styles from "../styles/common/Profile.module.css"
+import styles from "../styles/common/Profile.module.css";
 import Navbar from "./NavBar";
 import { useEffect, useState } from "react";
 import ReactToPrint from "react-to-print";
@@ -13,9 +13,10 @@ import Loader from "./common/Loader";
 
 export default function Profile() {
   let componentRef = useRef();
-  const [loading, setisLoading] = useState(false);
-  const navigate = useNavigate()
+  
+  const [loading, setisLoading] = useState(false)
 
+  
 
   const [data] = useSearchParams();
   const id = data.getAll("id");
@@ -25,6 +26,7 @@ export default function Profile() {
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
   );
 
+  const navigate = useNavigate();
   useEffect(() => {
     useAuth(setisLoading, navigate);
     getData();
@@ -32,7 +34,7 @@ export default function Profile() {
   },[]);
 
   function getData() {
-    Axios.get(`admin/get-student?studentId=${id}`)
+    Axios.get(`teacher/get-student?studentId=${id}`)
       .then((res) => {
         setDetails(res.data);
       })
@@ -42,7 +44,7 @@ export default function Profile() {
   }
 
   function getImage() {
-    Axios.get(`admin/get-student-photo?studentId=${id}`)
+    Axios.get(`teacher/get-student-photo?studentId=${id}`)
       .then((res) => {
         setImg("data:image/jpeg;base64," + res.data);
       })
@@ -71,6 +73,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <Loader open={loading}  />
     </>
   );
 }

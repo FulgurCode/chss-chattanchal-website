@@ -11,7 +11,7 @@ export default function Item(props) {
       <div
         onClick={() => {
           navigate({
-            pathname: "/admin/admission/profile",
+            pathname: `/${props.user}/admission/profile`,
             search: `?${createSearchParams({ id: props.data._id })}`,
           });
         }}

@@ -11,7 +11,7 @@ import Admission from "./pages/admin/Admission";
 import NewAdmission from "./pages/admin/admission/NewAdmission";
 
 import StudentDetails from "./pages/admin/admission/StudentDetails";
-import Verification from "./pages/teacher/Verification";
+import Verification from "./pages/teacher/admission/Verification";
 import AdminStudentProfile from "./components/AdminStudentProfile";
 import TeacherStudentProfile from "./components/TeacherStudentProfile";
 import Confirmation from "./pages/admin/admission/Confirmation";
@@ -24,7 +24,13 @@ import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
 import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
 
+// Pages for Teacher User
 import Teacher from "./pages/teacher/Teacher";
+import TeacherAdmission from "./pages/teacher/Admission";
+import TeacherNewAdmission from "./pages/teacher/admission/NewAdmission";
+import TeacherStudentDetails from "./pages/teacher/admission/StudentDetails";
+import TeacherImportStudents from "./pages/teacher/admission/ImportStudents";
+//
 
 export default function App() {
   return (
@@ -80,31 +86,35 @@ export default function App() {
 
         <Route path="/teacher">
           <Route index element={<Teacher />} />
-
-          <Route path="/teacher/verification">
-            <Route index element={<Verification />} />
-            <Route
-              path="/teacher/verification/student-details"
-              element={<TeacherStudentProfile />}
-            />
-          </Route>
-
           <Route path="/teacher/signup" element={<SignUp />}></Route>
           <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
 
           <Route path="/teacher/admission">
-            <Route index element={<Admission />} />
+            <Route index element={<TeacherAdmission />} />
             <Route
               path="/teacher/admission/new-admission"
-              element={<NewAdmission />}
+              element={<TeacherNewAdmission />}
             ></Route>
             <Route
               path="/teacher/admission/import-students"
-              element={<ImportStudents />}
+              element={<TeacherImportStudents />}
+            ></Route>
+            <Route index element={<Verification />} />
+            <Route
+              path="/teacher/admission/verification/student-details"
+              element={<TeacherStudentProfile />}
             ></Route>
             <Route
               path="/teacher/admission/student-details"
-              element={<StudentDetails />}
+              element={<TeacherStudentDetails />}
+            ></Route>
+            <Route
+              path="/teacher/admission/profile"
+              element={<TeacherStudentProfile />}
+            ></Route>
+            <Route
+              path="/teacher/admission/verification"
+              element={<Verification />}
             ></Route>
           </Route>
         </Route>

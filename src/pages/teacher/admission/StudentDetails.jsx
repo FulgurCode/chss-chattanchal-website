@@ -6,7 +6,7 @@ import Axios from "../../../../stores/Axios";
 import Item from "../../../components/admin/searchDetails/Item";
 import Navbar from "../../../components/NavBar";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../stores/CheckloginAdmin";
+import { useAuth } from "../../../../stores/CheckloginTeacher";
 import Loader from "../../../components/common/Loader";
 
 export default function StudentDetails() {
@@ -23,12 +23,11 @@ export default function StudentDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    useAuth(setisLoading, navigate)
-  },[]);
+    useAuth(setisLoading, navigate);
+  }, []);
 
   function handleClick() {
-  
-    Axios.get(`admin/get-students?search=${value}&&value=${search}`)
+    Axios.get(`/teacher/get-students?search=${value}&&value=${search}`)
       .then((res) => {
         setData(res.data);
         setError("");
@@ -47,7 +46,6 @@ export default function StudentDetails() {
           setError(err.response.data);
         }
       });
-   
   }
 
   return (
@@ -101,7 +99,7 @@ export default function StudentDetails() {
                 <span>Class</span>
               </div>
               {data.map((item) => {
-                return <Item data={item} key={item._id} user="admin"/>;
+                return <Item data={item} key={item._id} user="teacher"/>;
               })}
             </div>
           )}

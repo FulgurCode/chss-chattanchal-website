@@ -8,12 +8,16 @@ import ReactToPrint from "react-to-print";
 import { useRef } from "react";
 import { forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../stores/CheckloginAdmin";
+import Loader from "../../../components/common/Loader";
 
 export default function Profile() {
   let componentRef = useRef();
 
   const [data] = useSearchParams();
   const id = data.getAll("id");
+  const [loading, setisLoading] = useState(false)
+
 
   const [details, setDetails] = React.useState({});
   const [img, setImg] = React.useState(
@@ -67,6 +71,8 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      const [loading, setisLoading] = useState(false)
+
     </>
   );
 }

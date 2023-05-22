@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../components/NavBar";
-import styles from "../../styles/teacher/verification/Verification.module.css"
-import Axios from "../../../stores/Axios";
-import Popup from "../../components/common/Popup";
+import NavBar from "../../../components/NavBar";
+import styles from "../../../styles/teacher/verification/Verification.module.css";
+import Axios from "../../../../stores/Axios";
+import Popup from "../../../components/common/Popup";
 import { useNavigate, createSearchParams } from "react-router-dom";
-import { useAuth } from "../../../stores/CheckloginTeacher";
-import Loader from "../../components/common/Loader";
-
+import { useAuth } from "../../../../stores/CheckloginTeacher";
+import Loader from "../../../components/common/Loader";
 export default function Verification() {
   // const [visibleProfile, setVisibleProfile] = useState(false);
   const [loading, setisLoading] = useState(false);
@@ -20,13 +19,14 @@ export default function Verification() {
   const [sortColumn, setSortColumn] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-const profilePage = (item)=>{
+  const profilePage = (item) => {
     navigate({
-    pathname: "/teacher/verification/student-details",
-    search: `?${createSearchParams({ id: item._id })}`,
-  });}
+      pathname: "/teacher/admission/verification/student-details",
+      search: `?${createSearchParams({ id: item._id })}`,
+    });
+  };
 
   function loadData() {
     setError("");
@@ -45,8 +45,8 @@ const profilePage = (item)=>{
     setError("");
     Axios.patch(`teacher/verify-student?studentId=${id}`)
       .then((res) => {
-        setVisibile(true)
-        console.log(visible)
+        setVisibile(true);
+        console.log(visible);
         loadData();
       })
       .catch((err) => {
@@ -126,20 +126,20 @@ const profilePage = (item)=>{
     return "";
   };
 
-
   useEffect(() => {
     useAuth(setisLoading, navigate);
-    loadData;
-  },[]);
-  
+    loadData();
+  }, []);
 
   return (
     <>
       <NavBar />
-      <Popup visible={visible} onChange={setVisibile} text={"Student succsessfully verified"}/>
-      {/* <Profile visible={visibleProfile} onChange={setVisibleProfile} details={{name: "shreyas"}}/> */}
-      {/* <Popup visible={visible} onChange={setVisibile} text={"Student succsessfully verified"}/> */}
-      <div className={styles.main}>
+      <Popup
+        visible={visible}
+        onChange={setVisibile}
+        text={"Student succsessfully verified"}
+      />
+         <div className={styles.main}>
         <div className={styles.header}>
           <span>
             <img
@@ -151,10 +151,8 @@ const profilePage = (item)=>{
           <hr />
           Home &gt; Admission &gt; <code>Verification</code>
         </div>
-        <div className={styles.table} >
-
-
-          <div >
+        <div className={styles.table}>
+          <div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <input
                 type="text"
@@ -163,7 +161,14 @@ const profilePage = (item)=>{
                 onChange={handleSearch}
                 className={styles.searchBox}
               />
-              <code style={{ textAlign: "center", color: "red", left: 0 , minWidth: 0}}>
+              <code
+                style={{
+                  textAlign: "center",
+                  color: "red",
+                  left: 0,
+                  minWidth: 0,
+                }}
+              >
                 {error}
               </code>
             </div>
@@ -195,12 +200,13 @@ const profilePage = (item)=>{
                     </tr>
                   ) : (
                     sortedData.map((item) => (
-      
                       <tr key={item._id}>
-                        <td onClick={()=>profilePage(item)}>{item.name}</td>
-                        <td onClick={()=>profilePage(item)}>{item.class}</td>
-                        <td onClick={()=>profilePage(item)}>{item.admissionNo}</td>
-                        <td onClick={()=>profilePage(item)}>{item.dob}</td>
+                        <td onClick={() => profilePage(item)}>{item.name}</td>
+                        <td onClick={() => profilePage(item)}>{item.class}</td>
+                        <td onClick={() => profilePage(item)}>
+                          {item.admissionNo}
+                        </td>
+                        <td onClick={() => profilePage(item)}>{item.dob}</td>
                         <td>
                           <button
                             style={{ marginLeft: "30%" }}

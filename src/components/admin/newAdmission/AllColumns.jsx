@@ -12,7 +12,7 @@ import Webcam from "react-webcam";
 
 // ---------------- default function ----------------
 
-function AllColumns() {
+function AllColumns(props) {
 
   // ---------------- States ----------------
 
@@ -151,7 +151,7 @@ function AllColumns() {
 
     if (!hasNullOrUndefinedValue) {
 
-      Axios.post("admin/new-admission", data)
+      Axios.post(`/${props.user}/new-admission`, data)
         .then((response) => {
           const formData = new FormData();
           if (global == true){
@@ -162,7 +162,7 @@ function AllColumns() {
           
 
           Axios.post(
-            `admin/upload-student-photo?studentId=${response.data}`,
+            `/${props.user}/upload-student-photo?studentId=${response.data}`,
             formData
           ).catch((err) => {
             if (err.response.data != undefined){
