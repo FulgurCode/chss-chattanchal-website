@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../../../styles/admin/admission/importStudents/Importstudents.module.css";
 import Axios from "../../../../stores/Axios";
 
-function Upload() {
+function Upload(props) {
   // for error
   const [msg, setMsg] = useState("");
   const [instText, setInstText] = useState("Click to change file");
@@ -19,7 +19,7 @@ function Upload() {
     const formData = new FormData();
     formData.append("file", file);
 
-    Axios.post("/admin/import-students", formData)
+    Axios.post(`/${props.user}/import-students`, formData)
       .then((response) => {
         console.log(response.data);
         setMsg(response.data);

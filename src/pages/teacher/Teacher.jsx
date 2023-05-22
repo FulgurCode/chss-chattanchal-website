@@ -12,10 +12,9 @@ export default function Teacher() {
   const navigate = useNavigate();
   const [loading, setisLoading] = useState(false);
 
-
   useEffect(() => {
-    useAuth(setisLoading, navigate)
-  });
+    useAuth(setisLoading, navigate);
+  }, []);
 
   return (
     <>
@@ -23,7 +22,7 @@ export default function Teacher() {
       <div className={styles.main}>
         <div className={styles.container}>
           <span>
-            Home &gt; <span>Admin</span>
+            Home &gt; <span>Teacher</span>
           </span>
           <div className={styles.items}>
             <div
@@ -48,7 +47,6 @@ export default function Teacher() {
               </span>
               <h1>Attendence</h1>
             </div>
-            
           </div>
         </div>
       </div>

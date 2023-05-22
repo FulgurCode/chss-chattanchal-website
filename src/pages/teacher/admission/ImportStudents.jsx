@@ -4,17 +4,16 @@ import styles from "../../../styles/admin/admission/importStudents/Importstudent
 import Upload from "../../../components/admin/importStudents/Upload";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import Axios from "../../../../stores/Axios";
 import Loader from "../../../components/common/Loader";
-import { useAuth } from "../../../../stores/CheckloginAdmin";
+import { useAuth } from "../../../../stores/CheckloginTeacher";
 
 export default function ImportStudents() {
   const navigate = useNavigate();
   const [loading, setisLoading] = React.useState(false);
 
   useEffect(() => {
-    useAuth(setisLoading, navigate)
-  },[]);
+    useAuth(setisLoading, navigate);
+  }, []);
 
   return (
     <>
@@ -27,8 +26,8 @@ export default function ImportStudents() {
         <h2 className={styles.title}>Import Students</h2>
         <div className={styles.side}></div>
       </div>
-      <Upload user="admin"/>
-      <Loader open={loading}  />
+      <Upload user="teacher"/>
+      <Loader open={loading} />
     </>
   );
 }
