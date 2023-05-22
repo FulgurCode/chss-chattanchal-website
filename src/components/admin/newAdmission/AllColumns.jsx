@@ -35,8 +35,7 @@ function AllColumns() {
     category: "",
     category: "",
     linguisticMinority: "",
-    obc: true, // this should be boolean value
-    obc: true, // this should be boolean value
+    obc: "true", // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
     course: "PCMB",
@@ -127,8 +126,8 @@ function AllColumns() {
     // type casting the variable specified
     data.tcDetailsOnAdmission.number = Number(data.tcDetailsOnAdmission.number);
     data.phone = Number(data.phone);
+    data.class = Number(data.class);  
     data.obc = Boolean(data.obc);
-    data.class = Number(data.class);
     data.qualifyingExamDetails.registerNo = Number(
       data.qualifyingExamDetails.registerNo
     );
@@ -324,8 +323,8 @@ function AllColumns() {
           value={data.obc}
           name="obc"
           option={[
-            ["yes", true],
-            ["no", false],
+            ["yes", "true"],
+            ["no", ""],
           ]}
           containerClass={styles.subContainerNew}
         />
