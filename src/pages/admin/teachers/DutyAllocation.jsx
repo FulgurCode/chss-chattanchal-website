@@ -7,17 +7,18 @@ import { useNavigate } from "react-router-dom";
 import DetailsTable from "../../../components/admin/dutyAllocation/DetailsTable";
 import DeletePopup from "../../../components/admin/dutyAllocation/DeletePopup";
 import Axios from "../../../../stores/Axios";
-import  Loader from "../../../components/common/Loader";
+import Loader from "../../../components/common/Loader";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
 
+import dutyAllocationIcon from "../../../assets/images/admin/teachers/dutyAllocationIcon.png";
+
 export default function DutyAllocation() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [data, setData] = useState([]);
 
   const [viewOn, setViewOn] = useState(false);
-  
-  
+
   // submit data
 
   function handleClick(optState, setSubmitMsg, submitSuccess) {
@@ -59,29 +60,12 @@ export default function DutyAllocation() {
       });
   }
 
-  
-  // useEffect(() => {
-  //   Axios.get("/admin/checklogin")
-  //     .then((response) => {
-  //       if (response.data == false) {
-  //         navigate("/login");
-  //       }
-  //       else {
-  //         fetchTableData();
-  //       }
-  //     })
-  //     .catch(() => {
-  //       history.back();
-  //     });
-  // });
-
-  const [loading, setisLoading] = useState(false)
+  const [loading, setisLoading] = useState(false);
 
   useEffect(() => {
     useAuth(setisLoading, navigate);
     fetchTableData();
-  },[]);
-
+  }, []);
 
   function handleButtonClick(id) {
     Axios.delete(`/admin/delete-duty?duty=${id}`)
@@ -100,7 +84,7 @@ export default function DutyAllocation() {
       <div className={styles.main}>
         <div className={styles.hero}>
           <div className={styles.title}>
-            <img src="/imgs/dutyAllocation/duty-logo.png" />
+            <img src={dutyAllocationIcon} style={{ width: 40 }} />
             <label>Duty Allocation</label>
           </div>
           <div className={styles.underline}></div>

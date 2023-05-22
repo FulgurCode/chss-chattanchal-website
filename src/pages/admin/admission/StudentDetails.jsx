@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import studentDetailsImg from "../../../../public/imgs/AdmissionImages/item2.png";
+import studentDetailsImg from "../../../assets/images/admission/studentDetailsIcon.png";
 import styles from "../../../styles/admin/admission/studentsDetails/StudentDetails.module.css";
 import Axios from "../../../../stores/Axios";
 import Item from "../../../components/admin/searchDetails/Item";
@@ -23,11 +23,10 @@ export default function StudentDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    useAuth(setisLoading, navigate)
-  },[]);
+    useAuth(setisLoading, navigate);
+  }, []);
 
   function handleClick() {
-  
     Axios.get(`admin/get-students?search=${value}&&value=${search}`)
       .then((res) => {
         setData(res.data);
@@ -47,7 +46,6 @@ export default function StudentDetails() {
           setError(err.response.data);
         }
       });
-   
   }
 
   return (
@@ -101,7 +99,7 @@ export default function StudentDetails() {
                 <span>Class</span>
               </div>
               {data.map((item) => {
-                return <Item data={item} key={item._id} user="admin"/>;
+                return <Item data={item} key={item._id} user="admin" />;
               })}
             </div>
           )}

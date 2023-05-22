@@ -1,11 +1,13 @@
 import NavBar from "../../components/NavBar";
 import styles from "../../styles/admin/admission/Admission.module.css";
-import admission from "/imgs/adminImages/admission.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Axios from "../../../stores/Axios";
 import Loader from "../../components/common/Loader";
 import { useAuth } from "../../../stores/CheckloginAdmin";
+import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png"
+import studentDetailsIcon from "../../assets/images/admission/studentDetailsIcon.png"
+import importStudentsIcon from "../../assets/images/admission/importIcon.png"
+import confirmationIcon from "../../assets/images/admission/confirmIcon.png"
 
 export default function Admission() {
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ export default function Admission() {
               }}
             >
               <span>
-                <img src={admission} width="150px" height="150px" />
+                <img src={newAdmissionIcon} width="80px" height="80px" />
               </span>
               <h1>New Admission</h1>
             </div>
@@ -43,7 +45,7 @@ export default function Admission() {
             >
               <span>
                 <img
-                  src="/imgs/AdmissionImages/item2.png"
+                  src={studentDetailsIcon}
                   width="80px"
                   height="80px"
                 />
@@ -58,7 +60,7 @@ export default function Admission() {
             >
               <span>
                 <img
-                  src="/imgs/AdmissionImages/item3.png"
+                  src={importStudentsIcon}
                   width="80px"
                   height="80px"
                 />
@@ -74,7 +76,7 @@ export default function Admission() {
             >
               <span>
                 <img
-                  src="/imgs/AdmissionImages/confirmIcon.png"
+                  src={confirmationIcon}
                   width="80px"
                   height="80px"
                 />

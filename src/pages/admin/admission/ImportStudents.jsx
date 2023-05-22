@@ -4,31 +4,28 @@ import styles from "../../../styles/admin/admission/importStudents/Importstudent
 import Upload from "../../../components/admin/importStudents/Upload";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import Axios from "../../../../stores/Axios";
 import Loader from "../../../components/common/Loader";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
+import importIcon from "../../../assets/images/admission/importIcon.png";
 
 export default function ImportStudents() {
   const navigate = useNavigate();
   const [loading, setisLoading] = React.useState(false);
 
   useEffect(() => {
-    useAuth(setisLoading, navigate)
-  },[]);
+    useAuth(setisLoading, navigate);
+  }, []);
 
   return (
     <>
       <NavBar />
       <div className={styles.hero}>
-        <img
-          src="/imgs/importStudents/download.png"
-          className={styles.downIcon}
-        />
+        <img src={importIcon} className={styles.downIcon} />
         <h2 className={styles.title}>Import Students</h2>
         <div className={styles.side}></div>
       </div>
-      <Upload user="admin"/>
-      <Loader open={loading}  />
+      <Upload user="admin" />
+      <Loader open={loading} />
     </>
   );
 }

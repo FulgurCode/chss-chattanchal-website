@@ -6,6 +6,8 @@ import Popup from "../../../components/common/Popup";
 import { useNavigate, createSearchParams } from "react-router-dom";
 import { useAuth } from "../../../../stores/CheckloginTeacher";
 import Loader from "../../../components/common/Loader";
+import verificationIcon from "../../../assets/images/admission/confirmIcon.png"
+
 export default function Verification() {
   // const [visibleProfile, setVisibleProfile] = useState(false);
   const [loading, setisLoading] = useState(false);
@@ -143,7 +145,7 @@ export default function Verification() {
         <div className={styles.header}>
           <span>
             <img
-              src="/imgs/AdmissionImages/item2.png"
+              src={verificationIcon}
               style={styles.newAdmissionImg}
             />
             <h1>Verification</h1>
