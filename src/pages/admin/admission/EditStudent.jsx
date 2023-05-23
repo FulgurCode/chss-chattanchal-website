@@ -204,7 +204,7 @@ function editStudents() {
 
   return (
     <div className={`${style.globalParent}`}>
-      <NavBar />
+      <NavBar user="admin" />
 
       {/* ---------------- top infos ----------------   */}
 

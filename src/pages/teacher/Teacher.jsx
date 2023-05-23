@@ -19,7 +19,7 @@ export default function Teacher() {
 
   return (
     <>
-      <NavBar />
+      <NavBar user="teacher"/>
       <div className={styles.main}>
         <div className={styles.container}>
           <span>

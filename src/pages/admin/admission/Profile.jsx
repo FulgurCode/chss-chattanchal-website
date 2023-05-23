@@ -16,8 +16,7 @@ export default function Profile() {
 
   const [data] = useSearchParams();
   const id = data.getAll("id");
-  const [loading, setisLoading] = useState(false)
-
+  const [loading, setisLoading] = useState(false);
 
   const [details, setDetails] = React.useState({});
   const [img, setImg] = React.useState(
@@ -28,8 +27,8 @@ export default function Profile() {
   useEffect(() => {
     useAuth(setisLoading, navigate);
     getData();
-    getImage()
-  },[]);
+    getImage();
+  }, []);
 
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
@@ -53,7 +52,7 @@ export default function Profile() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user="admin" />
       <div>
         <div className={styles.body}>
           <div className={styles.main}>
@@ -72,7 +71,6 @@ export default function Profile() {
         </div>
       </div>
       const [loading, setisLoading] = useState(false)
-
     </>
   );
 }

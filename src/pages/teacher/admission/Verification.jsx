@@ -135,7 +135,7 @@ export default function Verification() {
 
   return (
     <>
-      <NavBar />
+      <NavBar user="teacher"/>
       <Popup
         visible={visible}
         onChange={setVisibile}

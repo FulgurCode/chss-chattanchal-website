@@ -12,7 +12,7 @@ import { useAuth } from "../../stores/CheckloginAdmin";
 import Loader from "./common/Loader";
 
 export default function Profile() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [loading, setisLoading] = useState(false);
 
   let componentRef = useRef();
@@ -25,12 +25,11 @@ export default function Profile() {
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
   );
 
-  
   useEffect(() => {
     useAuth(setisLoading, navigate);
     getData();
-    getImage()
-  },[]);
+    getImage();
+  }, []);
 
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
@@ -57,7 +56,7 @@ export default function Profile() {
   }
   return (
     <>
-      <Navbar />
+      <Navbar user="admin" />
       <div>
         <div className={styles.body}>
           <div className={styles.main}>
@@ -336,7 +335,6 @@ const Details = (props, ref) => {
           </>
         )}
       </main>
-      
     </>
   );
 };

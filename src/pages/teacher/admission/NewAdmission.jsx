@@ -14,7 +14,7 @@ export default function NewAdmission() {
 
   return (
     <div style={{ overflowY: "auto", maxHeight: "100vh" }}>
-      <NavBar />
+      <NavBar user="teacher"/>
       <AllColumns user="teacher" />
       <Loader open={loading} />
     </div>
