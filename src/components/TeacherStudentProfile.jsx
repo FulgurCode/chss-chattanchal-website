@@ -13,10 +13,8 @@ import Loader from "./common/Loader";
 
 export default function Profile() {
   let componentRef = useRef();
-  
-  const [loading, setisLoading] = useState(false)
 
-  
+  const [loading, setisLoading] = useState(false);
 
   const [data] = useSearchParams();
   const id = data.getAll("id");
@@ -30,8 +28,8 @@ export default function Profile() {
   useEffect(() => {
     useAuth(setisLoading, navigate);
     getData();
-    getImage()
-  },[]);
+    getImage();
+  }, []);
 
   function getData() {
     Axios.get(`teacher/get-student?studentId=${id}`)
@@ -53,6 +51,10 @@ export default function Profile() {
       });
   }
 
+  function editNav(e) {
+    navigate(`/teacher/admission/edit-student?id=${id}`);
+  }
+
   return (
     <>
       <Navbar />
@@ -67,19 +69,21 @@ export default function Profile() {
                 content={() => componentRef.current}
                 documentTitle={details.name}
               />
-              <button>Edit</button>
+              <button onClick={editNav}>Edit</button>
             </div>
             <Table ref={componentRef} details={details} img={img} />
           </div>
         </div>
       </div>
-      <Loader open={loading}  />
+      <Loader open={loading} />
     </>
   );
 }
 
 const Details = (props, ref) => {
   // console.log(details);
+  //
+
   return (
     <>
       <title>{props.details.name}</title>
