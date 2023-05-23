@@ -53,7 +53,7 @@ export default function App() {
               element={<ImportStudents />}
             ></Route>
             <Route
-              path="/admin/admission/edit-students"
+              path="/admin/admission/edit-student"
               element={<EditStudents />}
             ></Route>
             <Route

@@ -52,6 +52,9 @@ export default function Profile() {
       });
   }
 
+  function editNav(e) {
+    navigate(`/admin/admission/edit-student?id=${id}`);
+  }
   return (
     <>
       <Navbar />
@@ -66,7 +69,7 @@ export default function Profile() {
                 content={() => componentRef.current}
                 documentTitle={details.name}
               />
-              <button>Edit</button>
+              <button onClick={editNav}>Edit</button>
             </div>
             <Table ref={componentRef} details={details} img={img} />
           </div>
