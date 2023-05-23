@@ -22,7 +22,7 @@ export default function Admission() {
 
   return (
     <>
-      <NavBar />
+      <NavBar user="teacher"/>
       <div className={styles.main}>
         <div className={styles.container}>
           <span>

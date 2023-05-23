@@ -19,7 +19,7 @@ export default function ImportStudents() {
 
   return (
     <>
-      <NavBar />
+      <NavBar user="teacher"/>
       <div className={styles.hero}>
         <img src={importIcon} className={styles.downIcon} />
         <h2 className={styles.title}>Import Students</h2>

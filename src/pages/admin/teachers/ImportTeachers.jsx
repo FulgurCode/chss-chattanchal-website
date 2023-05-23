@@ -18,7 +18,7 @@ export default function ImportTeachers() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user="admin" />
       <div className={styles.hero}>
         <img src={importIcon} className={styles.downIcon} />
         <h2 className={styles.title}>Import Teachers</h2>

@@ -57,7 +57,7 @@ export default function Profile() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user="teacher"/>
       <div>
         <div className={styles.body}>
           <div className={styles.main}>

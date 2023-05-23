@@ -50,7 +50,7 @@ export default function StudentDetails() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user="teacher"/>
       <div className={styles.main}>
         <div className={styles.header}>
           <span>

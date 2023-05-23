@@ -133,7 +133,7 @@ export default function Confirmation() {
 
   return (
     <>
-      <NavBar />
+      <NavBar user="admin" />
       <Popup
         visible={visible}
         onChange={setVisibile}

@@ -7,12 +7,12 @@ import userIcon from "../assets/images/navbar/userIcon.svg";
 
 import styles from "../styles/NavBar.module.css";
 
-export default function Navbar() {
+export default function Navbar(props) {
   const navigate = useNavigate();
 
   return (
     <header className={styles.navbar}>
-      <div className={styles.home} onClick={() => navigate("/admin")}>
+      <div className={styles.home} onClick={() => navigate(`/${props.user}`)}>
         <img className={styles.homeImg} src={menuIcon} />
         <label className={styles.homeText}>Home</label>
       </div>

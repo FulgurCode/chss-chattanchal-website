@@ -80,7 +80,7 @@ export default function DutyAllocation() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user="admin" />
       <div className={styles.main}>
         <div className={styles.hero}>
           <div className={styles.title}>

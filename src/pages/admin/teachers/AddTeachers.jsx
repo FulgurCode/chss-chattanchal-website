@@ -90,7 +90,7 @@ export default function AddTeachers() {
 
   return (
     <div className={styles.container}>
-      <NavBar />
+      <NavBar user="admin" />
       <div className={styles.main}>
         <div className={styles.header}>
           <span>
