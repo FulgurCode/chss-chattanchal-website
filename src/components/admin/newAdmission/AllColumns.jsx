@@ -1,5 +1,5 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import img2 from "../../../assets/images/admission/admissionIcon.png";
 import Axios from "../../../../stores/Axios";
 import SuccessPopup from "./SuccessPopup.jsx";
@@ -65,6 +65,21 @@ function AllColumns(props) {
   const inputRef = useRef(null);
   const [filePhotoURL, setFilePhotoURL] = useState("");
   const [error, setError] = useState("");
+  const [webSocket, SetWebSocket] = useState();
+  const [id, setId] = useState();
+
+  async function base64ToFile(dataUrl, setState) {
+    let blob = await fetch(dataUrl).then((res) => res.blob());
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      const arrayBuffer = fileReader.result;
+      const file = new File([arrayBuffer], "file.jpg", {
+        type: blob.type,
+      });
+      setState(file);
+    };
+    fileReader.readAsArrayBuffer(blob);
+  }
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
@@ -100,6 +115,31 @@ function AllColumns(props) {
       }
     }
   }
+
+  useEffect(() => {
+    SetWebSocket(new WebSocket("ws:localhost:9000/ws/admission-photo"));
+    return () => {
+      if (webSocket) {
+        webSocket.close();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (webSocket) {
+      webSocket.addEventListener("message", (event) => {
+        var res = JSON.parse(event.data);
+        if (res.name == "id") {
+          setId(res.data);
+        } else if (res.name == "image") {
+          setGlobal(true);
+          const dataURL = "data:image/jpeg;base64," + res.data;
+          setFilePhotoURL(dataURL);
+          base64ToFile(dataURL, setFilePhoto);
+        }
+      });
+    }
+  }, [webSocket]);
 
   // ---------------- onchange fn for photo upload ----------------
 
@@ -507,7 +547,7 @@ function AllColumns(props) {
         show={setNotFilledError}
         showVar={notFilledError}
       />
-      <QRPopUp open={QR} show={setQR} text="I am inevitable" />
+      <QRPopUp open={QR} show={setQR} text={id} />
       <WebCamPop
         open={webCam}
         show={setWebCam}
