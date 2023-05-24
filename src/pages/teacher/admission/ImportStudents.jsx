@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../../components/Navbar/NavBar";
 import styles from "../../../styles/admin/admission/importStudents/Importstudents.module.css";
 import Upload from "../../../components/admin/importStudents/Upload";
 import { useNavigate } from "react-router-dom";

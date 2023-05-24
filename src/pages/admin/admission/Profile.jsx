@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import Axios from "../../../../stores/Axios";
 import React from "react";
 import styles from "../../../styles/common/Profile.module.css";
-import Navbar from "../../../components/NavBar";
+import Navbar from "../../../components/Navbar/NavBar";
 import { useEffect, useState } from "react";
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
