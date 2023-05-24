@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "../../styles/admin/teachers/Teachers.module.css";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/Navbar/NavBar";
 import React from "react";
 
 import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png"

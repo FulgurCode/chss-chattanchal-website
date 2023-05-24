@@ -6,7 +6,7 @@ import SuccessPopup from "../../../components/admin/newAdmission/SuccessPopup";
 import NotFilledPopup from "../../../components/admin/newAdmission/NotFilledPopup";
 import Field from "../../../components/admin/newAdmission/Field";
 import SelectField from "../../../components/admin/newAdmission/SelectField";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../../components/Navbar/NavBar";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import WebCamPop from "../../../components/admin/newAdmission/WebCamPopUp";

@@ -1,5 +1,5 @@
 import AllColumns from "../../../components/admin/newAdmission/AllColumns";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../../components/Navbar/NavBar";
 import { useAuth } from "../../../../stores/CheckloginTeacher";
 import Loader from "../../../components/common/Loader";
 import { useState, useEffect } from "react";

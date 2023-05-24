@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../../components/Navbar/NavBar";
 import styles from "../../../styles/teacher/verification/Verification.module.css";
 import Axios from "../../../../stores/Axios";
 import Popup from "../../../components/common/Popup";

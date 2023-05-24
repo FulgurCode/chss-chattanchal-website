@@ -4,7 +4,7 @@ import studentDetailsImg from "../../../assets/images/admission/studentDetailsIc
 import styles from "../../../styles/admin/admission/studentsDetails/StudentDetails.module.css";
 import Axios from "../../../../stores/Axios";
 import Item from "../../../components/admin/searchDetails/Item";
-import Navbar from "../../../components/NavBar";
+import Navbar from "../../../components/Navbar/NavBar";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
 import Loader from "../../../components/common/Loader";

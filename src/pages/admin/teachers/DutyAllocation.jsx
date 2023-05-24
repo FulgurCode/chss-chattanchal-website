@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../../components/NavBar";
+import Navbar from "../../../components/Navbar/NavBar";
 import styles from "../../../styles/admin/teachers/dutyAllocation/DutyAllocation.module.css";
 import EntryPopup from "../../../components/admin/dutyAllocation/EntryPopup";
 import { useState, useEffect } from "react";
