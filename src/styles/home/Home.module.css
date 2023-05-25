@@ -1,0 +1,165 @@
+
+
+.body {
+  flex: 1;
+  /* background-color: red; */
+
+  display: flex;
+  flex-direction: column;
+
+  line-height: 35px;
+}
+
+.header {
+  flex: 1;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px) saturate(125%);
+  -webkit-backdrop-filter: blur(20px) saturate(125%);
+
+  width: 100%;
+  min-height: 70px;
+  max-height: 70px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+.header > div {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 90%;
+  min-height: 70px;
+}
+
+.header > div > a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+
+  text-shadow: 1px 1px 20px rgba(0, 0, 0, 0.6);
+
+  min-height: 70px;
+
+  display: flex;
+  align-items: center;
+
+  padding-inline: 50px;
+
+  transition: 500ms ease;
+}
+a:focus{
+  outline: none;
+}a:hover{
+  background-color: #0005;
+}
+
+.header > div > a:last-child {
+  background-color: #28b4ab;
+  padding-inline: 25px;
+  /* padding-block: 3px; */
+  border-radius: 15px;
+  min-height: 50px;
+  
+}
+.header > div > a:last-child:hover {
+  background-color: #19726c;
+}
+
+.main {
+  padding-top: 70px;
+
+  flex: 2;
+  background: url(src/assets/images/login/school.png);
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.main > h1 {
+  font-family: Poppins;
+  font-weight: 200;
+  color: white;
+  font-size: 90px;
+
+  line-height: 90px;
+}
+.main > h1 > b {
+  font-family: Oswald;
+  font-weight: 400;
+}
+
+.content {
+  background-color: #6a2c70;
+  color: white;
+
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
+
+  padding: 20px;
+  padding-inline: 60px;
+  padding-top: 70px;
+
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.history > header {
+  background-color: #6a2c70;
+  padding: 15px;
+  color: white;
+
+  padding-inline: 60px;
+}
+.history > header > h2 {
+  line-height: 10px;
+  font-weight: 600;
+}
+.history > .container {
+  margin: 30px;
+  margin-inline: 60px;
+  font-family: Poppins;
+  font-weight: 300;
+
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.gallery header {
+  background-color: #6a2c70;
+  padding: 15px;
+  color: white;
+
+  padding-inline: 60px;
+}
+.gallery > header > h2 {
+  line-height: 10px;
+  font-weight: 600;
+}
+
+.gallery > div {
+  padding: 30px;
+}
+
+.gallery img {
+  height: 27rem;
+  width: calc((27rem / 3) * 4);
+
+  border-radius: 20px;
+}
+
+.footer {
+  flex: 1;
+  display: none;
+}

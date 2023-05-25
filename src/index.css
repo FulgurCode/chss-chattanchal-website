@@ -26,6 +26,7 @@ body {
 html,
 body {
   height: 100%;
+  /* scroll-behavior: smooth; */
 }
 
 @media screen {
@@ -41,6 +42,8 @@ body {
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
+
+  background-color: lightgrey;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -56,7 +59,7 @@ body {
 .scrollbar {
   scrollbar-width: 5px;
   scrollbar-height: 5px;
-  scrollbar-color: #888 #f1f1f1;
+  scrollbar-color: #888 transparent;
 }
 
 .scrollbar-thumb {
