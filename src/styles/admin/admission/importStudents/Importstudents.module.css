@@ -44,7 +44,7 @@
 
 .container {
   position: relative;
-  top: 17vh; /* adjust the value as needed to position the .hr element */
+  top: 0vh; /* adjust the value as needed to position the .hr element */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,12 +76,11 @@
 }
 
 .uploadContainer {
+  margin-top: 15%;
   align-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  margin-top: 12.8vh;
 }
 
 .uploadBox {

@@ -4,19 +4,6 @@
   align-items: center;
 }
 
-.hero {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  left: 11.26%;
-  right: 87.92%;
-  top: 18.15%;
-  bottom: 78.61%;
-}
-
 .downIcon {
   margin-right: 1vw; /* add a 2vw margin to the right of the downIcon element */
   width: 35px;
@@ -24,26 +11,9 @@
   margin-right: 18px;
 }
 
-.title {
-  font-family: "Inria Sans";
-  font-style: normal;
-  font-weight: 700;
-  /* font-size: 2vw; */
-  line-height: 119.3%;
-  /* or 38px */
-  color: #000000;
-}
-
-.side {
-  width: 30px;
-  height: 0;
-  border: 0.1041vh solid #a0a0a0;
-  transform: rotate(90deg);
-}
-
 .container {
   position: relative;
-  top: 17vh; /* adjust the value as needed to position the .hr element */
+  top: 10%; /* adjust the value as needed to position the .hr element */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,8 +49,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-top: 12.8vh;
 }
 
 .uploadBox {

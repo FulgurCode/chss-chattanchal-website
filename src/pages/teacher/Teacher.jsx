@@ -5,7 +5,7 @@ import NavBar from "../../components/Navbar/NavBar";
 import React from "react";
 import { useAuth } from "../../../stores/CheckloginTeacher";
 import Loader from "../../components/common/Loader";
-
+import Breadcrumbs from "../../components/common/BreadCrumbs";
 import admissionIcon from "../../assets/images/admission/admissionIcon.png"
 
 
@@ -20,11 +20,9 @@ export default function Teacher() {
   return (
     <>
       <NavBar user="teacher"/>
+      <div className={styles.breadcrumb}><Breadcrumbs /></div>
       <div className={styles.main}>
         <div className={styles.container}>
-          <span>
-            Home &gt; <span>Teacher</span>
-          </span>
           <div className={styles.items}>
             <div
               className={styles.item}

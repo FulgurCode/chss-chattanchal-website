@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "../../components/common/Loader";
 import { useAuth } from "../../../stores/CheckloginAdmin";
-import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png"
-import studentDetailsIcon from "../../assets/images/admission/studentDetailsIcon.png"
-import importStudentsIcon from "../../assets/images/admission/importIcon.png"
-import confirmationIcon from "../../assets/images/admission/confirmIcon.png"
+import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png";
+import studentDetailsIcon from "../../assets/images/admission/studentDetailsIcon.png";
+import importStudentsIcon from "../../assets/images/admission/importIcon.png";
+import confirmationIcon from "../../assets/images/admission/confirmIcon.png";
+import Breadcrumbs from "../../components/common/BreadCrumbs";
 
 export default function Admission() {
   const navigate = useNavigate();
@@ -15,16 +16,15 @@ export default function Admission() {
 
   useEffect(() => {
     useAuth(setisLoading, navigate);
-  },[]);
+  }, []);
 
   return (
     <>
-      <NavBar user="admin"/>
+      <NavBar user="admin" />
+      <div className={styles.breadcrumb}> <Breadcrumbs /></div>
       <div className={styles.main}>
         <div className={styles.container}>
-          <span>
-            Home &gt; Admin &gt; <span>Admission</span>
-          </span>
+          
           <div className={styles.items}>
             <div
               className={styles.item}
@@ -44,11 +44,7 @@ export default function Admission() {
               }}
             >
               <span>
-                <img
-                  src={studentDetailsIcon}
-                  width="80px"
-                  height="80px"
-                />
+                <img src={studentDetailsIcon} width="80px" height="80px" />
               </span>
               <h1>Student details</h1>
             </div>
@@ -59,11 +55,7 @@ export default function Admission() {
               }}
             >
               <span>
-                <img
-                  src={importStudentsIcon}
-                  width="80px"
-                  height="80px"
-                />
+                <img src={importStudentsIcon} width="80px" height="80px" />
               </span>
               <h1>Import Students</h1>
             </div>
@@ -75,11 +67,7 @@ export default function Admission() {
               }}
             >
               <span>
-                <img
-                  src={confirmationIcon}
-                  width="80px"
-                  height="80px"
-                />
+                <img src={confirmationIcon} width="80px" height="80px" />
               </span>
               <h1>Confirmation</h1>
             </div>

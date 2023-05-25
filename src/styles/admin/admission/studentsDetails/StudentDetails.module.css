@@ -54,17 +54,16 @@
 .main hr {
   height: 1px;
   background-color: #ccc;
-  border: none
+  border: none;
 }
 .main {
-  padding: 10%;
-  padding-top: 50px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .container {
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   gap: 10;
@@ -117,7 +116,8 @@
 }
 
 @media screen and (max-width: 350px) {
-  .input , .list{
+  .input,
+  .list {
     min-width: 200px;
     max-width: 200px;
   }
