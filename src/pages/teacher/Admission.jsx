@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../stores/CheckloginTeacher";
 import Loader from "../../components/common/Loader";
-
+import Breadcrumbs from "../../components/common/BreadCrumbs";
 import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png"
 import studentDetailsIcon from "../../assets/images/admission/studentDetailsIcon.png"
 import importStudentsIcon from "../../assets/images/admission/importIcon.png"
@@ -23,11 +23,9 @@ export default function Admission() {
   return (
     <>
       <NavBar user="teacher"/>
+      <div className={styles.breadcrumb}><Breadcrumbs /></div>
       <div className={styles.main}>
         <div className={styles.container}>
-          <span>
-            Home &gt; Teacher &gt; <span>Admission</span>
-          </span>
           <div className={styles.items}>
             <div
               className={styles.item}

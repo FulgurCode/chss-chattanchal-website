@@ -7,6 +7,7 @@ import NotFilledPopup from "../../../components/admin/newAdmission/NotFilledPopu
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/common/Loader";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
+import Hero from "../../../components/common/PageHero";
 
 import addTeacherIcon from "../../../assets/images/admission/admissionIcon.png";
 
@@ -91,18 +92,8 @@ export default function AddTeachers() {
   return (
     <div className={styles.container}>
       <NavBar user="admin" />
+      <Hero title="Add Teacher" icon={addTeacherIcon} />
       <div className={styles.main}>
-        <div className={styles.header}>
-          <span>
-            <img src={addTeacherIcon} />
-            <h2>Add Teacher</h2>
-          </span>
-          <hr />
-          <h1>
-            Home &gt; Teachers &gt; <code>Add Teachers</code>
-          </h1>
-        </div>
-
         <main className={styles.containerInside}>
           <div className={styles.inputContainer}>
             <span>

@@ -7,6 +7,7 @@ import Popup from "../../../components/common/Popup";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
 import Loader from "../../../components/common/Loader";
 import confirmIcon from "../../../assets/images/admission/confirmIcon.png";
+import Hero from "../../../components/common/PageHero";
 
 export default function Confirmation() {
   const [loading, setisLoading] = useState(false);
@@ -139,15 +140,8 @@ export default function Confirmation() {
         onChange={setVisibile}
         text={"Admission Confirmed for Student"}
       />
+        <Hero title="Confirmation" icon={confirmIcon} />
       <div className={styles.main}>
-        <div className={styles.header}>
-          <span>
-            <img src={confirmIcon} style={styles.newAdmissionImg} />
-            <h1>Confirmation</h1>
-          </span>
-          <hr />
-          Home &gt; Admission &gt; <code>Confirmation</code>
-        </div>
         <div className={styles.table}>
           <div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>

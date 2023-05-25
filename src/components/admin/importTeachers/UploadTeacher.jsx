@@ -44,13 +44,6 @@ function UploadTeacher() {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.hr}></div>
-
-        <span className={styles.path}>
-          Home &gt; Admin &gt; Teachers &gt;
-          <span>Import Teachers</span>
-        </span>
-
         <div className={styles.uploadContainer}>
           <div className={styles.uploadBox}>
             <div className={styles.info}>

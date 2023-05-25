@@ -8,6 +8,7 @@ import Navbar from "../../../components/Navbar/NavBar";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
 import Loader from "../../../components/common/Loader";
+import Hero from "../../../components/common/PageHero";
 
 export default function StudentDetails() {
   const [loading, setisLoading] = React.useState(false);
@@ -52,15 +53,8 @@ export default function StudentDetails() {
     <>
       <Navbar user="admin" />
       <div className={styles.main}>
-        <div className={styles.header}>
-          <span>
-            <img src={studentDetailsImg} style={styles.newAdmissionImg} />
-            <h1>Student Details</h1>
-          </span>
-          <hr />
-          Home &gt; Admission &gt; <code>Student Details</code>
-        </div>
 
+        <Hero title="Student Details" icon={studentDetailsImg} />
         <main className={styles.container}>
           <select
             className={styles.input}

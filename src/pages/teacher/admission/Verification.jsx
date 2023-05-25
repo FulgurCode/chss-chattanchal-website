@@ -7,6 +7,7 @@ import { useNavigate, createSearchParams } from "react-router-dom";
 import { useAuth } from "../../../../stores/CheckloginTeacher";
 import Loader from "../../../components/common/Loader";
 import verificationIcon from "../../../assets/images/admission/confirmIcon.png"
+import Hero from "../../../components/common/PageHero";
 
 export default function Verification() {
   // const [visibleProfile, setVisibleProfile] = useState(false);
@@ -141,18 +142,8 @@ export default function Verification() {
         onChange={setVisibile}
         text={"Student succsessfully verified"}
       />
+      <Hero title="Verification" icon={verificationIcon} />
          <div className={styles.main}>
-        <div className={styles.header}>
-          <span>
-            <img
-              src={verificationIcon}
-              style={styles.newAdmissionImg}
-            />
-            <h1>Verification</h1>
-          </span>
-          <hr />
-          Home &gt; Admission &gt; <code>Verification</code>
-        </div>
         <div className={styles.table}>
           <div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>

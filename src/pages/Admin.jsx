@@ -6,7 +6,7 @@ import {useAuth} from "../../stores/CheckloginAdmin.jsx"
 import Loader from "../components/common/Loader";
 import teachersIcon from "../assets/images/admin/teachersIcon.png"
 import admissionIcon from "../assets/images/admission/admissionIcon.png"
-
+import Breadcrumbs from "../components/common/BreadCrumbs";
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -19,11 +19,13 @@ export default function Admin() {
   return (
     <>
       <NavBar user="admin"/>
+      
+      
+      <div className={styles.breadcrumb}> <Breadcrumbs /></div>
       <div className={styles.main}>
+     
         <div className={styles.container}>
-          <span>
-            Home &gt; <span>Admin</span>
-          </span>
+          
           <div className={styles.items}>
             <div
               className={styles.item}

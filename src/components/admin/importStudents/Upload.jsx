@@ -44,12 +44,12 @@ function Upload(props) {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.hr}></div>
+        {/* <div className={styles.hr}></div> */}
 
-        <span className={styles.path}>
+        {/* <span className={styles.path}>
           Home &gt; Admin &gt; Admission &gt;
           <span>Import Students</span>
-        </span>
+        </span> */}
 
         <div className={styles.uploadContainer}>
           <div className={styles.uploadBox}>

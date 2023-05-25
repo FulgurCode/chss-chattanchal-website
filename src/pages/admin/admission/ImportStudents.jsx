@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Loader from "../../../components/common/Loader";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
 import importIcon from "../../../assets/images/admission/importIcon.png";
+import Hero from "../../../components/common/PageHero";
 
 export default function ImportStudents() {
   const navigate = useNavigate();
@@ -19,11 +20,7 @@ export default function ImportStudents() {
   return (
     <>
       <NavBar user="admin" />
-      <div className={styles.hero}>
-        <img src={importIcon} className={styles.downIcon} />
-        <h2 className={styles.title}>Import Students</h2>
-        <div className={styles.side}></div>
-      </div>
+      <Hero title="Import Students" icon={importIcon} />
       <Upload user="admin" />
       <Loader open={loading} />
     </>

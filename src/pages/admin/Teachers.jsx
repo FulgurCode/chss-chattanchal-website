@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import styles from "../../styles/admin/teachers/Teachers.module.css";
+import styles from "../../styles/common/dashboard.module.css";
 import NavBar from "../../components/Navbar/NavBar";
 import React from "react";
+import Breadcrumbs from "../../components/common/BreadCrumbs";
 
 import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png"
 import importTeachersIcon from "../../assets/images/admission/importIcon.png"
@@ -23,11 +24,9 @@ export default function Admin() {
   return (
     <>
       <NavBar user="admin" />
+      <div className={styles.breadcrumb}> <Breadcrumbs /></div>
       <div className={styles.main}>
         <div className={styles.container}>
-          <span>
-            Home &gt; Admin &gt;<span>Teachers</span>
-          </span>
           <div className={styles.items}>
             <div
               className={styles.item}

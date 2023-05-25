@@ -9,6 +9,7 @@ import DeletePopup from "../../../components/admin/dutyAllocation/DeletePopup";
 import Axios from "../../../../stores/Axios";
 import Loader from "../../../components/common/Loader";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
+import Hero from "../../../components/common/PageHero";
 
 import dutyAllocationIcon from "../../../assets/images/admin/teachers/dutyAllocationIcon.png";
 
@@ -81,26 +82,9 @@ export default function DutyAllocation() {
   return (
     <>
       <Navbar user="admin" />
+      <Hero title="Duty Allocation" icon={dutyAllocationIcon} />
       <div className={styles.main}>
-        <div className={styles.hero}>
-          <div className={styles.title}>
-            <img src={dutyAllocationIcon} style={{ width: 40 }} />
-            <label>Duty Allocation</label>
-          </div>
-          <div className={styles.underline}></div>
-          <div className={styles.pathbox}>
-            <span className={styles.path}>
-              Home &gt; Admin &gt; Teachers &gt;
-              <span>Import Teachers</span>
-            </span>
-          </div>
-        </div>
         <div className={styles.content}>
-          {/* <div className={styles.table}> */}
-          {/* <Table
-              data={data}
-            /> */}
-          {/* </div> */}
           <div className={styles.tableWrap}>
             <DetailsTable deleteFunction={handleButtonClick} data={data} />
           </div>

@@ -1,0 +1,77 @@
+.container {
+    padding: 0 4vw 0 4vw;
+    margin-top: 8vh;
+    display: flex;
+  flex-direction: column;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+    margin-bottom: 1vh;
+}
+
+.lv {
+  height: 70%;
+  width: 0;
+  border: 0.5px solid #ccc;
+}
+
+.titleIcon {
+
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.title {
+  margin-right: 1.875vw;
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 119.3%;
+}
+
+.hl{
+    width: 100%;
+    border: 2px solid #ccc;
+    margin-bottom: 2px;
+}
+
+span{
+    font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 119.3%;
+color: #857E7E;
+}
+
+span span{
+    font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 119.3%;
+
+
+
+color: #333333;
+}
+
+@media screen and (max-width: 600px) {
+  
+
+
+  .title{
+    font-size: 20px;
+  }
+
+  .titleIcon{
+    width: 40px;
+    height: 40px;
+    margin-right: 2px;
+  }
+}
