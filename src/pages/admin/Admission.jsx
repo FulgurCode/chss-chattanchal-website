@@ -8,6 +8,7 @@ import newAdmissionIcon from "../../assets/images/admission/admissionIcon.png";
 import studentDetailsIcon from "../../assets/images/admission/studentDetailsIcon.png";
 import importStudentsIcon from "../../assets/images/admission/importIcon.png";
 import confirmationIcon from "../../assets/images/admission/confirmIcon.png";
+import reportIcon from "../../assets/images/admission/reportIcon.png";
 import Breadcrumbs from "../../components/common/BreadCrumbs";
 
 export default function Admission() {
@@ -21,10 +22,12 @@ export default function Admission() {
   return (
     <>
       <NavBar user="admin" />
-      <div className={styles.breadcrumb}> <Breadcrumbs /></div>
+      <div className={styles.breadcrumb}>
+        {" "}
+        <Breadcrumbs />
+      </div>
       <div className={styles.main}>
         <div className={styles.container}>
-          
           <div className={styles.items}>
             <div
               className={styles.item}
@@ -70,6 +73,17 @@ export default function Admission() {
                 <img src={confirmationIcon} width="80px" height="80px" />
               </span>
               <h1>Confirmation</h1>
+            </div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/admission/report");
+              }}
+            >
+              <span>
+                <img src={reportIcon} width="80px" height="80px" />
+              </span>
+              <h1>Report</h1>
             </div>
           </div>
         </div>

@@ -15,11 +15,13 @@ import Verification from "./pages/teacher/admission/Verification";
 import AdminStudentProfile from "./components/AdminStudentProfile";
 import TeacherStudentProfile from "./components/TeacherStudentProfile";
 import Confirmation from "./pages/admin/admission/Confirmation";
+import AdminReport from "./pages/admin/admission/Report";
 
 import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
 import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
 import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
+import TeacherReport from "./pages/teacher/admission/Report"
 
 import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
@@ -67,6 +69,10 @@ export default function App() {
             <Route
               path="/admin/admission/confirmation"
               element={<Confirmation />}
+            ></Route>
+            <Route
+              path="/admin/admission/report"
+              element={<AdminReport />}
             ></Route>
           </Route>
           <Route
@@ -121,6 +127,10 @@ export default function App() {
             <Route
               path="/teacher/admission/verification"
               element={<Verification />}
+            ></Route>
+            <Route
+              path="/teacher/admission/report"
+              element={<TeacherReport />}
             ></Route>
           </Route>
         </Route>
