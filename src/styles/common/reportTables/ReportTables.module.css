@@ -1,0 +1,79 @@
+label {
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 119.3%;
+}
+
+.container {
+  margin-top: 7px;
+}
+
+.forScroll {
+  overflow-x: scroll;
+  min-width: 0vw;
+  max-width: 90vw;
+}
+
+.tableMain {
+  border-collapse: collapse;
+  border: 1px solid #000000;
+}
+
+.tableMain .emptyCell {
+  background-color: #eee;
+}
+
+.tableMain th {
+  padding: 8px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.tableMain td {
+  border-left: 1px solid #000000;
+  border-top: 1px solid #000000;
+  padding: 8px;
+}
+
+.tableMain th:first-child,
+.tableMain td:first-child {
+  /* border-radius: 15px 0 0 0; */
+}
+
+.tableMain th:last-child,
+.tableMain td:last-child {
+  /* border-radius: 0 15px 0 0; */
+}
+
+.tableMain th:first-child:last-child,
+.tableMain td:first-child:last-child {
+  /* border-radius: 15px; */
+}
+
+.vheader {
+  font-family: "poppins";
+  font-weight: 300;
+  background-color: #6a2c70;
+  color: white;
+}
+
+.horizontal th {
+  font-family: "poppins";
+  font-weight: 300;
+  background-color: #6a2c70;
+  color: white;
+}
+
+.tableMain tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tableMain .horizontal :last-child {
+  border: none;
+}
+
+.tableMain tbody tr:last-child th {
+  border-bottom: none;
+}

@@ -51,9 +51,9 @@ body {
   border-radius: 50px;
 }
 
-::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar:hover {
+/* ::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar:hover {
   width: 100px;
-}
+} */
 
 /* For Firefox */
 .scrollbar {
@@ -66,10 +66,10 @@ body {
   background-color: #888;
 }
 
-.scrollbar-thumb:hover .scrollbar:hover {
+/* .scrollbar-thumb:hover .scrollbar:hover {
   width: 12px;
   height: 12px;
-}
+} */
 
 /* For Firefox older versions */
 @-moz-document url-prefix() {
