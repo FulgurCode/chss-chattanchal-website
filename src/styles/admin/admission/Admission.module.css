@@ -39,11 +39,10 @@
 .main .container .items {
   flex: 2;
 
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 175px));
 
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 20px 20px;
 
   justify-content: left;
   align-items: left;
@@ -130,8 +129,8 @@
 
 @media screen and (max-width: 700px) {
   .main .container .items .item {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
   }
   .main .container .items .item h1 {
     font-size: 15px;

@@ -10,24 +10,20 @@ import schoolImg3 from "/imgs/home/school3.jpg";
 import schoolImg4 from "/imgs/home/school4.jpg";
 import schoolImg5 from "/imgs/home/school5.jpg";
 
-// const CARDS = 10;
-
-// const Card = ({ title, content }) => (
-//   <div className={card.card}>
-//     <h2>{title}</h2>
-//     <p>{content}</p>
-//   </div>
-// );
-
 export default function Home() {
   const homeRef = useRef(null);
   const galleryRef = useRef(null);
   const historyRef = useRef(null);
 
-  galleryRef.current?.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'});
-
   return (
     <div className={styles.body}>
+      <input type="checkbox" id="checkbox" className={styles.checkbox}></input>
+      <label className={styles.btn} htmlFor="checkbox">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
       <header className={styles.header}>
         <div>
           <Link
@@ -68,7 +64,7 @@ export default function Home() {
       </header>
       <main className={styles.main} ref={homeRef}>
         <h1>
-          Welcome to
+          <span>Welcome to</span>
           <br />
           <b>CHSS CHATTANCHAL</b>
         </h1>
@@ -95,26 +91,21 @@ export default function Home() {
         fuga, dolorum commodi voluptatum nulla impedit perferendis praesentium
         id nobis, fugit alias? Unde, debitis. Necessitatibus, est eaque. Iste.
       </div>
-      <div className={styles.gallery} ref={galleryRef} >
+      <div className={styles.gallery} ref={galleryRef}>
         <header>
           <h2>Gallery</h2>
         </header>
-
-        <div className={card.main}>
-          <Carousel>
-            {/* {[...new Array(CARDS)].map((_, i) => (
-              <Card
-                title={"Card " + (i + 1)}
-                content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              />
-            ))} */}
-            <img src={schoolImg1} />
-            <img src={schoolImg2} />
-            <img src={schoolImg3} />
-            <img src={schoolImg4} />
-            <img src={schoolImg5} />
-          </Carousel>
-        </div>
+        <main>
+          <div className={card.main}>
+            <Carousel>
+              <img src={schoolImg1} />
+              <img src={schoolImg2} />
+              <img src={schoolImg3} />
+              <img src={schoolImg4} />
+              <img src={schoolImg5} />
+            </Carousel>
+          </div>
+        </main>
       </div>
       <div className={styles.history} ref={historyRef}>
         <header>

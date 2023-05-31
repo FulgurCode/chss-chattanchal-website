@@ -1,5 +1,3 @@
-
-
 .body {
   flex: 1;
   /* background-color: red; */
@@ -8,12 +6,13 @@
   flex-direction: column;
 
   line-height: 35px;
+  overflow-x: hidden;
 }
 
 .header {
   flex: 1;
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(143, 143, 143, 0.397);
   backdrop-filter: blur(20px) saturate(125%);
   -webkit-backdrop-filter: blur(20px) saturate(125%);
 
@@ -29,11 +28,66 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 
   z-index: 10;
+
+  transition: 500ms ease;
 }
+.btn {
+  position: absolute;
+
+  display: none;
+  top: 10px;
+  left: 10px;
+  z-index: 11;
+
+  /* transition: 500ms ease; */
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(30px);
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  cursor: pointer;
+}
+
+.checkbox {
+  appearance: none;
+  position: absolute;
+}
+.checkbox:focus {
+  outline: none;
+}
+
+.btn > span {
+  border-radius: 10px;
+  min-width: 20px;
+  min-height: 2px;
+  display: block;
+  position: relative;
+
+  background-color: white;
+
+  transition: 500ms ease;
+  /* box-shadow: 0 0 20px black; */
+}
+
+.btn > span:first-child {
+  transform: translateY(-5px);
+}
+.btn > span:nth-child(2) {
+  display: block;
+}
+.btn > span:last-child {
+  transform: translateY(5px);
+}
+
 .header > div {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   width: 90%;
   min-height: 70px;
 }
@@ -49,14 +103,19 @@
 
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 
   padding-inline: 50px;
 
   transition: 500ms ease;
+
+  text-align: center;
 }
-a:focus{
+a:focus {
   outline: none;
-}a:hover{
+}
+a:hover,
+a:active {
   background-color: #0005;
 }
 
@@ -64,10 +123,8 @@ a:focus{
   background-color: #28b4ab;
   padding-inline: 25px;
   margin-inline: 20px;
-  /* padding-block: 3px; */
   border-radius: 15px;
   min-height: 50px;
-  
 }
 .header > div > a:last-child:hover {
   background-color: #19726c;
@@ -96,9 +153,20 @@ a:focus{
 
   line-height: 90px;
 }
+.main > h1 > span {
+  color: white;
+  font-size: 50px;
+}
 .main > h1 > b {
   font-family: Oswald;
   font-weight: 400;
+}
+
+.main > h1{
+  line-height: 10px;
+}
+.main > h1 > b{
+  line-height: 60px;
 }
 
 .content {
@@ -139,8 +207,16 @@ a:focus{
   padding: 15px;
 }
 
-.gallery{
+.gallery {
   scroll-padding-top: 200px;
+}
+
+.gallery main {
+  min-width: 100vw;
+  max-width: 100vw;
+  min-height: 100%;
+
+  padding-block: 20px;
 }
 
 .gallery header {
@@ -169,4 +245,121 @@ a:focus{
 .footer {
   flex: 1;
   display: none;
+}
+
+@media screen and (max-width: 1400px) {
+  .header > div > a {
+    padding-inline: 30px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .header > div > a {
+    padding-inline: 15px;
+  }
+}
+@media screen and (max-width: 799px) {
+  .btn {
+    display: flex;
+  }
+
+  .checkbox:checked ~ .btn {
+    position: fixed;
+  }
+
+  .checkbox:checked ~ .header {
+    transform: translateX(0px);
+  }
+
+  .checkbox:checked ~ .btn span:first-child {
+    transform: translateY(2px) rotateZ(45deg);
+  }
+  .checkbox:checked ~ .btn span:nth-child(2) {
+    opacity: 0;
+  }
+  .checkbox:checked ~ .btn span:last-child {
+    transform: translateY(-2px) rotateZ(-45deg);
+  }
+
+  .header{
+    padding-top: 50px;
+    align-items: flex-start;
+  }
+
+  .header > div {
+    flex-direction: column;
+    min-height: 100%;
+    max-height: 100%;
+
+    width: 88.5%;
+  }
+
+  .header > div > a {
+    width: 90%;
+    justify-content: flex-start;
+    padding: 0;
+    padding-left: 54px;
+
+  }
+
+  .header > div > a:last-child {
+    width: 80%;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .header {
+    position: fixed;
+    width: 260px;
+    min-height: 100vh;
+    max-height: 100vh;
+
+    transform: translateX(-260px);
+
+    box-shadow: none;
+
+    background-color: rgba(85, 85, 85, 0.7);
+  }
+  .gallery > div {
+    transform: scale(0.8);
+  }
+}
+@media screen and (max-width: 699px) {
+  .main h1 {
+    font-size: 70px;
+  }
+  .gallery > div {
+    transform: scale(0.6);
+  }
+}
+@media screen and (max-width: 650px) {
+  /* /* .main h1{
+      font-size: 70px;
+    } */
+  .gallery > div {
+    width: 100%;
+  }
+  /* .gallery img{
+      width: 15rem;
+    } */
+}
+@media screen and (max-width: 599px) {
+  .main h1 {
+    font-size: 55px;
+    /* font-weight: 400; */
+    line-height: 60px;
+  }
+  .history > .container{
+    margin-inline: 20px;
+  }
+  .content{
+    padding-inline: 20px;
+  }
+}
+@media screen and (max-width: 416px) {
+  .main h1{
+    width: min-content;
+  }
+  .main > h1 > span{
+    font-size: 30px;
+  }
 }
