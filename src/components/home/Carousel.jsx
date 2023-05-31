@@ -1,7 +1,5 @@
-import {
-  TiChevronLeftOutline,
-  TiChevronRightOutline,
-} from "https://cdn.skypack.dev/react-icons/ti";
+
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import styles from "../../styles/home/Carousel.module.css";
 import React, { useState } from "react";
 
@@ -18,7 +16,8 @@ const Carousel = ({ children }) => {
           className={`${styles.nav} ${styles.left}`}
           onClick={() => setActive((i) => i - 1)}
         >
-          <TiChevronLeftOutline />
+          {/* <TiChevronLeftOutline /> */}
+          <FaAngleLeft/>
         </button>
       )}
       {React.Children.map(children, (child, i) => (
@@ -42,7 +41,7 @@ const Carousel = ({ children }) => {
           className={`${styles.nav} ${styles.right}`}
           onClick={() => setActive((i) => i + 1)}
         >
-          <TiChevronRightOutline />
+          <FaAngleRight/>
         </button>
       )}
     </div>

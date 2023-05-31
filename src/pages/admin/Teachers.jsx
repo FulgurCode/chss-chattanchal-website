@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import styles from "../../styles/common/dashboard.module.css";
+import styles from "../../styles/admin/admission/Admission.module.css";
 import NavBar from "../../components/Navbar/NavBar";
 import React from "react";
 import Breadcrumbs from "../../components/common/BreadCrumbs";
