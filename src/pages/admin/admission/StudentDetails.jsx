@@ -27,8 +27,32 @@ export default function StudentDetails() {
     useAuth(setisLoading, navigate);
   }, []);
 
+  function body(){
+
+    let searchValue
+
+    if (isNaN(parseInt(search))){
+      searchValue = search
+    } else{
+      searchValue = parseInt(search)
+    }
+
+    if (value === "name"){
+      return {}
+    } else {
+      return(
+        {
+          [value]: searchValue
+        }
+      )
+    }
+  }
+
   function handleClick() {
-    Axios.get(`admin/get-students?search=${value}&&value=${search}`)
+    console.log(
+      body()
+    )
+    Axios.post(`admin/get-students?name=${value === "name" ? search : ""}`, body())
       .then((res) => {
         setData(res.data);
         setError("");
@@ -53,7 +77,6 @@ export default function StudentDetails() {
     <>
       <Navbar user="admin" />
       <div className={styles.main}>
-
         <Hero title="Student Details" icon={studentDetailsImg} />
         <main className={styles.container}>
           <select
