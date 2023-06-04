@@ -27,8 +27,32 @@ export default function StudentDetails() {
     useAuth(setisLoading, navigate);
   }, []);
 
+  function body(){
+
+    let searchValue
+
+    if (isNaN(parseInt(search))){
+      searchValue = search
+    } else{
+      searchValue = parseInt(search)
+    }
+
+    if (value === "name"){
+      return {}
+    } else {
+      return(
+        {
+          [value]: searchValue
+        }
+      )
+    }
+  }
+
   function handleClick() {
-    Axios.get(`/teacher/get-students?search=${value}&&value=${search}`)
+    console.log(
+      body()
+    )
+    Axios.post(`teacher/get-students?name=${value === "name" ? search : ""}`, body())
       .then((res) => {
         setData(res.data);
         setError("");
