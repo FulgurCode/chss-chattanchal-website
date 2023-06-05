@@ -19,6 +19,7 @@ export default function Profile() {
 
   const [data] = useSearchParams();
   const id = data.getAll("id");
+  const editable = data.getAll("editable")[0];
 
   const [details, setDetails] = React.useState({});
   const [img, setImg] = React.useState(
@@ -68,7 +69,7 @@ export default function Profile() {
                 content={() => componentRef.current}
                 documentTitle={details.name}
               />
-              <button onClick={editNav}>Edit</button>
+              <button onClick={editNav} style={{display: editable != undefined ? (editable=="true" ? "flex" : "none") : "flex"}}>Edit</button>
             </div>
             <Table ref={componentRef} details={details} img={img} />
           </div>

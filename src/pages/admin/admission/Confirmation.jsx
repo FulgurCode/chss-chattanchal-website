@@ -128,7 +128,7 @@ export default function Confirmation() {
   const profilePage = (item) => {
     navigate({
       pathname: "/admin/admission/confirmation/student-details",
-      search: `?${createSearchParams({ id: item._id })}`,
+      search: `?${createSearchParams({ id: item._id, editable: false })}`,
     });
   };
 
