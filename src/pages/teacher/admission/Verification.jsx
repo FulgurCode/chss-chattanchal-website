@@ -10,11 +10,9 @@ import verificationIcon from "../../../assets/images/admission/confirmIcon.png"
 import Hero from "../../../components/common/PageHero";
 
 export default function Verification() {
-  // const [visibleProfile, setVisibleProfile] = useState(false);
   const [loading, setisLoading] = useState(false);
 
   const [visible, setVisibile] = useState(false);
-  // const [visibleProfile, setVisibileProfile] = useState(false);
   const [data, setData] = useState([{}]);
   const [error, setError] = useState("");
 
@@ -27,7 +25,7 @@ export default function Verification() {
   const profilePage = (item) => {
     navigate({
       pathname: "/teacher/admission/verification/student-details",
-      search: `?${createSearchParams({ id: item._id })}`,
+      search: `?${createSearchParams({ id: item._id, editable: false })}`,
     });
   };
 
