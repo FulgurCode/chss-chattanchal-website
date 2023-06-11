@@ -34,6 +34,8 @@ import TeacherImportStudents from "./pages/teacher/admission/ImportStudents";
 
 import EditStudents from "./pages/admin/admission/EditStudent";
 
+import EditStudents from "./pages/admin/admission/EditStudent";
+
 export default function App() {
   return (
     <>
@@ -53,7 +55,11 @@ export default function App() {
               element={<ImportStudents />}
             ></Route>
             <Route
+<<<<<<< HEAD
               path="/admin/admission/edit-student"
+=======
+              path="/admin/admission/edit-students"
+>>>>>>> b8874f7d169b93363bbb764935d63f6c74883bbf
               element={<EditStudents />}
             ></Route>
             <Route
