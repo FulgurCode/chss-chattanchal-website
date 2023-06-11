@@ -8,6 +8,7 @@ import Field from "./Field";
 import SelectField from "./SelectField";
 import QRPopUp from "./QRPopUp";
 import WebCamPop from "./WebCamPopUp";
+import Hero from "../../../components/common/PageHero";
 import Webcam from "react-webcam";
 
 // ---------------- default function ----------------
@@ -228,19 +229,7 @@ function AllColumns(props) {
     <div className={`${styles.globalParent}`}>
       {/* ---------------- top infos ----------------   */}
 
-      <div className={`${styles.subContainer}`}>
-        <img className={`${styles.img2}`} src={img2} />
-        <label className={`${styles.titleLabel}`}>New Admissions</label>
-        <hr className={`${styles.stopLine}`} />
-      </div>
-      <hr className={`${styles.separationLine}`} />
-      <div className={`${styles.pathBox}`}>
-        <label className={`${styles.pathLabel}`}>Home</label>
-        <label className={`${styles.pathLabel}`}>-</label>
-        <label className={`${styles.pathLabel}`}>Admissions</label>
-        <label className={`${styles.pathLabel}`}>-</label>
-        <label className={`${styles.pathLabel}`}>New Admission</label>
-      </div>
+      <Hero title="Student Details" icon={img2} />
       <label className={`${styles.mandatoryLabel}`}>
         Fields marked with <span className={`${styles.aster}`}> * </span> are
         mandatory
