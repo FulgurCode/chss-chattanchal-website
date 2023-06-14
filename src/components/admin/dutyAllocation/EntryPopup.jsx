@@ -6,7 +6,7 @@ import Axios from "../../../../stores/Axios";
 
 export default function EntryPopup(props) {
   // const [teachers, setOptions] = useState(["Option 1", "Option 2", "Option 3"]);
-  const [duties, setDuties] = useState(["Add Details", "Verification"]);
+  const [duties, setDuties] = useState(["add-details", "verification"]);
 
   const [selectedOptions, setSelectedOptions] = useState({
     teacherId: "",
@@ -69,6 +69,12 @@ export default function EntryPopup(props) {
     fetchData();
   }, []);
 
+  // For duty display purpose
+  const capitalizedLabels = dutyOptions.map((option) => ({
+    ...option,
+    label: option.label.charAt(0).toUpperCase() + option.label.slice(1),
+  }));
+
   return (
     <div>
       <button onClick={togglePopup} className={styles.openPopup}>
@@ -80,31 +86,33 @@ export default function EntryPopup(props) {
             <div className={styles.inputBox}>
               <div className={styles.inputSet}>
                 <label htmlFor="select">Select Teacher:</label>
-                
-                  <Select
-                    className={styles.box}
-                    options={teachers}
-                    placeholder="Search Here"
-                    onChange={(selectedOption) =>
-                      updateSelectedOptions(selectedOption, "teacherId")
-                    }
-                  />
-                
-              </div>
-              
-              <div className={styles.inputSet}>
-              <label htmlFor="select">Select Duty</label>
-              <div>
+
                 <Select
                   className={styles.box}
-                  name="duty"
-                  options={dutyOptions}
+                  options={teachers}
                   placeholder="Search Here"
                   onChange={(selectedOption) =>
-                    updateSelectedOptions(selectedOption, "duty")
+                    updateSelectedOptions(selectedOption, "teacherId")
                   }
                 />
               </div>
+
+              <div className={styles.inputSet}>
+                <label htmlFor="select">Select Duty</label>
+                <div>
+                  <Select
+                    className={styles.box}
+                    name="duty"
+                    // options={dutyOptions}
+                    options={capitalizedLabels}
+                    getOptionValue={(option) => option.value} // Provide a custom value accessor
+                    getOptionLabel={(option) => option.label} // Use the modified label for display
+                    placeholder="Search Here"
+                    onChange={(selectedOption) =>
+                      updateSelectedOptions(selectedOption, "duty")
+                    }
+                  />
+                </div>
               </div>
               <div className={styles.response}>
                 {submitMsg && <p>{submitMsg}</p>}

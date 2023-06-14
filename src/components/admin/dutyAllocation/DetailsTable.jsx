@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/admin/teachers/dutyAllocation/DetailsTable.module.css"; // Import the CSS module
-import Axios from "../../../../stores/Axios";
-import DeletePopup from "./DeletePopup";
 
 function Table(props) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -91,7 +89,9 @@ function Table(props) {
                 <tr key={item.id}>
                   <td className={styles.normalB}>{item.name}</td>
                   <td className={styles.normalB}>{item.penNumber}</td>
-                  <td className={styles.normalB}>{item.duty}</td>
+                  <td className={styles.normalB}>
+                    {item.duty.charAt(0).toUpperCase() + item.duty.slice(1)}
+                  </td>
                   <td className={styles.deleteBody}>
                     <button
                       className={styles.deleteBtn}

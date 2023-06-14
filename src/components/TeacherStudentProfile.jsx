@@ -15,7 +15,7 @@ export default function Profile() {
   let componentRef = useRef();
 
   const [loading, setisLoading] = useState(false);
-
+  const [duty, setDuty] = useState(false);
   const [data] = useSearchParams();
   const id = data.getAll("id");
   const editable = data.getAll("editable")[0];
@@ -25,11 +25,22 @@ export default function Profile() {
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
   );
 
+  function CheckDuty() {
+    Axios.get(`/teacher/have-duty?duty=add-details`)
+      .then((response) => {
+        setDuty(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+  }
+
   const navigate = useNavigate();
   useEffect(() => {
     useAuth(setisLoading, navigate);
     getData();
     getImage();
+    CheckDuty();
   }, []);
 
   function getData() {
@@ -58,19 +69,33 @@ export default function Profile() {
 
   return (
     <>
-      <Navbar user="teacher"/>
+      <Navbar user="teacher" />
       <div>
         <div className={styles.body}>
           <div className={styles.main}>
             <Details details={details} img={img} />
-            <div className={styles.btnContainer} >
+            <div className={styles.btnContainer}>
               {/* <button>Print</button> */}
               <ReactToPrint
                 trigger={() => <button>Print</button>}
                 content={() => componentRef.current}
                 documentTitle={details.name}
               />
-              <button onClick={editNav} style={{display: editable != undefined ? (editable=="true" ? "flex" : "none") : "flex"}}>Edit</button>
+              {duty && (
+                <button
+                  onClick={editNav}
+                  style={{
+                    display:
+                      editable != undefined
+                        ? editable == "true"
+                          ? "flex"
+                          : "none"
+                        : "flex",
+                  }}
+                >
+                  Edit
+                </button>
+              )}
             </div>
             <Table ref={componentRef} details={details} img={img} />
           </div>
