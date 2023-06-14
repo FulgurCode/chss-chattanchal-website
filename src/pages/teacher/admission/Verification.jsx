@@ -8,10 +8,11 @@ import { useAuth } from "../../../../stores/CheckloginTeacher";
 import Loader from "../../../components/common/Loader";
 import verificationIcon from "../../../assets/images/admission/confirmIcon.png"
 import Hero from "../../../components/common/PageHero";
+import CheckDuty from "../../../components/CheckDuty";
 
 export default function Verification() {
   const [loading, setisLoading] = useState(false);
-
+  const [avail, setAvail] = useState(false)
   const [visible, setVisibile] = useState(false);
   const [data, setData] = useState([{}]);
   const [error, setError] = useState("");
@@ -128,12 +129,14 @@ export default function Verification() {
   };
 
   useEffect(() => {
+    setAvail(CheckDuty("verification", navigate))
     useAuth(setisLoading, navigate);
     loadData();
   }, []);
 
   return (
     <>
+    {avail && (<div className={styles.mainContainer}>
       <NavBar user="teacher"/>
       <Popup
         visible={visible}
@@ -218,6 +221,7 @@ export default function Verification() {
         </div>
       </div>
       <Loader open={loading} />
+      </div>)}
     </>
   );
 }
