@@ -10,6 +10,7 @@ import NavBar from "../../../components/Navbar/NavBar";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import WebCamPop from "../../../components/admin/newAdmission/WebCamPopUp";
+import QRPopUp from "../../../components/admin/newAdmission/QRPopUp";
 
 // ---------------- default function ----------------
 
@@ -53,6 +54,7 @@ function editStudents() {
   const [popup, setPopup] = useState(false);
   const [notFilledError, setNotFilledError] = useState(false);
   const [filePhoto, setFilePhoto] = useState("");
+  const [QR, setQR] = useState(false);
   const [webCam, setWebCam] = useState(false);
   // const photoRef = useRef('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E');
   const photoRef = useRef("");
@@ -62,6 +64,8 @@ function editStudents() {
   const [param] = useSearchParams();
   const id = param.getAll("id");
   const [filePhotoURL, setFilePhotoURL] = useState("");
+  const [webSocket, SetWebSocket] = useState();
+  const [sessionId, setSessionId] = useState();
 
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
@@ -126,8 +130,32 @@ function editStudents() {
         });
       }
     }
-    console.log(data);
   }
+
+  useEffect(() => {
+    SetWebSocket(new WebSocket("ws:localhost:9000/ws/admission-photo"));
+    return () => {
+      if (webSocket) {
+        webSocket.close();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (webSocket) {
+      webSocket.addEventListener("message", (event) => {
+        var res = JSON.parse(event.data);
+        if (res.name == "id") {
+          setSessionId(res.data);
+        } else if (res.name == "image") {
+          setGlobal(true);
+          const dataURL = "data:image/jpeg;base64," + res.data;
+          setFilePhotoURL(dataURL);
+          base64ToFile(dataURL, setFilePhoto);
+        }
+      });
+    }
+  }, [webSocket]);
 
   // ---------------- onchange fn for photo upload ----------------
 
@@ -251,6 +279,14 @@ function editStudents() {
 
       <button
         style={{ margin: "0 0 30px 16vw" }}
+        className={`${style.qrButton}`}
+        onClick={() => setQR(true)}
+      >
+        Take photo on Phone
+      </button>
+
+      <button
+        style={{ margin: "0 0 30px 16vw" }}
         onClick={() => setWebCam(true)}
         className={`${style.qrButton}`}
       >
@@ -267,6 +303,8 @@ function editStudents() {
         inputRef={inputRef}
         webCamPhoto={setFilePhoto}
       />
+
+      <QRPopUp open={QR} show={setQR} text={sessionId} />
 
       {/* ---------------- Container 1 ----------------  */}
 

@@ -18,7 +18,7 @@ export default function Logout(props) {
         <div className={styles.container}>
           <div className={styles.arrow}></div>
           <div className={styles.logoutBody}>
-            <button onClick={handleClick}>Logout</button>
+            <button style={{fontWeight:400}} onClick={handleClick}>Logout</button>
           </div>
         </div>
       )}
