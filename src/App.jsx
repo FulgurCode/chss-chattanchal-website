@@ -34,6 +34,8 @@ import TeacherStudentDetails from "./pages/teacher/admission/StudentDetails";
 import TeacherImportStudents from "./pages/teacher/admission/ImportStudents";
 //
 
+import ChangePassword from "./components/common/ChangePassword"
+
 import EditStudents from "./pages/admin/admission/EditStudent";
 
 export default function App() {
@@ -44,6 +46,7 @@ export default function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin">
           <Route index element={<Admin />} />
+          <Route path="/admin/change-password" element={<ChangePassword user="admin"/>}/>
           <Route path="/admin/admission">
             <Route index element={<Admission />} />
             <Route
@@ -100,6 +103,8 @@ export default function App() {
           <Route index element={<Teacher />} />
           <Route path="/teacher/signup" element={<SignUp />}></Route>
           <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
+          <Route path="/teacher/change-password" element={<ChangePassword user="teacher"/>}/>
+
 
           <Route path="/teacher/admission">
             <Route index element={<TeacherAdmission />} />
