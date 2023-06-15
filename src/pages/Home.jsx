@@ -4,11 +4,11 @@ import card from "../styles/home/Carousel.module.css";
 import { Link } from "react-router-dom";
 import Carousel from "../components/home/Carousel";
 
-import schoolImg1 from "/imgs/home/school1.jpg";
-import schoolImg2 from "/imgs/home/school2.jpg";
-import schoolImg3 from "/imgs/home/school3.jpg";
-import schoolImg4 from "/imgs/home/school4.jpg";
-import schoolImg5 from "/imgs/home/school5.jpg";
+import schoolImg1 from "../assets/images/home/school1.jpg";
+import schoolImg2 from "../assets/images/home/school2.jpg";
+import schoolImg3 from "../assets/images/home/school3.jpg";
+import schoolImg4 from "../assets/images/home/school4.jpg";
+import schoolImg5 from "../assets/images/home/school5.jpg";
 
 export default function Home() {
   const homeRef = useRef(null);

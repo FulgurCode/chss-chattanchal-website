@@ -32,6 +32,7 @@ import TeacherAdmission from "./pages/teacher/Admission";
 import TeacherNewAdmission from "./pages/teacher/admission/NewAdmission";
 import TeacherStudentDetails from "./pages/teacher/admission/StudentDetails";
 import TeacherImportStudents from "./pages/teacher/admission/ImportStudents";
+import EditStudentsTeacher from "./pages/teacher/admission/EditStudentTeacher";
 //
 
 import EditStudents from "./pages/admin/admission/EditStudent";
@@ -119,6 +120,10 @@ export default function App() {
             <Route
               path="/teacher/admission/student-details"
               element={<TeacherStudentDetails />}
+            ></Route>
+            <Route
+              path="/teacher/admission/edit-student"
+              element={<EditStudentsTeacher />}
             ></Route>
             <Route
               path="/teacher/admission/profile"

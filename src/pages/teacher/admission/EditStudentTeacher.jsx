@@ -1,41 +1,41 @@
-import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
-import React, { Fragment, useEffect, useRef, useState } from "react";
-
+import style from "../../../styles/admin/admission/editStudent/EditStudent.module.css";
+import React, { Fragment, useRef, useState } from "react";
+import img2 from "../../../assets/images/admission/admissionIcon.png";
 import Axios from "../../../../stores/Axios";
-
-import SuccessPopup from "./SuccessPopup.jsx";
-import NotFilledPopup from "./NotFilledPopup";
-import Field from "./Field";
-import SelectField from "./SelectField";
-import QRPopUp from "./QRPopUp";
-import WebCamPop from "./WebCamPopUp";
-import Webcam from "react-webcam";
+import SuccessPopup from "../../../components/admin/newAdmission/SuccessPopup";
+import NotFilledPopup from "../../../components/admin/newAdmission/NotFilledPopup";
+import Field from "../../../components/admin/newAdmission/Field";
+import SelectField from "../../../components/admin/newAdmission/SelectField";
+import NavBar from "../../../components/Navbar/NavBar";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import WebCamPop from "../../../components/admin/newAdmission/WebCamPopUp";
+import QRPopUp from "../../../components/admin/newAdmission/QRPopUp";
+import Hero from "../../../components/common/PageHero";
+import { useAuth } from "../../../../stores/CheckloginTeacher";
+import CheckDuty from "../../../components/CheckDuty";
 
 // ---------------- default function ----------------
 
-function AllColumns(props) {
+function EditStudentsTeacher() {
   // ---------------- States ----------------
 
-  const jsonTemp = {
+  const dataTemplete = {
     admissionDate: "",
     applicationNo: "",
     name: "",
     aadhaarNo: "",
     phone: "", // This should be an integer
     gender: "male",
-    phone: "", // This should be an integer
-    gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
     relationshipWithGuardian: "",
     addressOfGuardian: "",
-    addressOfGuardian: "",
     religion: "",
     caste: "",
     category: "",
-    category: "",
     linguisticMinority: "",
-    obc: true, // this should be boolean value
     obc: true, // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
@@ -53,7 +53,8 @@ function AllColumns(props) {
       school: "",
     },
   };
-  const [data, setData] = useState(jsonTemp);
+
+  const [data, setData] = useState(dataTemplete);
   const [popup, setPopup] = useState(false);
   const [notFilledError, setNotFilledError] = useState(false);
   const [filePhoto, setFilePhoto] = useState("");
@@ -61,26 +62,52 @@ function AllColumns(props) {
   const [webCam, setWebCam] = useState(false);
   // const photoRef = useRef('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E');
   const photoRef = useRef("");
-  const [global, setGlobal] = useState(false);
+  const [global, setGlobal] = useState(true);
   const [webCamPhoto, setWebCamPhoto] = useState("");
   const inputRef = useRef(null);
+  const [param] = useSearchParams();
+  const id = param.getAll("id");
   const [filePhotoURL, setFilePhotoURL] = useState("");
-  const [error, setError] = useState("");
   const [webSocket, SetWebSocket] = useState();
-  const [id, setId] = useState();
+  const [sessionId, setSessionId] = useState();
 
-  async function base64ToFile(dataUrl, setState) {
-    let blob = await fetch(dataUrl).then((res) => res.blob());
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      const arrayBuffer = fileReader.result;
-      const file = new File([arrayBuffer], "file.jpg", {
-        type: blob.type,
+  function getData() {
+    Axios.get(`teacher/get-student?studentId=${id}`)
+      .then((response) => {
+        delete response.data._id;
+        setData(response.data);
+      })
+      .catch((err) => {
+        if (err == true) {
+          console.error(err);
+        } else {
+          console.log("server connection error");
+        }
       });
-      setState(file);
-    };
-    fileReader.readAsArrayBuffer(blob);
+
+    Axios.get(`teacher/get-student-photo?studentId=${id}`)
+      .then((response) => {
+        setFilePhotoURL("data:image/jpeg;base64," + response.data);
+      })
+
+      .catch((err) => {
+        if (err == true) {
+          console.error(err);
+        } else {
+          console.log("server connection error");
+        }
+      });
   }
+
+  const navigate = useNavigate()
+  const [loading, setisLoading] = useState(false);
+
+  const [avail, setAvail] = useState(false)
+  useEffect(() => { 
+    useAuth(setisLoading, navigate) ;
+    setAvail(CheckDuty("add-details", navigate))
+    getData() ;
+  }, []);
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
@@ -131,7 +158,7 @@ function AllColumns(props) {
       webSocket.addEventListener("message", (event) => {
         var res = JSON.parse(event.data);
         if (res.name == "id") {
-          setId(res.data);
+          setSessionId(res.data);
         } else if (res.name == "image") {
           setGlobal(true);
           const dataURL = "data:image/jpeg;base64," + res.data;
@@ -175,75 +202,126 @@ function AllColumns(props) {
     for (var prop in data) {
       if (data[prop] === "") {
         setNotFilledError(true);
+        console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
         break;
       }
     }
 
-    for (var prop in data) {
-      if (data[prop] === "") {
-        setNotFilledError(true);
-        hasNullOrUndefinedValue = true;
-        break;
-      }
-    }
-
-    if (!hasNullOrUndefinedValue) {
-      Axios.post(`/${props.user}/new-admission`, data)
-        .then((response) => {
+    if (hasNullOrUndefinedValue) {
+      console.log("no");
+      console.log(data);
+    } else {
+      console.log("yes");
+      console.log(data);
+      Axios.put(`teacher/edit-student?studentId=${id}`, data)
+        .then(() => {
           const formData = new FormData();
-          if (global == true) {
-            formData.append("file", filePhoto);
-          } else {
-            formData.append("file", webCamPhoto);
-          }
+          formData.append("file", filePhoto);
 
           Axios.post(
-            `/${props.user}/upload-student-photo?studentId=${response.data}`,
+            `teacher/upload-student-photo?studentId=${id}`,
             formData
           ).catch((err) => {
-            if (err.response.data != undefined) {
-              setError(err.response.data);
-            } else {
-              setError("Server connection error");
-            }
+            alert(err.response?.data);
           });
 
           setPopup(!popup);
-          setData(jsonTemp);
+          setData(dataTemplete);
           setFilePhotoURL("");
           setGlobal(true);
-          inputRef.current.value = "";
+          history.back();
         })
         .catch((err) => {
-          if (err.response) {
-            setError(err.response.data);
+          if (err.response == undefined) {
+            console.log("server connection err OR err in .then");
           } else {
-            setError("Server connection error");
+            console.log(err.response.data);
           }
         });
     }
   }
 
   return (
-    <div className={`${styles.globalParent}`}>
+    <div className={`${style.globalParent}`}>
+      <NavBar user="teacher" />
+      <Hero title="Edit Student" icon={img2} />
+
+
       {/* ---------------- top infos ----------------   */}
 
-      <label className={`${styles.mandatoryLabel}`}>
-        Fields marked with <span className={`${styles.aster}`}> * </span> are
+
+
+      <label className={`${style.mandatoryLabel}`}>
+        Fields marked with <span className={`${style.aster}`}> * </span> are
         mandatory
       </label>
 
+      <img
+        style={{ display: global ? "block" : "none", margin: "30px 0 0 16vw" }}
+        className={style.photoContainer}
+        src={filePhotoURL}
+      ></img>
+      <canvas
+        style={{ display: global ? "none" : "block", margin: "30px 0 0 16vw" }}
+        className={style.photoContainer}
+        ref={photoRef}
+      />
+
+      {console.log(webCamPhoto)}
+      <Field
+        text="Upload photo"
+        type="file"
+        change={onChangePhoto}
+        extention="image/*"
+        inputStyle={style.uploadPhoto}
+        containerClass={style.subContainerNew}
+        styling={{ margin: "30px 0 0 16vw" }}
+        reference={inputRef}
+      />
+
+      <div className={style.photoBtn}>
+
+        <button
+          style={{ margin: "0 0 30px 16vw" }}
+          className={`${style.qrButton}`}
+          onClick={() => setQR(true)}
+        >
+          Take photo on Phone
+        </button>
+
+        <button
+          style={{ margin: "0 0 30px 16vw" }}
+          onClick={() => setWebCam(true)}
+          className={`${style.qrButton}`}
+        >
+          Take a photo on web cam
+        </button>
+
+      </div>
+      <WebCamPop
+        open={webCam}
+        show={setWebCam}
+        photoRef={photoRef}
+        setGlobal={setGlobal}
+        setImage={setFilePhoto}
+        image={filePhoto}
+        inputRef={inputRef}
+        webCamPhoto={setFilePhoto}
+      />
+
+      <QRPopUp open={QR} show={setQR} text={sessionId} />
+
       {/* ---------------- Container 1 ----------------  */}
 
-      <div className={`${styles.container}`}>
+      <div className={`${style.container}`}>
         <Field
           text="Application number"
           type="number"
           change={handleChange}
           value={data.applicationNo}
           name="applicationNo"
-          containerClass={`${styles.subContainer} ${styles.applicationNo}`}
+          containerClass={`${style.subContainer} ${style.applicationNo}`}
         />
         <Field
           text="Application Date"
@@ -251,20 +329,20 @@ function AllColumns(props) {
           change={handleChange}
           value={data.admissionDate}
           name="admissionDate"
-          containerClass={`${styles.subContainer} ${styles.applicationNo}`}
+          containerClass={`${style.subContainer} ${style.applicationNo}`}
         />
       </div>
-      <hr className={`${styles.separationLine}`} />
+      <hr className={`${style.separationLine}`} />
 
       {/* ---------------- Container 2 ----------------  */}
 
-      <div className={`${styles.containerNew} `}>
+      <div className={`${style.containerNew} `}>
         <Field
           text="Name of the student"
           change={handleChange}
           value={data.name}
           name="name"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Aadhaar no."
@@ -272,7 +350,7 @@ function AllColumns(props) {
           change={handleChange}
           value={data.aadhaarNo}
           name="aadhaarNo"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Phone no."
@@ -280,7 +358,7 @@ function AllColumns(props) {
           change={handleChange}
           value={data.phone}
           name="phone"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <SelectField
           text="Gender"
@@ -292,55 +370,55 @@ function AllColumns(props) {
             ["Female", "female"],
             ["Others", "others"],
           ]}
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
       </div>
-      <hr className={`${styles.separationLine}`} />
+      <hr className={`${style.separationLine}`} />
 
       {/* ---------------- Container 3 ----------------  */}
 
-      <div className={`${styles.containerNew} `}>
+      <div className={`${style.containerNew} `}>
         <Field
           text="Name of the parent / guardian"
           change={handleChange}
           value={data.nameOfParent}
           name="nameOfParent"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Occupation of the parent / guardian"
           change={handleChange}
           value={data.occupationOfParent}
           name="occupationOfParent"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Relationship of the student to guardian"
           change={handleChange}
           value={data.relationshipWithGuardian}
           name="relationshipWithGuardian"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Address of guardian"
           change={handleChange}
           value={data.addressOfGuardian}
           name="addressOfGuardian"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Religion"
           change={handleChange}
           value={data.religion}
           name="religion"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Caste"
           change={handleChange}
           value={data.caste}
           name="caste"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <SelectField
           text=" Does the student belong to OBC"
@@ -351,21 +429,21 @@ function AllColumns(props) {
             ["yes", true],
             ["no", false],
           ]}
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Category"
           change={handleChange}
           value={data.category}
           name="category"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="If the student belong to linguistic minority specify the language"
           change={handleChange}
           value={data.linguisticMinority}
           name="linguisticMinority"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="DOB"
@@ -373,14 +451,14 @@ function AllColumns(props) {
           change={handleChange}
           value={data.dob}
           name="dob"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
       </div>
 
       {/* ---------------- Container 4 ----------------  */}
 
-      <hr className={`${styles.separationLine}`} />
-      <div className={`${styles.containerNew}`}>
+      <hr className={`${style.separationLine}`} />
+      <div className={`${style.containerNew}`}>
         <Field
           text="Class in which admitted"
           type="number"
@@ -389,7 +467,7 @@ function AllColumns(props) {
           change={handleChange}
           value={data.class}
           name="class"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <SelectField
           text="Course in which admitted"
@@ -405,7 +483,7 @@ function AllColumns(props) {
               "COMMERCE",
             ],
           ]}
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <SelectField
           text="Second Language"
@@ -417,7 +495,7 @@ function AllColumns(props) {
             ["Arabic", "Arabic"],
             ["Hindi", "Hindi"],
           ]}
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <SelectField
           text="Status"
@@ -428,15 +506,15 @@ function AllColumns(props) {
             ["permanent", "permanent"],
             ["temporary", "temporary"],
           ]}
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
       </div>
 
       {/* ---------------- Container 5 ----------------  */}
 
-      <hr className={`${styles.separationLine}`} />
-      <div className={`${styles.containerNew}`}>
-        <label className={`${styles.subHeadingLabel}`}>
+      <hr className={`${style.separationLine}`} />
+      <div className={`${style.containerNew}`}>
+        <label className={`${style.subHeadingLabel}`}>
           Details of qualifying examination
         </label>
         <Field
@@ -444,28 +522,28 @@ function AllColumns(props) {
           change={handleChange}
           value={data.qualifyingExamDetails.nameOfBoard}
           name="nameOfBoard"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Register No."
           type="number"
           change={handleChange}
-          value={data.registerNo}
+          value={data.qualifyingExamDetails.registerNo}
           name="registerNo"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Month and year of passing"
           change={handleChange}
           value={data.qualifyingExamDetails.passingTime}
           name="passingTime"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
       </div>
       {/* ---------------- Container 6 ----------------  */}
-      <hr className={`${styles.separationLine}`} />
-      <div className={`${styles.containerNew}`}>
-        <label className={`${styles.subHeadingLabel}`}>
+      <hr className={`${style.separationLine}`} />
+      <div className={`${style.containerNew}`}>
+        <label className={`${style.subHeadingLabel}`}>
           Details of Transfer certificate produced on admission
         </label>
         <Field
@@ -474,7 +552,7 @@ function AllColumns(props) {
           change={handleChange}
           value={data.tcDetailsOnAdmission.number}
           name="number"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Date"
@@ -482,47 +560,17 @@ function AllColumns(props) {
           change={handleChange}
           value={data.tcDetailsOnAdmission.date}
           name="date"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
         <Field
           text="Issued school / institution"
           change={handleChange}
           value={data.tcDetailsOnAdmission.school}
           name="school"
-          containerClass={styles.subContainerNew}
+          containerClass={style.subContainerNew}
         />
-        <img
-          style={{ display: global ? "block" : "none" }}
-          className={styles.photoContainer}
-          src={filePhotoURL}
-        ></img>
-        <canvas
-          style={{ display: global ? "none" : "block" }}
-          className={styles.photoContainer}
-          ref={photoRef}
-        />
-        <Field
-          text="Upload photo"
-          type="file"
-          change={onChangePhoto}
-          extention="image/*"
-          inputStyle={styles.uploadPhoto}
-          containerClass={styles.subContainerNew}
-          reference={inputRef}
-        />
-        <button onClick={() => setQR(true)} className={`${styles.qrButton}`}>
-          Take photo on Phone
-        </button>
-        <button
-          onClick={() => setWebCam(true)}
-          className={`${styles.qrButton}`}
-        >
-          Take a photo on web cam
-        </button>
-        <label style={{ color: "red", fontSize: "15px", marginTop: "50px" }}>
-          {error}
-        </label>
-        <button onClick={handleSubmit} className={`${styles.submitButton}`}>
+
+        <button onClick={handleSubmit} className={`${style.submitButton}`}>
           Submit
         </button>
       </div>
@@ -535,19 +583,8 @@ function AllColumns(props) {
         show={setNotFilledError}
         showVar={notFilledError}
       />
-      <QRPopUp open={QR} show={setQR} text={id} />
-      <WebCamPop
-        open={webCam}
-        show={setWebCam}
-        photoRef={photoRef}
-        setGlobal={setGlobal}
-        setImage={setFilePhoto}
-        image={filePhoto}
-        inputRef={inputRef}
-        webCamPhoto={setWebCamPhoto}
-      />
     </div>
   );
 }
 
-export default AllColumns;
+export default EditStudentsTeacher;

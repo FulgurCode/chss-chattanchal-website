@@ -12,13 +12,13 @@ const Breadcrumbs = () => {
         const isLast = index === pathnames.length - 1;
         const isFirst = index === 0;
         return (
-          <span key={routeTo}>
+          <span key={routeTo} style={{textDecoration:"none"}}>
             {isFirst == false ?
             (<span> &gt; </span>):""}
             {isLast ? (
               <span>{pathname}</span>
             ) : (
-              <Link style={{outline:"none"}} to={routeTo}>{pathname}</Link>
+              <Link style={{outline:"none", textDecoration:"none", fontWeight:600, color:"#000"}} to={routeTo}>{pathname}</Link>
             )}
           </span>
         );
