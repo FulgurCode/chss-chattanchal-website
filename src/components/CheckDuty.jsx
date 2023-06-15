@@ -1,7 +1,7 @@
 import Axios from "../../stores/Axios";
 
 export default function CheckDuty(duty, navigate){
-    const determiner = true
+    let determiner = true
         Axios.get(`/teacher/have-duty?duty=${duty}`)
           .then((response) => {
             if (response.data == false){

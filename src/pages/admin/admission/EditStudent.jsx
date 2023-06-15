@@ -8,9 +8,12 @@ import Field from "../../../components/admin/newAdmission/Field";
 import SelectField from "../../../components/admin/newAdmission/SelectField";
 import NavBar from "../../../components/Navbar/NavBar";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import WebCamPop from "../../../components/admin/newAdmission/WebCamPopUp";
 import QRPopUp from "../../../components/admin/newAdmission/QRPopUp";
+import Hero from "../../../components/common/PageHero";
+import { useAuth } from "../../../../stores/CheckloginAdmin";
 
 // ---------------- default function ----------------
 
@@ -94,8 +97,12 @@ function editStudents() {
         }
       });
   }
-
-  useEffect(getData, []);
+  const navigate = useNavigate()
+  const [loading, setisLoading] = useState(false);
+  useEffect(() => {
+    getData();
+    useAuth(setisLoading, navigate);
+  }, []);
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
@@ -233,22 +240,13 @@ function editStudents() {
   return (
     <div className={`${style.globalParent}`}>
       <NavBar user="admin" />
+      <Hero title="Edit Student" icon={img2} />
+
 
       {/* ---------------- top infos ----------------   */}
 
-      <div className={`${style.subContainer}`}>
-        <img className={`${style.img2}`} src={img2} />
-        <label className={`${style.titleLabel}`}>Edit student</label>
-        <hr className={`${style.stopLine}`} />
-      </div>
-      <hr className={`${style.separationLine}`} />
-      <div className={`${style.pathBox}`}>
-        <label className={`${style.pathLabel}`}>Home</label>
-        <label className={`${style.pathLabel}`}>-</label>
-        <label className={`${style.pathLabel}`}>Admissions</label>
-        <label className={`${style.pathLabel}`}>-</label>
-        <label className={`${style.pathLabel}`}>Edit student</label>
-      </div>
+
+
       <label className={`${style.mandatoryLabel}`}>
         Fields marked with <span className={`${style.aster}`}> * </span> are
         mandatory
@@ -277,22 +275,25 @@ function editStudents() {
         reference={inputRef}
       />
 
-      <button
-        style={{ margin: "0 0 30px 16vw" }}
-        className={`${style.qrButton}`}
-        onClick={() => setQR(true)}
-      >
-        Take photo on Phone
-      </button>
+      <div className={style.photoBtn}>
 
-      <button
-        style={{ margin: "0 0 30px 16vw" }}
-        onClick={() => setWebCam(true)}
-        className={`${style.qrButton}`}
-      >
-        Take a photo on web cam
-      </button>
+        <button
+          style={{ margin: "0 0 30px 16vw" }}
+          className={`${style.qrButton}`}
+          onClick={() => setQR(true)}
+        >
+          Take photo on Phone
+        </button>
 
+        <button
+          style={{ margin: "0 0 30px 16vw" }}
+          onClick={() => setWebCam(true)}
+          className={`${style.qrButton}`}
+        >
+          Take a photo on web cam
+        </button>
+
+      </div>
       <WebCamPop
         open={webCam}
         show={setWebCam}
