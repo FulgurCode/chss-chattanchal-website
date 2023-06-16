@@ -68,7 +68,7 @@ export default function Login() {
 
   return (
     <>
-      <header className={styles.header}>www.chsschattanchal.com</header>
+      <header className={styles.header}>www.chsschattanchalhss.com</header>
       <div
         className={styles.main}
         style={{ backgroundImage: `url(${schoolImg})` }}

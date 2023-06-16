@@ -52,6 +52,7 @@ export default function Confirmation() {
       });
   }
 
+  
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -66,17 +67,26 @@ export default function Confirmation() {
   };
 
   const filteredData = data.filter((item) => {
-    const { name, admissionNo } = item;
-    const searchFields = `${name}${admissionNo}`.toLowerCase();
+    const { name, admissionNo, course } = item;
+    const searchFields = `${name}${admissionNo}${course}`.toLowerCase();
     return searchFields.includes(searchQuery.toLowerCase());
   });
+  
 
   const sortedData = filteredData.sort((a, b) => {
     if (sortColumn) {
       const columnA = a[sortColumn];
       const columnB = b[sortColumn];
-
-      if (typeof columnA === "string" && typeof columnB === "string") {
+  
+      if (sortColumn === "admissionNo" || sortColumn === "class") {
+        // Sort string columns
+        if (columnA < columnB) {
+          return sortOrder === "asc" ? -1 : 1;
+        }
+        if (columnA > columnB) {
+          return sortOrder === "asc" ? 1 : -1;
+        }
+      } else if (typeof columnA === "string" && typeof columnB === "string") {
         if (isDate(columnA) && isDate(columnB)) {
           // Sort date strings
           const dateA = parseDate(columnA);
@@ -100,7 +110,6 @@ export default function Confirmation() {
     }
     return 0;
   });
-
   function isDate(dateString) {
     // Check if a string represents a valid date
     const dateRegex = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
@@ -141,63 +150,71 @@ export default function Confirmation() {
         text={"Admission Confirmed for Student"}
       />
         <Hero title="Confirmation" icon={confirmIcon} />
-      <div className={styles.main}>
-        <div className={styles.table}>
-          <div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <input
-                type="text"
-                placeholder="Search Name/Adm No"
-                value={searchQuery}
-                onChange={handleSearch}
-                className={styles.searchBox}
-              />
-              <code
-                style={{
-                  textAlign: "center",
-                  color: "red",
-                  left: 0,
-                  minWidth: 0,
-                }}
-              >
-                {error}
-              </code>
-            </div>
+        <div className={styles.main}>
+            <div className={styles.table}>
+              <div>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search Name/Adm No/Course"
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    className={styles.searchBox}
+                  />
+                  <code
+                    style={{
+                      textAlign: "center",
+                      color: "red",
+                      left: 0,
+                      minWidth: 0,
+                    }}
+                  >
+                    {error}
+                  </code>
+                </div>
 
-            <div className={styles.tableBox}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th onClick={() => handleSort("name")}>
-                      Name {getSortIndicator("name")}
-                    </th>
-                    <th onClick={() => handleSort("class")}>
-                      Class {getSortIndicator("class")}
-                    </th>
-                    <th onClick={() => handleSort("admissionNo")}>
-                      Adm No. {getSortIndicator("admissionNo")}
-                    </th>
-                    <th onClick={() => handleSort("dob")}>
-                      D.O.B {getSortIndicator("dob")}
-                    </th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <div className={styles.tableBox}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th onClick={() => handleSort("name")}>
+                          Name {getSortIndicator("name")}
+                        </th>
+                        <th onClick={() => handleSort("class")}>
+                          Class {getSortIndicator("class")}
+                        </th>
+                        <th onClick={() => handleSort("admissionNo")}>
+                          Adm No. {getSortIndicator("admissionNo")}
+                        </th>
+                        <th onClick={() => handleSort("course")}>
+                          Course {getSortIndicator("course")}
+                        </th>
 
-                <tbody className={styles.tableBody}>
-                  {sortedData.length === 0 ? (
-                    <tr>
-                      <td colSpan="">No data found</td>
-                    </tr>
-                  ) : (
-                    sortedData.map((item) => (
-                      <tr key={item._id}>
-                        <td onClick={() => profilePage(item)}>{item.name}</td>
-                        <td onClick={() => profilePage(item)}>{item.class}</td>
-                        <td onClick={() => profilePage(item)}>
-                          {item.admissionNo}
-                        </td>
-                        <td onClick={() => profilePage(item)}>{item.dob}</td>
+                        <th></th>
+                      </tr>
+                    </thead>
+
+                    <tbody className={styles.tableBody}>
+                      {sortedData.length === 0 ? (
+                        <tr>
+                          <td colSpan="">No data found</td>
+                        </tr>
+                      ) : (
+                        sortedData.map((item) => (
+                          <tr key={item._id}>
+                            <td onClick={() => profilePage(item)}>
+                              {item.name}
+                            </td>
+                            <td onClick={() => profilePage(item)}>
+                              {item.class}
+                            </td>
+                            <td onClick={() => profilePage(item)}>
+                              {item.admissionNo}
+                            </td>
+                            <td onClick={() => profilePage(item)}>{item.course}</td>
+
                         <td>
                           <button
                             style={{ marginLeft: "30%" }}

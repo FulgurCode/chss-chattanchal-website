@@ -71,7 +71,6 @@
     border-collapse: collapse;
     margin-bottom: 5px;
   
-    overflow-x: scroll;
     width: 80vw;
   }
   
@@ -143,7 +142,7 @@
     text-indent: 5px;
     height: 30px;
     font-size: 18px;
-    min-width: 10px;
+    width: 250px;
     margin: 2px;
   }
   
