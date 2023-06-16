@@ -41,16 +41,12 @@ function editStudents() {
     course: "PCMB",
     secondLanguage: "Malayalam",
     status: "permanent",
-    qualifyingExamDetails: {
-      nameOfBoard: "",
-      registerNo: "", // This should be an integer
-      passingTime: "",
-    },
-    tcDetailsOnAdmission: {
-      number: "",
-      date: "",
-      school: "",
-    },
+    sslcNameOfBoard: "",
+    sslcRegisterNo: "", // This should be an integer
+    sslcPassingTime: "",
+    tcNumber: "",
+    tcDate: "",
+    tcSchool: "",
   };
 
   const [data, setData] = useState(dataTemplete);
@@ -109,33 +105,11 @@ function editStudents() {
     if (event && event.target) {
       const name = event.target.name;
       const value = event.target.value;
-
-      if (
-        name == "nameOfBoard" ||
-        name == "registerNo" ||
-        name == "passingTime"
-      ) {
-        setData({
-          ...data,
-          qualifyingExamDetails: {
-            ...data.qualifyingExamDetails,
-            [name]: value,
-          },
-        });
-      } else if (name == "number" || name == "date" || name == "school") {
-        setData({
-          ...data,
-          tcDetailsOnAdmission: {
-            ...data.tcDetailsOnAdmission,
-            [name]: value,
-          },
-        });
-      } else {
+      
         setData({
           ...data,
           [name]: value,
         });
-      }
     }
   }
 
@@ -186,12 +160,12 @@ function editStudents() {
     var hasNullOrUndefinedValue = false;
 
     // type casting the variable specified
-    data.tcDetailsOnAdmission.number = Number(data.tcDetailsOnAdmission.number);
+    data.tcNumber = Number(data.tcNumber);
     data.phone = Number(data.phone);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
-    data.qualifyingExamDetails.registerNo = Number(
-      data.qualifyingExamDetails.registerNo
+    data.sslcRegisterNo = Number(
+      data.sslcRegisterNo
     );
 
     for (var prop in data) {
@@ -515,23 +489,23 @@ function editStudents() {
         <Field
           text="Name of Board"
           change={handleChange}
-          value={data.qualifyingExamDetails.nameOfBoard}
-          name="nameOfBoard"
+          value={data.sslcNameOfBoard}
+          name="sslcNameOfBoard"
           containerClass={style.subContainerNew}
         />
         <Field
           text="Register No."
           type="number"
           change={handleChange}
-          value={data.qualifyingExamDetails.registerNo}
-          name="registerNo"
+          value={data.sslcRegisterNo}
+          name="sslcRegisterNo"
           containerClass={style.subContainerNew}
         />
         <Field
           text="Month and year of passing"
           change={handleChange}
-          value={data.qualifyingExamDetails.passingTime}
-          name="passingTime"
+          value={data.sslcPassingTime}
+          name="sslcPassingTime"
           containerClass={style.subContainerNew}
         />
       </div>
@@ -545,23 +519,23 @@ function editStudents() {
           text="Number"
           type="number"
           change={handleChange}
-          value={data.tcDetailsOnAdmission.number}
-          name="number"
+          value={data.tcNumber}
+          name="tcNumber"
           containerClass={style.subContainerNew}
         />
         <Field
           text="Date"
           type="date"
           change={handleChange}
-          value={data.tcDetailsOnAdmission.date}
-          name="date"
+          value={data.tcDate}
+          name="tcDate"
           containerClass={style.subContainerNew}
         />
         <Field
           text="Issued school / institution"
           change={handleChange}
-          value={data.tcDetailsOnAdmission.school}
-          name="school"
+          value={data.tcSchool}
+          name="tcSchool"
           containerClass={style.subContainerNew}
         />
 
