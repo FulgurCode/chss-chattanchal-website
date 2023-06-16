@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Logout from "./logout";
+import Logout from "./Logout";
 
 import menuIcon from "../../assets/images/navbar/menuButtonIcon.svg";
 import bellIcon from "../../assets/images/navbar/bellIcon.svg";
