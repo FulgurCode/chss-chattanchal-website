@@ -69,7 +69,19 @@ export default function Profile() {
                 content={() => componentRef.current}
                 documentTitle={details.name}
               />
-              <button onClick={editNav} style={{display: editable != undefined ? (editable=="true" ? "flex" : "none") : "flex"}}>Edit</button>
+              <button
+                onClick={editNav}
+                style={{
+                  display:
+                    editable != undefined
+                      ? editable == "true"
+                        ? "flex"
+                        : "none"
+                      : "flex",
+                }}
+              >
+                Edit
+              </button>
             </div>
             <Table ref={componentRef} details={details} img={img} />
           </div>
@@ -286,7 +298,9 @@ const Details = (props, ref) => {
         )}
         <br />
 
-        {props.details.tcDetailsOnAdmission == undefined ? ( // ith set ayi
+        {props.details.tcNumber == undefined &&
+        props.details.tcDate == undefined &&
+        props.details.tcSchool == undefined ? ( // ith set ayi
           ""
         ) : (
           <>
@@ -296,21 +310,23 @@ const Details = (props, ref) => {
             <div>
               <code>Number</code>
               <code>:</code>
-              <code>{props.details.tcDetailsOnAdmission.number}</code>
+              <code>{props.details.tcNumber}</code>
             </div>
             <div>
               <code>Date</code>
               <code>:</code>
-              <code>{props.details.tcDetailsOnAdmission.date}</code>
+              <code>{props.details.tcDate}</code>
             </div>
             <div>
               <code>School</code>
               <code>:</code>
-              <code>{props.details.tcDetailsOnAdmission.school}</code>
+              <code>{props.details.tcSchool}</code>
             </div>
           </>
         )}
-        {props.details.qualifyingExamDetails == undefined ? ( // ith set ayi
+        {props.details.sslcNameOfBoard == undefined &&
+        props.details.sslcRegisterNo == undefined &&
+        props.details.sslcPassingTime == undefined ? ( // ith set ayi
           ""
         ) : (
           <>
@@ -321,17 +337,17 @@ const Details = (props, ref) => {
             <div>
               <code>Name of board</code>
               <code>:</code>
-              <code>{props.details.qualifyingExamDetails.nameOfBoard}</code>
+              <code>{props.details.sslcNameOfBoard}</code>
             </div>
             <div>
               <code>Register No</code>
               <code>:</code>
-              <code>{props.details.qualifyingExamDetails.registerNo}</code>
+              <code>{props.details.sslcRegisterNo}</code>
             </div>
             <div>
               <code>Passing time</code>
               <code>:</code>
-              <code>{props.details.qualifyingExamDetails.passingTime}</code>
+              <code>{props.details.sslcPassingTime}</code>
             </div>
           </>
         )}
@@ -364,9 +380,6 @@ const Table = forwardRef((props, ref) => {
                 alignSelf: "center",
                 margin: "10px auto",
                 position: "relative",
-                // left: "calc(50%)",
-                // top: 50
-                // transform: "translate(0)"
               }}
             >
               <img
@@ -526,61 +539,49 @@ const Table = forwardRef((props, ref) => {
         <tr>
           <td>Number</td>
           <td>
-            {props.details.tcDetailsOnAdmission == undefined
+          {props.details.tcNumber == undefined
               ? ""
-              : props.details.tcDetailsOnAdmission.number == undefined
-              ? ""
-              : props.details.tcDetailsOnAdmission.number}
+              : props.details.tcNumber}
           </td>
         </tr>
         <tr>
           <td>Date</td>
           <td>
-            {props.details.tcDetailsOnAdmission == undefined
+          {props.details.tcDate == undefined
               ? ""
-              : props.details.tcDetailsOnAdmission.date == undefined
-              ? ""
-              : props.details.tcDetailsOnAdmission.date}
+              : props.details.tcDate}
           </td>
         </tr>
         <tr>
           <td>School</td>
           <td>
-            {props.details.tcDetailsOnAdmission == undefined
+          {props.details.tcSchool == undefined
               ? ""
-              : props.details.tcDetailsOnAdmission.school == undefined
-              ? ""
-              : props.details.tcDetailsOnAdmission.school}
+              : props.details.tcSchool}
           </td>
         </tr>
         <tr>
           <td>Name of Board</td>
           <td>
-            {props.details.qualifyingExamDetails == undefined
+          {props.details.sslcNameOfBoard == undefined
               ? ""
-              : props.details.qualifyingExamDetails.nameOfBoard == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.nameOfBoard}
+              : props.details.sslcNameOfBoard}
           </td>
         </tr>
         <tr>
           <td>Register No.</td>
           <td>
-            {props.details.qualifyingExamDetails == undefined
+              {props.details.sslcRegisterNo == undefined
               ? ""
-              : props.details.qualifyingExamDetails.registerNo == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.registerNo}
+              : props.details.sslcRegisterNo}
           </td>
         </tr>
         <tr>
           <td>Passsing Time</td>
           <td>
-            {props.details.qualifyingExamDetails == undefined
+              {props.details.sslcPassingTime == undefined
               ? ""
-              : props.details.qualifyingExamDetails.passingTime == undefined
-              ? ""
-              : props.details.qualifyingExamDetails.passingTime}
+              : props.details.sslcPassingTime}
           </td>
         </tr>
       </tbody>
