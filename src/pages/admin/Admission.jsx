@@ -65,7 +65,7 @@ export default function Admission() {
             <div
                 className={styles.item}
                 onClick={() => {
-                  navigate("/teacher/admission/verification");
+                  navigate("/admin/admission/verification");
                 }}
               >
                 <span>
