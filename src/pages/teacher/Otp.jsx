@@ -10,6 +10,7 @@ import Axios from "../../../stores/Axios";
 export default function Login() {
   const [otp, setOtp] = React.useState("");
   const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate();
 
   function changeEvent(event) {
@@ -26,14 +27,17 @@ export default function Login() {
   }
 
   function handleClick() {
+    setLoading(true)
     Axios.get(`teacher/signup-otp?otp=${otp}`)
       .then((res) => {
         navigate("/login");
       })
       .catch((err) => {
+        setLoading(false)
         if (!err.response) {
           setError("Server is not connected");
         } else {
+          setLoading(false)
           setError(err.response.data);
         }
       });
@@ -60,6 +64,7 @@ export default function Login() {
                 setOtp={setOtp}
                 handleClick={handleClick}
                 error={error}
+                loader={loading}
               />
             </div>
           </div>

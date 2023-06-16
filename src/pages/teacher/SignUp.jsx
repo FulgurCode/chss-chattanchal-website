@@ -7,11 +7,13 @@ import { useNavigate } from "react-router-dom";
 import SignUpElement from "./SignUpElement";
 import Axios from "../../../stores/Axios";
 
+
 export default function Login() {
   const [userType, setUserType] = React.useState("Teacher");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate();
 
   function changeEvent(event) {
@@ -28,6 +30,7 @@ export default function Login() {
   }
 
   function handleClick() {
+    setLoading(true)
     if (userType == "teacher") {
       Axios.post("/teacher/signup", {
         email: email,
@@ -37,9 +40,11 @@ export default function Login() {
           navigate("/teacher/signup-otp");
         })
         .catch((err) => {
+          setLoading(false)
           setError(err.response.data);
         });
     } else {
+      setLoading(false)
       setError("students sign up fuctionality is not added yet");
     }
   }
@@ -74,6 +79,7 @@ export default function Login() {
               handleClick={handleClick}
               error={error}
               userType={userType}
+              loader={loading}
             />
           </div>
         </div>

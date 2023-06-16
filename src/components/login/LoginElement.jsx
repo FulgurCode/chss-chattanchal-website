@@ -1,4 +1,5 @@
 import styles from "../../styles/login/Login.module.css";
+import Loader from "../common/LoaderLogin";
 
 export default function LoginElement(props) {
   return (
@@ -37,7 +38,15 @@ export default function LoginElement(props) {
           onChange={props.changeEvent}
         />
         <a href="#">Forget password?</a>
-        <button onClick={props.handleClick}>LOGIN</button>
+        <button className={styles.loginBtn} onClick={props.handleClick}>
+          {props.loader ? (
+            <div className={styles.round}>
+              <Loader open={true} />
+            </div>
+          ) : (
+            <>Login</>
+          )}
+        </button>
         <p id="error">{props.error}</p>
       </span>
     </div>

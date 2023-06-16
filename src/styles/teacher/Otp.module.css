@@ -384,3 +384,12 @@ body {
   min-height: 15px;
   /* transform: translate(0, 15px); */
 }
+
+.main .container .login .loginElement span button .round {
+  align-self: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: min-content;
+}
+
+
