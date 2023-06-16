@@ -10,7 +10,7 @@ import verificationIcon from "../../../assets/images/admission/confirmIcon.png"
 import Hero from "../../../components/common/PageHero";
 import CheckDuty from "../../../components/CheckDuty";
 
-export default function Verification() {
+export default function VerificationTeacher() {
   const [loading, setisLoading] = useState(false);
   const [avail, setAvail] = useState(false)
   const [visible, setVisibile] = useState(false);
