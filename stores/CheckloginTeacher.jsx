@@ -1,6 +1,5 @@
 import Axios from "./Axios";
 
-
 export function useAuth(setState, navigate) {
   const checkLogin = async () => {
     while (true) {
@@ -14,10 +13,14 @@ export function useAuth(setState, navigate) {
         setState(false);
         break;
       } catch (error) {
-        setState(false);
+        // Add a time delay before retrying the request
+        await delay(3000); // Adjust the delay time as needed (e.g., 3000 milliseconds)
+        setState(true);
       }
     }
   };
+
+  const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
   checkLogin();
 

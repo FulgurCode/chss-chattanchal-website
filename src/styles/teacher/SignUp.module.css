@@ -246,7 +246,7 @@ body {
 
 .main .container .login .loginElement span button {
   width: 80%;
-  height: 35px;
+  height: 40px;
   background-color: #28b4ab;
   color: white;
   border: none;
@@ -377,4 +377,11 @@ body {
   .footer .imgDesktop {
     display: none;
   }
+}
+
+.main .container .login .loginElement span button .round {
+  align-self: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: min-content;
 }

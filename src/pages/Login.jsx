@@ -11,7 +11,9 @@ export default function Login() {
   const [userType, setUserType] = React.useState("admin");
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
+  
   const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate();
 
   function changeEvent(event) {
@@ -28,6 +30,8 @@ export default function Login() {
   }
 
   function handleClick() {
+    setLoading(true)
+    
     if (userType == "admin") {
       Axios.post("/admin/login", {
         username: userName,
@@ -39,6 +43,7 @@ export default function Login() {
         .catch((err) => {
           if (err.response.status == 401) {
             // console.log("login unsucsessfull");
+            setLoading(false)
             changeInputColor("red");
             setError(err.response.data);
           } else {
@@ -54,11 +59,14 @@ export default function Login() {
           navigate("/teacher");
         })
         .catch((err) => {
+          setLoading(false)
           setError(err.response.data);
         });
     } else {
+      setLoading(false)
       setError("students or teachers login fuctionality is not added yet");
     }
+   
   }
 
   function changeInputColor(color) {
@@ -91,6 +99,7 @@ export default function Login() {
               handleClick={handleClick}
               error={error}
               userType={userType}
+              loader={loading}
             />
           </div>
         </div>
@@ -99,6 +108,7 @@ export default function Login() {
         <img src={svgImgDesktop} className={styles.imgDesktop} />
         <img src={svgImgMobile} className={styles.imgMobile} />
       </footer>
+      
     </>
   );
 }

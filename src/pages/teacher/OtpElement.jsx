@@ -1,8 +1,10 @@
 import styles from "../../styles/teacher/Otp.module.css";
 import React, { useState } from "react";
 import OtpInput from "react-otp-input";
+import Loader from "../../components/common/LoaderLogin";
 
 export default function LoginElement(props) {
+  
   return (
     <div className={styles.loginElement}>
       <span className={styles.containerspan}>
@@ -51,9 +53,16 @@ export default function LoginElement(props) {
           onClick={props.handleClick}
           style={{
             backgroundColor: props.otp.length == 6 ? "#28b4ab" : "grey",
+            minHeight:40
           }}
         >
-          VERIFY
+          {props.loader ? (
+            <div className={styles.round}>
+              <Loader open={true} />
+            </div>
+          ) : (
+            <>VERIFY</>
+          )}
         </button>
         <input type="button" value="Resend OTP" className={styles.input} />
       </span>
