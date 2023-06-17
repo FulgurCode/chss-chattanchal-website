@@ -17,6 +17,7 @@ export default function Admission() {
   const [duties, setDuties] = useState({
     verification: false,
     details: false,
+    import: false
   });
 
   const [loading, setisLoading] = useState(false);
@@ -37,6 +38,16 @@ export default function Admission() {
         setDuties((prevState) => ({
           ...prevState,
           details: response.data,
+        }));
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+    Axios.get(`/teacher/have-duty?duty=import-students`)
+      .then((response) => {
+        setDuties((prevState) => ({
+          ...prevState,
+          import: response.data,
         }));
       })
       .catch((error) => {
@@ -82,7 +93,7 @@ export default function Admission() {
               </span>
               <h1>Student details</h1>
             </div>
-            <div
+           { duties.import && <div
               className={styles.item}
               onClick={() => {
                 navigate("/teacher/admission/import-students");
@@ -92,7 +103,7 @@ export default function Admission() {
                 <img src={importStudentsIcon} width="80px" height="80px" />
               </span>
               <h1>Import Students</h1>
-            </div>
+            </div>}
 
             {duties.verification && (
               <div
