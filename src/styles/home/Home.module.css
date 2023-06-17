@@ -95,7 +95,7 @@
 .header > div > a {
   text-decoration: none;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
 
   text-shadow: 1px 1px 20px rgba(0, 0, 0, 0.6);
 
@@ -110,6 +110,8 @@
   transition: 500ms ease;
 
   text-align: center;
+
+  white-space: nowrap;
 }
 a:focus {
   outline: none;
@@ -121,13 +123,23 @@ a:active {
 
 .header > div > a:last-child {
   background-color: #28b4ab;
+  padding-inline: 30px;
+  margin-inline: 20px;
+  border-radius: 15px;
+  min-height: 45px;
+}
+.header > div > a:nth-child(7) {
+  background-color: #9b9b9b;
   padding-inline: 25px;
   margin-inline: 20px;
   border-radius: 15px;
-  min-height: 50px;
+  min-height: 45px;
 }
 .header > div > a:last-child:hover {
   background-color: #19726c;
+}
+.header > div > a:nth-child(7):hover {
+  background-color: #4d4d4d;
 }
 
 .main {
@@ -241,6 +253,27 @@ a:active {
 
   border-radius: 20px;
 }
+.contact > header {
+  background-color: #6a2c70;
+  padding: 15px;
+  color: white;
+
+  padding-inline: 60px;
+}
+.contact > header > h2 {
+  line-height: 10px;
+  font-weight: 600;
+}
+.contact > .container {
+  margin: 30px;
+  margin-inline: 60px;
+  font-family: Poppins;
+  font-weight: 300;
+
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 15px;
+}
 
 .footer {
   flex: 1;
@@ -249,15 +282,15 @@ a:active {
 
 @media screen and (max-width: 1400px) {
   .header > div > a {
-    padding-inline: 30px;
+    padding-inline: 45px;
   }
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1224px) {
   .header > div > a {
     padding-inline: 15px;
   }
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 912px) {
   .btn {
     display: flex;
   }
@@ -302,6 +335,11 @@ a:active {
   }
 
   .header > div > a:last-child {
+    width: 80%;
+    justify-content: center;
+    margin: 10px;
+  }
+  .header > div > a:nth-child(7) {
     width: 80%;
     justify-content: center;
     margin: 10px;
