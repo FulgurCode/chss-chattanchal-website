@@ -8,8 +8,9 @@ import Login from "./pages/Login";
 
 import ImportStudents from "./pages/admin/admission/ImportStudents";
 import Admission from "./pages/admin/Admission";
-import NewAdmission from "./pages/admin/admission/NewAdmission";
+import StudentListAdmin from "./pages/admin/StudentListAdmin";
 
+import NewAdmission from "./pages/admin/admission/NewAdmission";
 import StudentDetails from "./pages/admin/admission/StudentDetails";
 import VerificationTeacher from "./pages/teacher/admission/VerificationTeacher";
 import AdminStudentProfile from "./components/AdminStudentProfile";
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/admin">
           <Route index element={<Admin />} />
           <Route path="/admin/change-password" element={<ChangePassword user="admin"/>}/>
+          <Route path="/admin/student-list" element={< StudentListAdmin/>}/>
           <Route path="/admin/admission">
             <Route index element={<Admission />} />
             <Route

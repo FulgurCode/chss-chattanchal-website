@@ -6,6 +6,7 @@ import {useAuth} from "../../stores/CheckloginAdmin.jsx"
 import Loader from "../components/common/Loader";
 import teachersIcon from "../assets/images/admin/teachersIcon.png"
 import admissionIcon from "../assets/images/admission/admissionIcon.png"
+import studentListIcon from "../assets/images/admin/studentListIcon.png"
 import Breadcrumbs from "../components/common/BreadCrumbs";
 
 export default function Admin() {
@@ -49,6 +50,17 @@ export default function Admin() {
                 <img src={teachersIcon} width="80px" height="80px" />
               </span>
               <h1>Teachers</h1>
+            </div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/admin/student-list");
+              }}
+            >
+              <span>
+                <img src={studentListIcon} width="80px" height="80px" />
+              </span>
+              <h1>Students</h1>
             </div>
           </div>
         </div>
