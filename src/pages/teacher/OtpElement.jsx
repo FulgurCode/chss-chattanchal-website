@@ -1,5 +1,4 @@
 import styles from "../../styles/teacher/Otp.module.css";
-import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import Loader from "../../components/common/LoaderLogin";
 
@@ -29,6 +28,7 @@ export default function LoginElement(props) {
             marginTop: 20,
             height: 40,
           }}
+          inputType={"tel"}
           inputStyle={{
             width: 30,
             height: 30,
