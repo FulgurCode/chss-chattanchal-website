@@ -9,7 +9,7 @@ import Axios from "../../../stores/Axios";
 
 
 export default function Login() {
-  const [userType, setUserType] = React.useState("Teacher");
+  const [userType, setUserType] = React.useState("teacher");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
@@ -17,12 +17,13 @@ export default function Login() {
   const navigate = useNavigate();
 
   function changeEvent(event) {
+    const value = event.target.value.trim()
     if (event.target == document.getElementById("usertype")) {
-      setUserType(event.target.value);
+      setUserType(value);
     } else if (event.target == document.getElementById("username")) {
-      setEmail(event.target.value);
+      setEmail(value);
     } else if (event.target == document.getElementById("password")) {
-      setPassword(event.target.value);
+      setPassword(value);
     }
 
     changeInputColor("grey");
@@ -62,12 +63,6 @@ export default function Login() {
         style={{ backgroundImage: `url(${schoolImg})` }}
       >
         <div className={styles.container}>
-          {/* <div className={styles.label}>
-            <h2>Welcome to</h2>
-            <h1>
-              CHSS CHATTANCHAL<span></span>
-            </h1>
-          </div> */}
           <div className={styles.login}>
             <h1>
               Sign Up <span></span>
