@@ -6,7 +6,7 @@ import Axios from "../../../../stores/Axios";
 
 export default function EntryPopup(props) {
   // const [teachers, setOptions] = useState(["Option 1", "Option 2", "Option 3"]);
-  const [duties, setDuties] = useState(["add-details", "verification"]);
+  const [duties, setDuties] = useState(["add-details", "verification", "import-students"]);
 
   const [selectedOptions, setSelectedOptions] = useState({
     teacherId: "",
