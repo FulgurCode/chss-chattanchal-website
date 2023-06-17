@@ -54,8 +54,8 @@ export default function Home() {
           <Link to="#">
             <code>About Us</code>
           </Link>
-          <Link to="#">
-            <code>Contact Us</code>
+          <Link to="teacher/signup">
+            <code>SignUp</code>
           </Link>
           <Link to="/login">
             <code>Login</code>
@@ -70,26 +70,16 @@ export default function Home() {
         </h1>
       </main>
       <div className={styles.content}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
-        quibusdam asperiores quos perferendis laboriosam aliquid saepe
-        voluptatibus excepturi exercitationem maxime necessitatibus, soluta
-        reiciendis ea culpa rerum quaerat atque dicta provident. Lorem ipsum
-        dolor sit, amet consectetur adipisicing elit. Doloremque fugiat eum id
-        delectus amet eos sapiente quo dicta laborum nobis alias minima nesciunt
-        similique sunt, placeat ad. Dicta, temporibus est. Lorem ipsum, dolor
-        sit amet consectetur adipisicing elit. Dolore, sequi voluptatibus quasi
-        fuga, dolorum commodi voluptatum nulla impedit perferendis praesentium
-        id nobis, fugit alias? Unde, debitis. Necessitatibus, est eaque. Iste.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
-        quibusdam asperiores quos perferendis laboriosam aliquid saepe
-        voluptatibus excepturi exercitationem maxime necessitatibus, soluta
-        reiciendis ea culpa rerum quaerat atque dicta provident. Lorem ipsum
-        dolor sit, amet consectetur adipisicing elit. Doloremque fugiat eum id
-        delectus amet eos sapiente quo dicta laborum nobis alias minima nesciunt
-        similique sunt, placeat ad. Dicta, temporibus est. Lorem ipsum, dolor
-        sit amet consectetur adipisicing elit. Dolore, sequi voluptatibus quasi
-        fuga, dolorum commodi voluptatum nulla impedit perferendis praesentium
-        id nobis, fugit alias? Unde, debitis. Necessitatibus, est eaque. Iste.
+        Chatanchal Higher Secondary School is one of the best schools in Kerala
+        with {new Date().getFullYear() - new Date("1976-01-01").getFullYear()}{" "}
+        years of excellence. In every year most number of students from
+        Kasaragod district complete their education from this Institution. With
+        a rich legacy of academic excellence and dedicated faculties, our school
+        strives to empower students with knowledge, skills and values that
+        prepare them for a dynamic future. We take immense pride in providing a
+        transformative learning environment that nurtures the minds of our
+        students. Join us on this remarkable journey of growth and success, as
+        we shape tomorrow's leaders today.
       </div>
       <div className={styles.gallery} ref={galleryRef}>
         <header>
@@ -112,23 +102,30 @@ export default function Home() {
           <h2>History</h2>
         </header>
         <div className={styles.container}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis
-          ipsum sed a sint adipisci voluptas neque accusantium, omnis temporibus
-          consequatur quia, saepe totam cumque blanditiis beatae amet quisquam,
-          eveniet aliquid. Lorem, ipsum dolor sit amet consectetur adipisicing
-          elit. Iusto tempore eveniet inventore voluptate beatae eaque soluta,
-          praesentium similique veniam illum iste perferendis quasi libero
-          dolores fugiat architecto repellendus quod et. Lorem, ipsum dolor sit
-          amet consectetur adipisicing elit. Iusto tempore eveniet inventore
-          voluptate beatae eaque soluta, praesentium similique veniam illum iste
-          perferendis quasi libero dolores fugiat architecto repellendus quod
-          et. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto
-          tempore eveniet inventore voluptate beatae eaque soluta, praesentium
-          similique veniam illum iste perferendis quasi libero dolores fugiat
-          architecto repellendus quod et.
+          Chattanchal Higher Secondary School was foundedfounded by TK
+          Abdul Khader Haji ON 1976. It is located in Rural area. It is located in
+          KASARAGOD block of KASARAGOD district of Kerala. The school consists
+          of Grades from 8 to 12. The school is Co-educational and it doesn't
+          have an attached pre-primary section. The school is Not Applicable in
+          nature and is not using school building as a shift-school. Malayalam
+          is the medium of instructions in this school. This school is
+          approachable by all weather road. In this school academic session
+          starts in April. The school has Private building. It has got 12
+          classrooms for instructional purposes. All the classrooms are in good
+          condition. It has 2 other rooms for non-teaching activities. The
+          school has a separate room for Head master/Teacher. The school has
+          Pucca But Broken boundary wall. The school has have electric
+          connection. The source of Drinking Water in the school is Tap Water
+          and it is functional. The school has 9 boys toilet and it is
+          functional. and 18 girls toilet and it is functional. The school has a
+          playground. The school has a library and has 3500 books in its
+          library. The school does not need ramp for disabled children to access
+          classrooms. The school has 50 computers for teaching and learning
+          purposes and all are functional. The school is having a computer aided
+          learning lab. The school is Provided and Prepared in School Premises
+          providing mid-day meal.
         </div>
       </div>
-
       <footer className={styles.footer}></footer>
     </div>
   );
