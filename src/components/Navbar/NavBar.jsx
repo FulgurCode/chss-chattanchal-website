@@ -43,8 +43,8 @@ export default function Navbar(props) {
       </div>
 
       <div className={styles.icons}>
-        <img className={styles.iconImg} src={msgIcon} />
-        <img className={styles.iconImg} src={bellIcon} />
+        {/* <img className={styles.iconImg} src={msgIcon} />
+        <img className={styles.iconImg} src={bellIcon} /> */}
         <div className={styles.logoutBox} ref={logoutRef}>
           <img
             className={styles.iconImg}
