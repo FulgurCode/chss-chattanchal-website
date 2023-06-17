@@ -17,12 +17,13 @@ export default function Login() {
   const navigate = useNavigate();
 
   function changeEvent(event) {
+    const value = event.target.value.trim()
     if (event.target == document.getElementById("usertype")) {
-      setUserType(event.target.value);
+      setUserType(value);
     } else if (event.target == document.getElementById("username")) {
-      setUserName(event.target.value);
+      setUserName(value);
     } else if (event.target == document.getElementById("password")) {
-      setPassword(event.target.value);
+      setPassword(value);
     }
 
     changeInputColor("grey");

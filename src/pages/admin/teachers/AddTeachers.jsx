@@ -36,12 +36,12 @@ export default function AddTeachers() {
 
   function HandleChange(event) {
     const name = event.target.name;
-    const value = event.target.value;
+    const value = event.target.value.trim();
 
     if (event.target.name == "phoneNo" || event.target.name == "penNo") {
       setDetails({
         ...details,
-        [name]: value === "" || parseInt(value) === NaN ? "" : parseInt(value),
+        [name]: value === "" || isNaN(parseInt(value)) ? "" : parseInt(value),
       });
     } else {
       setDetails({
@@ -111,7 +111,7 @@ export default function AddTeachers() {
               Phone No. <span>*</span>
             </span>
             <input
-              type="number"
+              type="tel"
               name="phoneNo"
               onChange={HandleChange}
               value={details.phoneNo}
@@ -133,7 +133,7 @@ export default function AddTeachers() {
               PEN Number <span>*</span>
             </span>
             <input
-              type="number"
+              type="tel"
               name="penNo"
               onChange={HandleChange}
               value={details.penNo}

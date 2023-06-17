@@ -27,7 +27,7 @@ export default function LoginElement(props) {
               ? "Email"
               : "Phone Number"
           }
-          value={props.userName}
+          value={props.email}
           onChange={props.changeEvent}
         />
         <input
