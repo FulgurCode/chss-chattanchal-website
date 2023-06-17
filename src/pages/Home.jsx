@@ -14,7 +14,6 @@ export default function Home() {
   const homeRef = useRef(null);
   const galleryRef = useRef(null);
   const historyRef = useRef(null);
-  const contactRef = useRef(null);
 
   return (
     <div className={styles.body}>
@@ -54,11 +53,6 @@ export default function Home() {
           </Link>
           <Link to="#">
             <code>About Us</code>
-          </Link>
-          <Link onClick={() => {
-              contactRef.current?.scrollIntoView({ behavior: "smooth" });
-            }}>
-            <code>Contact Us</code>
           </Link>
           <Link to="teacher/signup">
             <code>SignUp</code>
@@ -132,16 +126,6 @@ export default function Home() {
           providing mid-day meal.
         </div>
       </div>
-      <div className={styles.contact} ref={contactRef}>
-        <header>
-          <h2>Contact Us</h2>
-        </header>
-        <div className={styles.container}>
-          Mob.No : 9999999999 <br />
-          Email : email@gmail.com
-        </div>
-      </div>
-
       <footer className={styles.footer}></footer>
     </div>
   );
