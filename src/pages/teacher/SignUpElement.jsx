@@ -13,7 +13,7 @@ export default function LoginElement(props) {
         >
           <option value="student">Student</option>
           <option value="teacher">Teacher</option>
-          {/* <option value="admin">Admin</option> */}
+          
         </select>
         <span></span>
       </div>

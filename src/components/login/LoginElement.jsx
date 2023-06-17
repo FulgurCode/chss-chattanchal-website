@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styles from "../../styles/login/Login.module.css";
 import Loader from "../common/LoaderLogin";
 
 export default function LoginElement(props) {
+  const navigate = useNavigate()
   return (
     <div className={styles.loginElement}>
       <div>
@@ -48,6 +50,20 @@ export default function LoginElement(props) {
           )}
         </button>
         <p id="error">{props.error}</p>
+        <a
+        href="/signup"
+          
+          style={{
+            alignSelf: "center",
+            textAlign: "center",
+            marginTop: 10,
+            fontSize: 12,
+            fontWeight: 800,
+            transform: "translate(0, -10%)"
+          }}
+        >
+          Don't have an account? Sign Up
+        </a>
       </span>
     </div>
   );

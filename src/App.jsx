@@ -109,9 +109,9 @@ export default function App() {
           ></Route>
         </Route>
 
+          <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/teacher">
           <Route index element={<Teacher />} />
-          <Route path="/teacher/signup" element={<SignUp />}></Route>
           <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
           <Route path="/teacher/change-password" element={<ChangePassword user="teacher"/>}/>
 
