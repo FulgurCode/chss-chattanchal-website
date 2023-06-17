@@ -115,6 +115,7 @@ export default function AddTeachers() {
               name="phoneNo"
               onChange={HandleChange}
               value={details.phoneNo}
+              maxLength={10}
             />
           </div>
           <div className={styles.inputContainer}>
