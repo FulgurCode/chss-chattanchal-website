@@ -21,7 +21,6 @@ function Upload(props) {
 
     Axios.post(`/${props.user}/import-students`, formData)
       .then((response) => {
-        console.log(response.data);
         setMsg(response.data);
         changeMsgColor("Green");
         setInstText("New File");

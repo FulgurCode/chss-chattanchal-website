@@ -31,7 +31,6 @@ export default function DutyAllocation() {
           submitSuccess();
         })
         .catch((error) => {
-          console.log(error.response.data);
           setSubmitMsg(error.response.data);
         });
     }
@@ -57,7 +56,6 @@ export default function DutyAllocation() {
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
       });
   }
 
@@ -75,7 +73,6 @@ export default function DutyAllocation() {
         setViewOn(true);
       })
       .catch((error) => {
-        console.log(error.message);
       });
   }
 

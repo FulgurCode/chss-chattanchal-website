@@ -42,7 +42,6 @@ export default function Login() {
         })
         .catch((err) => {
           if (err.response.status == 401) {
-            // console.log("login unsucsessfull");
             setLoading(false)
             changeInputColor("red");
             setError(err.response.data);

@@ -63,7 +63,6 @@ export default function EntryPopup(props) {
         }));
         setTeachers(teacherOptions);
       } catch (error) {
-        console.error(error);
       }
     }
     fetchData();

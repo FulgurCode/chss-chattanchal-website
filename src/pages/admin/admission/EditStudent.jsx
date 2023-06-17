@@ -76,11 +76,6 @@ function editStudents() {
         setData(response.data);
       })
       .catch((err) => {
-        if (err == true) {
-          console.error(err);
-        } else {
-          console.log("server connection error");
-        }
       });
 
     Axios.get(`admin/get-student-photo?studentId=${id}`)
@@ -89,11 +84,6 @@ function editStudents() {
       })
 
       .catch((err) => {
-        if (err == true) {
-          console.error(err);
-        } else {
-          console.log("server connection error");
-        }
       });
   }
   const navigate = useNavigate()
@@ -174,18 +164,13 @@ function editStudents() {
     for (var prop in data) {
       if (data[prop] === "") {
         setNotFilledError(true);
-        console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
         break;
       }
     }
 
     if (hasNullOrUndefinedValue) {
-      console.log("no");
-      console.log(data);
     } else {
-      console.log("yes");
-      console.log(data);
       Axios.put(`admin/edit-student?studentId=${id}`, data)
         .then(() => {
           const formData = new FormData();
@@ -195,7 +180,6 @@ function editStudents() {
             `admin/upload-student-photo?studentId=${id}`,
             formData
           ).catch((err) => {
-            console.log(err.response?.data);
           });
 
           setPopup(!popup);
@@ -206,9 +190,7 @@ function editStudents() {
         })
         .catch((err) => {
           if (err.response == undefined) {
-            console.log("server connection err OR err in .then");
           } else {
-            console.log(err.response.data);
           }
         });
     }
@@ -240,7 +222,6 @@ function editStudents() {
         ref={photoRef}
       />
 
-      {console.log(webCamPhoto)}
       <Field
         text="Upload photo"
         type="file"

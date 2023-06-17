@@ -41,11 +41,9 @@ function AllColumns(props) {
     tcNumber: "",
     tcDate: "",
     tcSchool: "",
-
     wgpa: "",
     rank: "",
     admissionCategory: "Merit",
-     
   }; 
 
   const [data, setData] = useState(jsonTemp);
@@ -85,10 +83,10 @@ function AllColumns(props) {
       const name = event.target.name;
       const value = event.target.value;
 
-        setData({
-          ...data,
-          [name]: value,
-        });
+      setData({
+        ...data,
+        [name]: value,
+      });
     }
   }
 
@@ -121,7 +119,7 @@ function AllColumns(props) {
   }
 
   useEffect(() => {
-    SetWebSocket(new WebSocket("ws:localhost:9000/ws/admission-photo"));
+    SetWebSocket(new WebSocket("wss://chattanchalhss.com/ws/admission-photo"));
     return () => {
       if (webSocket) {
         webSocket.close();
@@ -171,9 +169,7 @@ function AllColumns(props) {
     data.phone = Number(data.phone);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
-    data.sslcRegisterNo = Number(
-      data.sslcRegisterNo
-    );
+    data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
     for (var prop in data) {
       if (data[prop] === "") {

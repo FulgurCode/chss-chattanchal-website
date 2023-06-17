@@ -19,7 +19,6 @@ export default function CasteTable(props) {
         });
       })
       .catch((error) => {
-        console.log(error.data);
       });
   }, []);
 

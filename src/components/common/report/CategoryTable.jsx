@@ -19,7 +19,6 @@ export default function CategoryTable(props) {
         });
       })
       .catch((error) => {
-        console.log(error.data);
       });
   }, []);
 

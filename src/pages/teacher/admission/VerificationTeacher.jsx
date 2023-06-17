@@ -48,7 +48,6 @@ export default function VerificationTeacher() {
     Axios.patch(`teacher/verify-student?studentId=${id}`)
       .then((res) => {
         setVisibile(true);
-        console.log(visible);
         loadData();
       })
       .catch((err) => {

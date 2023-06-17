@@ -50,7 +50,6 @@ function EditStudentsTeacher() {
     tcSchool: "",
   };
 
-
   const [data, setData] = useState(dataTemplete);
   const [popup, setPopup] = useState(false);
   const [notFilledError, setNotFilledError] = useState(false);
@@ -76,9 +75,7 @@ function EditStudentsTeacher() {
       })
       .catch((err) => {
         if (err == true) {
-          console.error(err);
         } else {
-          console.log("server connection error");
         }
       });
 
@@ -88,22 +85,17 @@ function EditStudentsTeacher() {
       })
 
       .catch((err) => {
-        if (err == true) {
-          console.error(err);
-        } else {
-          console.log("server connection error");
-        }
       });
   }
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [loading, setisLoading] = useState(false);
 
-  const [avail, setAvail] = useState(false)
-  useEffect(() => { 
-    useAuth(setisLoading, navigate) ;
-    setAvail(CheckDuty("add-details", navigate))
-    getData() ;
+  const [avail, setAvail] = useState(false);
+  useEffect(() => {
+    useAuth(setisLoading, navigate);
+    setAvail(CheckDuty("add-details", navigate));
+    getData();
   }, []);
 
   // ---------------- Handle Change Function for input feild
@@ -113,15 +105,14 @@ function EditStudentsTeacher() {
       const value = event.target.value;
 
       setData({
-          ...data,
-          [name]: value,
-        });
-
+        ...data,
+        [name]: value,
+      });
     }
   }
 
   useEffect(() => {
-    SetWebSocket(new WebSocket("ws:localhost:9000/ws/admission-photo"));
+    SetWebSocket(new WebSocket("wss://chattanchalhss.com/ws/admission-photo"));
     return () => {
       if (webSocket) {
         webSocket.close();
@@ -171,25 +162,18 @@ function EditStudentsTeacher() {
     data.phone = Number(data.phone);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
-    data.sslcRegisterNo = Number(
-      data.sslcRegisterNo
-    );
+    data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
     for (var prop in data) {
       if (data[prop] === "") {
         setNotFilledError(true);
-        console.log(prop + " field is not filled");
         hasNullOrUndefinedValue = true;
         break;
       }
     }
 
     if (hasNullOrUndefinedValue) {
-      console.log("no");
-      console.log(data);
     } else {
-      console.log("yes");
-      console.log(data);
       Axios.put(`teacher/edit-student?studentId=${id}`, data)
         .then(() => {
           const formData = new FormData();
@@ -199,7 +183,6 @@ function EditStudentsTeacher() {
             `teacher/upload-student-photo?studentId=${id}`,
             formData
           ).catch((err) => {
-            alert(err.response?.data);
           });
 
           setPopup(!popup);
@@ -209,11 +192,6 @@ function EditStudentsTeacher() {
           history.back();
         })
         .catch((err) => {
-          if (err.response == undefined) {
-            console.log("server connection err OR err in .then");
-          } else {
-            console.log(err.response.data);
-          }
         });
     }
   }
@@ -223,10 +201,7 @@ function EditStudentsTeacher() {
       <NavBar user="teacher" />
       <Hero title="Edit Student" icon={img2} />
 
-
       {/* ---------------- top infos ----------------   */}
-
-
 
       <label className={`${style.mandatoryLabel}`}>
         Fields marked with <span className={`${style.aster}`}> * </span> are
@@ -244,7 +219,6 @@ function EditStudentsTeacher() {
         ref={photoRef}
       />
 
-      {console.log(webCamPhoto)}
       <Field
         text="Upload photo"
         type="file"
@@ -257,7 +231,6 @@ function EditStudentsTeacher() {
       />
 
       <div className={style.photoBtn}>
-
         <button
           style={{ margin: "0 0 30px 16vw" }}
           className={`${style.qrButton}`}
@@ -273,7 +246,6 @@ function EditStudentsTeacher() {
         >
           Take a photo on web cam
         </button>
-
       </div>
       <WebCamPop
         open={webCam}

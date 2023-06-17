@@ -20,7 +20,6 @@ export default function WebCamPop(props) {
         video.srcObject = stream;
         video.play();
       } catch (err) {
-        console.error(err);
       }
     };
 

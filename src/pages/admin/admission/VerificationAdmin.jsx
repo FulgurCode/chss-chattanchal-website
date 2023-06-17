@@ -35,7 +35,6 @@ export default function VerificationAdmin() {
     Axios.get("admin/students-to-verify")
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         if (err.response == undefined) {
@@ -51,7 +50,6 @@ export default function VerificationAdmin() {
     Axios.patch(`admin/verify-student?studentId=${id}`)
       .then((res) => {
         setVisibile(true);
-        console.log(visible);
         loadData();
       })
       .catch((err) => {

@@ -49,9 +49,6 @@ export default function StudentDetails() {
   }
 
   function handleClick() {
-    console.log(
-      body()
-    )
     Axios.post(`admin/get-students?name=${value === "name" ? search : ""}`, body())
       .then((res) => {
         setData(res.data);

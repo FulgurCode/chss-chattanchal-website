@@ -31,7 +31,6 @@ export default function Admission() {
         }));
       })
       .catch((error) => {
-        console.log(error.data);
       });
     Axios.get(`/teacher/have-duty?duty=add-details`)
       .then((response) => {
@@ -41,7 +40,6 @@ export default function Admission() {
         }));
       })
       .catch((error) => {
-        console.log(error.data);
       });
     Axios.get(`/teacher/have-duty?duty=import-students`)
       .then((response) => {
@@ -51,7 +49,6 @@ export default function Admission() {
         }));
       })
       .catch((error) => {
-        console.log(error.data);
       });
   }
 

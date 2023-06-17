@@ -7,7 +7,6 @@ export default function Logout(props) {
 
   function handleClick() {
     Axios.delete(`/${props.user}/logout`).then((response) => {
-      console.log(response.data);
       navigate("/login");
     });
   }

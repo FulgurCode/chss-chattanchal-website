@@ -40,7 +40,6 @@ export default function Confirmation() {
     Axios.patch(`admin/confirm-student?studentId=${id}`)
       .then((res) => {
         setVisibile(true);
-        console.log(visible);
         loadData();
       })
       .catch((err) => {

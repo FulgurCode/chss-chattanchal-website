@@ -128,7 +128,7 @@ a:active {
   border-radius: 15px;
   min-height: 45px;
 }
-.header > div > a:nth-child(6) {
+.header > div > a:nth-child(7) {
   background-color: #9b9b9b;
   padding-inline: 25px;
   margin-inline: 20px;
@@ -138,7 +138,7 @@ a:active {
 .header > div > a:last-child:hover {
   background-color: #19726c;
 }
-.header > div > a:nth-child(6):hover {
+.header > div > a:nth-child(7):hover {
   background-color: #4d4d4d;
 }
 
@@ -146,7 +146,7 @@ a:active {
   padding-top: 70px;
 
   flex: 2;
-  background: url(src/assets/images/login/school.png);
+  background: url(/imgs/school.png);
   background-position: center;
 
   display: flex;

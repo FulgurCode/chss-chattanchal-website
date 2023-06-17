@@ -54,6 +54,9 @@ export default function Home() {
           <Link to="#">
             <code>About Us</code>
           </Link>
+          <Link to="#">
+            <code>Contact Us</code>
+          </Link>
           <Link to="teacher/signup">
             <code>SignUp</code>
           </Link>
@@ -102,28 +105,8 @@ export default function Home() {
           <h2>History</h2>
         </header>
         <div className={styles.container}>
-          Chattanchal Higher Secondary School was foundedfounded by TK
-          Abdul Khader Haji ON 1976. It is located in Rural area. It is located in
-          KASARAGOD block of KASARAGOD district of Kerala. The school consists
-          of Grades from 8 to 12. The school is Co-educational and it doesn't
-          have an attached pre-primary section. The school is Not Applicable in
-          nature and is not using school building as a shift-school. Malayalam
-          is the medium of instructions in this school. This school is
-          approachable by all weather road. In this school academic session
-          starts in April. The school has Private building. It has got 12
-          classrooms for instructional purposes. All the classrooms are in good
-          condition. It has 2 other rooms for non-teaching activities. The
-          school has a separate room for Head master/Teacher. The school has
-          Pucca But Broken boundary wall. The school has have electric
-          connection. The source of Drinking Water in the school is Tap Water
-          and it is functional. The school has 9 boys toilet and it is
-          functional. and 18 girls toilet and it is functional. The school has a
-          playground. The school has a library and has 3500 books in its
-          library. The school does not need ramp for disabled children to access
-          classrooms. The school has 50 computers for teaching and learning
-          purposes and all are functional. The school is having a computer aided
-          learning lab. The school is Provided and Prepared in School Premises
-          providing mid-day meal.
+          Chattanchal Higher Secondary School was founded by TK Abdul
+          Khader Haji ON 1976
         </div>
       </div>
       <footer className={styles.footer}></footer>

@@ -38,7 +38,6 @@ export default function Profile() {
         setDetails(res.data);
       })
       .catch((err) => {
-        console.log(err.response.data);
       });
   }
 
@@ -48,7 +47,6 @@ export default function Profile() {
         setImg("data:image/jpeg;base64," + res.data);
       })
       .catch((err) => {
-        console.log(err.response.data);
       });
   }
 
@@ -93,7 +91,6 @@ export default function Profile() {
 }
 
 const Details = (props, ref) => {
-  // console.log(details);
   return (
     <>
       <title>{props.details.name}</title>
@@ -115,7 +112,6 @@ const Details = (props, ref) => {
           <code style={{ fontWeight: 600, fontFamily: "Arial" }}>
             {props.details.name}
           </code>
-          {/* {console.log(item)} */}
         </div>
         {props.details.class == undefined ? (
           ""

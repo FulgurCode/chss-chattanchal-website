@@ -19,7 +19,6 @@ export default function GenderTable(props) {
         });
       })
       .catch((error) => {
-        console.log(error.data);
       });
   }, []);
 

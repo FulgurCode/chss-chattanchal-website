@@ -19,7 +19,6 @@ export default function MainTable(props) {
         });
       })
       .catch((error) => {
-        console.log(error.data);
       });
   }, []);
 

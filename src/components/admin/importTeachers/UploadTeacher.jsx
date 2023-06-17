@@ -21,7 +21,6 @@ function UploadTeacher() {
 
     Axios.post("/admin/import-teachers", formData)
       .then((response) => {
-        console.log(response.data);
         setMsg(response.data);
         changeMsgColor("Green");
         setInstText("New File");
