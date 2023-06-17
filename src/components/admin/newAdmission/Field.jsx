@@ -1,11 +1,16 @@
 import React from "react";
-import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css"
+import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
 
 export default function Field(props) {
   return (
     <div style={props.styling} className={props.containerClass}>
       <label className={`${styles.label}`}>
-        {props.text} <span className={`${styles.aster}`}> * </span>
+        {props.text}{" "}
+        {!props.notRequired ? (
+          <span className={`${styles.aster}`}> * </span>
+        ) : (
+          ""
+        )}
       </label>
       <input
         type={props.type}

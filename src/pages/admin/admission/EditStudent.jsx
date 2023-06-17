@@ -69,24 +69,35 @@ function editStudents() {
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
 
+  async function base64ToFile(dataUrl, setState) {
+    let blob = await fetch(dataUrl).then((res) => res.blob());
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      const arrayBuffer = fileReader.result;
+      const file = new File([arrayBuffer], "file.jpg", {
+        type: blob.type,
+      });
+      setState(file);
+    };
+    fileReader.readAsArrayBuffer(blob);
+  }
+
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
       .then((response) => {
         delete response.data._id;
         setData(response.data);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
 
     Axios.get(`admin/get-student-photo?studentId=${id}`)
       .then((response) => {
         setFilePhotoURL("data:image/jpeg;base64," + response.data);
       })
 
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [loading, setisLoading] = useState(false);
   useEffect(() => {
     getData();
@@ -98,16 +109,16 @@ function editStudents() {
     if (event && event.target) {
       const name = event.target.name;
       const value = event.target.value;
-      
-        setData({
-          ...data,
-          [name]: value,
-        });
+
+      setData({
+        ...data,
+        [name]: value,
+      });
     }
   }
 
   useEffect(() => {
-    SetWebSocket(new WebSocket("ws:localhost:9000/ws/admission-photo"));
+    SetWebSocket(new WebSocket("wss://chattanchalhss.com/ws/admission-photo"));
     return () => {
       if (webSocket) {
         webSocket.close();
@@ -157,15 +168,15 @@ function editStudents() {
     data.phone = Number(data.phone);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
-    data.sslcRegisterNo = Number(
-      data.sslcRegisterNo
-    );
+    data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
     for (var prop in data) {
       if (data[prop] === "") {
-        setNotFilledError(true);
-        hasNullOrUndefinedValue = true;
-        break;
+        if (prop !== "linguisticMinority") {
+          setNotFilledError(true);
+          hasNullOrUndefinedValue = true;
+          break;
+        }
       }
     }
 
@@ -179,8 +190,7 @@ function editStudents() {
           Axios.post(
             `admin/upload-student-photo?studentId=${id}`,
             formData
-          ).catch((err) => {
-          });
+          ).catch((err) => {});
 
           setPopup(!popup);
           setData(dataTemplete);
@@ -201,10 +211,7 @@ function editStudents() {
       <NavBar user="admin" />
       <Hero title="Edit Student" icon={img2} />
 
-
       {/* ---------------- top infos ----------------   */}
-
-
 
       <label className={`${style.mandatoryLabel}`}>
         Fields marked with <span className={`${style.aster}`}> * </span> are
@@ -234,7 +241,6 @@ function editStudents() {
       />
 
       <div className={style.photoBtn}>
-
         <button
           style={{ margin: "0 0 30px 16vw" }}
           className={`${style.qrButton}`}
@@ -250,7 +256,6 @@ function editStudents() {
         >
           Take a photo on web cam
         </button>
-
       </div>
       <WebCamPop
         open={webCam}
@@ -406,6 +411,7 @@ function editStudents() {
           value={data.linguisticMinority}
           name="linguisticMinority"
           containerClass={style.subContainerNew}
+          notRequired={true}
         />
         <Field
           text="DOB"

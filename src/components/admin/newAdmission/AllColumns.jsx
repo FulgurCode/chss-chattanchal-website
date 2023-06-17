@@ -173,17 +173,11 @@ function AllColumns(props) {
 
     for (var prop in data) {
       if (data[prop] === "") {
-        setNotFilledError(true);
-        hasNullOrUndefinedValue = true;
-        break;
-      }
-    }
-
-    for (var prop in data) {
-      if (data[prop] === "") {
-        setNotFilledError(true);
-        hasNullOrUndefinedValue = true;
-        break;
+        if (prop !== "linguisticMinority") {
+          setNotFilledError(true);
+          hasNullOrUndefinedValue = true;
+          break;
+        }
       }
     }
 
@@ -376,6 +370,7 @@ function AllColumns(props) {
           value={data.linguisticMinority}
           name="linguisticMinority"
           containerClass={styles.subContainerNew}
+          notRequired={true}
         />
         <Field
           text="DOB"

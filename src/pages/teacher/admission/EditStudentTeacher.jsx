@@ -67,6 +67,19 @@ function EditStudentsTeacher() {
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
 
+  async function base64ToFile(dataUrl, setState) {
+    let blob = await fetch(dataUrl).then((res) => res.blob());
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      const arrayBuffer = fileReader.result;
+      const file = new File([arrayBuffer], "file.jpg", {
+        type: blob.type,
+      });
+      setState(file);
+    };
+    fileReader.readAsArrayBuffer(blob);
+  }
+
   function getData() {
     Axios.get(`teacher/get-student?studentId=${id}`)
       .then((response) => {
@@ -84,8 +97,7 @@ function EditStudentsTeacher() {
         setFilePhotoURL("data:image/jpeg;base64," + response.data);
       })
 
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
 
   const navigate = useNavigate();
@@ -166,9 +178,11 @@ function EditStudentsTeacher() {
 
     for (var prop in data) {
       if (data[prop] === "") {
-        setNotFilledError(true);
-        hasNullOrUndefinedValue = true;
-        break;
+        if (prop !== "linguisticMinority") {
+          setNotFilledError(true);
+          hasNullOrUndefinedValue = true;
+          break;
+        }
       }
     }
 
@@ -182,8 +196,7 @@ function EditStudentsTeacher() {
           Axios.post(
             `teacher/upload-student-photo?studentId=${id}`,
             formData
-          ).catch((err) => {
-          });
+          ).catch((err) => {});
 
           setPopup(!popup);
           setData(dataTemplete);
@@ -191,8 +204,7 @@ function EditStudentsTeacher() {
           setGlobal(true);
           history.back();
         })
-        .catch((err) => {
-        });
+        .catch((err) => {});
     }
   }
 
@@ -392,6 +404,7 @@ function EditStudentsTeacher() {
           value={data.linguisticMinority}
           name="linguisticMinority"
           containerClass={style.subContainerNew}
+          notRequired={true}
         />
         <Field
           text="DOB"

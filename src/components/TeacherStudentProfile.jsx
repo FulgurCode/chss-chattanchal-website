@@ -8,7 +8,7 @@ import ReactToPrint from "react-to-print";
 import { useRef } from "react";
 import { forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../stores/CheckloginAdmin";
+import { useAuth } from "../../stores/CheckloginTeacher";
 import Loader from "./common/Loader";
 
 export default function Profile() {
@@ -33,7 +33,7 @@ export default function Profile() {
   }, []);
 
   function getData() {
-    Axios.get(`admin/get-student?studentId=${id}`)
+    Axios.get(`teacher/get-student?studentId=${id}`)
       .then((res) => {
         setDetails(res.data);
       })
@@ -42,7 +42,7 @@ export default function Profile() {
   }
 
   function getImage() {
-    Axios.get(`admin/get-student-photo?studentId=${id}`)
+    Axios.get(`teacher/get-student-photo?studentId=${id}`)
       .then((res) => {
         setImg("data:image/jpeg;base64," + res.data);
       })
@@ -51,11 +51,11 @@ export default function Profile() {
   }
 
   function editNav(e) {
-    navigate(`/admin/admission/edit-student?id=${id}`);
+    navigate(`/teacher/admission/edit-student?id=${id}`);
   }
   return (
     <>
-      <Navbar user="admin" />
+      <Navbar user="teacher" />
       <div>
         <div className={styles.body}>
           <div className={styles.main}>
