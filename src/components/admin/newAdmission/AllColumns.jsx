@@ -27,7 +27,7 @@ function AllColumns(props) {
     addressOfGuardian: "",
     religion: "",
     caste: "",
-    category: "General",
+    category: "general",
     linguisticMinority: "",
     obc: true, // this should be boolean value
     dob: "",

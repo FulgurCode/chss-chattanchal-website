@@ -17,6 +17,16 @@
   align-items: center;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .containerNew {
   width: 100%;
   display: flex;
@@ -140,7 +150,7 @@
   height: 20vw;
   width: calc((1 * 20vw) / 1);
   margin-right: 48vw;
-  border: 2px dotted #6A2C70;
+  border: 2px dotted #6a2c70;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -232,7 +242,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: 5vh;
   height: 2vw;
   width: 20vw;
-  background: #6A2C70;
+  background: #6a2c70;
   border: none;
   /* box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25); */
   border-radius: 5px;
@@ -246,7 +256,7 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-.warning{
+.warning {
   color: #ff0000;
   width: 20vw;
   font-size: 1.25vw;
@@ -261,14 +271,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* ------------------ mobile phone design ------------------ */
 
-.uploadPhoto{
+.uploadPhoto {
   border-radius: 0;
-  background-color: #6A2C70;
+  background-color: #6a2c70;
   color: #fff;
   padding-top: 8px;
 }
 
-.uploadPhoto:hover{
+.uploadPhoto:hover {
   cursor: pointer;
 }
 
@@ -359,7 +369,7 @@ input[type="number"]::-webkit-outer-spin-button {
     text-indent: 10px;
   }
 
-  .qrButton{
+  .qrButton {
     display: none;
   }
 
@@ -381,5 +391,4 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 160px;
     margin-right: 38vw;
   }
-
 }
