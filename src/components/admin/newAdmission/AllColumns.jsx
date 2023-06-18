@@ -1,8 +1,6 @@
 import styles from "../../../styles/admin/admission/newAdmission/AllColumns.module.css";
 import React, { Fragment, useEffect, useRef, useState } from "react";
-
 import Axios from "../../../../stores/Axios";
-
 import SuccessPopup from "./SuccessPopup.jsx";
 import NotFilledPopup from "./NotFilledPopup";
 import Field from "./Field";
@@ -29,7 +27,7 @@ function AllColumns(props) {
     addressOfGuardian: "",
     religion: "",
     caste: "",
-    category: "",
+    category: "General",
     linguisticMinority: "",
     obc: true, // this should be boolean value
     dob: "",
@@ -43,6 +41,11 @@ function AllColumns(props) {
     tcNumber: "",
     tcDate: "",
     tcSchool: "",
+
+    wgpa: "",
+    rank: "",
+    admissionCategory: "Merit",
+     
   }; 
 
   const [data, setData] = useState(jsonTemp);
@@ -59,6 +62,8 @@ function AllColumns(props) {
   const [filePhotoURL, setFilePhotoURL] = useState("");
   const [error, setError] = useState("");
   const [webSocket, SetWebSocket] = useState();
+  const [phoneNoErr, setPhoneNoErr]= useState(false);
+  const [aadhaarNoErr, setAadhaarNoErr]= useState(false);
   const [id, setId] = useState();
 
   async function base64ToFile(dataUrl, setState) {
@@ -85,6 +90,34 @@ function AllColumns(props) {
           [name]: value,
         });
     }
+  }
+
+    // ---------------- Handle Change Function for no length check
+
+    function handleChangePhone(event) {
+        setPhoneNoErr(data.phone.length !== 9)
+        if (event && event.target) {
+          const name = event.target.name;
+          const value = event.target.value;
+    
+            setData({
+              ...data,
+              [name]: value,
+            });
+        }
+    }
+    
+    function handleChangeAadhaar(event) {
+      setAadhaarNoErr(data.aadhaarNo.length !== 11)
+      if (event && event.target) {
+        const name = event.target.name;
+        const value = event.target.value;
+  
+          setData({
+            ...data,
+            [name]: value,
+          });
+      }
   }
 
   useEffect(() => {
@@ -239,19 +272,21 @@ function AllColumns(props) {
         <Field
           text="Aadhaar no."
           type="number"
-          change={handleChange}
+          change={handleChangeAadhaar}
           value={data.aadhaarNo}
           name="aadhaarNo"
           containerClass={styles.subContainerNew}
         />
+        {aadhaarNoErr && <p className={styles.warning}>Please enter a valid number.</p>}
         <Field
           text="Phone no."
           type="number"
-          change={handleChange}
+          change={handleChangePhone}
           value={data.phone}
           name="phone"
           containerClass={styles.subContainerNew}
         />
+        {phoneNoErr && <p className={styles.warning}>Please enter a 10-digit phone number.</p>}
         <SelectField
           text="Gender"
           change={handleChange}
@@ -323,11 +358,20 @@ function AllColumns(props) {
           ]}
           containerClass={styles.subContainerNew}
         />
-        <Field
+        <SelectField
           text="Category"
           change={handleChange}
           value={data.category}
           name="category"
+          option={[
+            ["General", "General"],
+            ["Hindu OBC", "Hindu OBC"],
+            ["Christ OBC", "Christ OBC"],
+            ["OEC", "OEC"],
+            ["Muslim", "Muslim"],
+            ["Sc", "SC"],
+            ["ST", "ST"]
+          ]}
           containerClass={styles.subContainerNew}
         />
         <Field
@@ -345,6 +389,45 @@ function AllColumns(props) {
           name="dob"
           containerClass={styles.subContainerNew}
         />
+      </div>
+      {/* ------------------------------------------ */}
+      
+      <hr className={`${styles.separationLine}`} />
+      <div className={`${styles.containerNew}`}>
+        <Field
+          text="WGPA"
+          type="number"
+          min={0}
+          max={10}
+          change={handleChange}
+          value={data.wgpa}
+          name="wgpa"
+          containerClass={styles.subContainerNew}
+        />
+        <Field
+          text="Rank"
+          type="number"
+          min={0}
+          max={10000}
+          change={handleChange}
+          value={data.rank}
+          name="rank"
+          containerClass={styles.subContainerNew}
+        />
+        <SelectField
+          text="Admission category"
+          change={handleChange}
+          value={data.admissionCategory} 
+          name="admissionCategory"
+          option={[
+            ["Merit", "Merit"],
+            ["Sports", "Sports"],
+            ["IED", "IED",],
+            ["Management", "Management",]
+          ]}
+          containerClass={styles.subContainerNew}
+        />
+  
       </div>
 
       {/* ---------------- Container 4 ----------------  */}

@@ -245,6 +245,20 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 0.7;
   cursor: pointer;
 }
+
+.warning{
+  color: #ff0000;
+  width: 20vw;
+  font-size: 1.25vw;
+  width: 25vw;
+  font-size: 1.25vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-right: 43vw;
+}
+
 /* ------------------ mobile phone design ------------------ */
 
 .uploadPhoto{

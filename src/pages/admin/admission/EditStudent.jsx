@@ -47,7 +47,10 @@ function editStudents() {
     tcNumber: "",
     tcDate: "",
     tcSchool: "",
-  };
+    wgpa: "",
+    rank: "",
+    admissionCategory: "Merit",
+  }; 
 
   const [data, setData] = useState(dataTemplete);
   const [popup, setPopup] = useState(false);
@@ -55,7 +58,6 @@ function editStudents() {
   const [filePhoto, setFilePhoto] = useState("");
   const [QR, setQR] = useState(false);
   const [webCam, setWebCam] = useState(false);
-  // const photoRef = useRef('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E');
   const photoRef = useRef("");
   const [global, setGlobal] = useState(true);
   const [webCamPhoto, setWebCamPhoto] = useState("");
@@ -63,6 +65,7 @@ function editStudents() {
   const [param] = useSearchParams();
   const id = param.getAll("id");
   const [filePhotoURL, setFilePhotoURL] = useState("");
+  const [phoneNoErr, setPhoneNoErr]= useState(false);
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
 
@@ -192,7 +195,7 @@ function editStudents() {
             `admin/upload-student-photo?studentId=${id}`,
             formData
           ).catch((err) => {
-            alert(err.response?.data);
+            console.log(err.response?.data);
           });
 
           setPopup(!popup);
@@ -400,11 +403,20 @@ function editStudents() {
           ]}
           containerClass={style.subContainerNew}
         />
-        <Field
+        <SelectField
           text="Category"
           change={handleChange}
           value={data.category}
           name="category"
+          option={[
+            ["General", "General"],
+            ["Hindu OBC", "Hindu OBC"],
+            ["Christ OBC", "Christ OBC"],
+            ["OEC", "OEC"],
+            ["Muslim", "Muslim"],
+            ["Sc", "SC"],
+            ["ST", "ST"]
+          ]}
           containerClass={style.subContainerNew}
         />
         <Field
@@ -422,6 +434,46 @@ function editStudents() {
           name="dob"
           containerClass={style.subContainerNew}
         />
+      </div>
+      
+      {/* ------------------------------------------ */}
+      
+      <hr className={`${style.separationLine}`} />
+      <div className={`${style.containerNew}`}>
+        <Field
+          text="WGPA"
+          type="number"
+          min={0}
+          max={10}
+          change={handleChange}
+          value={data.wgpa}
+          name="wgpa"
+          containerClass={style.subContainerNew}
+        />
+        <Field
+          text="Rank"
+          type="number"
+          min={0}
+          max={10000}
+          change={handleChange}
+          value={data.rank}
+          name="rank"
+          containerClass={style.subContainerNew}
+        />
+        <SelectField
+          text="Admission category"
+          change={handleChange}
+          value={data.admissionCategory} 
+          name="admissionCategory"
+          option={[
+            ["Merit", "Merit"],
+            ["Sports", "Sports"],
+            ["IED", "IED",],
+            ["Management", "Management",]
+          ]}
+          containerClass={style.subContainerNew}
+        />
+  
       </div>
 
       {/* ---------------- Container 4 ----------------  */}
