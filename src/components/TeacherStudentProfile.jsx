@@ -292,6 +292,63 @@ const Details = (props, ref) => {
             <code>{props.details.status}</code>
           </div>
         )}
+
+{props.details.rank == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>Rank</code>
+            <code>:</code>
+            <code>{props.details.rank}</code>
+          </div>
+        )}
+        {props.details.wgpa == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>WGPA</code>
+            <code>:</code>
+            <code>{props.details.wgpa}</code>
+          </div>
+        )}
+        {props.details.admissionCategory == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>Admission category</code>
+            <code>:</code>
+            <code>{props.details.admissionCategory}</code>
+          </div>
+        )}
+
+{props.details.rank == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>Rank</code>
+            <code>:</code>
+            <code>{props.details.rank}</code>
+          </div>
+        )}
+        {props.details.wgpa == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>WGPA</code>
+            <code>:</code>
+            <code>{props.details.wgpa}</code>
+          </div>
+        )}
+        {props.details.admissionCategory == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>Admission category</code>
+            <code>:</code>
+            <code>{props.details.admissionCategory}</code>
+          </div>
+        )}
+
         <br />
 
         {props.details.tcNumber == undefined &&
@@ -454,7 +511,7 @@ const Table = forwardRef((props, ref) => {
         </tr>
         <tr>
           <td>OBC</td>
-          <td>{props.details.obc == undefined ? "" : props.details.obc}</td>
+          <td>{props.details.obc == undefined ? "" : props.details.obc ? "Yes" : "No"}</td>
         </tr>
         <tr>
           <td>Category</td>
@@ -531,6 +588,25 @@ const Table = forwardRef((props, ref) => {
             {props.details.course == undefined ? "" : props.details.course}
           </td>
         </tr>
+
+
+        <tr>
+          <td>Rank</td>
+          <td>
+            {props.details.rank == undefined ? "" : props.details.rank}
+          </td>
+        </tr><tr>
+          <td>WGPA</td>
+          <td>
+            {props.details.wgpa == undefined ? "" : props.details.wgpa}
+          </td>
+        </tr><tr>
+          <td>Admission category</td>
+          <td>
+            {props.details.admissionCategory == undefined ? "" : props.details.admissionCategory}
+          </td>
+        </tr>
+
 
         <tr>
           <td>Number</td>

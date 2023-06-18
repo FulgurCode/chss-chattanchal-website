@@ -37,8 +37,7 @@ export default function Profile() {
       .then((res) => {
         setDetails(res.data);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
 
   function getImage() {
@@ -46,8 +45,7 @@ export default function Profile() {
       .then((res) => {
         setImg("data:image/jpeg;base64," + res.data);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
 
   function editNav(e) {
@@ -292,6 +290,35 @@ const Details = (props, ref) => {
             <code>{props.details.status}</code>
           </div>
         )}
+
+        {props.details.rank == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>Rank</code>
+            <code>:</code>
+            <code>{props.details.rank}</code>
+          </div>
+        )}
+        {props.details.wgpa == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>WGPA</code>
+            <code>:</code>
+            <code>{props.details.wgpa}</code>
+          </div>
+        )}
+        {props.details.admissionCategory == undefined ? (
+          ""
+        ) : (
+          <div>
+            <code>Admission category</code>
+            <code>:</code>
+            <code>{props.details.admissionCategory}</code>
+          </div>
+        )}
+
         <br />
 
         {props.details.tcNumber == undefined &&
@@ -454,7 +481,7 @@ const Table = forwardRef((props, ref) => {
         </tr>
         <tr>
           <td>OBC</td>
-          <td>{props.details.obc == undefined ? "" : props.details.obc}</td>
+          <td>{props.details.obc == undefined ? "" : props.details.obc ? "Yes" : "No"}</td>
         </tr>
         <tr>
           <td>Category</td>
@@ -533,33 +560,44 @@ const Table = forwardRef((props, ref) => {
         </tr>
 
         <tr>
+          <td>Rank</td>
+          <td>
+            {props.details.rank == undefined ? "" : props.details.rank}
+          </td>
+        </tr><tr>
+          <td>WGPA</td>
+          <td>
+            {props.details.wgpa == undefined ? "" : props.details.wgpa}
+          </td>
+        </tr><tr>
+          <td>Admission category</td>
+          <td>
+            {props.details.admissionCategory == undefined ? "" : props.details.admissionCategory}
+          </td>
+        </tr>
+
+        <tr>
           <td>Number</td>
           <td>
-          {props.details.tcNumber == undefined
-              ? ""
-              : props.details.tcNumber}
+            {props.details.tcNumber == undefined ? "" : props.details.tcNumber}
           </td>
         </tr>
         <tr>
           <td>Date</td>
           <td>
-          {props.details.tcDate == undefined
-              ? ""
-              : props.details.tcDate}
+            {props.details.tcDate == undefined ? "" : props.details.tcDate}
           </td>
         </tr>
         <tr>
           <td>School</td>
           <td>
-          {props.details.tcSchool == undefined
-              ? ""
-              : props.details.tcSchool}
+            {props.details.tcSchool == undefined ? "" : props.details.tcSchool}
           </td>
         </tr>
         <tr>
           <td>Name of Board</td>
           <td>
-          {props.details.sslcNameOfBoard == undefined
+            {props.details.sslcNameOfBoard == undefined
               ? ""
               : props.details.sslcNameOfBoard}
           </td>
@@ -567,7 +605,7 @@ const Table = forwardRef((props, ref) => {
         <tr>
           <td>Register No.</td>
           <td>
-              {props.details.sslcRegisterNo == undefined
+            {props.details.sslcRegisterNo == undefined
               ? ""
               : props.details.sslcRegisterNo}
           </td>
@@ -575,7 +613,7 @@ const Table = forwardRef((props, ref) => {
         <tr>
           <td>Passsing Time</td>
           <td>
-              {props.details.sslcPassingTime == undefined
+            {props.details.sslcPassingTime == undefined
               ? ""
               : props.details.sslcPassingTime}
           </td>
