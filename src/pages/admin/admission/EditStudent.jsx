@@ -50,7 +50,7 @@ function editStudents() {
     wgpa: "",
     rank: "",
     admissionCategory: "Merit",
-  }; 
+  };
 
   const [data, setData] = useState(dataTemplete);
   const [popup, setPopup] = useState(false);
@@ -65,7 +65,7 @@ function editStudents() {
   const [param] = useSearchParams();
   const id = param.getAll("id");
   const [filePhotoURL, setFilePhotoURL] = useState("");
-  const [phoneNoErr, setPhoneNoErr]= useState(false);
+  const [phoneNoErr, setPhoneNoErr] = useState(false);
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
 
@@ -184,14 +184,20 @@ function editStudents() {
     } else {
       Axios.put(`admin/edit-student?studentId=${id}`, data)
         .then(() => {
-          const formData = new FormData();
-          formData.append("file", filePhoto);
-
-          Axios.post(
-            `admin/upload-student-photo?studentId=${id}`,
-            formData
-          ).catch((err) => {});
-
+          if (filePhoto) {
+            const formData = new FormData();
+            formData.append("file", filePhoto);
+            Axios.post(
+              `/admin/upload-student-photo?studentId=${response.data}`,
+              formData
+            ).catch((err) => {
+              if (err.response.data != undefined) {
+                setError(err.response.data);
+              } else {
+                setError("Server connection error");
+              }
+            });
+          }
           setPopup(!popup);
           setData(dataTemplete);
           setFilePhotoURL("");
@@ -199,9 +205,6 @@ function editStudents() {
           history.back();
         })
         .catch((err) => {
-          if (err.response == undefined) {
-          } else {
-          }
         });
     }
   }
@@ -400,8 +403,8 @@ function editStudents() {
             ["Christ OBC", "Christ OBC"],
             ["OEC", "OEC"],
             ["Muslim", "Muslim"],
-            ["Sc", "SC"],
-            ["ST", "ST"]
+            ["SC", "SC"],
+            ["ST", "ST"],
           ]}
           containerClass={style.subContainerNew}
         />
@@ -422,9 +425,9 @@ function editStudents() {
           containerClass={style.subContainerNew}
         />
       </div>
-      
+
       {/* ------------------------------------------ */}
-      
+
       <hr className={`${style.separationLine}`} />
       <div className={`${style.containerNew}`}>
         <Field
@@ -436,6 +439,7 @@ function editStudents() {
           value={data.wgpa}
           name="wgpa"
           containerClass={style.subContainerNew}
+          notRequired={true}
         />
         <Field
           text="Rank"
@@ -446,21 +450,21 @@ function editStudents() {
           value={data.rank}
           name="rank"
           containerClass={style.subContainerNew}
+          notRequired={true}
         />
         <SelectField
           text="Admission category"
           change={handleChange}
-          value={data.admissionCategory} 
+          value={data.admissionCategory}
           name="admissionCategory"
           option={[
             ["Merit", "Merit"],
             ["Sports", "Sports"],
-            ["IED", "IED",],
-            ["Management", "Management",]
+            ["IED", "IED"],
+            ["Management", "Management"],
           ]}
           containerClass={style.subContainerNew}
         />
-  
       </div>
 
       {/* ---------------- Container 4 ----------------  */}

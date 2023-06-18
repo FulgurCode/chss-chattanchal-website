@@ -48,6 +48,9 @@ function EditStudentsTeacher() {
     tcNumber: "",
     tcDate: "",
     tcSchool: "",
+    wgpa: "",
+    rank: "",
+    admissionCategory: "Merit",
   };
 
   const [data, setData] = useState(dataTemplete);
@@ -86,11 +89,7 @@ function EditStudentsTeacher() {
         delete response.data._id;
         setData(response.data);
       })
-      .catch((err) => {
-        if (err == true) {
-        } else {
-        }
-      });
+      .catch((err) => {});
 
     Axios.get(`teacher/get-student-photo?studentId=${id}`)
       .then((response) => {
@@ -190,13 +189,20 @@ function EditStudentsTeacher() {
     } else {
       Axios.put(`teacher/edit-student?studentId=${id}`, data)
         .then(() => {
-          const formData = new FormData();
-          formData.append("file", filePhoto);
-
-          Axios.post(
-            `teacher/upload-student-photo?studentId=${id}`,
-            formData
-          ).catch((err) => {});
+          if (filePhoto) {
+            const formData = new FormData();
+            formData.append("file", filePhoto);
+            Axios.post(
+              `/admin/upload-student-photo?studentId=${response.data}`,
+              formData
+            ).catch((err) => {
+              if (err.response.data != undefined) {
+                setError(err.response.data);
+              } else {
+                setError("Server connection error");
+              }
+            });
+          }
 
           setPopup(!popup);
           setData(dataTemplete);
@@ -391,11 +397,20 @@ function EditStudentsTeacher() {
           ]}
           containerClass={style.subContainerNew}
         />
-        <Field
+        <SelectField
           text="Category"
           change={handleChange}
           value={data.category}
           name="category"
+          option={[
+            ["General", "General"],
+            ["Hindu OBC", "Hindu OBC"],
+            ["Christ OBC", "Christ OBC"],
+            ["OEC", "OEC"],
+            ["Muslim", "Muslim"],
+            ["SC", "SC"],
+            ["ST", "ST"],
+          ]}
           containerClass={style.subContainerNew}
         />
         <Field
@@ -412,6 +427,48 @@ function EditStudentsTeacher() {
           change={handleChange}
           value={data.dob}
           name="dob"
+          containerClass={style.subContainerNew}
+        />
+      </div>
+
+
+      {/* ------------------------------------------ */}
+
+      <hr className={`${style.separationLine}`} />
+      <div className={`${style.containerNew}`}>
+        <Field
+          text="WGPA"
+          type="number"
+          min={0}
+          max={10}
+          change={handleChange}
+          value={data.wgpa}
+          name="wgpa"
+          containerClass={style.subContainerNew}
+          notRequired={true}
+        />
+        <Field
+          text="Rank"
+          type="number"
+          min={0}
+          max={10000}
+          change={handleChange}
+          value={data.rank}
+          name="rank"
+          containerClass={style.subContainerNew}
+          notRequired={true}
+        />
+        <SelectField
+          text="Admission category"
+          change={handleChange}
+          value={data.admissionCategory}
+          name="admissionCategory"
+          option={[
+            ["Merit", "Merit"],
+            ["Sports", "Sports"],
+            ["IED", "IED"],
+            ["Management", "Management"],
+          ]}
           containerClass={style.subContainerNew}
         />
       </div>

@@ -44,7 +44,7 @@ function AllColumns(props) {
     wgpa: "",
     rank: "",
     admissionCategory: "Merit",
-  }; 
+  };
 
   const [data, setData] = useState(jsonTemp);
   const [popup, setPopup] = useState(false);
@@ -60,8 +60,8 @@ function AllColumns(props) {
   const [filePhotoURL, setFilePhotoURL] = useState("");
   const [error, setError] = useState("");
   const [webSocket, SetWebSocket] = useState();
-  const [phoneNoErr, setPhoneNoErr]= useState(false);
-  const [aadhaarNoErr, setAadhaarNoErr]= useState(false);
+  const [phoneNoErr, setPhoneNoErr] = useState(false);
+  const [aadhaarNoErr, setAadhaarNoErr] = useState(false);
   const [id, setId] = useState();
 
   async function base64ToFile(dataUrl, setState) {
@@ -90,32 +90,32 @@ function AllColumns(props) {
     }
   }
 
-    // ---------------- Handle Change Function for no length check
+  // ---------------- Handle Change Function for no length check
 
-    function handleChangePhone(event) {
-        setPhoneNoErr(data.phone.length !== 9)
-        if (event && event.target) {
-          const name = event.target.name;
-          const value = event.target.value;
-    
-            setData({
-              ...data,
-              [name]: value,
-            });
-        }
+  function handleChangePhone(event) {
+    setPhoneNoErr(data.phone.length !== 9);
+    if (event && event.target) {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      setData({
+        ...data,
+        [name]: value,
+      });
     }
-    
-    function handleChangeAadhaar(event) {
-      setAadhaarNoErr(data.aadhaarNo.length !== 11)
-      if (event && event.target) {
-        const name = event.target.name;
-        const value = event.target.value;
-  
-          setData({
-            ...data,
-            [name]: value,
-          });
-      }
+  }
+
+  function handleChangeAadhaar(event) {
+    setAadhaarNoErr(data.aadhaarNo.length !== 11);
+    if (event && event.target) {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
   }
 
   useEffect(() => {
@@ -174,7 +174,11 @@ function AllColumns(props) {
 
     for (var prop in data) {
       if (data[prop] === "") {
-        if (prop !== "linguisticMinority") {
+        if (
+          prop !== "linguisticMinority" &&
+          prop !== "rank" &&
+          prop !== "wgpa"
+        ) {
           setNotFilledError(true);
           hasNullOrUndefinedValue = true;
           break;
@@ -185,24 +189,20 @@ function AllColumns(props) {
     if (!hasNullOrUndefinedValue) {
       Axios.post(`/${props.user}/new-admission`, data)
         .then((response) => {
-          const formData = new FormData();
-          if (global == true) {
+          if (filePhoto) {
+            const formData = new FormData();
             formData.append("file", filePhoto);
-          } else {
-            formData.append("file", webCamPhoto);
+            Axios.post(
+              `/${props.user}/upload-student-photo?studentId=${response.data}`,
+              formData
+            ).catch((err) => {
+              if (err.response.data != undefined) {
+                setError(err.response.data);
+              } else {
+                setError("Server connection error");
+              }
+            });
           }
-
-          Axios.post(
-            `/${props.user}/upload-student-photo?studentId=${response.data}`,
-            formData
-          ).catch((err) => {
-            if (err.response.data != undefined) {
-              setError(err.response.data);
-            } else {
-              setError("Server connection error");
-            }
-          });
-
           setPopup(!popup);
           setData(jsonTemp);
           setFilePhotoURL("");
@@ -268,7 +268,9 @@ function AllColumns(props) {
           name="aadhaarNo"
           containerClass={styles.subContainerNew}
         />
-        {aadhaarNoErr && <p className={styles.warning}>Please enter a valid number.</p>}
+        {aadhaarNoErr && (
+          <p className={styles.warning}>Please enter a valid number.</p>
+        )}
         <Field
           text="Phone no."
           type="number"
@@ -277,7 +279,11 @@ function AllColumns(props) {
           name="phone"
           containerClass={styles.subContainerNew}
         />
-        {phoneNoErr && <p className={styles.warning}>Please enter a 10-digit phone number.</p>}
+        {phoneNoErr && (
+          <p className={styles.warning}>
+            Please enter a 10-digit phone number.
+          </p>
+        )}
         <SelectField
           text="Gender"
           change={handleChange}
@@ -360,8 +366,8 @@ function AllColumns(props) {
             ["Christ OBC", "Christ OBC"],
             ["OEC", "OEC"],
             ["Muslim", "Muslim"],
-            ["Sc", "SC"],
-            ["ST", "ST"]
+            ["SC", "SC"],
+            ["ST", "ST"],
           ]}
           containerClass={styles.subContainerNew}
         />
@@ -383,7 +389,7 @@ function AllColumns(props) {
         />
       </div>
       {/* ------------------------------------------ */}
-      
+
       <hr className={`${styles.separationLine}`} />
       <div className={`${styles.containerNew}`}>
         <Field
@@ -395,6 +401,7 @@ function AllColumns(props) {
           value={data.wgpa}
           name="wgpa"
           containerClass={styles.subContainerNew}
+          notRequired={true}
         />
         <Field
           text="Rank"
@@ -405,21 +412,21 @@ function AllColumns(props) {
           value={data.rank}
           name="rank"
           containerClass={styles.subContainerNew}
+          notRequired={true}
         />
         <SelectField
           text="Admission category"
           change={handleChange}
-          value={data.admissionCategory} 
+          value={data.admissionCategory}
           name="admissionCategory"
           option={[
             ["Merit", "Merit"],
             ["Sports", "Sports"],
-            ["IED", "IED",],
-            ["Management", "Management",]
+            ["IED", "IED"],
+            ["Management", "Management"],
           ]}
           containerClass={styles.subContainerNew}
         />
-  
       </div>
 
       {/* ---------------- Container 4 ----------------  */}
@@ -589,7 +596,7 @@ function AllColumns(props) {
         setImage={setFilePhoto}
         image={filePhoto}
         inputRef={inputRef}
-        webCamPhoto={setWebCamPhoto}
+        webCamPhoto={setFilePhoto}
       />
     </div>
   );
