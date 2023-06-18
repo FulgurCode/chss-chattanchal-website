@@ -187,25 +187,24 @@ function editStudents() {
           if (filePhoto) {
             const formData = new FormData();
             formData.append("file", filePhoto);
+
             Axios.post(
-              `/admin/upload-student-photo?studentId=${response.data}`,
+              `admin/upload-student-photo?studentId=${id}`,
               formData
             ).catch((err) => {
-              if (err.response.data != undefined) {
-                setError(err.response.data);
-              } else {
-                setError("Server connection error");
-              }
-            });
+                if (err.response.status == 413) {
+                  alert("File size is too large")
+                }
+              });
           }
+
           setPopup(!popup);
           setData(dataTemplete);
           setFilePhotoURL("");
           setGlobal(true);
           history.back();
         })
-        .catch((err) => {
-        });
+        .catch((err) => {});
     }
   }
 

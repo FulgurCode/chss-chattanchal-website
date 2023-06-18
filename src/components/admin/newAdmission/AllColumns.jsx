@@ -197,7 +197,11 @@ function AllColumns(props) {
               formData
             ).catch((err) => {
               if (err.response.data != undefined) {
-                setError(err.response.data);
+                if (err.response.status == 413) {
+                  alert("File size is too large");
+                } else {
+                    setError(err.response.data);
+                }
               } else {
                 setError("Server connection error");
               }
