@@ -165,6 +165,9 @@ function AllColumns(props) {
     var hasNullOrUndefinedValue = false;
 
     // type casting the variable specified
+    data.applicationNo = Number(data.applicationNo);
+    data.rank = Number(data.rank);
+    data.wgpa = Number(data.wgpa);
     data.tcNumber = Number(data.tcNumber);
     data.phone = Number(data.phone);
     data.aadhaarNo = Number(data.aadhaarNo);

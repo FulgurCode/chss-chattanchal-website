@@ -169,15 +169,23 @@ function EditStudentsTeacher() {
     var hasNullOrUndefinedValue = false;
 
     // type casting the variable specified
+    data.applicationNo = Number(data.applicationNo);
+    data.rank = Number(data.rank);
+    data.wgpa = Number(data.wgpa);
     data.tcNumber = Number(data.tcNumber);
     data.phone = Number(data.phone);
+    data.aadhaarNo = Number(data.aadhaarNo);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
     for (var prop in data) {
       if (data[prop] === "") {
-        if (prop !== "linguisticMinority") {
+        if (
+          prop !== "linguisticMinority" &&
+          prop !== "rank" &&
+          prop !== "wgpa"
+        ) {
           setNotFilledError(true);
           hasNullOrUndefinedValue = true;
           break;
