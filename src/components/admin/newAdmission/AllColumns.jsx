@@ -167,6 +167,7 @@ function AllColumns(props) {
     // type casting the variable specified
     data.tcNumber = Number(data.tcNumber);
     data.phone = Number(data.phone);
+    data.aadhaarNo = Number(data.aadhaarNo);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);

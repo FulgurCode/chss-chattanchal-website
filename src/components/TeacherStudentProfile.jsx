@@ -213,7 +213,7 @@ const Details = (props, ref) => {
           <div>
             <code>OBC</code>
             <code>:</code>
-            <code>{props.details.obc}</code>
+            {props.details.obc ? <code>Yes</code> : <code>No</code>}
           </div>
         )}
         {props.details.category == undefined ? (
