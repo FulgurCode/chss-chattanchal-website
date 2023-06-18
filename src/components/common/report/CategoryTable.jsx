@@ -23,14 +23,14 @@ export default function CategoryTable(props) {
   }, []);
 
   const statusSums = [
-    Object.values(data).reduce((acc, item) => acc + (item["General"] || 0), 0),
-    Object.values(data).reduce((acc, item) => acc + (item["Hin.OBC"] || 0), 0),
+    Object.values(data).reduce((acc, item) => acc + (item["general"] || 0), 0),
+    Object.values(data).reduce((acc, item) => acc + (item["HinOBC"] || 0), 0),
     Object.values(data).reduce(
-      (acc, item) => acc + (item["Christ.OBC"] || 0),
+      (acc, item) => acc + (item["ChristOBC"] || 0),
       0
     ),
     Object.values(data).reduce((acc, item) => acc + (item["OEC"] || 0), 0),
-    Object.values(data).reduce((acc, item) => acc + (item["Muslim"] || 0), 0),
+    Object.values(data).reduce((acc, item) => acc + (item["muslim"] || 0), 0),
     Object.values(data).reduce((acc, item) => acc + (item["SC"] || 0), 0),
     Object.values(data).reduce((acc, item) => acc + (item["ST"] || 0), 0),
   ];
@@ -58,11 +58,11 @@ export default function CategoryTable(props) {
                 return (
                   <tr key={item}>
                     <th className={styles.vheader}>{item}</th>
-                    <td>{data[item]["General"] || 0}</td>
-                    <td>{data[item]["Hin.OBC"] || 0}</td>
-                    <td>{data[item]["Christ.OBC"] || 0}</td>
+                    <td>{data[item]["general"] || 0}</td>
+                    <td>{data[item]["HinOBC"] || 0}</td>
+                    <td>{data[item]["ChristOBC"] || 0}</td>
                     <td>{data[item]["OEC"] || 0}</td>
-                    <td>{data[item]["Muslim"] || 0}</td>
+                    <td>{data[item]["muslim"] || 0}</td>
                     <td>{data[item]["SC"] || 0}</td>
                     <td>{data[item]["ST"] || 0}</td>
                   </tr>

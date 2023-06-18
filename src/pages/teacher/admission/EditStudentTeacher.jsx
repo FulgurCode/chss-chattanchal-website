@@ -413,11 +413,11 @@ function EditStudentsTeacher() {
           value={data.category}
           name={data.import ? "" : "category"}
           option={[
-            ["General", "General"],
-            ["Hindu OBC", "Hindu OBC"],
-            ["Christ OBC", "Christ OBC"],
+            ["General", "general"],
+            ["Hindu OBC", "HinOBC"],
+            ["Christ OBC", "ChristOBC"],
             ["OEC", "OEC"],
-            ["Muslim", "Muslim"],
+            ["Muslim", "muslim"],
             ["SC", "SC"],
             ["ST", "ST"],
           ]}
