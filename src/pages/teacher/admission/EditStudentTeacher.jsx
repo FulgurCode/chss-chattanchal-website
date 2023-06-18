@@ -51,6 +51,7 @@ function EditStudentsTeacher() {
     wgpa: "",
     rank: "",
     admissionCategory: "Merit",
+    import: "",
   };
 
   const [data, setData] = useState(dataTemplete);
@@ -97,6 +98,8 @@ function EditStudentsTeacher() {
       })
 
       .catch((err) => {});
+
+      
   }
 
   const navigate = useNavigate();
@@ -108,6 +111,7 @@ function EditStudentsTeacher() {
     setAvail(CheckDuty("add-details", navigate));
     getData();
   }, []);
+  console.log(data)
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
@@ -314,7 +318,7 @@ function EditStudentsTeacher() {
           text="Name of the student"
           change={handleChange}
           value={data.name}
-          name="name"
+          name={data.import ? "" : "name"}
           containerClass={style.subContainerNew}
         />
         <Field
@@ -337,7 +341,7 @@ function EditStudentsTeacher() {
           text="Gender"
           change={handleChange}
           value={data.gender}
-          name="gender"
+          name={data.import ? "" : "gender"}
           option={[
             ["Male", "male"],
             ["Female", "female"],
@@ -408,7 +412,7 @@ function EditStudentsTeacher() {
           text="Category"
           change={handleChange}
           value={data.category}
-          name="category"
+          name={data.import ? "" : "category"}
           option={[
             ["General", "General"],
             ["Hindu OBC", "Hindu OBC"],
@@ -433,7 +437,7 @@ function EditStudentsTeacher() {
           type="date"
           change={handleChange}
           value={data.dob}
-          name="dob"
+          name={data.import ? "" : "dob"}
           containerClass={style.subContainerNew}
         />
       </div>
@@ -449,7 +453,7 @@ function EditStudentsTeacher() {
           max={10}
           change={handleChange}
           value={data.wgpa}
-          name="wgpa"
+          name={data.import ? "" : "wgpa"}
           containerClass={style.subContainerNew}
           notRequired={true}
         />
@@ -460,7 +464,7 @@ function EditStudentsTeacher() {
           max={10000}
           change={handleChange}
           value={data.rank}
-          name="rank"
+          name={data.import ? "" : "rank"}
           containerClass={style.subContainerNew}
           notRequired={true}
         />
@@ -468,7 +472,7 @@ function EditStudentsTeacher() {
           text="Admission category"
           change={handleChange}
           value={data.admissionCategory}
-          name="admissionCategory"
+          name={data.import ? "" : "admissionCategory"}
           option={[
             ["Merit", "Merit"],
             ["Sports", "Sports"],
