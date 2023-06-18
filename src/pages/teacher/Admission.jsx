@@ -11,45 +11,48 @@ import studentDetailsIcon from "../../assets/images/admission/studentDetailsIcon
 import importStudentsIcon from "../../assets/images/admission/importIcon.png";
 import confirmationIcon from "../../assets/images/admission/confirmIcon.png";
 import reportIcon from "../../assets/images/admission/reportIcon.png";
+import React from "react";
 
 export default function Admission() {
   const navigate = useNavigate();
   const [duties, setDuties] = useState({
     verification: false,
     details: false,
-    import: false
+    import: false,
   });
 
   const [loading, setisLoading] = useState(false);
 
   function CheckDuty() {
-    Axios.get(`/teacher/have-duty?duty=verification`)
+    // Test request
+
+    Axios.get("/teacher/get-all-duty")
       .then((response) => {
-        setDuties((prevState) => ({
-          ...prevState,
-          verification: response.data,
-        }));
+        const resp = response.data;
+        resp.map((item) => {
+          if (item.duty == "add-details") {
+            setDuties((prevState) => ({
+              ...prevState,
+              details: true,
+            }));
+          }
+          if (item.duty == "verification") {
+            setDuties((prevState) => ({
+              ...prevState,
+              verification: true,
+            }));
+          }
+          if (item.duty == "import-students") {
+            setDuties((prevState) => ({
+              ...prevState,
+              import: true,
+            }));
+          }
+        });
       })
       .catch((error) => {
       });
-    Axios.get(`/teacher/have-duty?duty=add-details`)
-      .then((response) => {
-        setDuties((prevState) => ({
-          ...prevState,
-          details: response.data,
-        }));
-      })
-      .catch((error) => {
-      });
-    Axios.get(`/teacher/have-duty?duty=import-students`)
-      .then((response) => {
-        setDuties((prevState) => ({
-          ...prevState,
-          import: response.data,
-        }));
-      })
-      .catch((error) => {
-      });
+    
   }
 
   useEffect(() => {
@@ -90,17 +93,19 @@ export default function Admission() {
               </span>
               <h1>Student details</h1>
             </div>
-           { duties.import && <div
-              className={styles.item}
-              onClick={() => {
-                navigate("/teacher/admission/import-students");
-              }}
-            >
-              <span>
-                <img src={importStudentsIcon} width="80px" height="80px" />
-              </span>
-              <h1>Import Students</h1>
-            </div>}
+            {duties.import && (
+              <div
+                className={styles.item}
+                onClick={() => {
+                  navigate("/teacher/admission/import-students");
+                }}
+              >
+                <span>
+                  <img src={importStudentsIcon} width="80px" height="80px" />
+                </span>
+                <h1>Import Students</h1>
+              </div>
+            )}
 
             {duties.verification && (
               <div

@@ -16,7 +16,7 @@ export default function Profile() {
   const [loading, setisLoading] = useState(false);
 
   let componentRef = useRef();
-
+  const[avail, setAvail] = useState(false)
   const [data] = useSearchParams();
   const id = data.getAll("id");
   const editable = data.getAll("editable")[0];
@@ -30,7 +30,15 @@ export default function Profile() {
     useAuth(setisLoading, navigate);
     getData();
     getImage();
+    CheckDuty()
   }, []);
+
+  function CheckDuty(){
+    Axios.get("/teacher/have-duty?duty=add-details").then((res) => {
+      setAvail(res.data)
+    }
+    ).catch(err => console.log(err.data))
+  }
 
   function getData() {
     Axios.get(`teacher/get-student?studentId=${id}`)
@@ -55,6 +63,7 @@ export default function Profile() {
   }
   return (
     <>
+    <div>
       <Navbar user="teacher" />
       <div>
         <div className={styles.body}>
@@ -67,7 +76,7 @@ export default function Profile() {
                 content={() => componentRef.current}
                 documentTitle={details.name}
               />
-              <button
+              {avail && <button
                 onClick={editNav}
                 style={{
                   display:
@@ -79,13 +88,14 @@ export default function Profile() {
                 }}
               >
                 Edit
-              </button>
+              </button>}
             </div>
             <Table ref={componentRef} details={details} img={img} />
           </div>
         </div>
       </div>
       <Loader open={loading} />
+      </div>
     </>
   );
 }

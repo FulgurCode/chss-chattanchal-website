@@ -21,7 +21,7 @@ import Teachers from "./pages/admin/Teachers";
 import AddTeachers from "./pages/admin/teachers/AddTeachers.jsx";
 import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
 import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
-import TeacherReport from "./pages/teacher/admission/Report"
+import TeacherReport from "./pages/teacher/admission/Report";
 import VerificationAdmin from "./pages/admin/admission/VerificationAdmin";
 
 import SignUp from "./pages/teacher/SignUp";
@@ -36,7 +36,7 @@ import TeacherImportStudents from "./pages/teacher/admission/ImportStudents";
 import EditStudentsTeacher from "./pages/teacher/admission/EditStudentTeacher";
 //
 
-import ChangePassword from "./components/common/ChangePassword"
+import ChangePassword from "./components/common/ChangePassword";
 
 import EditStudents from "./pages/admin/admission/EditStudent";
 
@@ -48,7 +48,10 @@ export default function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin">
           <Route index element={<Admin />} />
-          <Route path="/admin/change-password" element={<ChangePassword user="admin"/>}/>
+          <Route
+            path="/admin/change-password"
+            element={<ChangePassword user="admin" />}
+          />
           <Route path="/admin/admission">
             <Route index element={<Admission />} />
             <Route
@@ -109,12 +112,14 @@ export default function App() {
           ></Route>
         </Route>
 
-          <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/teacher">
           <Route index element={<Teacher />} />
           <Route path="/teacher/signup-otp" element={<SignUpOtp />}></Route>
-          <Route path="/teacher/change-password" element={<ChangePassword user="teacher"/>}/>
-
+          <Route
+            path="/teacher/change-password"
+            element={<ChangePassword user="teacher" />}
+          />
 
           <Route path="/teacher/admission">
             <Route index element={<TeacherAdmission />} />
