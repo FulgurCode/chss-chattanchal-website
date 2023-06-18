@@ -84,9 +84,11 @@ function editStudents() {
 
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
-      .then((response) => {
-        delete response.data._id;
-        setData(response.data);
+      .then((res) => {
+        var response = res.data
+        delete response._id;
+        response.status = "permanent"
+        setData(response);
       })
       .catch((err) => {});
 
@@ -175,7 +177,7 @@ function editStudents() {
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
     for (var prop in data) {
-      if (data[prop] === "") {
+      if (data[prop] === "" || data[prop] === undefined) {
         if (
           prop !== "linguisticMinority" &&
           prop !== "rank" &&
@@ -200,10 +202,10 @@ function editStudents() {
               `admin/upload-student-photo?studentId=${id}`,
               formData
             ).catch((err) => {
-                if (err.response.status == 413) {
-                  alert("File size is too large")
-                }
-              });
+              if (err.response.status == 413) {
+                alert("File size is too large");
+              }
+            });
           }
 
           setPopup(!popup);

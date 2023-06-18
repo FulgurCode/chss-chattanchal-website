@@ -87,8 +87,10 @@ function EditStudentsTeacher() {
   function getData() {
     Axios.get(`teacher/get-student?studentId=${id}`)
       .then((response) => {
-        delete response.data._id;
-        setData(response.data);
+        var response = res.data
+        delete response._id;
+        response.status = "permanent"
+        setData(response);
       })
       .catch((err) => {});
 
@@ -98,8 +100,6 @@ function EditStudentsTeacher() {
       })
 
       .catch((err) => {});
-
-      
   }
 
   const navigate = useNavigate();
@@ -111,7 +111,6 @@ function EditStudentsTeacher() {
     setAvail(CheckDuty("add-details", navigate));
     getData();
   }, []);
-  console.log(data)
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
@@ -184,7 +183,7 @@ function EditStudentsTeacher() {
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
     for (var prop in data) {
-      if (data[prop] === "") {
+      if (data[prop] === "" || data[prop] === undefined) {
         if (
           prop !== "linguisticMinority" &&
           prop !== "rank" &&

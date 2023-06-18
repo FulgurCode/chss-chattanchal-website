@@ -16,7 +16,7 @@ export default function Profile() {
   const [loading, setisLoading] = useState(false);
 
   let componentRef = useRef();
-  const[avail, setAvail] = useState(false)
+  const [avail, setAvail] = useState(false);
   const [data] = useSearchParams();
   const id = data.getAll("id");
   const editable = data.getAll("editable")[0];
@@ -30,14 +30,15 @@ export default function Profile() {
     useAuth(setisLoading, navigate);
     getData();
     getImage();
-    CheckDuty()
+    CheckDuty();
   }, []);
 
-  function CheckDuty(){
-    Axios.get("/teacher/have-duty?duty=add-details").then((res) => {
-      setAvail(res.data)
-    }
-    ).catch(err => console.log(err.data))
+  function CheckDuty() {
+    Axios.get("/teacher/have-duty?duty=add-details")
+      .then((res) => {
+        setAvail(res.data);
+      })
+      .catch((err) => {});
   }
 
   function getData() {
@@ -45,8 +46,7 @@ export default function Profile() {
       .then((res) => {
         setDetails(res.data);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
 
   function getImage() {
@@ -54,8 +54,7 @@ export default function Profile() {
       .then((res) => {
         setImg("data:image/jpeg;base64," + res.data);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }
 
   function editNav(e) {
@@ -63,38 +62,40 @@ export default function Profile() {
   }
   return (
     <>
-    <div>
-      <Navbar user="teacher" />
       <div>
-        <div className={styles.body}>
-          <div className={styles.main}>
-            <Details details={details} img={img} />
-            <div className={styles.btnContainer}>
-              {/* <button>Print</button> */}
-              <ReactToPrint
-                trigger={() => <button>Print</button>}
-                content={() => componentRef.current}
-                documentTitle={details.name}
-              />
-              {avail && <button
-                onClick={editNav}
-                style={{
-                  display:
-                    editable != undefined
-                      ? editable == "true"
-                        ? "flex"
-                        : "none"
-                      : "flex",
-                }}
-              >
-                Edit
-              </button>}
+        <Navbar user="teacher" />
+        <div>
+          <div className={styles.body}>
+            <div className={styles.main}>
+              <Details details={details} img={img} />
+              <div className={styles.btnContainer}>
+                {/* <button>Print</button> */}
+                <ReactToPrint
+                  trigger={() => <button>Print</button>}
+                  content={() => componentRef.current}
+                  documentTitle={details.name}
+                />
+                {avail && (
+                  <button
+                    onClick={editNav}
+                    style={{
+                      display:
+                        editable != undefined
+                          ? editable == "true"
+                            ? "flex"
+                            : "none"
+                          : "flex",
+                    }}
+                  >
+                    Edit
+                  </button>
+                )}
+              </div>
+              <Table ref={componentRef} details={details} img={img} />
             </div>
-            <Table ref={componentRef} details={details} img={img} />
           </div>
         </div>
-      </div>
-      <Loader open={loading} />
+        <Loader open={loading} />
       </div>
     </>
   );
@@ -303,7 +304,7 @@ const Details = (props, ref) => {
           </div>
         )}
 
-{props.details.rank == undefined ? (
+        {props.details.rank == undefined ? (
           ""
         ) : (
           <div>
@@ -331,7 +332,7 @@ const Details = (props, ref) => {
           </div>
         )}
 
-{props.details.rank == undefined ? (
+        {props.details.rank == undefined ? (
           ""
         ) : (
           <div>
@@ -521,7 +522,13 @@ const Table = forwardRef((props, ref) => {
         </tr>
         <tr>
           <td>OBC</td>
-          <td>{props.details.obc == undefined ? "" : props.details.obc ? "Yes" : "No"}</td>
+          <td>
+            {props.details.obc == undefined
+              ? ""
+              : props.details.obc
+              ? "Yes"
+              : "No"}
+          </td>
         </tr>
         <tr>
           <td>Category</td>
@@ -599,53 +606,45 @@ const Table = forwardRef((props, ref) => {
           </td>
         </tr>
 
-
         <tr>
           <td>Rank</td>
-          <td>
-            {props.details.rank == undefined ? "" : props.details.rank}
-          </td>
-        </tr><tr>
+          <td>{props.details.rank == undefined ? "" : props.details.rank}</td>
+        </tr>
+        <tr>
           <td>WGPA</td>
-          <td>
-            {props.details.wgpa == undefined ? "" : props.details.wgpa}
-          </td>
-        </tr><tr>
+          <td>{props.details.wgpa == undefined ? "" : props.details.wgpa}</td>
+        </tr>
+        <tr>
           <td>Admission category</td>
           <td>
-            {props.details.admissionCategory == undefined ? "" : props.details.admissionCategory}
+            {props.details.admissionCategory == undefined
+              ? ""
+              : props.details.admissionCategory}
           </td>
         </tr>
-
 
         <tr>
           <td>Number</td>
           <td>
-          {props.details.tcNumber == undefined
-              ? ""
-              : props.details.tcNumber}
+            {props.details.tcNumber == undefined ? "" : props.details.tcNumber}
           </td>
         </tr>
         <tr>
           <td>Date</td>
           <td>
-          {props.details.tcDate == undefined
-              ? ""
-              : props.details.tcDate}
+            {props.details.tcDate == undefined ? "" : props.details.tcDate}
           </td>
         </tr>
         <tr>
           <td>School</td>
           <td>
-          {props.details.tcSchool == undefined
-              ? ""
-              : props.details.tcSchool}
+            {props.details.tcSchool == undefined ? "" : props.details.tcSchool}
           </td>
         </tr>
         <tr>
           <td>Name of Board</td>
           <td>
-          {props.details.sslcNameOfBoard == undefined
+            {props.details.sslcNameOfBoard == undefined
               ? ""
               : props.details.sslcNameOfBoard}
           </td>
@@ -653,7 +652,7 @@ const Table = forwardRef((props, ref) => {
         <tr>
           <td>Register No.</td>
           <td>
-              {props.details.sslcRegisterNo == undefined
+            {props.details.sslcRegisterNo == undefined
               ? ""
               : props.details.sslcRegisterNo}
           </td>
@@ -661,7 +660,7 @@ const Table = forwardRef((props, ref) => {
         <tr>
           <td>Passsing Time</td>
           <td>
-              {props.details.sslcPassingTime == undefined
+            {props.details.sslcPassingTime == undefined
               ? ""
               : props.details.sslcPassingTime}
           </td>
