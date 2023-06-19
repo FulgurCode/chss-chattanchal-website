@@ -432,7 +432,7 @@ function EditStudentsTeacher() {
         />
         <Field
           text="DOB"
-          type="date"
+          type="text"
           change={handleChange}
           value={data.dob}
           name={data.import ? "" : "dob"}

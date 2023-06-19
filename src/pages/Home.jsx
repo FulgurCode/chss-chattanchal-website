@@ -57,7 +57,7 @@ export default function Home() {
           <Link to="#">
             <code>Contact Us</code>
           </Link>
-          <Link to="teacher/signup">
+          <Link to="/signup">
             <code>SignUp</code>
           </Link>
           <Link to="/login">

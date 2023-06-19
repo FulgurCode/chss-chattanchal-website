@@ -427,7 +427,7 @@ function editStudents() {
         />
         <Field
           text="DOB"
-          type="date"
+          type="text"
           change={handleChange}
           value={data.dob}
           name="dob"
