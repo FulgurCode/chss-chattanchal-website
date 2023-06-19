@@ -14,6 +14,7 @@ import WebCamPop from "../../../components/admin/newAdmission/WebCamPopUp";
 import QRPopUp from "../../../components/admin/newAdmission/QRPopUp";
 import Hero from "../../../components/common/PageHero";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
+import Loader from "../../../components/common/LoaderLogin";
 
 // ---------------- default function ----------------
 
@@ -69,6 +70,8 @@ function editStudents() {
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
 
+  const [disable, setDisable] = useState(false);
+
   async function base64ToFile(dataUrl, setState) {
     let blob = await fetch(dataUrl).then((res) => res.blob());
     const fileReader = new FileReader();
@@ -85,10 +88,10 @@ function editStudents() {
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
       .then((res) => {
-        var response = res.data
+        var response = res.data;
         delete response._id;
-        response.status = "permanent"
-        console.log(response)
+        response.status = "permanent";
+        console.log(response);
         setData(response);
       })
       .catch((err) => {});
@@ -592,8 +595,12 @@ function editStudents() {
           containerClass={style.subContainerNew}
         />
 
-        <button onClick={handleSubmit} className={`${style.submitButton}`}>
-          Submit
+        <button
+          onClick={handleSubmit}
+          className={`${style.submitButton}`}
+          disabled={disable}
+        >
+          {disable ? <Loader open={true} /> : "Submit"}
         </button>
       </div>
 
