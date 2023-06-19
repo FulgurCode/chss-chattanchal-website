@@ -85,10 +85,10 @@ function editStudents() {
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
       .then((res) => {
-        var response = res.data;
+        var response = res.data
         delete response._id;
-        response.status = "permanent";
-        console.log(response);
+        response.status = "permanent"
+        console.log(response)
         setData(response);
       })
       .catch((err) => {});
@@ -177,43 +177,46 @@ function editStudents() {
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
-    for (var prop in data) {
-      if (data[prop] === "" || data[prop] === undefined) {
-        if (
-          prop !== "linguisticMinority" &&
-          prop !== "rank" &&
-          prop !== "wgpa"
-        ) {
-          setNotFilledError(true);
-          hasNullOrUndefinedValue = true;
-          break;
-        }
-      }
+    /* for (var prop in data) { */
+    /*   if (data[prop] === "" || data[prop] === undefined) { */
+    /*     if ( */
+    /*       prop !== "linguisticMinority" && */
+    /*       prop !== "rank" && */
+    /*       prop !== "wgpa" */
+    /*     ) { */
+    /*       setNotFilledError(true); */
+    /*       hasNullOrUndefinedValue = true; */
+    /*       break; */
+    /*     } */
+    /*   } */
+    /* } */
+
+    if (hasNullOrUndefinedValue) {
+    } else {
+      Axios.put(`admin/edit-student?studentId=${id}`, data)
+        .then(() => {
+          if (filePhoto) {
+            const formData = new FormData();
+            formData.append("file", filePhoto);
+
+            Axios.post(
+              `admin/upload-student-photo?studentId=${id}`,
+              formData
+            ).catch((err) => {
+              if (err.response.status == 413) {
+                alert("File size is too large");
+              }
+            });
+          }
+
+          setPopup(!popup);
+          setData(dataTemplete);
+          setFilePhotoURL("");
+          setGlobal(true);
+          history.back();
+        })
+        .catch((err) => {});
     }
-
-    Axios.put(`admin/edit-student?studentId=${id}`, data)
-      .then(() => {
-        if (filePhoto) {
-          const formData = new FormData();
-          formData.append("file", filePhoto);
-
-          Axios.post(
-            `admin/upload-student-photo?studentId=${id}`,
-            formData
-          ).catch((err) => {
-            if (err.response.status == 413) {
-              alert("File size is too large");
-            }
-          });
-        }
-
-        setPopup(!popup);
-        setData(dataTemplete);
-        setFilePhotoURL("");
-        setGlobal(true);
-        history.back();
-      })
-      .catch((err) => {});
   }
 
   return (

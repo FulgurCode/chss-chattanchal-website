@@ -181,19 +181,19 @@ function EditStudentsTeacher() {
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
-    for (var prop in data) {
-      if (data[prop] === "" || data[prop] === undefined) {
-        if (
-          prop !== "linguisticMinority" &&
-          prop !== "rank" &&
-          prop !== "wgpa"
-        ) {
-          setNotFilledError(true);
-          hasNullOrUndefinedValue = true;
-          break;
-        }
-      }
-    }
+    /* for (var prop in data) { */
+    /*   if (data[prop] === "" || data[prop] === undefined) { */
+    /*     if ( */
+    /*       prop !== "linguisticMinority" && */
+    /*       prop !== "rank" && */
+    /*       prop !== "wgpa" */
+    /*     ) { */
+    /*       setNotFilledError(true); */
+    /*       hasNullOrUndefinedValue = true; */
+    /*       break; */
+    /*     } */
+    /*   } */
+    /* } */
 
     Axios.put(`teacher/edit-student?studentId=${id}`, data)
       .then(() => {
