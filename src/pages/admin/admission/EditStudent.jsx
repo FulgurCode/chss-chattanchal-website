@@ -85,9 +85,10 @@ function editStudents() {
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
       .then((res) => {
-        var response = res.data
+        var response = res.data;
         delete response._id;
-        response.status = "permanent"
+        response.status = "permanent";
+        console.log(response);
         setData(response);
       })
       .catch((err) => {});
@@ -190,32 +191,29 @@ function editStudents() {
       }
     }
 
-    if (hasNullOrUndefinedValue) {
-    } else {
-      Axios.put(`admin/edit-student?studentId=${id}`, data)
-        .then(() => {
-          if (filePhoto) {
-            const formData = new FormData();
-            formData.append("file", filePhoto);
+    Axios.put(`admin/edit-student?studentId=${id}`, data)
+      .then(() => {
+        if (filePhoto) {
+          const formData = new FormData();
+          formData.append("file", filePhoto);
 
-            Axios.post(
-              `admin/upload-student-photo?studentId=${id}`,
-              formData
-            ).catch((err) => {
-              if (err.response.status == 413) {
-                alert("File size is too large");
-              }
-            });
-          }
+          Axios.post(
+            `admin/upload-student-photo?studentId=${id}`,
+            formData
+          ).catch((err) => {
+            if (err.response.status == 413) {
+              alert("File size is too large");
+            }
+          });
+        }
 
-          setPopup(!popup);
-          setData(dataTemplete);
-          setFilePhotoURL("");
-          setGlobal(true);
-          history.back();
-        })
-        .catch((err) => {});
-    }
+        setPopup(!popup);
+        setData(dataTemplete);
+        setFilePhotoURL("");
+        setGlobal(true);
+        history.back();
+      })
+      .catch((err) => {});
   }
 
   return (

@@ -195,32 +195,29 @@ function EditStudentsTeacher() {
       }
     }
 
-    if (hasNullOrUndefinedValue) {
-    } else {
-      Axios.put(`teacher/edit-student?studentId=${id}`, data)
-        .then(() => {
-          if (filePhoto) {
-            const formData = new FormData();
-            formData.append("file", filePhoto);
+    Axios.put(`teacher/edit-student?studentId=${id}`, data)
+      .then(() => {
+        if (filePhoto) {
+          const formData = new FormData();
+          formData.append("file", filePhoto);
 
-            Axios.post(
-              `teacher/upload-student-photo?studentId=${id}`,
-              formData
-            ).catch((err) => {
-              if (err.response.status == 413) {
-                alert("File size is too large");
-              }
-            });
-          }
+          Axios.post(
+            `teacher/upload-student-photo?studentId=${id}`,
+            formData
+          ).catch((err) => {
+            if (err.response.status == 413) {
+              alert("File size is too large");
+            }
+          });
+        }
 
-          setPopup(!popup);
-          setData(dataTemplete);
-          setFilePhotoURL("");
-          setGlobal(true);
-          history.back();
-        })
-        .catch((err) => {});
-    }
+        setPopup(!popup);
+        setData(dataTemplete);
+        setFilePhotoURL("");
+        setGlobal(true);
+        history.back();
+      })
+      .catch((err) => {});
   }
 
   return (
