@@ -1,7 +1,7 @@
 import axios from "axios";
 
 var Axios = axios.create({
-  baseURL: "https://chattanchalhss.com/api/",
+  baseURL: "http://localhost:9000/api",
   withCredentials: true,
 });
 

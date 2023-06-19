@@ -118,17 +118,17 @@ input[type="number"] {
 }
 
 .submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 8vh 0 5vh 0;
   width: 9vw;
-  height: 6vh;
+  min-height: 44px;
   background: #28b4ab;
   border-radius: 8px;
   border: none;
   color: #ffffff;
   font-size: 1vw;
-  margin: 8vh 0 5vh 0;
-  width: 9vw;
-  height: 6vh;
   background: #28b4ab;
   border-radius: 8px;
   border: none;
