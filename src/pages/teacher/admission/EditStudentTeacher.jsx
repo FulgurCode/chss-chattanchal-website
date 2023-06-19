@@ -87,9 +87,9 @@ function EditStudentsTeacher() {
   function getData() {
     Axios.get(`teacher/get-student?studentId=${id}`)
       .then((response) => {
-        var response = res.data
+        var response = res.data;
         delete response._id;
-        response.status = "permanent"
+        response.status = "permanent";
         setData(response);
       })
       .catch((err) => {});
@@ -296,7 +296,7 @@ function EditStudentsTeacher() {
           type="number"
           change={handleChange}
           value={data.applicationNo}
-          name="applicationNo"
+          name={data.import ? "" : "applicationNo"}
           containerClass={`${style.subContainer} ${style.applicationNo}`}
         />
         <Field
