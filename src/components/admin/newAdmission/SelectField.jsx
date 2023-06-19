@@ -7,7 +7,7 @@ export default function SelectField(props) {
   return (
     <div className={`${styles.subContainerNew}`}>
       <label className={`${styles.label}`}>
-        {props.text} <span className={`${styles.aster}`}> * </span>
+        {props.text}
       </label>
       <select
         onChange={props.change}

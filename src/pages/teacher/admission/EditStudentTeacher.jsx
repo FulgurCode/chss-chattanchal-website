@@ -23,10 +23,10 @@ function EditStudentsTeacher() {
 
   const dataTemplete = {
     admissionDate: "",
-    applicationNo: "",
+    applicationNo: 0,
     name: "",
-    aadhaarNo: "",
-    phone: "", // This should be an integer
+    aadhaarNo: 0,
+    phone: 0, // This should be an integer
     gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
@@ -36,14 +36,14 @@ function EditStudentsTeacher() {
     caste: "",
     category: "",
     linguisticMinority: "",
-    obc: true, // this should be boolean value
+    obc: false, // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
     course: "PCMB",
     secondLanguage: "Malayalam",
     status: "permanent",
     sslcNameOfBoard: "",
-    sslcRegisterNo: "", // This should be an integer
+    sslcRegisterNo: 0, // This should be an integer
     sslcPassingTime: "",
     tcNumber: "",
     tcDate: "",
@@ -70,6 +70,8 @@ function EditStudentsTeacher() {
   const [filePhotoURL, setFilePhotoURL] = useState("");
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
+  const [phoneNoErr, setPhoneNoErr] = useState(false);
+  const [aadhaarNoErr, setAadhaarNoErr] = useState(false);
 
   async function base64ToFile(dataUrl, setState) {
     let blob = await fetch(dataUrl).then((res) => res.blob());
@@ -86,10 +88,11 @@ function EditStudentsTeacher() {
 
   function getData() {
     Axios.get(`teacher/get-student?studentId=${id}`)
-      .then((response) => {
-        delete response.data._id;
-        response.data.status = "permanent";
-        setData(response.data);
+      .then((res) => {
+        let response = res.data;
+        delete response._id;
+        response.status = "permanent";
+        setData({ ...data, ...response });
       })
       .catch((err) => {});
 
@@ -113,6 +116,32 @@ function EditStudentsTeacher() {
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
+    if (event && event.target) {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
+  }
+
+  function handleChangePhone(event) {
+    setPhoneNoErr(data.phone.length !== 9);
+    if (event && event.target) {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
+  }
+
+  function handleChangeAadhaar(event) {
+    setAadhaarNoErr(data.aadhaarNo.length !== 11);
     if (event && event.target) {
       const name = event.target.name;
       const value = event.target.value;
@@ -168,32 +197,15 @@ function EditStudentsTeacher() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    var hasNullOrUndefinedValue = false;
-
     // type casting the variable specified
     data.applicationNo = Number(data.applicationNo);
     data.rank = Number(data.rank);
     data.wgpa = Number(data.wgpa);
-    data.tcNumber = Number(data.tcNumber);
     data.phone = Number(data.phone);
     data.aadhaarNo = Number(data.aadhaarNo);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
-
-    /* for (var prop in data) { */
-    /*   if (data[prop] === "" || data[prop] === undefined) { */
-    /*     if ( */
-    /*       prop !== "linguisticMinority" && */
-    /*       prop !== "rank" && */
-    /*       prop !== "wgpa" */
-    /*     ) { */
-    /*       setNotFilledError(true); */
-    /*       hasNullOrUndefinedValue = true; */
-    /*       break; */
-    /*     } */
-    /*   } */
-    /* } */
 
     Axios.put(`teacher/edit-student?studentId=${id}`, data)
       .then(() => {
@@ -226,12 +238,6 @@ function EditStudentsTeacher() {
       <Hero title="Edit Student" icon={img2} />
 
       {/* ---------------- top infos ----------------   */}
-
-      <label className={`${style.mandatoryLabel}`}>
-        Fields marked with <span className={`${style.aster}`}> * </span> are
-        mandatory
-      </label>
-
       <img
         style={{ display: global ? "block" : "none", margin: "30px 0 0 16vw" }}
         className={style.photoContainer}
@@ -282,7 +288,7 @@ function EditStudentsTeacher() {
         webCamPhoto={setFilePhoto}
       />
 
-      <QRPopUp open={QR} show={setQR} text={sessionId} />
+      <QRPopUp open={QR} show={setQR} text={sessionId ? sessionId : ""} />
 
       {/* ---------------- Container 1 ----------------  */}
 
@@ -290,9 +296,9 @@ function EditStudentsTeacher() {
         <Field
           text="Application number"
           type="number"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.applicationNo}
-          name={data.import ? "" : "applicationNo"}
+          name="applicationNo"
           containerClass={`${style.subContainer} ${style.applicationNo}`}
         />
         <Field
@@ -311,32 +317,38 @@ function EditStudentsTeacher() {
       <div className={`${style.containerNew} `}>
         <Field
           text="Name of the student"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.name}
-          name={data.import ? "" : "name"}
+          name="name"
           containerClass={style.subContainerNew}
         />
         <Field
           text="Aadhaar no."
           type="number"
-          change={handleChange}
+          change={handleChangeAadhaar}
           value={data.aadhaarNo}
           name="aadhaarNo"
           containerClass={style.subContainerNew}
         />
+        {aadhaarNoErr && (
+          <p className={style.warning}>Please enter a valid number.</p>
+        )}
         <Field
           text="Phone no."
           type="number"
-          change={handleChange}
+          change={!data.import ? handleChangePhone : () => {}}
           value={data.phone}
-          name={data.import ? "" : "phone"}
+          name="phone"
           containerClass={style.subContainerNew}
         />
+        {phoneNoErr && (
+          <p className={style.warning}>Please enter a 10-digit phone number.</p>
+        )}
         <SelectField
           text="Gender"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.gender}
-          name={data.import ? "" : "gender"}
+          name="gender"
           option={[
             ["Male", "male"],
             ["Female", "female"],
@@ -405,9 +417,9 @@ function EditStudentsTeacher() {
         />
         <SelectField
           text="Category"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.category}
-          name={data.import ? "" : "category"}
+          name="category"
           option={[
             ["General", "general"],
             ["Hindu OBC", "HinOBC"],
@@ -430,9 +442,9 @@ function EditStudentsTeacher() {
         <Field
           text="DOB"
           type="text"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.dob}
-          name={data.import ? "" : "dob"}
+          name="dob"
           containerClass={style.subContainerNew}
         />
       </div>
@@ -446,9 +458,9 @@ function EditStudentsTeacher() {
           type="number"
           min={0}
           max={10}
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.wgpa}
-          name={data.import ? "" : "wgpa"}
+          name="wgpa"
           containerClass={style.subContainerNew}
           notRequired={true}
         />
@@ -457,17 +469,17 @@ function EditStudentsTeacher() {
           type="number"
           min={0}
           max={10000}
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.rank}
-          name={data.import ? "" : "rank"}
+          name="rank"
           containerClass={style.subContainerNew}
           notRequired={true}
         />
         <SelectField
           text="Admission category"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.admissionCategory}
-          name={data.import ? "" : "admissionCategory"}
+          name="admissionCategory"
           option={[
             ["Merit", "Merit"],
             ["Sports", "Sports"],
@@ -542,9 +554,10 @@ function EditStudentsTeacher() {
         </label>
         <Field
           text="Name of Board"
+          type="text"
           change={handleChange}
           value={data.sslcNameOfBoard}
-          name="nameOfBoard"
+          name="sslcNameOfBoard"
           containerClass={style.subContainerNew}
         />
         <Field
@@ -552,14 +565,15 @@ function EditStudentsTeacher() {
           type="number"
           change={handleChange}
           value={data.sslcRegisterNo}
-          name="registerNo"
+          name="sslcRegisterNo"
           containerClass={style.subContainerNew}
         />
         <Field
           text="Month and year of passing"
+          type="text"
           change={handleChange}
           value={data.sslcPassingTime}
-          name="passingTime"
+          name="sslcPassingTime"
           containerClass={style.subContainerNew}
         />
       </div>
@@ -571,7 +585,7 @@ function EditStudentsTeacher() {
         </label>
         <Field
           text="Number"
-          type="number"
+          type="text"
           change={handleChange}
           value={data.tcNumber}
           name="tcNumber"
@@ -587,9 +601,10 @@ function EditStudentsTeacher() {
         />
         <Field
           text="Issued school / institution"
+          type="text"
           change={handleChange}
           value={data.tcSchool}
-          name="school"
+          name="tcSchool"
           containerClass={style.subContainerNew}
         />
 

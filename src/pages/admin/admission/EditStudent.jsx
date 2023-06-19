@@ -22,10 +22,10 @@ function editStudents() {
 
   const dataTemplete = {
     admissionDate: "",
-    applicationNo: "",
+    applicationNo: 0,
     name: "",
-    aadhaarNo: "",
-    phone: "", // This should be an integer
+    aadhaarNo: 0,
+    phone: 0, // This should be an integer
     gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
@@ -35,14 +35,14 @@ function editStudents() {
     caste: "",
     category: "",
     linguisticMinority: "",
-    obc: true, // this should be boolean value
+    obc: false, // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
     course: "PCMB",
     secondLanguage: "Malayalam",
     status: "permanent",
     sslcNameOfBoard: "",
-    sslcRegisterNo: "", // This should be an integer
+    sslcRegisterNo: 0, // This should be an integer
     sslcPassingTime: "",
     tcNumber: "",
     tcDate: "",
@@ -50,6 +50,7 @@ function editStudents() {
     wgpa: "",
     rank: "",
     admissionCategory: "Merit",
+    import: "",
   };
 
   const [data, setData] = useState(dataTemplete);
@@ -60,12 +61,12 @@ function editStudents() {
   const [webCam, setWebCam] = useState(false);
   const photoRef = useRef("");
   const [global, setGlobal] = useState(true);
-  const [webCamPhoto, setWebCamPhoto] = useState("");
   const inputRef = useRef(null);
   const [param] = useSearchParams();
   const id = param.getAll("id");
   const [filePhotoURL, setFilePhotoURL] = useState("");
   const [phoneNoErr, setPhoneNoErr] = useState(false);
+  const [aadhaarNoErr, setAadhaarNoErr] = useState(false);
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
 
@@ -85,11 +86,10 @@ function editStudents() {
   function getData() {
     Axios.get(`admin/get-student?studentId=${id}`)
       .then((res) => {
-        var response = res.data
+        let response = res.data;
         delete response._id;
-        response.status = "permanent"
-        console.log(response)
-        setData(response);
+        response.status = "permanent";
+        setData({ ...data, ...response });
       })
       .catch((err) => {});
 
@@ -109,6 +109,32 @@ function editStudents() {
 
   // ---------------- Handle Change Function for input feild
   function handleChange(event) {
+    if (event && event.target) {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
+  }
+
+  function handleChangePhone(event) {
+    setPhoneNoErr(data.phone.length !== 9);
+    if (event && event.target) {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
+  }
+
+  function handleChangeAadhaar(event) {
+    setAadhaarNoErr(data.aadhaarNo.length !== 11);
     if (event && event.target) {
       const name = event.target.name;
       const value = event.target.value;
@@ -164,59 +190,39 @@ function editStudents() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    var hasNullOrUndefinedValue = false;
-
     // type casting the variable specified
     data.applicationNo = Number(data.applicationNo);
     data.rank = Number(data.rank);
     data.wgpa = Number(data.wgpa);
-    data.tcNumber = Number(data.tcNumber);
     data.phone = Number(data.phone);
     data.aadhaarNo = Number(data.aadhaarNo);
     data.obc = Boolean(data.obc);
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
-    /* for (var prop in data) { */
-    /*   if (data[prop] === "" || data[prop] === undefined) { */
-    /*     if ( */
-    /*       prop !== "linguisticMinority" && */
-    /*       prop !== "rank" && */
-    /*       prop !== "wgpa" */
-    /*     ) { */
-    /*       setNotFilledError(true); */
-    /*       hasNullOrUndefinedValue = true; */
-    /*       break; */
-    /*     } */
-    /*   } */
-    /* } */
+    Axios.put(`admin/edit-student?studentId=${id}`, data)
+      .then(() => {
+        if (filePhoto) {
+          const formData = new FormData();
+          formData.append("file", filePhoto);
 
-    if (hasNullOrUndefinedValue) {
-    } else {
-      Axios.put(`admin/edit-student?studentId=${id}`, data)
-        .then(() => {
-          if (filePhoto) {
-            const formData = new FormData();
-            formData.append("file", filePhoto);
+          Axios.post(
+            `admin/upload-student-photo?studentId=${id}`,
+            formData
+          ).catch((err) => {
+            if (err.response.status == 413) {
+              alert("File size is too large");
+            }
+          });
+        }
 
-            Axios.post(
-              `admin/upload-student-photo?studentId=${id}`,
-              formData
-            ).catch((err) => {
-              if (err.response.status == 413) {
-                alert("File size is too large");
-              }
-            });
-          }
-
-          setPopup(!popup);
-          setData(dataTemplete);
-          setFilePhotoURL("");
-          setGlobal(true);
-          history.back();
-        })
-        .catch((err) => {});
-    }
+        setPopup(!popup);
+        setData(dataTemplete);
+        setFilePhotoURL("");
+        setGlobal(true);
+        history.back();
+      })
+      .catch((err) => {});
   }
 
   return (
@@ -225,11 +231,6 @@ function editStudents() {
       <Hero title="Edit Student" icon={img2} />
 
       {/* ---------------- top infos ----------------   */}
-
-      <label className={`${style.mandatoryLabel}`}>
-        Fields marked with <span className={`${style.aster}`}> * </span> are
-        mandatory
-      </label>
 
       <img
         style={{ display: global ? "block" : "none", margin: "30px 0 0 16vw" }}
@@ -281,7 +282,7 @@ function editStudents() {
         webCamPhoto={setFilePhoto}
       />
 
-      <QRPopUp open={QR} show={setQR} text={sessionId} />
+      <QRPopUp open={QR} show={setQR} text={sessionId ? sessionId : ""} />
 
       {/* ---------------- Container 1 ----------------  */}
 
@@ -289,7 +290,7 @@ function editStudents() {
         <Field
           text="Application number"
           type="number"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.applicationNo}
           name="applicationNo"
           containerClass={`${style.subContainer} ${style.applicationNo}`}
@@ -310,7 +311,7 @@ function editStudents() {
       <div className={`${style.containerNew} `}>
         <Field
           text="Name of the student"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.name}
           name="name"
           containerClass={style.subContainerNew}
@@ -318,22 +319,29 @@ function editStudents() {
         <Field
           text="Aadhaar no."
           type="number"
-          change={handleChange}
+          change={handleChangeAadhaar}
           value={data.aadhaarNo}
           name="aadhaarNo"
           containerClass={style.subContainerNew}
         />
+        {aadhaarNoErr && (
+          <p className={style.warning}>Please enter a valid number.</p>
+        )}
         <Field
           text="Phone no."
           type="number"
-          change={handleChange}
+          change={!data.import ? handleChangePhone : () => {}}
           value={data.phone}
           name="phone"
           containerClass={style.subContainerNew}
         />
+        {phoneNoErr && (
+          <p className={style.warning}>Please enter a 10-digit phone number.</p>
+        )}
+
         <SelectField
           text="Gender"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.gender}
           name="gender"
           option={[
@@ -404,7 +412,7 @@ function editStudents() {
         />
         <SelectField
           text="Category"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.category}
           name="category"
           option={[
@@ -429,7 +437,7 @@ function editStudents() {
         <Field
           text="DOB"
           type="text"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.dob}
           name="dob"
           containerClass={style.subContainerNew}
@@ -445,7 +453,7 @@ function editStudents() {
           type="number"
           min={0}
           max={10}
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.wgpa}
           name="wgpa"
           containerClass={style.subContainerNew}
@@ -456,7 +464,7 @@ function editStudents() {
           type="number"
           min={0}
           max={10000}
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.rank}
           name="rank"
           containerClass={style.subContainerNew}
@@ -464,7 +472,7 @@ function editStudents() {
         />
         <SelectField
           text="Admission category"
-          change={handleChange}
+          change={!data.import ? handleChange : () => {}}
           value={data.admissionCategory}
           name="admissionCategory"
           option={[
@@ -541,6 +549,7 @@ function editStudents() {
         </label>
         <Field
           text="Name of Board"
+          type="text"
           change={handleChange}
           value={data.sslcNameOfBoard}
           name="sslcNameOfBoard"
@@ -556,6 +565,7 @@ function editStudents() {
         />
         <Field
           text="Month and year of passing"
+          type="text"
           change={handleChange}
           value={data.sslcPassingTime}
           name="sslcPassingTime"
@@ -570,7 +580,7 @@ function editStudents() {
         </label>
         <Field
           text="Number"
-          type="number"
+          type="text"
           change={handleChange}
           value={data.tcNumber}
           name="tcNumber"
@@ -586,6 +596,7 @@ function editStudents() {
         />
         <Field
           text="Issued school / institution"
+          type="text"
           change={handleChange}
           value={data.tcSchool}
           name="tcSchool"

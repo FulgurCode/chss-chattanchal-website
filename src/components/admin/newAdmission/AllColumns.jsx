@@ -16,10 +16,10 @@ function AllColumns(props) {
 
   const jsonTemp = {
     admissionDate: "",
-    applicationNo: "",
+    applicationNo: 0,
     name: "",
-    aadhaarNo: "",
-    phone: "", // This should be an integer
+    aadhaarNo: 0,
+    phone: 0, // This should be an integer
     gender: "male",
     nameOfParent: "",
     occupationOfParent: "",
@@ -27,16 +27,16 @@ function AllColumns(props) {
     addressOfGuardian: "",
     religion: "",
     caste: "",
-    category: "general",
+    category: "",
     linguisticMinority: "",
-    obc: true, // this should be boolean value
+    obc: false, // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
     course: "PCMB",
     secondLanguage: "Malayalam",
     status: "permanent",
     sslcNameOfBoard: "",
-    sslcRegisterNo: "", // This should be an integer
+    sslcRegisterNo: 0, // This should be an integer
     sslcPassingTime: "",
     tcNumber: "",
     tcDate: "",
@@ -44,6 +44,7 @@ function AllColumns(props) {
     wgpa: "",
     rank: "",
     admissionCategory: "Merit",
+    import: "",
   };
 
   const [data, setData] = useState(jsonTemp);
@@ -175,65 +176,45 @@ function AllColumns(props) {
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
-    for (var prop in data) {
-      if (data[prop] === "") {
-        if (
-          prop !== "linguisticMinority" &&
-          prop !== "rank" &&
-          prop !== "wgpa"
-        ) {
-          setNotFilledError(true);
-          hasNullOrUndefinedValue = true;
-          break;
-        }
-      }
-    }
-
-    if (!hasNullOrUndefinedValue) {
-      Axios.post(`/${props.user}/new-admission`, data)
-        .then((response) => {
-          if (filePhoto) {
-            const formData = new FormData();
-            formData.append("file", filePhoto);
-            Axios.post(
-              `/${props.user}/upload-student-photo?studentId=${response.data}`,
-              formData
-            ).catch((err) => {
-              if (err.response.data != undefined) {
-                if (err.response.status == 413) {
-                  alert("File size is too large");
-                } else {
-                    setError(err.response.data);
-                }
+    Axios.post(`/${props.user}/new-admission`, data)
+      .then((response) => {
+        if (filePhoto) {
+          const formData = new FormData();
+          formData.append("file", filePhoto);
+          Axios.post(
+            `/${props.user}/upload-student-photo?studentId=${response.data}`,
+            formData
+          ).catch((err) => {
+            if (err.response.data != undefined) {
+              if (err.response.status == 413) {
+                alert("File size is too large");
               } else {
-                setError("Server connection error");
+                setError(err.response.data);
               }
-            });
-          }
-          setPopup(!popup);
-          setData(jsonTemp);
-          setFilePhotoURL("");
-          setGlobal(true);
-          inputRef.current.value = "";
-        })
-        .catch((err) => {
-          if (err.response) {
-            setError(err.response.data);
-          } else {
-            setError("Server connection error");
-          }
-        });
-    }
+            } else {
+              setError("Server connection error");
+            }
+          });
+        }
+        setPopup(!popup);
+        setData(jsonTemp);
+        setFilePhotoURL("");
+        setGlobal(true);
+        inputRef.current.value = "";
+      })
+      .catch((err) => {
+        if (err.response) {
+          setError(err.response.data);
+        } else {
+          setError("Server connection error");
+        }
+      });
   }
 
   return (
     <div className={`${styles.globalParent}`}>
       {/* ---------------- top infos ----------------   */}
 
-      <label className={`${styles.mandatoryLabel}`}>
-        Fields marked with <span className={`${styles.aster}`}> * </span> are
-        mandatory
-      </label>
 
       {/* ---------------- Container 1 ----------------  */}
 
@@ -594,7 +575,7 @@ function AllColumns(props) {
         show={setNotFilledError}
         showVar={notFilledError}
       />
-      <QRPopUp open={QR} show={setQR} text={id} />
+      <QRPopUp open={QR} show={setQR} text={id ? id : ""} />
       <WebCamPop
         open={webCam}
         show={setWebCam}

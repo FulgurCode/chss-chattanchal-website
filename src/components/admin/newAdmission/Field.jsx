@@ -6,11 +6,6 @@ export default function Field(props) {
     <div style={props.styling} className={props.containerClass}>
       <label className={`${styles.label}`}>
         {props.text}{" "}
-        {!props.notRequired ? (
-          <span className={`${styles.aster}`}> * </span>
-        ) : (
-          ""
-        )}
       </label>
       <input
         type={props.type}
