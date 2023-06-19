@@ -14,6 +14,7 @@ import WebCamPop from "../../../components/admin/newAdmission/WebCamPopUp";
 import QRPopUp from "../../../components/admin/newAdmission/QRPopUp";
 import Hero from "../../../components/common/PageHero";
 import { useAuth } from "../../../../stores/CheckloginAdmin";
+import Loader from "../../../components/common/LoaderLogin";
 
 // ---------------- default function ----------------
 
@@ -69,6 +70,8 @@ function editStudents() {
   const [aadhaarNoErr, setAadhaarNoErr] = useState(false);
   const [webSocket, SetWebSocket] = useState();
   const [sessionId, setSessionId] = useState();
+
+  const [disable, setDisable] = useState(false);
 
   async function base64ToFile(dataUrl, setState) {
     let blob = await fetch(dataUrl).then((res) => res.blob());
@@ -603,8 +606,12 @@ function editStudents() {
           containerClass={style.subContainerNew}
         />
 
-        <button onClick={handleSubmit} className={`${style.submitButton}`}>
-          Submit
+        <button
+          onClick={handleSubmit}
+          className={`${style.submitButton}`}
+          disabled={disable}
+        >
+          {disable ? <Loader open={true} /> : "Submit"}
         </button>
       </div>
 

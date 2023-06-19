@@ -8,6 +8,7 @@ import SelectField from "./SelectField";
 import QRPopUp from "./QRPopUp";
 import WebCamPop from "./WebCamPopUp";
 import Webcam from "react-webcam";
+import Loader from "../../../components/common/LoaderLogin";
 
 // ---------------- default function ----------------
 
@@ -64,6 +65,7 @@ function AllColumns(props) {
   const [phoneNoErr, setPhoneNoErr] = useState(false);
   const [aadhaarNoErr, setAadhaarNoErr] = useState(false);
   const [id, setId] = useState();
+  const [disable, setDisable] = useState(false);
 
   async function base64ToFile(dataUrl, setState) {
     let blob = await fetch(dataUrl).then((res) => res.blob());
@@ -162,6 +164,7 @@ function AllColumns(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setDisable(true);
 
     var hasNullOrUndefinedValue = false;
 
@@ -194,6 +197,7 @@ function AllColumns(props) {
             } else {
               setError("Server connection error");
             }
+            setDisable(false);
           });
         }
         setPopup(!popup);
@@ -201,6 +205,7 @@ function AllColumns(props) {
         setFilePhotoURL("");
         setGlobal(true);
         inputRef.current.value = "";
+        setDisable(false);
       })
       .catch((err) => {
         if (err.response) {
@@ -208,13 +213,13 @@ function AllColumns(props) {
         } else {
           setError("Server connection error");
         }
+        setDisable(false);
       });
   }
 
   return (
     <div className={`${styles.globalParent}`}>
       {/* ---------------- top infos ----------------   */}
-
 
       {/* ---------------- Container 1 ----------------  */}
 
@@ -562,8 +567,12 @@ function AllColumns(props) {
         <label style={{ color: "red", fontSize: "15px", marginTop: "50px" }}>
           {error}
         </label>
-        <button onClick={handleSubmit} className={`${styles.submitButton}`}>
-          Submit
+        <button
+          onClick={handleSubmit}
+          className={`${styles.submitButton}`}
+          disabled={disable}
+        >
+          {disable ? <Loader open={true} /> : "Submit"}
         </button>
       </div>
 

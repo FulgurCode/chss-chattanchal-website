@@ -15,6 +15,7 @@ import QRPopUp from "../../../components/admin/newAdmission/QRPopUp";
 import Hero from "../../../components/common/PageHero";
 import { useAuth } from "../../../../stores/CheckloginTeacher";
 import CheckDuty from "../../../components/CheckDuty";
+import Loader from "../../../components/common/LoaderLogin";
 
 // ---------------- default function ----------------
 
@@ -72,6 +73,8 @@ function EditStudentsTeacher() {
   const [sessionId, setSessionId] = useState();
   const [phoneNoErr, setPhoneNoErr] = useState(false);
   const [aadhaarNoErr, setAadhaarNoErr] = useState(false);
+
+  const [disable, setDisable] = useState(false);
 
   async function base64ToFile(dataUrl, setState) {
     let blob = await fetch(dataUrl).then((res) => res.blob());
@@ -196,6 +199,11 @@ function EditStudentsTeacher() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log("Hello")
+
+    // For disabling the button when it is pressed
+    setDisable(true)
+
 
     // type casting the variable specified
     data.applicationNo = Number(data.applicationNo);
@@ -216,9 +224,14 @@ function EditStudentsTeacher() {
           Axios.post(
             `teacher/upload-student-photo?studentId=${id}`,
             formData
+          ).then((res) => {
+            setDisable(false)
+          }
+
           ).catch((err) => {
             if (err.response.status == 413) {
               alert("File size is too large");
+              setDisable(false)
             }
           });
         }
@@ -608,8 +621,8 @@ function EditStudentsTeacher() {
           containerClass={style.subContainerNew}
         />
 
-        <button onClick={handleSubmit} className={`${style.submitButton}`}>
-          Submit
+        <button onClick={handleSubmit} className={`${style.submitButton}`} disabled={disable}>
+          {disable ? <Loader open={true}/> : "Submit"}
         </button>
       </div>
 
