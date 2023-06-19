@@ -87,10 +87,9 @@ function EditStudentsTeacher() {
   function getData() {
     Axios.get(`teacher/get-student?studentId=${id}`)
       .then((response) => {
-        var response = res.data;
-        delete response._id;
-        response.status = "permanent";
-        setData(response);
+        delete response.data._id;
+        response.data.status = "permanent";
+        setData(response.data);
       })
       .catch((err) => {});
 
@@ -333,7 +332,7 @@ function EditStudentsTeacher() {
           type="number"
           change={handleChange}
           value={data.phone}
-          name="phone"
+          name={data.import ? "" : "phone"}
           containerClass={style.subContainerNew}
         />
         <SelectField
