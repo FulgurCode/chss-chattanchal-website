@@ -36,7 +36,7 @@ function editStudents() {
     caste: "",
     category: "",
     linguisticMinority: "",
-    obc: false, // this should be boolean value
+    obc: "", // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
     course: "PCMB",
@@ -91,7 +91,9 @@ function editStudents() {
       .then((res) => {
         let response = res.data;
         delete response._id;
-        response.status = "permanent";
+        if (response.status == "pending") {
+          response.status = "permanent";
+        }
         setData({ ...data, ...response });
       })
       .catch((err) => {});
@@ -198,11 +200,12 @@ function editStudents() {
     data.rank = Number(data.rank);
     data.wgpa = Number(data.wgpa);
     data.phone = Number(data.phone);
+    data.obc = Boolean(data.obc)
     data.aadhaarNo = Number(data.aadhaarNo);
-    data.obc = Boolean(data.obc);
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
 
+    console.log(Boolean(data.obc))
     Axios.put(`admin/edit-student?studentId=${id}`, data)
       .then(() => {
         if (filePhoto) {
@@ -293,7 +296,7 @@ function editStudents() {
         <Field
           text="Application number"
           type="number"
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.applicationNo}
           name="applicationNo"
           containerClass={`${style.subContainer} ${style.applicationNo}`}
@@ -314,7 +317,7 @@ function editStudents() {
       <div className={`${style.containerNew} `}>
         <Field
           text="Name of the student"
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.name}
           name="name"
           containerClass={style.subContainerNew}
@@ -333,7 +336,7 @@ function editStudents() {
         <Field
           text="Phone no."
           type="number"
-          change={!data.import ? handleChangePhone : () => {}}
+          change={handleChangePhone}
           value={data.phone}
           name="phone"
           containerClass={style.subContainerNew}
@@ -344,7 +347,7 @@ function editStudents() {
 
         <SelectField
           text="Gender"
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.gender}
           name="gender"
           option={[
@@ -408,14 +411,14 @@ function editStudents() {
           value={data.obc}
           name="obc"
           option={[
-            ["yes", true],
-            ["no", false],
+            ["yes", "true"],
+            ["no", ""],
           ]}
           containerClass={style.subContainerNew}
         />
         <SelectField
           text="Category"
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.category}
           name="category"
           option={[
@@ -435,12 +438,11 @@ function editStudents() {
           value={data.linguisticMinority}
           name="linguisticMinority"
           containerClass={style.subContainerNew}
-          notRequired={true}
         />
         <Field
           text="DOB"
           type="text"
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.dob}
           name="dob"
           containerClass={style.subContainerNew}
@@ -456,26 +458,24 @@ function editStudents() {
           type="number"
           min={0}
           max={10}
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.wgpa}
           name="wgpa"
           containerClass={style.subContainerNew}
-          notRequired={true}
         />
         <Field
           text="Rank"
           type="number"
           min={0}
           max={10000}
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.rank}
           name="rank"
           containerClass={style.subContainerNew}
-          notRequired={true}
         />
         <SelectField
           text="Admission category"
-          change={!data.import ? handleChange : () => {}}
+          change={handleChange}
           value={data.admissionCategory}
           name="admissionCategory"
           option={[

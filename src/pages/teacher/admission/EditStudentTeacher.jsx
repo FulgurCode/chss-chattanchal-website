@@ -37,7 +37,7 @@ function EditStudentsTeacher() {
     caste: "",
     category: "",
     linguisticMinority: "",
-    obc: false, // this should be boolean value
+    obc: "", // this should be boolean value
     dob: "",
     class: 11, // This should be an integer
     course: "PCMB",
@@ -94,7 +94,9 @@ function EditStudentsTeacher() {
       .then((res) => {
         let response = res.data;
         delete response._id;
-        response.status = "permanent";
+        if (response.status == "pending") {
+          response.status = "permanent";
+        }
         setData({ ...data, ...response });
       })
       .catch((err) => {});
@@ -199,11 +201,9 @@ function EditStudentsTeacher() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Hello")
 
     // For disabling the button when it is pressed
-    setDisable(true)
-
+    setDisable(true);
 
     // type casting the variable specified
     data.applicationNo = Number(data.applicationNo);
@@ -221,19 +221,16 @@ function EditStudentsTeacher() {
           const formData = new FormData();
           formData.append("file", filePhoto);
 
-          Axios.post(
-            `teacher/upload-student-photo?studentId=${id}`,
-            formData
-          ).then((res) => {
-            setDisable(false)
-          }
-
-          ).catch((err) => {
-            if (err.response.status == 413) {
-              alert("File size is too large");
-              setDisable(false)
-            }
-          });
+          Axios.post(`teacher/upload-student-photo?studentId=${id}`, formData)
+            .then((res) => {
+              setDisable(false);
+            })
+            .catch((err) => {
+              if (err.response.status == 413) {
+                alert("File size is too large");
+                setDisable(false);
+              }
+            });
         }
 
         setPopup(!popup);
@@ -423,8 +420,8 @@ function EditStudentsTeacher() {
           value={data.obc}
           name="obc"
           option={[
-            ["yes", true],
-            ["no", false],
+            ["yes", "true"],
+            ["no", ""],
           ]}
           containerClass={style.subContainerNew}
         />
@@ -621,8 +618,12 @@ function EditStudentsTeacher() {
           containerClass={style.subContainerNew}
         />
 
-        <button onClick={handleSubmit} className={`${style.submitButton}`} disabled={disable}>
-          {disable ? <Loader open={true}/> : "Submit"}
+        <button
+          onClick={handleSubmit}
+          className={`${style.submitButton}`}
+          disabled={disable}
+        >
+          {disable ? <Loader open={true} /> : "Submit"}
         </button>
       </div>
 
