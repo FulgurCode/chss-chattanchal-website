@@ -94,6 +94,9 @@ function editStudents() {
         if (response.status == "pending") {
           response.status = "permanent";
         }
+        if (!response.obc) {
+          response.obc = ""
+        }
         setData({ ...data, ...response });
       })
       .catch((err) => {});
