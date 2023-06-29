@@ -45,7 +45,6 @@ function AllColumns(props) {
     wgpa: "",
     rank: "",
     admissionCategory: "Merit",
-    import: "",
   };
 
   const [data, setData] = useState(jsonTemp);
@@ -166,17 +165,15 @@ function AllColumns(props) {
     event.preventDefault();
     setDisable(true);
 
-    var hasNullOrUndefinedValue = false;
-
     // type casting the variable specified
     data.applicationNo = Number(data.applicationNo);
     data.rank = Number(data.rank);
     data.wgpa = Number(data.wgpa);
-    data.tcNumber = Number(data.tcNumber);
     data.phone = Number(data.phone);
     data.aadhaarNo = Number(data.aadhaarNo);
     data.class = Number(data.class);
     data.sslcRegisterNo = Number(data.sslcRegisterNo);
+    data.obc = Boolean(data.obc)
 
     Axios.post(`/${props.user}/new-admission`, data)
       .then((response) => {
@@ -342,8 +339,8 @@ function AllColumns(props) {
           value={data.obc}
           name="obc"
           option={[
-            ["yes", true],
-            ["no", false],
+            ["yes", "true"],
+            ["no", ""],
           ]}
           containerClass={styles.subContainerNew}
         />

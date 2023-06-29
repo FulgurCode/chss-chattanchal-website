@@ -331,35 +331,6 @@ const Details = (props, ref) => {
             <code>{props.details.admissionCategory}</code>
           </div>
         )}
-
-        {props.details.rank == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Rank</code>
-            <code>:</code>
-            <code>{props.details.rank}</code>
-          </div>
-        )}
-        {props.details.wgpa == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>WGPA</code>
-            <code>:</code>
-            <code>{props.details.wgpa}</code>
-          </div>
-        )}
-        {props.details.admissionCategory == undefined ? (
-          ""
-        ) : (
-          <div>
-            <code>Admission category</code>
-            <code>:</code>
-            <code>{props.details.admissionCategory}</code>
-          </div>
-        )}
-
         <br />
 
         {props.details.tcNumber == undefined &&
