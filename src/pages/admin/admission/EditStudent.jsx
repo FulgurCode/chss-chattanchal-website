@@ -23,11 +23,11 @@ function editStudents() {
 
   const dataTemplete = {
     admissionDate: "",
-    applicationNo: 0,
+    applicationNo: "",
     name: "",
-    aadhaarNo: 0,
-    phone: 0, // This should be an integer
-    gender: "male",
+    aadhaarNo: "",
+    phone: "", // This should be an integer
+    gender: "",
     nameOfParent: "",
     occupationOfParent: "",
     relationshipWithGuardian: "",
@@ -38,19 +38,19 @@ function editStudents() {
     linguisticMinority: "",
     obc: "", // this should be boolean value
     dob: "",
-    class: 11, // This should be an integer
-    course: "PCMB",
-    secondLanguage: "Malayalam",
-    status: "permanent",
+    class: "", // This should be an integer
+    course: "",
+    secondLanguage: "",
+    status: "",
     sslcNameOfBoard: "",
-    sslcRegisterNo: 0, // This should be an integer
+    sslcRegisterNo: "", // This should be an integer
     sslcPassingTime: "",
     tcNumber: "",
     tcDate: "",
     tcSchool: "",
     wgpa: "",
     rank: "",
-    admissionCategory: "Merit",
+    admissionCategory: "",
     import: "",
   };
 
@@ -198,18 +198,33 @@ function editStudents() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // type casting the variable specified
-    data.applicationNo = Number(data.applicationNo);
-    data.rank = Number(data.rank);
-    data.wgpa = Number(data.wgpa);
-    data.phone = Number(data.phone);
-    data.obc = Boolean(data.obc)
-    data.aadhaarNo = Number(data.aadhaarNo);
-    data.class = Number(data.class);
-    data.sslcRegisterNo = Number(data.sslcRegisterNo);
+    var json = {};
 
-    console.log(Boolean(data.obc))
-    Axios.put(`admin/edit-student?studentId=${id}`, data)
+    for (var key in data) {
+      if (data[key] != "") {
+        if (
+          key == "applicationNo" ||
+          key == "rank" ||
+          key == "wgpa" ||
+          key == "phone" ||
+          key == "aadhaarNo" ||
+          key == "class" ||
+          key == "sslcRegisterNo"
+        ) {
+          json[key] = Number(data[key]);
+        } else if (key == "obc") {
+          if (data[key] == "false") {
+            json[key] = false;
+          } else if (data[key] == "true") {
+            json[key] = true;
+          }
+        } else {
+          json[key] = data[key];
+        }
+      }
+    }
+
+    Axios.put(`admin/edit-student?studentId=${id}`, json)
       .then(() => {
         if (filePhoto) {
           const formData = new FormData();
@@ -414,8 +429,8 @@ function editStudents() {
           value={data.obc}
           name="obc"
           option={[
+            ["no", "false"],
             ["yes", "true"],
-            ["no", ""],
           ]}
           containerClass={style.subContainerNew}
         />
