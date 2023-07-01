@@ -95,7 +95,7 @@ function EditStudentsTeacher() {
         let response = res.data;
         delete response._id;
         if (response.status == "pending") {
-          response.status = "permanent";
+          response.status = "";
         }
         if (!response.obc) {
           response.obc = "";

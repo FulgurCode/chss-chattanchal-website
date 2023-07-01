@@ -22,6 +22,7 @@ function editStudents() {
   // ---------------- States ----------------
 
   const dataTemplete = {
+    admissionNo: "",
     admissionDate: "",
     applicationNo: "",
     name: "",
@@ -92,10 +93,10 @@ function editStudents() {
         let response = res.data;
         delete response._id;
         if (response.status == "pending") {
-          response.status = "permanent";
+          response.status = "";
         }
         if (!response.obc) {
-          response.obc = ""
+          response.obc = "";
         }
         setData({ ...data, ...response });
       })
@@ -209,7 +210,8 @@ function editStudents() {
           key == "phone" ||
           key == "aadhaarNo" ||
           key == "class" ||
-          key == "sslcRegisterNo"
+          key == "sslcRegisterNo" ||
+          key == "admissionNo"
         ) {
           json[key] = Number(data[key]);
         } else if (key == "obc") {
@@ -310,6 +312,16 @@ function editStudents() {
 
       {/* ---------------- Container 1 ----------------  */}
 
+      <div className={`${style.container}`}>
+        <Field
+          text="Admission Number"
+          type="number"
+          change={handleChange}
+          value={data.admissionNo}
+          name="admissionNo"
+          containerClass={style.subContainerNew}
+        />
+      </div>
       <div className={`${style.container}`}>
         <Field
           text="Application number"
