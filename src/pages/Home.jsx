@@ -111,7 +111,11 @@ export default function Home() {
                 src="https://www.youtube.com/embed/sZ_AuzxhK3I"
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowfullscreen="allowfullscreen"
+                mozallowfullscreen="mozallowfullscreen"
+                msallowfullscreen="msallowfullscreen"
+                oallowfullscreen="oallowfullscreen"
+                webkitallowfullscreen="webkitallowfullscreen"
               ></iframe>
             </div>
           </form>
