@@ -3,7 +3,6 @@ import styles from "../styles/home/Home.module.css";
 import card from "../styles/home/Carousel.module.css";
 import { Link } from "react-router-dom";
 import Carousel from "../components/home/Carousel";
-import YouTube from 'react-youtube';
 
 import schoolImg1 from "../assets/images/home/school1.jpg";
 import schoolImg2 from "../assets/images/home/school2.jpg";
@@ -18,8 +17,8 @@ export default function Home() {
   const historyRef = useRef(null);
   const eventRef = useRef(null);
   const opts = {
-    height: '390',
-    width: '640',
+    height: "390",
+    width: "640",
     playerVars: {
       autoplay: 1,
     },
@@ -46,8 +45,9 @@ export default function Home() {
 
           <Link
             onClick={() => {
-                eventRef.current?.scrollIntoView({ behavior: "smooth" });
-            }}>
+              eventRef.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             <code>Events</code>
           </Link>
           <Link
@@ -97,6 +97,26 @@ export default function Home() {
         students. Join us on this remarkable journey of growth and success, as
         we shape tomorrow's leaders today.
       </div>
+      <div className={styles.events} ref={eventRef}>
+        <main>
+          <header>
+            <h2>Events</h2>
+          </header>
+          <h4>Fresher's Day 2023</h4>
+          <form>
+            <div class={styles.youtubeVideoContainer}>
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/sZ_AuzxhK3I"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </form>
+        </main>
+      </div>
       <div className={styles.gallery} ref={galleryRef}>
         <header>
           <h2>Gallery</h2>
@@ -113,24 +133,13 @@ export default function Home() {
           </div>
         </main>
       </div>
-      <div className={styles.events} ref={eventRef}>
-        <main>
-          <header>
-            <h2>Events</h2>
-          </header>
-          <h4>Fresher's Day 2023</h4>
-          <form>
-            <YouTube videoId="sZ_AuzxhK3I" opts={opts}/>
-          </form>
-        </main>
-      </div>
       <div className={styles.history} ref={historyRef}>
         <header>
           <h2>History</h2>
         </header>
         <div className={styles.container}>
-          Chattanchal Higher Secondary School was founded by TK Abdul
-          Khader Haji ON 1976
+          Chattanchal Higher Secondary School was founded by TK Abdul Khader
+          Haji ON 1976
         </div>
       </div>
       <footer className={styles.footer}></footer>
