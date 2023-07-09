@@ -253,6 +253,41 @@ a:active {
 
   border-radius: 20px;
 }
+
+.events header {
+  background-color: #6a2c70;
+  padding: 15px;
+  color: white;
+
+  padding-inline: 60px;
+}
+
+.events h2 {
+  font-weight: 600;
+}
+
+.events h4 {
+  line-height: 10px;
+  font-weight: 400;
+  font-size: larger;
+  margin-left: 10vw;
+}
+
+.events main {
+  min-width: 100vw;
+  max-width: 100vw;
+  min-height: 100%;
+
+  padding-block: 20px;
+}
+
+.events form {
+  display: flex;
+  justify-content: start;
+  margin-top: 5vh;
+  margin-left: 10vw;
+}
+
 .contact > header {
   background-color: #6a2c70;
   padding: 15px;

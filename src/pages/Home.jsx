@@ -3,17 +3,27 @@ import styles from "../styles/home/Home.module.css";
 import card from "../styles/home/Carousel.module.css";
 import { Link } from "react-router-dom";
 import Carousel from "../components/home/Carousel";
+import YouTube from 'react-youtube';
 
 import schoolImg1 from "../assets/images/home/school1.jpg";
 import schoolImg2 from "../assets/images/home/school2.jpg";
 import schoolImg3 from "../assets/images/home/school3.jpg";
 import schoolImg4 from "../assets/images/home/school4.jpg";
 import schoolImg5 from "../assets/images/home/school5.jpg";
+import { event } from "jquery";
 
 export default function Home() {
   const homeRef = useRef(null);
   const galleryRef = useRef(null);
   const historyRef = useRef(null);
+  const eventRef = useRef(null);
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 1,
+    },
+  };
 
   return (
     <div className={styles.body}>
@@ -34,7 +44,10 @@ export default function Home() {
             <code>Home</code>
           </Link>
 
-          <Link to="#">
+          <Link
+            onClick={() => {
+                eventRef.current?.scrollIntoView({ behavior: "smooth" });
+            }}>
             <code>Events</code>
           </Link>
           <Link
@@ -98,6 +111,17 @@ export default function Home() {
               <img src={schoolImg5} />
             </Carousel>
           </div>
+        </main>
+      </div>
+      <div className={styles.events} ref={eventRef}>
+        <main>
+          <header>
+            <h2>Events</h2>
+          </header>
+          <h4>Fresher's Day 2023</h4>
+          <form>
+            <YouTube videoId="sZ_AuzxhK3I" opts={opts}/>
+          </form>
         </main>
       </div>
       <div className={styles.history} ref={historyRef}>
