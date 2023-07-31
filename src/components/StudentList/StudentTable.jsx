@@ -83,7 +83,11 @@ export default function StudentTable() {
         item.applicationNo.toString().includes(searchQuery.toLowerCase())
       );
     } else if (selectedSearchOption === "Course") {
-      return course.toLowerCase().includes(searchQuery.toLowerCase());
+      return (
+        course &&
+        course.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
     } else {
       return searchFields.includes(searchQuery.toLowerCase());
     }
