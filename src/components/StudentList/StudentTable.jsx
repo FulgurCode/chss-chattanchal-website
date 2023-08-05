@@ -99,21 +99,41 @@ export default function StudentTable(props) {
     }
   };
 
-  function filterDataByCourse(selectedCourse) {
-    if (!selectedCourse) {
-      setData(allData); // If no course is selected, show all data
+  const [selectedFilters, setSelectedFilters] = useState({
+    course: "",
+    category: "",
+    gender: "",
+    admissionCategory: "",
+    // Add more filters here in the future if needed
+  });
+
+  // Function to filter data based on the selected filters
+  function filterDataBySelectedFilters(filters) {
+    if (Object.values(filters).every((val) => !val)) {
+      setData(allData); // If all filters are not selected, show all data
     } else {
-      const filteredData = allData.filter((item) => item.course === selectedCourse);
+      const filteredData = allData.filter((item) => {
+        return Object.entries(filters).every(([filterKey, filterValue]) => {
+          if (!filterValue) return true; // Skip filters that are not selected
+          return item[filterKey] === filterValue;
+        });
+      });
       setData(filteredData); // Update the data state with the filtered data
     }
   }
 
-  const handleCourseChange = (event) => {
-    const selectedCourse = event.target.value;
-    setSelectedCourseOption(selectedCourse);
-    filterDataByCourse(selectedCourse);
+  // Handle filter change for any dropdown
+  const handleFilterChange = (event, filterKey) => {
+    const selectedValue = event.target.value;
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      [filterKey]: selectedValue,
+    }));
   };
 
+  useEffect(() => {
+    filterDataBySelectedFilters(selectedFilters);
+  }, [selectedFilters]);
 
   const filteredData = data.filter((item) => {
     const { name, admissionNo, course } = item;
@@ -203,7 +223,9 @@ export default function StudentTable(props) {
     setSearchQuery("");
   };
 
+  const [selectedCategoryOption, setSelectedCategoryOption] = useState("");
   const [selectedCourseOption, setSelectedCourseOption] = useState("");
+  const [selectedGenderOption, setSelectedGenderOption] = useState("");
 
   return (
     <>
@@ -213,7 +235,6 @@ export default function StudentTable(props) {
             <div className={styles.searchCont}>
               <input
                 type="text"
-                
                 placeholder={`Search ${
                   selectedSearchOption ? selectedSearchOption : "all fields"
                 }`}
@@ -244,18 +265,72 @@ export default function StudentTable(props) {
               </select>
             </div>
             <div className={styles.filterPrint}>
-              <select
-                value={selectedCourseOption}
-                onChange={handleCourseChange}
-                className={styles.filterCourse}
-              >
-                <option value="">ALL COURSES</option>
-                <option value="PCMB">PCMB</option>
-                <option value="PCMC">PCMC</option>
-                <option value="COMMERCE">COMMERCE</option>
-              </select>
+              <div className={styles.filterBox}>
+                <div className={styles.selectPair}>
+                  <label style={{width: 83}}>Course:</label>
+                  <select
+                    value={selectedFilters.course}
+                    onChange={(e) => handleFilterChange(e, "course")}
+                    className={styles.filterOption}
+                  >
+                    <option value="">ALL COURSES</option>
+                    <option value="PCMB">PCMB</option>
+                    <option value="PCMC">PCMC</option>
+                    <option value="COMMERCE">COMMERCE</option>
+                  </select>
+                </div>
+                <div className={styles.selectPair}>
+                  <label style={{width: 83}}>Category:</label>
+                  <select
+                    value={selectedFilters.category}
+                    onChange={(e) => handleFilterChange(e, "category")}
+                    className={styles.filterOption}
+                  >
+                    <option value="">All Categories</option>
+                    <option value="general">General</option>
+                    <option value="HinOBC">HinOBC</option>
+                    <option value="ChristOBC">ChristOBC</option>
+                    <option value="OEC">OEC</option>
+                    <option value="muslim">Muslim</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                  </select>
+                </div>
+
+                <div className={styles.selectPair}>
+                  <label style={{width: 83}}>Gender:</label>
+                  <select
+                    value={selectedFilters.gender}
+                    onChange={(e) => handleFilterChange(e, "gender")}
+                    className={styles.filterOption}
+                  >
+                    <option value="">All Genders</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Other</option>
+                  </select>
+                </div>
+
+                <div className={styles.selectPair}>
+                  <label style={{width: 83}}>Admission Category:</label>
+                  <select
+                    value={selectedFilters.admissionCategory}
+                    onChange={(e) => handleFilterChange(e, "admissionCategory")}
+                    className={styles.filterOption}
+                  >
+                    {/* Options for Admission Category */}
+                    <option value="">All</option>
+                    <option value="Merit">Merit</option>
+                    <option value="Management">Management</option>
+                    <option value="Sports">Sports</option>
+                    <option value="IED">IED</option>
+                  </select>
+                </div>
+
+                {/* <option value="">Admission In:</option> */}
+              </div>
               <button onClick={generatePDF} className={styles.printBtn}>
-              Download as PDF
+                Download as PDF
               </button>
             </div>
           </div>
