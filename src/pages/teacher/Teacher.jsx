@@ -8,7 +8,7 @@ import { useAuth } from "../../../stores/CheckloginTeacher";
 import Loader from "../../components/common/Loader";
 import Breadcrumbs from "../../components/common/BreadCrumbs";
 import admissionIcon from "../../assets/images/admission/admissionIcon.png"
-
+import studentListIcon from "../../assets/images/admin/studentListIcon.png"
 
 export default function Teacher() {
   const navigate = useNavigate();
@@ -35,6 +35,17 @@ export default function Teacher() {
                 <img src={admissionIcon} width="80px" height="80px" />
               </span>
               <h1>Admission</h1>
+            </div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                navigate("/teacher/student-list");
+              }}
+            >
+              <span>
+                <img src={studentListIcon} width="80px" height="80px" />
+              </span>
+              <h1>Students</h1>
             </div>
             
           </div>

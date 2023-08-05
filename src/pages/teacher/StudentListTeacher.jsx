@@ -1,5 +1,5 @@
 import { Axios } from "axios";
-import {useAuth} from "../../../stores/CheckloginAdmin"
+import {useAuth} from "../../../stores/CheckloginTeacher"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import Hero from "../../components/common/PageHero";
 
 import icon from "../../assets/images/admin/studentListIcon.png"
 
-export default function StudentListAdmin(){
+export default function StudentListTeacher(){
     const navigate = useNavigate();
   const [loading, setisLoading] = useState(false);
 
@@ -20,9 +20,9 @@ export default function StudentListAdmin(){
 
     return (
         <>
-            <Navbar user="admin" />
+            <Navbar user="teacher" />
             <Hero title="Student List" icon={icon} />
-            <StudentTable user="admin"/>
+            <StudentTable user="teacher"/>
             <Loader open={loading}/>
         </>
     )

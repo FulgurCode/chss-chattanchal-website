@@ -39,7 +39,6 @@
 }
 
 .main {
-  padding: 3%;
   padding-top: 50px;
   min-height: 100%;
   display: flex;
@@ -47,10 +46,26 @@
   /* align-items: center; */
 }
 
-.searchCont{
+.adjustBox {
   display: flex;
-  align-self: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
+.searchCont {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.filterPrint {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -76,7 +91,6 @@
 .table {
   border-collapse: collapse;
   margin-bottom: 5px;
- 
 }
 
 .emptyBox {
@@ -85,6 +99,7 @@
 
 .tableBox {
   display: flex;
+
   justify-content: center;
   align-content: center;
   margin-top: 10px;
@@ -140,16 +155,6 @@
   background-color: #e6e6e6;
 }
 
-.searchBox {
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  text-indent: 5px;
-  height: 30px;
-  font-size: 18px;
- width: 200px;
-  margin-right: 3px;
-}
-
 .deleteBtn {
   border-radius: 15px;
   background-color: rgb(46, 194, 24);
@@ -169,11 +174,46 @@
   overflow-y: hidden;
 }
 
-.filterOption {
+.printBtn {
+  background-color: rgb(46, 194, 24);
+  box-shadow: 2px 2px 2px #888;
+  border: 0.5px solid #000;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  
+  min-width: 25px;
   height: 35px;
+  margin-top: 10px;
+  font-family: "poppins";
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.searchBox {
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  text-indent: 5px;
+  height: 30px;
   font-size: 18px;
+  width: 200px;
+}
+
+.filterOption {
+  margin-left: 5px;
+  border-radius: 5px;
+  width: 160px;
+  height: 35px;
+  text-indent: 5px;
+  font-size: 17px;
+  font-family: "poppins";
+  font-weight: 400;
+}
+.filterCourse {
+  text-indent: 5px;
+  border-radius: 5px;
+  width: 200px;
+  height: 35px;
+  font-size: 17px;
   font-family: "poppins";
   font-weight: 400;
 }
@@ -182,8 +222,8 @@
   color: #531f57;
 }
 
-.forScroll{
-  max-width: 80vw;
+.forScroll {
+  max-width: 91vw;
   max-height: 80vh;
   overflow-x: scroll;
   overflow-y: scroll;
