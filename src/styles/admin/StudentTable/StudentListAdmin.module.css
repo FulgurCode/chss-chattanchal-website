@@ -62,10 +62,28 @@
 }
 
 .filterPrint {
+  gap: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.filterBox{
+  
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.selectPair{
+  
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
 }
 
 .container {
@@ -201,12 +219,13 @@
 .filterOption {
   margin-left: 5px;
   border-radius: 5px;
-  width: 160px;
+  width: 150px;
   height: 35px;
   text-indent: 5px;
   font-size: 17px;
   font-family: "poppins";
   font-weight: 400;
+  margin-right: 10px;
 }
 .filterCourse {
   text-indent: 5px;
