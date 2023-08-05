@@ -24,6 +24,7 @@ import DutyAllocation from "./pages/admin/teachers/DutyAllocation.jsx";
 import ImportTeachers from "./pages/admin//teachers/ImportTeachers.jsx";
 import TeacherReport from "./pages/teacher/admission/Report";
 import VerificationAdmin from "./pages/admin/admission/VerificationAdmin";
+import StudentListTeacher from "./pages/teacher/StudentListTeacher";
 
 import SignUp from "./pages/teacher/SignUp";
 import SignUpOtp from "./pages/teacher/Otp";
@@ -118,6 +119,10 @@ export default function App() {
           <Route
             path="/teacher/change-password"
             element={<ChangePassword user="teacher" />}
+          />
+          <Route
+            path="/teacher/student-list"
+            element={<StudentListTeacher/>}
           />
 
           <Route path="/teacher/admission">
